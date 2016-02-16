@@ -1,0 +1,17 @@
+<div>
+		<h2>List Mata Pelajaran</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID Mata Pelajaran</th>
+					<th>Nama Mata Pelajaran</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.id}}</td>
+					<td><a href="/#/matapelajaran-detail/{{item.id}}">{{item.namaMatpel}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

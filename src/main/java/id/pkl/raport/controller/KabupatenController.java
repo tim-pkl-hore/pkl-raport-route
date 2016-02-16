@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,6 +38,20 @@ public class KabupatenController {
 	public Page<Kabupaten> listKabupaten(Pageable pageable)
 	{
 		return kabupatenRepository.findAll(pageable);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<Kabupaten> detailKabupaten(@PathVariable Integer id){
+		if (!kabupatenRepository.exists(id)) {
+			return new ResponseEntity<Kabupaten>(HttpStatus.NOT_FOUND);
+		}
+		Kabupaten kabupaten = kabupatenRepository.findOne(id);
+		return new ResponseEntity<Kabupaten>(kabupaten, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/all", method=RequestMethod.GET)
+	public Iterable<Kabupaten> listKabupaten() {
+		return kabupatenRepository.findAll();
 	}
 	
 }

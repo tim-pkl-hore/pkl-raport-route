@@ -1,0 +1,19 @@
+<div>
+		<h2>List Kabupaten</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID Kabupaten</th>
+					<th>Nama Kabupaten</th>
+					<th>Nama Provinsi</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.id}}</td>
+					<td><a href="/#/kabupaten-detail/{{item.id}}">{{item.namaKabupaten}}</a></td>
+					<td>{{item.provinsi.namaProvinsi}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

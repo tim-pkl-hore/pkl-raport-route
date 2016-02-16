@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name="/provinsi")
+@Table(name="provinsi")
 public class Provinsi {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

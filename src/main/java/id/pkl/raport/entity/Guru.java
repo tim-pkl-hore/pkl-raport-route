@@ -26,7 +26,7 @@ public class Guru {
 	@Email
 	@Column(name="email")
 	private String email;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -50,6 +50,5 @@ public class Guru {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
 	
 }

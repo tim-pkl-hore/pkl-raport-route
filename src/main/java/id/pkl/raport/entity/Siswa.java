@@ -24,6 +24,10 @@ public class Siswa {
 	private String namaSiswa;
 	
 	@ManyToOne
+	@JoinColumn(name="kelas_id", referencedColumnName="id")
+	private Kelas kelas;
+	
+	@ManyToOne
 	@JoinColumn(name="sekolah_id", referencedColumnName="id")
 	private Sekolah sekolah;
 
@@ -49,6 +53,14 @@ public class Siswa {
 
 	public void setSekolah(Sekolah sekolah) {
 		this.sekolah = sekolah;
+	}
+
+	public Kelas getKelas() {
+		return kelas;
+	}
+
+	public void setKelas(Kelas kelas) {
+		this.kelas = kelas;
 	}
 	
 	

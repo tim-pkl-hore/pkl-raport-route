@@ -1,0 +1,28 @@
+<div>
+		<h2>List Sekolah</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID Sekolah</th>
+					<th>Kode Sekolah</th>
+					<th>Nama Sekolah</th>
+					<th>Kode Pos</th>
+					<th>Kecamatan</th>
+					<th>Kabupaten</th>
+					<th>Provinsi</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.id}}</td>
+					<td>{{item.kodeSekolah}}</td>
+					<td><a href="/#/sekolah-detail/{{item.id}}">{{item.namaSekolah}}</a></td>
+					<td>{{item.kodePos}}</td>
+					<td>{{item.kecamatan.namaKecamatan}}</td>
+					<td>{{item.kabupaten.namaKabupaten}}</td>
+					<td>{{item.provinsi.namaProvinsi}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

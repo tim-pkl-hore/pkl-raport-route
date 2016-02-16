@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,5 +36,14 @@ public class GuruController {
 	public Page<Guru> listGuru(Pageable pageable)
 	{
 		return guruRepository.findAll(pageable);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<Guru> detailGuru(@PathVariable Long id){
+		if (!guruRepository.exists(id)) {
+			return new ResponseEntity<Guru>(HttpStatus.NOT_FOUND);
+		}
+		Guru guru = guruRepository.findOne(id);
+		return new ResponseEntity<Guru>(guru, HttpStatus.OK);
 	}
 }

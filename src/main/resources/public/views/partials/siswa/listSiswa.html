@@ -1,0 +1,20 @@
+<div>
+		<h2>List Siswa</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID Siswa</th>
+					<th>Nama Siswa</th>
+					<th>Nama Sekolah</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.id}}</td>
+					<td><a href="/#/siswa-detail/{{item.id}}">{{item.namaSiswa}}</a></td>
+					
+					<td>{{item.sekolah.namaSekolah}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

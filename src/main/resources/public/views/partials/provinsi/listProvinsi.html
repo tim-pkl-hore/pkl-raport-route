@@ -1,0 +1,19 @@
+<div>
+		<h2>List Provinsi</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID Provinsi</th>
+					<th>Kode Provinsi</th>
+					<th>Nama Provinsi</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.id}}</td>
+					<td>{{item.kodeProvinsi}}</td>
+					<td><a href="/#/provinsi-detail/{{item.id}}">{{item.namaProvinsi}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

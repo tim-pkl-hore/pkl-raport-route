@@ -1,0 +1,15 @@
+<div ng-controller="addKecamatanCtrl">
+		<h2>Isi Kecamatan</h2>
+		<form ng-submit="submit()">
+			<input type="text" ng-model="kecamatan.kodeKecamatan" placeholder="Kode Kecamatan"><br />
+			<input type="text" ng-model="kecamatan.namaKecamatan" placeholder="Nama Kecamatan"><br />
+			<select ng-model="kecamatan.kabupaten.id">
+				<option ng-repeat="kab in kabupaten" value="{{kab.id}}">{{kab.namaKabupaten}}</option>
+			</select>
+			<input type="submit" value="OK">
+		</form>
+		
+		<h5>Kecamatan</h5>
+			Kode Kecamatan: {{kecamatan.kodeKecamatan}}<br />
+			Nama Kecamatan: {{kecamatan.kodeKecamatan}}<br />
+	</div>

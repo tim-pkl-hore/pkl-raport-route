@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +31,15 @@ public class MataPelajaranController {
 		
 		MataPelajaran newMatpel = mataPelajaranRepository.save(mataPelajaran);
 		return new ResponseEntity<MataPelajaran>(newMatpel, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<MataPelajaran> detailMatpel(@PathVariable Long id){
+		if (!mataPelajaranRepository.exists(id)) {
+			return new ResponseEntity<MataPelajaran>(HttpStatus.NOT_FOUND);
+		}
+		MataPelajaran matapelajaran = mataPelajaranRepository.findOne(id);
+		return new ResponseEntity<MataPelajaran>(matapelajaran, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)

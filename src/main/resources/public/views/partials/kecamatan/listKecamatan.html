@@ -1,0 +1,19 @@
+<div>
+		<h2>List Kecamatan</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID Kecamatan</th>
+					<th>Nama Kecamatan</th>
+					<th>Nama Kabupaten</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.id}}</td>
+					<td><a href="/#/kecamatan-detail/{{item.id}}">{{item.namaKecamatan}}</a></td>
+					<td>{{item.kabupaten.namaKabupaten}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

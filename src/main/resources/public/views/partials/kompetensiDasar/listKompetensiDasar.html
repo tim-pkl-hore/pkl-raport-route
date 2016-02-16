@@ -1,0 +1,21 @@
+<div>
+		<h2>List Kompetensi Dasar</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID Kompetensi Dasar</th>
+					<th>Description</th>
+					<th>Order Index</th>
+					<th>Kompetensi Inti</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.id}}</td>
+					<td><a href="/#/kompetensi-dasar-detail/{{item.id}}">{{item.description}}</a></td>
+					<td>{{item.orderIndex}}</a></td>
+					<td>{{item.kompetensi_inti.description}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

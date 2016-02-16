@@ -4,6 +4,7 @@
 			<thead>
 				<tr>
 					<th>ID Kabupaten</th>
+					<th>Kode Kabupaten</th>
 					<th>Nama Kabupaten</th>
 					<th>Nama Provinsi</th>
 				</tr>
@@ -11,6 +12,7 @@
 			<tbody>
 				<tr ng-repeat="item in items">
 					<td>{{item.id}}</td>
+					<td>{{item.kodeKabupaten}}</td>
 					<td><a href="/#/kabupaten-detail/{{item.id}}">{{item.namaKabupaten}}</a></td>
 					<td>{{item.provinsi.namaProvinsi}}</td>
 				</tr>

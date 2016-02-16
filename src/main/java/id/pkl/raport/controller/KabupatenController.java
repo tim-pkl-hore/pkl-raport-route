@@ -23,7 +23,6 @@ public class KabupatenController {
 	private KabupatenRepository kabupatenRepository;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	
 	public ResponseEntity<Kabupaten> addKabupaten(@Validated @RequestBody Kabupaten kabupaten, BindingResult bindingResult)
 	{
 		if (bindingResult.hasErrors()) {

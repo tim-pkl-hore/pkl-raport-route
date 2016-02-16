@@ -1,0 +1,19 @@
+<div>
+		<h2>List Kompetensi Inti</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID Kompetensi Inti</th>
+					<th>Description</th>
+					<th>Tahun Ajaran</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.id}}</td>
+					<td><a href="/#/kompetensi-inti-detail/{{item.id}}">{{item.description}}</a></td>
+					<td>{{item.tahun_ajaran.tahunMasuk}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

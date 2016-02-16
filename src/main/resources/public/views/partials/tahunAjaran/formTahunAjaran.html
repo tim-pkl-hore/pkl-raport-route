@@ -1,0 +1,15 @@
+<div ng-controller="addTahunAjaranCtrl">
+		<h2>Isi Tahun Ajaran</h2>
+		<form ng-submit="submit()">
+			<input type="text" ng-model="tahun_ajaran.tahunMasuk" placeholder="Tahun Masuk"><br />
+			<input type="text" ng-model="tahun_ajaran.tahunKeluar" placeholder="Tahun Keluar"><br />
+			<select ng-model="tahun_ajaran.sekolah.id">
+				<option ng-repeat="sek in sekolah" value="{{sek.id}}">{{sek.namaSekolah}}</option>
+			</select>
+			<input type="submit" value="OK">
+		</form>
+		
+		<h5>Tahun Ajaran</h5>
+			Tahun Masuk: {{tahun_ajaran.tahunMasuk}}<br />
+			Tahun Keluar: {{tahun_ajaran.tahunKeluar}}<br />
+	</div>

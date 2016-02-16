@@ -1,0 +1,23 @@
+<div>
+		<h2>List Tahun Ajaran</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID Tahun Ajaran</th>
+					<th>Cuurent</th>
+					<th>Tahun Masuk</th>
+					<th>Tahun Keluar</th>
+					<th>Nama Sekolah</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.id}}</td>
+					<td>{{item.current}}</td>
+					<td><a href="/#/tahun-ajaran-detail/{{item.id}}">{{item.tahunMasuk}}</a></td>
+					<td>{{item.tahunKeluar}}</td>
+					<td>{{item.sekolah.namaSekolah}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

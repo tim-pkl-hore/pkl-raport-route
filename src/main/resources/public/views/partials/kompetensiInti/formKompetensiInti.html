@@ -1,0 +1,13 @@
+<div ng-controller="addKompetensiIntiCtrl">
+		<h2>Isi Kompetensi Inti</h2>
+		<form ng-submit="submit()">
+			<input type="text" ng-model="kompetensi_inti.description" placeholder="Descrption"><br />
+			<select ng-model="kompetensi_inti.tahun_ajaran.id">
+				<option ng-repeat="ajar in tahun_ajaran" value="{{ajar.id}}">{{ajar.tahunMasuk}}</option>
+			</select>
+			<input type="submit" value="OK">
+		</form>
+		
+		<h5>Kompetensi Inti</h5>
+			Description: {{kompetensi_inti.description}}<br />
+	</div>

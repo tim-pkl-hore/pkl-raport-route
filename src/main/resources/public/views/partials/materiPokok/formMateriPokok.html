@@ -1,0 +1,13 @@
+<div ng-controller="addMateriPokokCtrl">
+		<h2>Isi Materi Pokok</h2>
+		<form ng-submit="submit()">
+			<input type="text" ng-model="materi_pokok.indikator" placeholder="Indikator"><br />
+			<select ng-model="materi_pokok.kompetensiDasar.id">
+				<option ng-repeat="dasar in kompetensi_dasar" value="{{dasar.id}}">{{dasar.description}}</option>
+			</select>
+			<input type="submit" value="OK">
+		</form>
+		
+		<h5>Materi Pokok</h5>
+			Indikator: {{materi_pokok.indikator}}<br />
+	</div>

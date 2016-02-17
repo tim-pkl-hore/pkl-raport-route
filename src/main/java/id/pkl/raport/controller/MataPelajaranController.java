@@ -48,5 +48,10 @@ public class MataPelajaranController {
 		return mataPelajaranRepository.findAll(pageable);
 	}
 	
+	@RequestMapping(value="/all", method=RequestMethod.GET)
+	public Iterable<MataPelajaran> listMatpel(){
+		return mataPelajaranRepository.findAll();
+	}
+	
 	
 }

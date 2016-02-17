@@ -1,0 +1,19 @@
+<div>
+		<h2>List Materi Pokok</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID Materi Pokok</th>
+					<th>Indikator</th>
+					<th>Kompetensi Dasar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.id}}</td>
+					<td><a href="/#/materi-pokok-detail/{{item.id}}">{{item.indikator}}</a></td>
+					<td>{{item.kompetensiDasar.description}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

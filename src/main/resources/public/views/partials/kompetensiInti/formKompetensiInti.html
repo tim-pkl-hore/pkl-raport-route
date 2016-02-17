@@ -5,6 +5,9 @@
 			<select ng-model="kompetensi_inti.tahunAjaran.id">
 				<option ng-repeat="ajar in tahun_ajaran" value="{{ajar.id}}">{{ajar.tahunMasuk}}</option>
 			</select>
+			<select ng-model="kompetensi_inti.mataPelajaran.id">
+				<option ng-repeat="matpel in mata_pelajaran" value="{{matpel.id}}">{{matpel.namaMatpel}}</option>
+			</select>
 			<input type="submit" value="OK">
 		</form>
 		

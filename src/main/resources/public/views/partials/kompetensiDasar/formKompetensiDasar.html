@@ -3,9 +3,13 @@
 		<form ng-submit="submit()">
 			<input type="text" ng-model="kompetensi_dasar.description" placeholder="Description"><br />
 			<input type="text" ng-model="kompetensi_dasar.orderIndex" placeholder="Order"><br />
-			<select ng-model="kompetensi_dasar.kompetensi_inti.id">
+			<select ng-model="kompetensi_dasar.kompetensiInti.id">
 				<option ng-repeat="inti in kompetensi_inti" value="{{inti.id}}">{{inti.description}}</option>
 			</select>
+			<select ng-model="kompetensi_dasar.mataPelajaran.id">
+				<option ng-repeat="matpel in mata_pelajaran" value="{{matpel.id}}">{{matpel.namaMatpel}}</option>
+			</select>
+			
 			<input type="submit" value="OK">
 		</form>
 		

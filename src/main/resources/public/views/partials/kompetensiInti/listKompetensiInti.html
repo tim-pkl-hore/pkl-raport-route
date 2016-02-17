@@ -6,6 +6,7 @@
 					<th>ID Kompetensi Inti</th>
 					<th>Description</th>
 					<th>Tahun Ajaran</th>
+					<th>Mata Pelajaran</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -13,6 +14,7 @@
 					<td>{{item.id}}</td>
 					<td><a href="/#/kompetensi-inti-detail/{{item.id}}">{{item.description}}</a></td>
 					<td>{{item.tahunAjaran.tahunMasuk}}/{{item.tahunAjaran.tahunKeluar}}</td>
+					<td>{{item.mataPelajaran.namaMatpel}}</td>
 				</tr>
 			</tbody>
 		</table>

@@ -48,4 +48,9 @@ public class SiswaController {
 		return siswaRepository.findAll(pageable);
 	}
 	
+	@RequestMapping(value="/all", method=RequestMethod.GET)
+	public Iterable<Siswa> listAllSiswa(){
+		return siswaRepository.findAll();
+	}
+	
 }

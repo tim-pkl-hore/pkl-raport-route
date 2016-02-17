@@ -30,6 +30,10 @@ public class KompetensiDasar {
 	@JoinColumn(name="kompetensi_inti_id", referencedColumnName="id")
 	private KompetensiInti kompetensiInti;
 	
+	@ManyToOne
+	@JoinColumn(name="mata_pelajaran_id", referencedColumnName="id")
+	private MataPelajaran mataPelajaran;
+	
 	public Long getId() {
 		return id;
 	}
@@ -62,8 +66,11 @@ public class KompetensiDasar {
 		this.kompetensiInti = kompetensiInti;
 	}
 
-	
-	
-	
-	
+	public MataPelajaran getMataPelajaran() {
+		return mataPelajaran;
+	}
+
+	public void setMataPelajaran(MataPelajaran mataPelajaran) {
+		this.mataPelajaran = mataPelajaran;
+	}
 }

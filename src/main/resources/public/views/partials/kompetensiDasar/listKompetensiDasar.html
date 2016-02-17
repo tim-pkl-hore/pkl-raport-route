@@ -7,6 +7,7 @@
 					<th>Description</th>
 					<th>Order Index</th>
 					<th>Kompetensi Inti</th>
+					<th>Mata Pelajaran</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -14,7 +15,8 @@
 					<td>{{item.id}}</td>
 					<td><a href="/#/kompetensi-dasar-detail/{{item.id}}">{{item.description}}</a></td>
 					<td>{{item.orderIndex}}</a></td>
-					<td>{{item.kompetensi_inti.description}}</td>
+					<td>{{item.kompetensiInti.description}}</td>
+					<td>{{item.mataPelajaran.namaMatpel}}</td>
 				</tr>
 			</tbody>
 		</table>

@@ -51,5 +51,4 @@ public class TahunAjaranController {
 	public Iterable<TahunAjaran> listTahunAjaran(){
 		return tahunAjarRepository.findAll();
 	}
-	
 }

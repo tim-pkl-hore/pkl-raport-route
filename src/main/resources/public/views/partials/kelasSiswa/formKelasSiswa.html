@@ -1,0 +1,18 @@
+<div ng-controller="addKelasSiswaCtrl">
+		<h2>Isi Kelas Siswa</h2>
+		<form ng-submit="submit()">
+			<input type="text" ng-model="kelas_siswa.tingkat" placeholder="Tingkat Kelas"><br />
+			<input type="text" ng-model="kelas_siswa.grupKelas" placeholder="Grup Kelas"><br />
+			<select ng-model="kelas_siswa.tahunAjaran.id">
+				<option ng-repeat="ajaran in tahun_ajaran" value="{{ajaran.id}}">{{ajaran.tahunMasuk}}</option>
+			</select>
+			<select ng-model="kelas_siswa.siswa.id">
+				<option ng-repeat="sis in siswa" value="{{sis.id}}">{{sis.namaSiswa}}</option>
+			</select>
+			<input type="submit" value="OK">
+		</form>
+		
+		<h5>Kelas Siswa</h5>
+			Tingkat Kelas: {{kelas_siswa.tingkat}}<br />
+			Grup Kelas: {{kelas_siswa.grupKelas}}<br />
+	</div>

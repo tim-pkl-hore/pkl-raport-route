@@ -1,0 +1,14 @@
+<div ng-controller="addHariLiburCtrl">
+		<h2>Isi Hari Libur</h2>
+		<form ng-submit="submit()">
+			<input type="date" ng-model="hari_libur.tanggal" placeholder="Tanggal"><br />
+			<input type="text" ng-model="hari_libur.deskripsi" placeholder="Deskripsi"><br />
+			<input type="radio" name="liburNasional" value="true" ng-model="hari_libur.liburNasional">True
+			<input type="radio" name="liburNasional" value="false" ng-model="hari_libur.liburNasional">False
+			<input type="submit" value="OK">
+		</form>
+		
+		<h5>Hari Libur</h5>
+			Tanggal: {{hari_libur.tanggal}}<br />
+			Deskripsi: {{hari_libur.deskripsi}}<br />
+</div>

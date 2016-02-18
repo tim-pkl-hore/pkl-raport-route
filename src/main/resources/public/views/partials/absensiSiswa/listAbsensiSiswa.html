@@ -1,0 +1,25 @@
+<div>
+		<h2>List Absensi Siswa</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID Absensi Siswa</th>
+					<th>Tanggal</th>
+					<th>Jenis</th>
+					<th>Alasan</th>
+					<th>Tahun Ajaran</th>
+					<th>Nama Sekolah</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.id}}</td>
+					<td>{{item.tanggal}}</td>
+					<td>{{item.jenisAbsensi}}</td>
+					<td><a href="/#/absensi-siswa-detail/{{item.id}}">{{item.alasan}}</a></td>
+					<td>{{item.tahunAjaran.tahunAwal}}/{{item.tahunAjaran.tahunAkhir}}</td>
+					<td>{{item.sekolah.namaSekolah}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

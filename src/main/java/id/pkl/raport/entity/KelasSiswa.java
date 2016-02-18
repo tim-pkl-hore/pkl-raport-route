@@ -7,10 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="kelas_siswa")
@@ -18,54 +16,30 @@ public class KelasSiswa {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
-	private Integer id;
+	private Long id;
 	
-	@NotNull
-	@Column(name="tingkat")
-	private Integer tingkat;
-	
-	@NotBlank
-	@Column(name="grup_kelas")
-	private String grupKelas;
-	
-	@ManyToOne
-	@JoinColumn(name="tahun_ajaran_id", referencedColumnName="id")
-	private TahunAjaran tahunAjaran;
+	@OneToOne
+	@JoinColumn(name="kelas_id", referencedColumnName="id")
+	private Kelas kelas;
 	
 	@ManyToOne
 	@JoinColumn(name="siswa_id", referencedColumnName="id")
 	private Siswa siswa;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Integer getTingkat() {
-		return tingkat;
+	public Kelas getKelas() {
+		return kelas;
 	}
 
-	public void setTingkat(Integer tingkat) {
-		this.tingkat = tingkat;
-	}
-
-	public String getGrupKelas() {
-		return grupKelas;
-	}
-
-	public void setGrupKelas(String grupKelas) {
-		this.grupKelas = grupKelas;
-	}
-
-	public TahunAjaran getTahunAjaran() {
-		return tahunAjaran;
-	}
-
-	public void setTahunAjaran(TahunAjaran tahunAjaran) {
-		this.tahunAjaran = tahunAjaran;
+	public void setKelas(Kelas kelas) {
+		this.kelas = kelas;
 	}
 
 	public Siswa getSiswa() {
@@ -75,4 +49,6 @@ public class KelasSiswa {
 	public void setSiswa(Siswa siswa) {
 		this.siswa = siswa;
 	}
+	
+	
 }

@@ -48,6 +48,24 @@ public class ProvinsiController {
 		return new ResponseEntity<Provinsi>(provinsi, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Provinsi> updateProvinsi(@PathVariable Integer id, @RequestBody Provinsi provinsi, BindingResult bindingResult){
+		if (bindingResult.hasErrors()) {
+			return new ResponseEntity<Provinsi>(HttpStatus.BAD_REQUEST);
+		}
+		
+		Provinsi currentProvince = provinsiRepository.findOne(id);
+		if(currentProvince == null){
+			return new ResponseEntity<Provinsi>(HttpStatus.NOT_FOUND);
+		}
+		
+		currentProvince.setNamaProvinsi(provinsi.getNamaProvinsi());
+		currentProvince.setKodeProvinsi(provinsi.getKodeProvinsi());
+		
+		provinsiRepository.save(currentProvince);
+		return new ResponseEntity<Provinsi>(currentProvince, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<Provinsi> listProvinsi() {
 		return provinsiRepository.findAll();

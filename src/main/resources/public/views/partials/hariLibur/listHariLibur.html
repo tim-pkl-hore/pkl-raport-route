@@ -1,0 +1,21 @@
+<div>
+		<h2>List Hari Libur</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID Hari Libur</th>
+					<th>Tanggal</th>
+					<th>Deskripsi</th>
+					<th>Libur Nasional</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.id}}</td>
+					<td>{{item.tanggal}}</td>
+					<td><a href="/#/hari-libur-detail/{{item.id}}">{{item.deskripsi}}</a></td>
+					<td>{{item.liburNasional}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

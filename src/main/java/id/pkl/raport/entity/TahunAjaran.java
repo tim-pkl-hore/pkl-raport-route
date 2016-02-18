@@ -19,12 +19,12 @@ public class TahunAjaran {
 	private Integer id;
 	
 	@NotNull
-	@Column(name="tahun_masuk")
-	private Integer tahunMasuk;
+	@Column(name="tahun_awal")
+	private Integer tahunAwal;
 	
 	@NotNull
-	@Column(name="tahun_keluar")
-	private Integer tahunKeluar;
+	@Column(name="tahun_akhir")
+	private Integer tahunAkhir;
 	
 	@Column(name="current")
 	private Boolean current;
@@ -41,20 +41,20 @@ public class TahunAjaran {
 		this.id = id;
 	}
 
-	public Integer getTahunMasuk() {
-		return tahunMasuk;
+	public Integer getTahunAwal() {
+		return tahunAwal;
 	}
 
-	public void setTahunMasuk(Integer tahunMasuk) {
-		this.tahunMasuk = tahunMasuk;
+	public void setTahunAwal(Integer tahunAwal) {
+		this.tahunAwal = tahunAwal;
 	}
 
-	public Integer getTahunKeluar() {
-		return tahunKeluar;
+	public Integer getTahunAkhir() {
+		return tahunAkhir;
 	}
 
-	public void setTahunKeluar(Integer tahunKeluar) {
-		this.tahunKeluar = tahunKeluar;
+	public void setTahunAkhir(Integer tahunAkhir) {
+		this.tahunAkhir = tahunAkhir;
 	}
 
 	public Boolean getCurrent() {

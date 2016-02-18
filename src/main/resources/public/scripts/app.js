@@ -18,6 +18,14 @@
 							return $route.current.params.id;
 						}
 					}
+				}).when('/provinsi-edit/:id', {
+					templateUrl: 'views/partials/provinsi/editProvinsi.html',
+					controller: 'editProvinsiCtrl',
+					resolve: {
+						'id': function($route){
+							return $route.current.params.id;
+						}
+					}
 				}).when('/provinsi-form', {
 					templateUrl: 'views/partials/provinsi/formProvinsi.html',
 					controller: 'addProvinsiCtrl'
@@ -175,6 +183,48 @@
 				}).when('/kelas-siswa-form', {
 					templateUrl: 'views/partials/kelasSiswa/formKelasSiswa.html',
 					controller: 'addKelasSiswaCtrl'
+				}).when('/kelas-list',{
+					templateUrl: 'views/partials/kelas/listKelas.html',
+					controller: 'listKelasCtrl'
+				}).when('/kelas-detail/:id', {
+					templateUrl: 'views/partials/kelas/detailKelas.html',
+					controller: 'detailKelasCtrl',
+					resolve: {
+						'id': function($route){
+							return $route.current.params.id;
+						}
+					}
+				}).when('/kelas-form', {
+					templateUrl: 'views/partials/kelas/formKelas.html',
+					controller: 'addKelasCtrl'
+				}).when('/hari-libur-list',{
+					templateUrl: 'views/partials/hariLibur/listHariLibur.html',
+					controller: 'listHariLiburCtrl'
+				}).when('/hari-libur-detail/:id', {
+					templateUrl: 'views/partials/hariLibur/detailHariLibur.html',
+					controller: 'detailHariLiburCtrl',
+					resolve: {
+						'id': function($route){
+							return $route.current.params.id;
+						}
+					}
+				}).when('/hari-libur-form', {
+					templateUrl: 'views/partials/hariLibur/formHariLibur.html',
+					controller: 'addHariLiburCtrl'
+				}).when('/absensi-siswa-list',{
+					templateUrl: 'views/partials/absensiSiswa/listAbsensiSiswa.html',
+					controller: 'listAbsensiSiswaCtrl'
+				}).when('/absensi-siswa-detail/:id', {
+					templateUrl: 'views/partials/absensiSiswa/detailAbsensiSiswa.html',
+					controller: 'detailAbsensiSiswaCtrl',
+					resolve: {
+						'id': function($route){
+							return $route.current.params.id;
+						}
+					}
+				}).when('/absensi-siswa-form', {
+					templateUrl: 'views/partials/absensiSiswa/formAbsensiSiswa.html',
+					controller: 'addAbsensiSiswaCtrl'
 				});
 			});
 
@@ -208,6 +258,24 @@
 				$log.error(angular.toJson(errors, true));
 			};
 			$http(request).then(successHandler, errorHandler);
+		});
+		
+		app.controller('editProvinsiCtrl', function($scope, $http, $log, id) {
+			$scope.provinsi = [];
+			
+			var request = {
+					url : '/provinsi/' + id ,
+					method : 'GET'
+				};
+				var successHandler = function(response) {
+					$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+					$scope.provinsi = response.data;
+				};
+				var errorHandler = function(errors) {
+					$log.error(angular.toJson(errors, true));
+				};
+				$http(request).then(successHandler, errorHandler);
+			
 		});
 		
 		app.controller('listKabupatenCtrl', function($scope, $http,    $log) {
@@ -531,6 +599,102 @@
 			$http(request).then(successHandler, errorHandler);
 		});
 		
+		app.controller('listKelasCtrl', function($scope, $http, $log) {
+			$scope.items = [];
+			var request = {
+				url : '/kelas',
+				method : 'GET'
+			};
+			var successHandler = function(response) {
+				$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+				$scope.items = response.data.content;
+			};
+			var errorHandler = function(errors) {
+				$log.error(angular.toJson(errors, true));
+			};
+			$http(request).then(successHandler, errorHandler);
+		});
+		
+		app.controller('detailKelasCtrl', function($scope, $http, $log, id) {
+			$scope.kelas = [];
+			var request = {
+				url : '/kelas/' + id ,
+				method : 'GET'
+			};
+			var successHandler = function(response) {
+				$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+				$scope.kelas = response.data;
+			};
+			var errorHandler = function(errors) {
+				$log.error(angular.toJson(errors, true));
+			};
+			$http(request).then(successHandler, errorHandler);
+		});
+		
+		app.controller('listHariLiburCtrl', function($scope, $http, $log) {
+			$scope.items = [];
+			var request = {
+				url : '/hari-libur',
+				method : 'GET'
+			};
+			var successHandler = function(response) {
+				$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+				$scope.items = response.data.content;
+			};
+			var errorHandler = function(errors) {
+				$log.error(angular.toJson(errors, true));
+			};
+			$http(request).then(successHandler, errorHandler);
+		});
+		
+		app.controller('detailHariLiburCtrl', function($scope, $http, $log, id) {
+			$scope.hari_libur = [];
+			var request = {
+				url : '/hari-libur/' + id ,
+				method : 'GET'
+			};
+			var successHandler = function(response) {
+				$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+				$scope.hari_libur = response.data;
+			};
+			var errorHandler = function(errors) {
+				$log.error(angular.toJson(errors, true));
+			};
+			$http(request).then(successHandler, errorHandler);
+		});
+		
+		app.controller('listAbsensiSiswaCtrl', function($scope, $http, $log) {
+			$scope.items = [];
+			var request = {
+				url : '/absensi-siswa',
+				method : 'GET'
+			};
+			var successHandler = function(response) {
+				$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+				$scope.items = response.data.content;
+			};
+			var errorHandler = function(errors) {
+				$log.error(angular.toJson(errors, true));
+			};
+			$http(request).then(successHandler, errorHandler);
+		});
+		
+		app.controller('detailAbsensiSiswaCtrl', function($scope, $http, $log, id) {
+			$scope.absensi_siswa = [];
+			var request = {
+				url : '/absensi-siswa/' + id ,
+				method : 'GET'
+			};
+			var successHandler = function(response) {
+				$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+				$scope.absensi_siswa = response.data;
+			};
+			var errorHandler = function(errors) {
+				$log.error(angular.toJson(errors, true));
+			};
+			$http(request).then(successHandler, errorHandler);
+		});
+		
 		app.controller('addProvinsiCtrl', function($scope, $http, $log) {
 			$scope.raport = {};
 			
@@ -538,6 +702,25 @@
 				var request = {
 					url: '/provinsi',
 					method: 'POST',
+					data: $scope.provinsi
+				};
+				var successHandler = function(response) {
+					$log.debug('Response data dari server : \n' + angular.toJson(response.data, true));
+				};
+				var errorHandler = function(errors) {
+					$log.error('Errors :\n' + angular.toJson(errors, true));
+				};
+				$http(request).then(successHandler, errorHandler);
+			};
+		});
+		
+		app.controller('updateProvinsiCtrl', function($scope, $http, $log) {
+			$scope.raport = {};
+			
+			$scope.update = function(id) {
+				var request = {
+					url: '/provinsi/' + id,
+					method: 'PUT',
 					data: $scope.provinsi
 				};
 				var successHandler = function(response) {
@@ -911,14 +1094,14 @@
 		app.controller('addKelasSiswaCtrl', function($scope, $http, $log) {
 			$scope.raport = {};
 			
-			$scope.tahun_ajaran = [];
+			$scope.kelas = [];
 			var request = {
-				url : '/tahun-ajaran/all',
+				url : '/kelas/all',
 				method : 'GET'
 			};
 			var successHandler = function(response) {
 				$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
-				$scope.tahun_ajaran = response.data;
+				$scope.kelas = response.data;
 			};
 			var errorHandler = function(errors) {
 				$log.error(angular.toJson(errors, true));
@@ -955,4 +1138,144 @@
 			};
 		});
 		
+		app.controller('addKelasCtrl', function($scope, $http, $log) {
+			$scope.raport = {};
+			
+			$scope.tahun_ajaran = [];
+			var request = {
+				url : '/tahun-ajaran/all',
+				method : 'GET'
+			};
+			var successHandler = function(response) {
+				$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+				$scope.tahun_ajaran = response.data;
+			};
+			var errorHandler = function(errors) {
+				$log.error(angular.toJson(errors, true));
+			};
+			$http(request).then(successHandler, errorHandler);
+			
+			$scope.sekolah = [];
+			var request = {
+				url : '/sekolah/all',
+				method : 'GET'
+			};
+			var successHandler = function(response) {
+				$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+				$scope.sekolah = response.data;
+			};
+			var errorHandler = function(errors) {
+				$log.error(angular.toJson(errors, true));
+			};
+			$http(request).then(successHandler, errorHandler);
+			
+			$scope.guru = [];
+			var request = {
+				url : '/guru/all',
+				method : 'GET'
+			};
+			var successHandler = function(response) {
+				$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+				$scope.guru = response.data;
+			};
+			var errorHandler = function(errors) {
+				$log.error(angular.toJson(errors, true));
+			};
+			$http(request).then(successHandler, errorHandler);
+						
+			$scope.submit = function() {
+				var request = {
+					url: '/kelas',
+					method: 'POST',
+					data: $scope.kelas
+				};
+				var successHandler = function(response) {
+					$log.debug('Response data dari server : \n' + angular.toJson(response.data, true));
+				};
+				var errorHandler = function(errors) {
+					$log.error('Errors :\n' + angular.toJson(errors, true));
+				};
+				$http(request).then(successHandler, errorHandler);
+			};
+		});
+		
+		app.controller('addHariLiburCtrl', function($scope, $http, $log) {
+			$scope.raport = {};
+						
+			$scope.submit = function() {
+				var request = {
+					url: '/hari-libur',
+					method: 'POST',
+					data: $scope.hari_libur
+				};
+				var successHandler = function(response) {
+					$log.debug('Response data dari server : \n' + angular.toJson(response.data, true));
+				};
+				var errorHandler = function(errors) {
+					$log.error('Errors :\n' + angular.toJson(errors, true));
+				};
+				$http(request).then(successHandler, errorHandler);
+			};
+		});
+		
+		app.controller('addAbsensiSiswaCtrl', function($scope, $http, $log) {
+			$scope.raport = {};
+						
+			$scope.tahun_ajaran = [];
+			var request = {
+				url : '/tahun-ajaran/all',
+				method : 'GET'
+			};
+			var successHandler = function(response) {
+				$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+				$scope.tahun_ajaran = response.data;
+			};
+			var errorHandler = function(errors) {
+				$log.error(angular.toJson(errors, true));
+			};
+			$http(request).then(successHandler, errorHandler);
+			
+			$scope.sekolah = [];
+			var request = {
+				url : '/sekolah/all',
+				method : 'GET'
+			};
+			var successHandler = function(response) {
+				$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+				$scope.sekolah = response.data;
+			};
+			var errorHandler = function(errors) {
+				$log.error(angular.toJson(errors, true));
+			};
+			$http(request).then(successHandler, errorHandler);
+			
+			$scope.kelas_siswa = [];
+			var request = {
+				url : '/kelas-siswa/all',
+				method : 'GET'
+			};
+			var successHandler = function(response) {
+				$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+				$scope.kelas_siswa = response.data;
+			};
+			var errorHandler = function(errors) {
+				$log.error(angular.toJson(errors, true));
+			};
+			$http(request).then(successHandler, errorHandler);
+			
+			$scope.submit = function() {
+				var request = {
+					url: '/absensi-siswa',
+					method: 'POST',
+					data: $scope.absensi_siswa
+				};
+				var successHandler = function(response) {
+					$log.debug('Response data dari server : \n' + angular.toJson(response.data, true));
+				};
+				var errorHandler = function(errors) {
+					$log.error('Errors :\n' + angular.toJson(errors, true));
+				};
+				$http(request).then(successHandler, errorHandler);
+			};
+		});
 		

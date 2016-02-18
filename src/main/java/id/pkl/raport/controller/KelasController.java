@@ -13,43 +13,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import id.pkl.raport.entity.Guru;
-import id.pkl.raport.repository.GuruRepository;
+import id.pkl.raport.entity.Kelas;
+import id.pkl.raport.repository.KelasRepository;
 
 @RestController
-@RequestMapping(value="/guru")
-public class GuruController {
+@RequestMapping(value="/kelas")
+public class KelasController {
 	@Autowired
-	private GuruRepository guruRepository;
+	private KelasRepository kelasRepository;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Guru> addGuru(@Validated @RequestBody Guru guru, BindingResult bindingResult)
-	{
+	public ResponseEntity<Kelas> addKelas(@Validated @RequestBody Kelas kelas, BindingResult bindingResult){
 		if (bindingResult.hasErrors()) {
-			return new ResponseEntity<Guru>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Kelas>(HttpStatus.BAD_REQUEST);
 		}
-		Guru newGuru = guruRepository.save(guru);
-		return new ResponseEntity<Guru>(newGuru, HttpStatus.OK);
+		
+		Kelas newKelas = kelasRepository.save(kelas);
+		return new ResponseEntity<Kelas>(newKelas, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public Page<Guru> listGuru(Pageable pageable)
-	{
-		return guruRepository.findAll(pageable);
+	public Page<Kelas> listKelas(Pageable pageable){
+		return kelasRepository.findAll(pageable);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Guru> detailGuru(@PathVariable Long id){
-		if (!guruRepository.exists(id)) {
-			return new ResponseEntity<Guru>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<Kelas> detailKelas(@PathVariable Long id){
+		if(!kelasRepository.exists(id)){
+			return new ResponseEntity<Kelas>(HttpStatus.NOT_FOUND);
 		}
-		Guru guru = guruRepository.findOne(id);
-		return new ResponseEntity<Guru>(guru, HttpStatus.OK);
+		
+		Kelas kelas = kelasRepository.findOne(id);
+		return new ResponseEntity<Kelas>(kelas, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
-	public Iterable<Guru> listGuru()
-	{
-		return guruRepository.findAll();
+	public Iterable<Kelas> listKelas(){
+		return kelasRepository.findAll();
 	}
 }

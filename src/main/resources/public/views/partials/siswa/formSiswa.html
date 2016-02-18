@@ -2,6 +2,16 @@
 		<h2>Isi Siswa</h2>
 		<form ng-submit="submit()">
 			<input type="text" ng-model="siswa.namaSiswa" placeholder="Nama Siswa"><br />
+			Tanggal Lahir: <input type="date" ng-model="siswa.tanggalLahir" placeholder="Tanggal Lahir"><br />
+			<select ng-model="siswa.jenisKelamin">
+				<option value="Laki_Laki">Laki-Laki</option>
+				<option value="Perempuan">Perempuan</option>
+			</select><br />
+			<input type="text" ng-model="siswa.namaBapak" placeholder="Nama Bapak"><br />
+			<input type="text" ng-model="siswa.emailBapak" placeholder="Email Bapak"><br />
+			<input type="text" ng-model="siswa.namaIbu" placeholder="Nama Ibu"><br />
+			<input type="text" ng-model="siswa.emailIbu" placeholder="Email Ibu"><br />
+			Diterima Sejak:<input type="date" ng-model="siswa.diterimaSejak" placeholder="Diterima Sejak"><br />
 			<select ng-model="siswa.sekolah.id">
 				<option ng-repeat="sek in sekolah" value="{{sek.id}}">{{sek.namaSekolah}}</option>
 			</select>
@@ -10,4 +20,11 @@
 		
 		<h5>Siswa</h5>
 			Nama Siswa: {{siswa.namaSiswa}}<br />
+			Tanggal Lahir: {{siswa.tanggalLahir}}<br />
+			Jenis Kelamin: {{siswa.jenisKelamin}}<br />
+			Nama Bapak: {{siswa.namaBapak}}<br />
+			Email Bapak: {{siswa.emailBapak}}<br />
+			Nama Ibu: {{siswa.namaIbu}}<br />
+			Nama Ibu: {{siswa.namaIbu}}<br />
+			Diterima Sejak: {{siswa.diterimaSejak}}<br />
 	</div>

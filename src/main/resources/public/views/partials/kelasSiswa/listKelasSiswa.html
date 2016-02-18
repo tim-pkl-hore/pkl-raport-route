@@ -5,17 +5,13 @@
 				<tr>
 					<th>ID Kelas Siswa</th>
 					<th>Tingkat Kelas</th>
-					<th>Grup Kelas</th>
-					<th>Tahun Ajaran</th>
 					<th>Nama Siswa</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in items">
 					<td>{{item.id}}</td>
-					<td><a href="/#/kelas-siswa-detail/{{item.id}}">{{item.tingkat}}</a></td>
-					<td>{{item.grupKelas}}</td>
-					<td>{{item.tahunAjaran.tahunMasuk}} / {{item.tahunAjaran.tahunKeluar}}</td>
+					<td><a href="/#/kelas-siswa-detail/{{item.id}}">{{item.kelas.tingkat}} {{item.kelas.grupKelas}} </a></td>
 					<td>{{item.siswa.namaSiswa}}</td>
 				</tr>
 			</tbody>

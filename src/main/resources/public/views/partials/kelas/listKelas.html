@@ -1,0 +1,27 @@
+<div>
+		<h2>List Kelas</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID Kelas</th>
+					<th>Tingkat Kelas</th>
+					<th>Grup Kelas</th>
+					<th>Jurusan Kelas</th>
+					<th>Tahun Ajaran</th>
+					<th>Nama Sekolah</th>
+					<th>Wali Kelas</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.id}}</td>
+					<td><a href="/#/kelas-detail/{{item.id}}">{{item.tingkat}}</a></td>
+					<td>{{item.grupKelas}}</td>
+					<td>{{item.jurusan}}</td>
+					<td>{{item.tahunAjaran.tahunAwal}} / {{item.tahunAjaran.tahunAkhir}}</td>
+					<td>{{item.sekolah.namaSekolah}}</td>
+					<td>{{item.waliKelas.nama}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

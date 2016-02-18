@@ -39,7 +39,7 @@ public class KelasSiswaController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<KelasSiswa> detailKelasSiswa(@PathVariable Integer id){
+	public ResponseEntity<KelasSiswa> detailKelasSiswa(@PathVariable Long id){
 		if (!kelasSiswaRepository.exists(id)) {
 			return new ResponseEntity<KelasSiswa>(HttpStatus.NOT_FOUND);
 		}

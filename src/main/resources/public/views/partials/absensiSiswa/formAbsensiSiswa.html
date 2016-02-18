@@ -1,0 +1,24 @@
+<div ng-controller="addAbsensiSiswaCtrl">
+		<h2>Isi Absensi Siswa</h2>
+		<form ng-submit="submit()">
+			<input type="date" ng-model="absensi_siswa.tanggal" placeholder="Tanggal"><br />
+			<select ng-model="absensi_siswa.jenisAbsensi">
+				<option value="Sakit">Sakit</option>
+				<option value="Izin">Izin</option>
+				<option value="Alpha">Alpha</option>
+			</select><br />
+			<input type="text" ng-model="absensi_siswa.alasan" placeholder="Alasan"><br />
+			<select ng-model="absensi_siswa.tahunAjaran.id">
+				<option ng-repeat="ajaran in tahun_ajaran" value="{{ajaran.id}}">{{ajaran.tahunAwal}}</option>
+			</select><br />
+			<select ng-model="absensi_siswa.sekolah.id">
+				<option ng-repeat="sek in sekolah" value="{{sek.id}}">{{sek.namaSekolah}}</option>
+			</select>			
+			<input type="submit" value="OK">
+		</form>
+		
+		<h5>Absensi Siswa</h5>
+			Tanggal: {{absensi_siswa.tanggal}}<br />
+			Jenis Absen: {{absensi_siswa.jenisAbsensi}}<br />
+			Alasan: {{absensi_siswa.alasan}}<br />
+	</div>

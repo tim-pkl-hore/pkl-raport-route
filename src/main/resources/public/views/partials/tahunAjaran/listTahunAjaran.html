@@ -5,8 +5,8 @@
 				<tr>
 					<th>ID Tahun Ajaran</th>
 					<th>Cuurent</th>
-					<th>Tahun Masuk</th>
-					<th>Tahun Keluar</th>
+					<th>Tahun Awal</th>
+					<th>Tahun Akhir</th>
 					<th>Nama Sekolah</th>
 				</tr>
 			</thead>
@@ -14,8 +14,8 @@
 				<tr ng-repeat="item in items">
 					<td>{{item.id}}</td>
 					<td>{{item.current}}</td>
-					<td><a href="/#/tahun-ajaran-detail/{{item.id}}">{{item.tahunMasuk}}</a></td>
-					<td>{{item.tahunKeluar}}</td>
+					<td><a href="/#/tahun-ajaran-detail/{{item.id}}">{{item.tahunAwal}}</a></td>
+					<td>{{item.tahunAkhir}}</td>
 					<td>{{item.sekolah.namaSekolah}}</td>
 				</tr>
 			</tbody>

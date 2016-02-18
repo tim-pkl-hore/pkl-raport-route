@@ -5,6 +5,13 @@
 				<tr>
 					<th>ID Siswa</th>
 					<th>Nama Siswa</th>
+					<th>Tanggal Lahir</th>
+					<th>Jenis Kelamin</th>
+					<th>Nama Bapak</th>
+					<th>Email Bapak</th>
+					<th>Nama Ibu</th>
+					<th>Email Ibu</th>
+					<th>Diterima Sejak</th>
 					<th>Nama Sekolah</th>
 				</tr>
 			</thead>
@@ -12,7 +19,13 @@
 				<tr ng-repeat="item in items">
 					<td>{{item.id}}</td>
 					<td><a href="/#/siswa-detail/{{item.id}}">{{item.namaSiswa}}</a></td>
-					
+					<td>{{item.tanggalLahir}}</td>
+					<td>{{item.jenisKelamin}}</td>
+					<td>{{item.namaBapak}}</td>
+					<td>{{item.emailBapak}}</td>
+					<td>{{item.namaIbu}}</td>
+					<td>{{item.emailIbu}}</td>
+					<td>{{item.diterimaSejak}}</td>
 					<td>{{item.sekolah.namaSekolah}}</td>
 				</tr>
 			</tbody>

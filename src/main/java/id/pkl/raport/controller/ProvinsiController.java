@@ -66,6 +66,16 @@ public class ProvinsiController {
 		return new ResponseEntity<Provinsi>(currentProvince, HttpStatus.OK);
 	}
 	
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Provinsi> deleteProvinsi(@PathVariable Integer id){
+		if(!provinsiRepository.exists(id)){
+			return new ResponseEntity<Provinsi>(HttpStatus.NOT_FOUND);
+		}
+		provinsiRepository.delete(id);
+		return new ResponseEntity<Provinsi>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<Provinsi> listProvinsi() {
 		return provinsiRepository.findAll();

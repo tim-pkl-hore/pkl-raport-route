@@ -1,0 +1,15 @@
+<div ng-controller="updateKabupatenCtrl">
+		<h2>Isi Provinsi</h2>
+		<form ng-submit="update(kabupaten.id)">
+			<input type="text" ng-model="kabupaten.kodeKabupaten" placeholder="Kode Kabupaten"><br />
+			<input type="text" ng-model="kabupaten.namaKabupaten" placeholder="Nama Kabupaten"><br />
+			<select ng-model="kabupaten.provinsi.id">		
+				<option ng-repeat="prop in provinsi" value="{{prop.id}}">{{prop.namaProvinsi}}</option>
+			</select>
+			<input type="submit" value="OK">
+		</form>
+		
+		<h5>Kabupaten</h5>
+			Kode Kabupaten: {{kabupaten.kodeKabupaten}}<br />
+			Nama Kabupaten: {{kabupaten.namaKabupaten}}<br />
+</div>

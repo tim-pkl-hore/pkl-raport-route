@@ -1,36 +1,52 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Project Raport</title>
+	<title>Project Raport</title>	
+	
+</head>
+<body ng-app="raportApp">
+	<table border="1" width="990px">
+		<thead>
+			<tr>
+				<th><a href="/#/provinsi-list">Provinsi</a></th>
+				<th><a href="/#/kabupaten-list">Kabupaten</a></th>
+				<th><a href="/#/kecamatan-list">Kecamatan</a></th>
+				<th><a href="/#/matapelajaran-list">Mata Pelajaran</a></th>
+				<th><a href="/#/siswa-list">Siswa</a></th>
+				<th><a href="/#/sekolah-list">Sekolah</a></th>
+				<th><a href="/#/guru-list">Guru</a></th>
+				<th><a href="/#/tahun-ajaran-list">Tahun Ajaran</a></th>
+				<th><a href="/#/kompetensi-inti-list">Kompetensi Inti</a></th>
+				<th><a href="/#/kompetensi-dasar-list">Kompetensi Dasar</a></th>
+				<th><a href="/#/materi-pokok-list">Materi Pokok</a></th>
+				<th><a href="/#/kelas-siswa-list">Kelas Siswa</a></th>
+				<th><a href="/#/kelas-list">Kelas</a></th>
+				<th><a href="/#/hari-libur-list">Hari Libur</a></th>
+				<th><a href="/#/absensi-siswa-list">Absensi Siswa</a></th>
+			</tr>
+		</thead>
+	</table>
+	
+	<div data-ng-view></div>
 	<script type="text/javascript" src="/scripts/vendor/angular.min.js"></script>
 	<script type="text/javascript" src="/scripts/vendor/angular-route.min.js"></script>
 	
-	<script type="text/javascript" src="/scripts/app.js">
-		// our custom scripts.
-		
-		
-	</script>
-</head>
-<body ng-app="raportApp">
-	<a href="/#/provinsi-list">List Provinsi</a> | <a href="/#/provinsi-form">Provinsi Form</a> | 
-	<a href="/#/kabupaten-list">Kabupaten List</a> | <a href="/#/kabupaten-form">Kabupaten Form</a> | 
-	<a href="/#/kecamatan-list">Kecamatan List</a> | <a href="/#/kecamatan-form">Kecamatan Form</a> |
-	<a href="/#/matapelajaran-list">Mata Pelajaran List</a> | <a href="/#/matapelajaran-form">Mata Pelajaran Form</a> |
-	<a href="/#/siswa-list">Siswa List</a> | <a href="/#/siswa-form">Siswa Form</a> |
-	<a href="/#/sekolah-list">Sekolah List</a> | <a href="/#/sekolah-form">Sekolah Form</a> |
-	<a href="/#/guru-list">Guru List</a> | <a href="/#/guru-form">Guru Form</a> |
-	<a href="/#/tahun-ajaran-list">Tahun Ajaran List</a> | <a href="/#/tahun-ajaran-form">Tahun Ajaran Form</a> |
-	<a href="/#/kompetensi-inti-list">Kompetensi Inti List</a> | <a href="/#/kompetensi-inti-form">Kompetensi Inti Form</a> |
-	<a href="/#/kompetensi-dasar-list">Kompetensi Dasar List</a> | <a href="/#/kompetensi-dasar-form">Kompetensi Dasar Form</a> |
-	<a href="/#/materi-pokok-list">Materi Pokok List</a> | <a href="/#/materi-pokok-form">Materi Pokok Form</a> |
-	<a href="/#/kelas-siswa-list">Kelas Siswa List</a> | <a href="/#/kelas-siswa-form">Kelas Siswa Form</a> |
-	<a href="/#/kelas-list">Kelas List</a> | <a href="/#/kelas-form">Kelas Form</a> |
-	<a href="/#/hari-libur-list">Hari Libur List</a> | <a href="/#/hari-libur-form">Hari Libur Form</a> |
-	<a href="/#/absensi-siswa-list">Absensi Siswa List</a> | <a href="/#/absensi-siswa-form">Absensi Siswa Form</a> |
-	
-	<div data-ng-view></div>
-	
-	
+	<script type="text/javascript" src="/scripts/app.js"></script>
+	<script type="text/javascript" src="/scripts/app.provinsi.js"></script>
+	<script type="text/javascript" src="/scripts/app.kabupaten.js"></script>
+	<script type="text/javascript" src="/scripts/app.kecamatan.js"></script>
+	<script type="text/javascript" src="/scripts/app.matapelajaran.js"></script>
+	<script type="text/javascript" src="/scripts/app.siswa.js"></script>
+	<script type="text/javascript" src="/scripts/app.sekolah.js"></script>
+	<script type="text/javascript" src="/scripts/app.guru.js"></script>
+	<script type="text/javascript" src="/scripts/app.tahunajaran.js"></script>
+	<script type="text/javascript" src="/scripts/app.kompetensiinti.js"></script>
+	<script type="text/javascript" src="/scripts/app.kompetensidasar.js"></script>
+	<script type="text/javascript" src="/scripts/app.materipokok.js"></script>
+	<script type="text/javascript" src="/scripts/app.kelassiswa.js"></script>
+	<script type="text/javascript" src="/scripts/app.kelas.js"></script>
+	<script type="text/javascript" src="/scripts/app.harilibur.js"></script>
+	<script type="text/javascript" src="/scripts/app.absensisiswa.js"></script>
 </body>
 </html>

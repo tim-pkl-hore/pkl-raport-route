@@ -48,6 +48,25 @@ public class KabupatenController {
 		return new ResponseEntity<Kabupaten>(kabupaten, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Kabupaten> updateKabupaten(@PathVariable Integer id, @RequestBody Kabupaten kabupaten, BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return new ResponseEntity<Kabupaten>(HttpStatus.BAD_REQUEST);
+		}
+		
+		Kabupaten currentKabupaten = kabupatenRepository.findOne(id);
+		if (currentKabupaten == null) {
+			return new ResponseEntity<Kabupaten>(HttpStatus.NOT_FOUND);
+		}
+		
+		currentKabupaten.setKodeKabupaten(kabupaten.getKodeKabupaten());
+		currentKabupaten.setNamaKabupaten(kabupaten.getNamaKabupaten());
+		
+		kabupatenRepository.save(currentKabupaten);
+		return new ResponseEntity<Kabupaten>(currentKabupaten, HttpStatus.OK);
+	}
+	
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<Kabupaten> listKabupaten() {
 		return kabupatenRepository.findAll();

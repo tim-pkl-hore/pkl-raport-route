@@ -38,6 +38,24 @@ public class GuruController {
 		return guruRepository.findAll(pageable);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Guru> updateGuru(@PathVariable Long id, @RequestBody Guru guru, BindingResult bindingResult){
+		if (bindingResult.hasErrors()) {
+			return new ResponseEntity<Guru>(HttpStatus.BAD_REQUEST);
+		}
+		
+		Guru currentGuru = guruRepository.findOne(id);
+		if (currentGuru == null) {
+			return new ResponseEntity<Guru>(HttpStatus.NOT_FOUND);
+		}
+		
+		currentGuru.setNama(guru.getNama());
+		currentGuru.setEmail(guru.getEmail());
+		
+		guruRepository.save(currentGuru);
+		return new ResponseEntity<Guru>(currentGuru, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Guru> detailGuru(@PathVariable Long id){
 		if (!guruRepository.exists(id)) {

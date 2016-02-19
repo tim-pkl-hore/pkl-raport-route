@@ -1,5 +1,6 @@
 <div>
 		<h2>List Kabupaten</h2>
+		<a href="/#/kabupaten-form">Tambah</a>
 		<table border="1">
 			<thead>
 				<tr>
@@ -7,6 +8,7 @@
 					<th>Kode Kabupaten</th>
 					<th>Nama Kabupaten</th>
 					<th>Nama Provinsi</th>
+					<th>Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -15,6 +17,7 @@
 					<td>{{item.kodeKabupaten}}</td>
 					<td><a href="/#/kabupaten-detail/{{item.id}}">{{item.namaKabupaten}}</a></td>
 					<td>{{item.provinsi.namaProvinsi}}</td>
+					<td><a href="/#/kabupaten-edit/{{item.id}}">Edit</a></td>
 				</tr>
 			</tbody>
 		</table>

@@ -1,5 +1,6 @@
 <div>
 		<h2>List Kompetensi Inti</h2>
+		<a href="/#/kompetensi-inti-form">Tambah</a>
 		<table border="1">
 			<thead>
 				<tr>
@@ -13,7 +14,7 @@
 				<tr ng-repeat="item in items">
 					<td>{{item.id}}</td>
 					<td><a href="/#/kompetensi-inti-detail/{{item.id}}">{{item.description}}</a></td>
-					<td>{{item.tahunAjaran.tahunMasuk}}/{{item.tahunAjaran.tahunKeluar}}</td>
+					<td>{{item.tahunAjaran.tahunAwal}}/{{item.tahunAjaran.tahunAkhir}}</td>
 					<td>{{item.mataPelajaran.namaMatpel}}</td>
 				</tr>
 			</tbody>

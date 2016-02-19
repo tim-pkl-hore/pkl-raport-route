@@ -42,6 +42,24 @@ public class MataPelajaranController {
 		return new ResponseEntity<MataPelajaran>(matapelajaran, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<MataPelajaran> updateMataPelajaran(@PathVariable Long id, @RequestBody MataPelajaran mataPelajaran, BindingResult bindingResult){
+		if (bindingResult.hasErrors()) {
+			return new ResponseEntity<MataPelajaran>(HttpStatus.BAD_REQUEST);
+		}
+		
+		MataPelajaran currentMataPelajaran = mataPelajaranRepository.findOne(id);
+		if (currentMataPelajaran == null) {
+			return new ResponseEntity<MataPelajaran>(HttpStatus.NOT_FOUND);
+		}
+		
+		currentMataPelajaran.setNamaMatpel(mataPelajaran.getNamaMatpel());
+		
+		mataPelajaranRepository.save(currentMataPelajaran);
+		return new ResponseEntity<MataPelajaran>(currentMataPelajaran, HttpStatus.OK);
+	}
+	
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public Page<MataPelajaran> listMatpel(Pageable pageable)
 	{

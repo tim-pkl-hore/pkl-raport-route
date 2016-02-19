@@ -1,11 +1,13 @@
 <div>
 		<h2>List Guru</h2>
+		<a href="/#/guru-form">Tambah</a>
 		<table border="1">
 			<thead>
 				<tr>
 					<th>ID Guru</th>
 					<th>Nama Guru</th>
 					<th>Email Guru</th>
+					<th>Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -13,6 +15,7 @@
 					<td>{{item.id}}</td>
 					<td><a href="/#/guru-detail/{{item.id}}">{{item.nama}}</a></td>
 					<td>{{item.email}}</td>
+					<td><a href="/#/guru-edit/{{item.id}}">Edit</a></td>
 					
 				</tr>
 			</tbody>

@@ -1,0 +1,12 @@
+<div ng-controller="updateGuruCtrl">
+		<h2>Guru</h2>
+		<form ng-submit="update(guru.id)">
+			<input type="text" ng-model="guru.nama" placeholder="Nama Guru"><br />
+			<input type="text" ng-model="guru.email" placeholder="Email Guru"><br />
+			<input type="submit" value="OK">
+		</form>
+		
+		<h5>Guru</h5>
+			Nama Guru: {{guru.nama}}<br />
+			Email Guru: {{guru.email}}<br />
+</div>

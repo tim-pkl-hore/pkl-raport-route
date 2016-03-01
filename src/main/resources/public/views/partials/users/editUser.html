@@ -3,6 +3,8 @@
 		<form ng-submit="update(users.id)">
 			<input type="text" ng-model="users.username" placeholder="Username"><br />
 			<input type="password" ng-model="users.password" placeholder="Password"><br />
+			<input type="radio" name="enabled" ng-model="users.enabled" value="true"/>True
+			<input type="radio" name="enabled" ng-model="users.enabled" value="false"/>False
 			<input type="submit" value="OK">
 		</form>
 		

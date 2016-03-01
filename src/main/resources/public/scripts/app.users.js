@@ -86,7 +86,7 @@ angular.module('raportApp').controller('updateUserCtrl', function($scope, $http,
 		var request = {
 			url: '/pengguna/' + id,
 			method: 'PUT',
-			data: $scope.guru
+			data: $scope.users
 		};
 		var successHandler = function(response) {
 			$log.debug('Response data dari server : \n' + angular.toJson(response.data, true));

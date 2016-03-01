@@ -1,5 +1,5 @@
-	<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>Project Raport</title>	
@@ -25,6 +25,13 @@
 				<th><a href="/#/hari-libur-list">Hari Libur</a></th>
 				<th><a href="/#/absensi-siswa-list">Absensi Siswa</a></th>
 				<th><a href="/#/user-list">Users</a></th>
+				<th>
+				<form name="f" th:action="@{/logout}" method="post">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<input type="submit" value="Sign Out" />
+				</form>
+				
+				</th>
 			</tr>
 		</thead>
 	</table>

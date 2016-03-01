@@ -1,0 +1,22 @@
+<div>
+		<h2>List Users</h2>
+		<a href="/#/user-form">Tambah</a><br />
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID User</th>
+					<th>Username</th>
+					<th>Password</th>
+					<th>Aksi</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.id}}</td>
+					<td><a href="/#/user-detail/{{item.id}}">{{item.username}}</a></td>
+					<td>{{item.password}}</td>
+					<td><a href="/#/user-edit/{{item.id}}">Edit</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

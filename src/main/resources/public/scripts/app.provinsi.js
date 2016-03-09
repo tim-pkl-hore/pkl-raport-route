@@ -18,6 +18,13 @@ angular.module('raportApp').config(function($routeProvider) {
 				return $route.current.params.id;
 			}
 		}
+	}).when('/provinsi-delete/:id', {
+		controller : 'deleteProvinsiCtrl',
+		resolve : {
+			'id' : function($route) {
+				return $route.current.params.id;
+			}
+		}
 	}).when('/provinsi-form', {
 		templateUrl : 'views/partials/provinsi/formProvinsi.html',
 		controller : 'addProvinsiCtrl'
@@ -35,6 +42,7 @@ angular.module('raportApp').controller('addProvinsiCtrl', function($scope, $http
 		};
 		var successHandler = function(response) {
 			$log.debug('Response data dari server : \n' + angular.toJson(response.data, true));
+			window.location = "/#/provinsi-list";
 		};
 		var errorHandler = function(errors) {
 			$log.error('Errors :\n' + angular.toJson(errors, true));
@@ -57,6 +65,8 @@ angular.module('raportApp').controller('listProvinsiCtrl', function($scope, $htt
 		$log.error(angular.toJson(errors, true));
 	};
 	$http(request).then(successHandler, errorHandler);
+	
+	
 });
 
 angular.module('raportApp').controller('detailProvinsiCtrl', function($scope, $http, $log, id) {
@@ -75,6 +85,23 @@ angular.module('raportApp').controller('detailProvinsiCtrl', function($scope, $h
 	$http(request).then(successHandler, errorHandler);
 });
 
+angular.module('raportApp').controller('deleteProvinsiCtrl', function($scope, $http, $log, id) {
+	$scope.provinsi = [];
+	var request = {
+		url : '/provinsi/' + id ,
+		method : 'DELETE'
+	};
+	var successHandler = function(response) {
+		$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+		$scope.provinsi = response.data;
+		window.location = "/#/provinsi-list";
+	};
+	var errorHandler = function(errors) {
+		$log.error(angular.toJson(errors, true));
+	};
+	$http(request).then(successHandler, errorHandler);
+});
+
 angular.module('raportApp').controller('updateProvinsiCtrl', function($scope, $http, $log) {
 	$scope.raport = {};
 	
@@ -86,6 +113,7 @@ angular.module('raportApp').controller('updateProvinsiCtrl', function($scope, $h
 		};
 		var successHandler = function(response) {
 			$log.debug('Response data dari server : \n' + angular.toJson(response.data, true));
+			window.location = "/#/provinsi-list";
 		};
 		var errorHandler = function(errors) {
 			$log.error('Errors :\n' + angular.toJson(errors, true));

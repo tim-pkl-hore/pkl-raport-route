@@ -1,15 +1,34 @@
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>Tambah Kecamatan</span>
+  </div>
+</md-toolbar>
+
+
 <div ng-controller="addKecamatanCtrl">
-		<h2>Isi Kecamatan</h2>
-		<form ng-submit="submit()">
-			<input type="text" ng-model="kecamatan.kodeKecamatan" placeholder="Kode Kecamatan"><br />
-			<input type="text" ng-model="kecamatan.namaKecamatan" placeholder="Nama Kecamatan"><br />
-			<select ng-model="kecamatan.kabupaten.id">
-				<option ng-repeat="kab in kabupaten" value="{{kab.id}}">{{kab.namaKabupaten}}</option>
-			</select>
-			<input type="submit" value="OK">
-		</form>
-		
-		<h5>Kecamatan</h5>
-			Kode Kecamatan: {{kecamatan.kodeKecamatan}}<br />
-			Nama Kecamatan: {{kecamatan.namaKecamatan}}<br />
+	<div>
+		<div layout="row">
+			<form ng-submit="submit()">
+				<md-input-container>
+	        		<label>Kode Kecamatan</label>
+	        		<input type="text" ng-model="kecamatan.kodeKecamatan">
+	     		</md-input-container>
+	     		<md-input-container>
+	        		<label>Nama Kecamatan</label>
+	        		<input type="text" ng-model="kecamatan.namaKecamatan">
+	     		</md-input-container>
+	     		<md-input-container>
+	      			<label>Kabupaten</label>
+	        		<md-select ng-model="kabupaten.provinsi.id">
+	          			<md-option ng-repeat="kab in kabupaten" value="{{kab.id}}">
+	            			{{kab.namaKabupaten}}
+	         			</md-option>
+	        		</md-select>
+	      		</md-input-container>
+	      		<md-input-container>
+	      			<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+	      		</md-input-container>	  
+			</form>
+		</div>
 	</div>
+</div>

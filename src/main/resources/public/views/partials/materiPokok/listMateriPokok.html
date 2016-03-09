@@ -1,20 +1,30 @@
-<div>
-		<h2>List Materi Pokok</h2>
-		<a href="/#/materi-pokok-form">Tambah</a>
-		<table border="1">
-			<thead>
-				<tr>
-					<th>ID Materi Pokok</th>
-					<th>Indikator</th>
-					<th>Kompetensi Dasar</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="item in items">
-					<td>{{item.id}}</td>
-					<td><a href="/#/materi-pokok-detail/{{item.id}}">{{item.indikator}}</a></td>
-					<td>{{item.kompetensiDasar.description}}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>List Materi Pokok</span>
+    <a href="/#/materi-pokok-form"><md-button md-no-ink class="md-primary">Tambah</md-button></a>
+  </div>
+</md-toolbar>
+<md-table-container>
+	<table md-table md-row-select border="1">
+		 <thead md-head>
+		 	<tr md-row>
+		 		<th md-coloumn>ID Materi Pokok</th>
+		 		<th md-coloumn>Indikator</th>
+		 		<th md-coloumn>Kompetensi Dasar</th>
+		 		<th md-coloumn>Aksi</th>
+		 	</tr>
+		 </thead>
+		 <tbody md-body>
+		 	<tr md-row ng-repeat="item in items">
+		 		<th md-cell>{{item.id}}</th>
+		 		<th md-cell>{{item.indikator}}</th>
+		 		<th md-cell>{{item.kompetensiDasar.description}}</th>
+		 		<th md-cell>
+		 			<a href="/#/materi-pokok-edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href="/#/materi-pokok-detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
+		 			<a href="/#/materi-pokok-delete/{{item.id}}"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 		</th>
+		 	</tr>
+		 </tbody>
+	</table>
+</md-table-container>

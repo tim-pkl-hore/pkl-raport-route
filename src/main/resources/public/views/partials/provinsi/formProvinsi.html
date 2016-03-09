@@ -1,12 +1,29 @@
-<div ng-controller="addProvinsiCtrl">
-		<h2>Tambah Provinsi</h2>
-		<form ng-submit="submit()">
-			<input type="text" ng-model="provinsi.kodeProvinsi" placeholder="Kode Provinsi"><br />
-			<input type="text" ng-model="provinsi.namaProvinsi" placeholder="Nama Provinsi"><br />
-			<input type="submit" value="OK">
-		</form>
-		
-		<h5>Provinsi</h5>
-			Kode Provinsi: {{provinsi.kodeProvinsi}}<br />
-			Nama Provinsi: {{provinsi.namaProvinsi}}<br />
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>Tambah Provinsi</span>
+  </div>
+</md-toolbar>
+
+<div ng-controller="addProvinsiCtrl" layout="column" ng-cloak class="md-inline-form">
+  <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+    <div>
+   		<form ng-submit="submit()">
+      	<md-input-container>
+        <label>Kode Provinsi</label>
+       	<input type="text" ng-model="provinsi.kodeProvinsi">
+      </md-input-container>
+      <md-input-container>
+        <label>Nama Provinsi</label>
+        <input type="text" ng-model="provinsi.namaProvinsi">
+      </md-input-container>
+      <md-input-container>
+      <md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      </md-input-container>
+      <!-- <md-button md-no-ink class="md-primary">
+      	<input type="submit" value="Tambah" />
+      </md-button>  -->
+      
+    </div>
+    </md-content>
+ 
 </div>

@@ -1,3 +1,39 @@
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>List Absensi Siswa</span>
+    <a href="/#/absensi-siswa-form"><md-button md-no-ink class="md-primary">Tambah</md-button></a>
+  </div>
+</md-toolbar>
+<md-table-container>
+	<table md-table md-row-select border="1">
+		<thead md-head>
+			<tr md-row>
+				<th md-coloumn>ID Absensi Siswa</th>
+				<th md-coloumn>Tanggal</th>
+				<th md-coloumn>Jenis</th>
+				<th md-coloumn>Alasan</th>
+				<th md-coloumn>Tahun Ajaran</th>
+				<th md-coloumn>Nama Sekolah</th>
+				<th md-coloumn>Aksi</th>
+			</tr>
+		</thead>
+		<tbody md-body align="">
+			<tr md-row ng-repeat="item in items">
+				<th md-cell>{{item.id}}</th>
+				<th md-cell>{{item.tanggal}}</th>
+				<th md-cell>{{item.jenisAbsensi}}</th>
+				<th md-cell>{{item.alasan}}</th>
+				<th md-cell>{{item.tahunAjaran.tahunAkhir}}</th>
+				<th md-cell>{{item.sekolah.namaSekolah}}</th>
+				<th md-cell>
+					<a href="/#/absensi-siswa-edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href="/#/absensi-siswa-detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
+		 			<a href="/#/absensi-siswa-delete/{{item.id}}"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
+				</th>
+			</tr>
+		</tbody>
+	</table>
+</md-table-container>
 <div>
 		<h2>List Absensi Siswa</h2>
 		<a href="/#/absensi-siswa-form">Tambah</a>

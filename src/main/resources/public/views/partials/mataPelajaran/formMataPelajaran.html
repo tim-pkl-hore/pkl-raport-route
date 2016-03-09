@@ -1,10 +1,20 @@
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>Tambah Mata Pelajaran</span>
+  </div>
+</md-toolbar>
+
 <div ng-controller="addMatpelCtrl">
-		<h2>Isi Mata Pelajaran</h2>
+<div>
+	<div layout="row">
 		<form ng-submit="submit()">
-			<input type="text" ng-model="mata_pelajaran.namaMatpel" placeholder="Nama Mata Pelajaran"><br />
-			<input type="submit" value="OK">
+			<md-input-container>
+        		<label>Mata Pelajaran</label>
+        		<input type="text" ng-model="mata_pelajaran.namaMatpel">
+     		</md-input-container>
+     		<md-input-container>
+      			<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      		</md-input-container>
 		</form>
-		
-		<h5>Mata Pelajaran</h5>
-			Nama Mata Pelajaran: {{mata_pelajaran.namaMatpel}}<br />
+	</div>
 </div>

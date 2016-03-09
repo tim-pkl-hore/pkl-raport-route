@@ -1,30 +1,56 @@
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>Tambah Siswa</span>
+  </div>
+</md-toolbar>
+
 <div ng-controller="addSiswaCtrl">
-		<h2>Isi Siswa</h2>
+<div>
+	<div layout="row">
 		<form ng-submit="submit()">
-			<input type="text" ng-model="siswa.namaSiswa" placeholder="Nama Siswa"><br />
-			Tanggal Lahir: <input type="date" ng-model="siswa.tanggalLahir" placeholder="Tanggal Lahir"><br />
-			<select ng-model="siswa.jenisKelamin">
-				<option value="Laki_Laki">Laki-Laki</option>
-				<option value="Perempuan">Perempuan</option>
-			</select><br />
-			<input type="text" ng-model="siswa.namaBapak" placeholder="Nama Bapak"><br />
-			<input type="text" ng-model="siswa.emailBapak" placeholder="Email Bapak"><br />
-			<input type="text" ng-model="siswa.namaIbu" placeholder="Nama Ibu"><br />
-			<input type="text" ng-model="siswa.emailIbu" placeholder="Email Ibu"><br />
-			Diterima Sejak:<input type="date" ng-model="siswa.diterimaSejak" placeholder="Diterima Sejak"><br />
-			<select ng-model="siswa.sekolah.id">
-				<option ng-repeat="sek in sekolah" value="{{sek.id}}">{{sek.namaSekolah}}</option>
-			</select>
-			<input type="submit" value="OK">
+			<md-input-container>
+        		<label>Nama Siswa</label>
+        		<input type="text" ng-model="siswa.namaSiswa">
+     		</md-input-container>
+     		<md-content>
+        		 <md-datepicker ng-model="siswa.tanggalLahir" md-placeholder="Tanggal Lahir"></md-datepicker>
+     		</md-content>
+     		<md-input-container>
+        		<md-select ng-model="siswa.jenisKelamin" placeholder="Jenis Kelamin">
+          			<md-option ng-value="Laki_Laki">Laki-Laki</option>
+					<md-option ng-value="Perempuan">Perempuan</option>
+        		</md-select>
+     		</md-input-container>
+     		<md-input-container>
+        		<label>Nama Bapak</label>
+        		<input type="text" ng-model="siswa.namaBapak">
+     		</md-input-container>
+     		<md-input-container>
+        		<label>Email Bapak</label>
+        		<input type="text" ng-model="siswa.emailBapak">
+     		</md-input-container>
+     		<md-input-container>
+        		<label>Nama Ibu</label>
+        		<input type="text" ng-model="siswa.namaIbu">
+     		</md-input-container>
+     		<md-input-container>
+        		<label>Email Ibu</label>
+        		<input type="text" ng-model="siswa.emailIbu">
+     		</md-input-container>
+     		<md-content>
+        		 <md-datepicker ng-model="siswa.tanggalLahir" md-placeholder="Diterima Sejak"></md-datepicker>
+     		</md-content>
+     		<md-input-container>
+        		<label>Nama Sekolah</label>
+        		<md-select ng-model="siswa.sekolah.id">
+          		<md-option ng-repeat="sek in sekolah" value="{{sek.id}}">
+            		{{sek.namaSekolah}}
+          		</md-option>
+        </md-select>
+      </md-input-container>
+     		<md-input-container>
+      			<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      		</md-input-container>
 		</form>
-		
-		<h5>Siswa</h5>
-			Nama Siswa: {{siswa.namaSiswa}}<br />
-			Tanggal Lahir: {{siswa.tanggalLahir}}<br />
-			Jenis Kelamin: {{siswa.jenisKelamin}}<br />
-			Nama Bapak: {{siswa.namaBapak}}<br />
-			Email Bapak: {{siswa.emailBapak}}<br />
-			Nama Ibu: {{siswa.namaIbu}}<br />
-			Nama Ibu: {{siswa.namaIbu}}<br />
-			Diterima Sejak: {{siswa.diterimaSejak}}<br />
 	</div>
+</div>

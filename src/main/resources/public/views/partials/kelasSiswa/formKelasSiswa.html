@@ -1,19 +1,42 @@
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>Tambah Kelas Siswa</span>
+  </div>
+</md-toolbar>
+
+
 <div ng-controller="addKelasSiswaCtrl">
-		<h2>Isi Kelas Siswa</h2>
-		<form ng-submit="submit()">
-			Kelas:
-			<select ng-model="kelas_siswa.kelas.id">
-				<option ng-repeat="kel in kelas" value="{{kel.id}}">{{kel.tingkat}}</option>
-			</select>
-			Grup:
-			<select ng-model="kelas_siswa.kelas.id">
-				<option ng-repeat="kel in kelas" value="{{kel.id}}">{{kel.grupKelas}}</option>
-			</select>
-			Siswa:
-			<select ng-model="kelas_siswa.siswa.id">
-				<option ng-repeat="sis in siswa" value="{{sis.id}}">{{sis.namaSiswa}}</option>
-			</select>
-			<input type="submit" value="OK">
-		</form>
-		
+	<div>
+		<div layout="row">
+			<form ng-submit="submit()">
+				<md-input-container>
+	      			<label>Kelas</label>
+	        		<md-select ng-model="kelas_siswa.kelas.id">
+	          			<md-option ng-repeat="kel in kelas" value="{{kel.id}}">
+	            			{{kel.tingkat}}
+	         			</md-option>
+	        		</md-select>
+	      		</md-input-container>
+	      		<md-input-container>
+	      			<label>Grup</label>
+	        		<md-select ng-model="kelas_siswa.kelas.id">
+	          			<md-option ng-repeat="kel in kelas" value="{{kel.id}}">
+	            			{{kel.grupKelas}}
+	         			</md-option>
+	        		</md-select>
+	      		</md-input-container>
+	      		<md-input-container>
+	      			<label>Siswa</label>
+	        		<md-select ng-model="kelas_siswa.siswa.id">
+	          			<md-option ng-repeat="sis in siswa" value="{{sis.id}}">
+	            			{{sis.namaSiswa}}
+	         			</md-option>
+	        		</md-select>
+	      		</md-input-container>
+	      		<md-input-container>
+	      			<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+	      		</md-input-container>
+			</form>
+		</div>
 	</div>
+</div>

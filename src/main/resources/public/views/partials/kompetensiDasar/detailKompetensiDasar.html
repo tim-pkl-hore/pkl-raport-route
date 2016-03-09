@@ -1,8 +1,14 @@
-<div>
-	<h2>Detail Kompetensi Dasar</h2>
-	ID Kompetensi Dasar: {{kompetensi_dasar.id}} <br />
-	Description: {{kompetensi_dasar.description}} <br />
-	Order: {{kompetensi_dasar.orderIndex}} <br />
-	Kompetensi Inti: {{kompetensi_dasar.kompetensiInti.description}} <br />
-	Mata Pelajaran: {{kompetensi_dasar.mataPelajaran.namaMatpel}} <br />
-</div>
+<md-content>
+	<md-list>
+		<md-subheader class="md-no-sticky">Detail Kompetensi Dasar</md-subheader>
+		<md-list-item class="md-3-line">
+			 <div class="md-list-item-text" layout="column">
+			 	ID Kompetensi Dasar: {{kompetensi_dasar.id}} <br />
+				Description: {{kompetensi_dasar.description}} <br />
+				Order: {{kompetensi_dasar.orderIndex}} <br />
+				Kompetensi Inti: {{kompetensi_dasar.kompetensiInti.description}} <br />
+				Mata Pelajaran: {{kompetensi_dasar.mataPelajaran.namaMatpel}} <br />
+			 </div>
+		</md-list-item>
+	</md-list>
+</md-content>

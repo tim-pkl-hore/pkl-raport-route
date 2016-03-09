@@ -36,6 +36,7 @@ angular.module('raportApp').controller('addHariLiburCtrl', function($scope, $htt
 		};
 		var successHandler = function(response) {
 			$log.debug('Response data dari server : \n' + angular.toJson(response.data, true));
+			window.location = "/#/hari-libur-list";
 		};
 		var errorHandler = function(errors) {
 			$log.error('Errors :\n' + angular.toJson(errors, true));

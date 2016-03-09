@@ -1,24 +1,34 @@
-<div>
-		<h2>List Kabupaten</h2>
-		<a href="/#/kabupaten-form">Tambah</a>
-		<table border="1">
-			<thead>
-				<tr>
-					<th>ID Kabupaten</th>
-					<th>Kode Kabupaten</th>
-					<th>Nama Kabupaten</th>
-					<th>Nama Provinsi</th>
-					<th>Aksi</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="item in items">
-					<td>{{item.id}}</td>
-					<td>{{item.kodeKabupaten}}</td>
-					<td><a href="/#/kabupaten-detail/{{item.id}}">{{item.namaKabupaten}}</a></td>
-					<td>{{item.provinsi.namaProvinsi}}</td>
-					<td><a href="/#/kabupaten-edit/{{item.id}}">Edit</a></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>List Kabupaten</span>
+    <a href="/#/kabupaten-form"><md-button md-no-ink class="md-primary">Tambah</md-button></a>
+  </div>
+</md-toolbar>
+
+<md-table-container>
+	<table md-table md-row-select>
+		<thead md-head>
+			<tr md-row>
+				<th md-coloumn>ID Kabupaten</th>
+				<th md-coloumn>Kode Kabupaten</th>
+				<th md-coloumn>Nama Kabupaten</th>
+				<th md-coloumn>Nama Provinsi</th>
+				<th md-coloumn>Aksi</th>
+			</tr>
+		</thead>
+		<tbody md-body>
+			<tr md-row ng-repeat="item in items">
+				<th md-cell>{{item.id}}</th>
+				<th md-cell>{{item.kodeKabupaten}}</th>
+				<th md-cell>{{item.namaKabupaten}}</th>
+				<th md-cell>{{item.provinsi.namaProvinsi}}</th>
+				<th md-cell>
+		 			<a href="/#/kabupaten-edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href="/#/kabupaten-detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
+		 			<a href="/#/kabupaten-delete/{{item.id}}"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 		</th>
+			</tr>
+		</tbody>
+	</table>
+	<md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{kabupaten.count}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
+</md-table-container>

@@ -70,6 +70,15 @@ public class UsersController {
 		return usersRepository.findAll();
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Users> deleteUser(@PathVariable Integer id){
+		if(!usersRepository.exists(id)){
+			return new ResponseEntity<Users>(HttpStatus.NOT_FOUND);
+		}
+		usersRepository.delete(id);
+		return new ResponseEntity<Users>(HttpStatus.OK);
+	}
+	
 	
 	
 	

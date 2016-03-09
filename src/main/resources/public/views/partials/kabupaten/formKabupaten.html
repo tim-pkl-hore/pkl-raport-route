@@ -1,15 +1,33 @@
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>Tambah Kabupaten</span>
+  </div>
+</md-toolbar>
+
 <div ng-controller="addKabupatenCtrl">
-		<h2>Isi Kabupaten</h2>
-		<form ng-submit="submit()">
-			<input type="text" ng-model="kabupaten.kodeKabupaten" placeholder="Kode Kabupaten"><br />
-			<input type="text" ng-model="kabupaten.namaKabupaten" placeholder="Nama Kabupaten"><br />
-			<select ng-model="kabupaten.provinsi.id">
-				<option ng-repeat="prop in provinsi" value="{{prop.id}}">{{prop.namaProvinsi}}</option>
-			</select>
-			<input type="submit" value="OK">
-		</form>
-		
-		<h5>Kabupaten</h5>
-			Kode Kabupaten: {{kabupaten.kodeKabupaten}}<br />
-			Nama Kabupaten: {{kabupaten.namaKabupaten}}<br />
+<div>
+    <div layout="row">
+    <form ng-submit="submit()">
+      <md-input-container>
+        <label>Kode Kabupaten</label>
+        <input type="text" ng-model="kabupaten.kodeKabupaten">
+      </md-input-container>
+      <md-input-container>
+        <label>Nama Kabupaten</label>
+        <input type="text" ng-model="kabupaten.namaKabupaten">
+      </md-input-container>
+      <md-input-container>
+        <label>Provinsi</label>
+        <md-select ng-model="kabupaten.provinsi.id">
+          <md-option ng-repeat="prop in provinsi" value="{{prop.id}}">
+            {{prop.namaProvinsi}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+      <md-input-container>
+      		<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      </md-input-container>	  
+      </form>
+    </div>
+  </div>
 	</div>

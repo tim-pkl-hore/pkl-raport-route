@@ -1,4 +1,51 @@
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>Tambah Absensi Siswa</span>
+  </div>
+</md-toolbar>
+
 <div ng-controller="addAbsensiSiswaCtrl">
+	<div>
+    	<div layout="row">
+    		<form ng-submit="submit()">
+    			<md-content>
+        			<md-datepicker ng-model="absensi_siswa.tanggal" md-placeholder="Tanggal"></md-datepicker>
+     			</md-content><br />
+     			<md-input-container>
+        			<p>Jenis Absen: </p>
+        			<md-radio-group ng-model="absensi_siswa.jenisAbsensi">
+	        			<md-radio-button name="jenisAbsensi" value="sakit" class="md-primary">Sakit</md-radio-button>
+	        			<md-radio-button name="jenisAbsensi" value="izin" class="md-primary">Izin</md-radio-button>
+	        			<md-radio-button name="jenisAbsensi" value="alpha" class="md-primary">Alpha</md-radio-button>
+	        		</md-radio-group>
+      			</md-input-container><br />
+      			<md-input-container>
+        			<label>Alasan</label>
+        			<input type="text" ng-model="absensi_siswa.alasan">
+     			</md-input-container><br />
+     			<md-input-container>
+			        <label>Tahun Ajaran</label>
+			        	<md-select ng-model="absensi_siswa.tahunAjaran.id">
+			          		<md-option ng-repeat="ajaran in tahun_ajaran" value="{{ajaran.id}}">
+			            		{{ajaran.tahunAwal}}
+			          		</md-option>
+			        	</md-select>
+		      </md-input-container><br />
+		      <md-input-container>
+			        <label>Nama Sekolah</label>
+			        	<md-select ng-model="absensi_siswa.sekolah.id">
+			          		<md-option ng-repeat="sek in sekolah" value="{{sek.id}}">
+			            		{{sek.namaSekolah}}
+			          		</md-option>
+			        	</md-select>
+		      </md-input-container><br />
+		      <md-input-container>
+      			<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      		</md-input-container>
+    		</form>
+    	</div>
+    </div>
+
 		<h2>Isi Absensi Siswa</h2>
 		<form ng-submit="submit()">
 			<input type="date" ng-model="absensi_siswa.tanggal" placeholder="Tanggal"><br />
@@ -16,9 +63,4 @@
 			</select>			
 			<input type="submit" value="OK">
 		</form>
-		
-		<h5>Absensi Siswa</h5>
-			Tanggal: {{absensi_siswa.tanggal}}<br />
-			Jenis Absen: {{absensi_siswa.jenisAbsensi}}<br />
-			Alasan: {{absensi_siswa.alasan}}<br />
 	</div>

@@ -1,34 +1,45 @@
-<div>
-		<h2>List Siswa</h2>
-		<a href="/#/siswa-form">Tambah</a>
-		<table border="1">
-			<thead>
-				<tr>
-					<th>ID Siswa</th>
-					<th>Nama Siswa</th>
-					<th>Tanggal Lahir</th>
-					<th>Jenis Kelamin</th>
-					<th>Nama Bapak</th>
-					<th>Email Bapak</th>
-					<th>Nama Ibu</th>
-					<th>Email Ibu</th>
-					<th>Diterima Sejak</th>
-					<th>Nama Sekolah</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="item in items">
-					<td>{{item.id}}</td>
-					<td><a href="/#/siswa-detail/{{item.id}}">{{item.namaSiswa}}</a></td>
-					<td>{{item.tanggalLahir}}</td>
-					<td>{{item.jenisKelamin}}</td>
-					<td>{{item.namaBapak}}</td>
-					<td>{{item.emailBapak}}</td>
-					<td>{{item.namaIbu}}</td>
-					<td>{{item.emailIbu}}</td>
-					<td>{{item.diterimaSejak}}</td>
-					<td>{{item.sekolah.namaSekolah}}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>List Siswa</span>
+    <a href="/#/siswa-form"><md-button md-no-ink class="md-primary">Tambah</md-button></a>
+  </div>
+</md-toolbar>
+
+<md-table-container>
+	<table md-table md-row-select border="1">
+		<thead md-head>
+			<tr md-row>
+				<th md-coloumn>ID Siswa</th>
+				<th md-coloumn>Nama Siswa</th>
+				<th md-coloumn>Tanggal Lahir</th>
+				<th md-coloumn>Jenis Kelamin</th>
+				<th md-coloumn>Nama Bapak</th>
+				<th md-coloumn>Email Bapak</th>
+				<th md-coloumn>Nama Ibu</th>
+				<th md-coloumn>Email Ibu</th>
+				<th md-coloumn>Diterima Sejak</th>
+				<th md-coloumn>Nama Sekolah</th>
+				<th md-coloumn>Aksi</th>
+			</tr>
+		</thead>
+		<tbody md-body align="">
+			<tr md-row ng-repeat="item in items">
+				<th md-cell>{{item.id}}</th>
+				<th md-cell>{{item.namaSiswa}}</th>
+				<th md-cell>{{item.tanggalLahir}}</th>
+				<th md-cell>{{item.jenisKelamin}}</th>
+				<th md-cell>{{item.namaBapak}}</th>
+				<th md-cell>{{item.emailBapak}}</th>
+				<th md-cell>{{item.namaIbu}}</th>
+				<th md-cell>{{item.emailIbu}}</th>
+				<th md-cell>{{item.diterimaSejak}}</th>
+				<th md-cell>{{item.sekolah.namaSekolah}}</th>
+				<th md-cell>
+					<a href="/#/siswa-edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href="/#/siswa-detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
+		 			<a href="/#/siswa-delete/{{item.id}}"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
+				</th>
+			</tr>
+		</tbody>
+	</table>
+</md-table-container>

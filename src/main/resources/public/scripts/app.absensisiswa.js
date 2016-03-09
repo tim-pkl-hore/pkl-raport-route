@@ -78,6 +78,8 @@ angular.module('raportApp').controller('addAbsensiSiswaCtrl', function($scope, $
 		};
 		var successHandler = function(response) {
 			$log.debug('Response data dari server : \n' + angular.toJson(response.data, true));
+			window.location = "/#/absensi-siswa-list";
+			
 		};
 		var errorHandler = function(errors) {
 			$log.error('Errors :\n' + angular.toJson(errors, true));

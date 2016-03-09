@@ -91,6 +91,7 @@ angular.module('raportApp').controller(
 				var successHandler = function(response) {
 					$log.debug('Response data dari server : \n'
 							+ angular.toJson(response.data, true));
+					window.location = "/#/kabupaten-list";
 				};
 				var errorHandler = function(errors) {
 					$log.error('Errors :\n' + angular.toJson(errors, true));
@@ -111,6 +112,7 @@ angular.module('raportApp').controller('updateKabupatenCtrl', function($scope, $
 		$log.debug("Response data dari server : \n"
 				+ angular.toJson(response.data, true));
 		$scope.provinsi = response.data;
+		
 	};
 	var errorHandler = function(errors) {
 		$log.error(angular.toJson(errors, true));
@@ -125,6 +127,7 @@ angular.module('raportApp').controller('updateKabupatenCtrl', function($scope, $
 		};
 		var successHandler = function(response) {
 			$log.debug('Response data dari server : \n' + angular.toJson(response.data, true));
+			window.location = "/#/kabupaten-list";
 		};
 		var errorHandler = function(errors) {
 			$log.error('Errors :\n' + angular.toJson(errors, true));

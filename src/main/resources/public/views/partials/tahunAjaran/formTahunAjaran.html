@@ -1,15 +1,39 @@
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>Tambah Tahun Ajaran</span>
+  </div>
+</md-toolbar>
+
 <div ng-controller="addTahunAjaranCtrl">
-		<h2>Isi Tahun Ajaran</h2>
-		<form ng-submit="submit()">
-			<input type="text" ng-model="tahun_ajaran.tahunAwal" placeholder="Tahun Awal"><br />
-			<input type="text" ng-model="tahun_ajaran.tahunAkhir" placeholder="Tahun Akhir"><br />
-			<select ng-model="tahun_ajaran.sekolah.id">
-				<option ng-repeat="sek in sekolah" value="{{sek.id}}">{{sek.namaSekolah}}</option>
-			</select>
-			<input type="submit" value="OK">
-		</form>
-		
-		<h5>Tahun Ajaran</h5>
-			Tahun Awal: {{tahun_ajaran.tahunAwal}}<br />
-			Tahun Akhir: {{tahun_ajaran.tahunAkhir}}<br />
-	</div>
+<div>
+    <div layout="row">
+    	<form ng-submit="submit()">
+    		<md-input-container>
+        		<p>Current: </p>
+        		<md-radio-group ng-model="tahun_ajaran.current">
+        			<md-radio-button name="current" value="true" class="md-primary">True</md-radio-button>
+        			<md-radio-button name="current" value="false" class="md-primary">False</md-radio-button>
+        		</md-radio-group>
+      		</md-input-container>
+      		<md-input-container>
+        		<label>Tahun Awal</label>
+        		<input type="text" ng-model="tahun_ajaran.tahunAwal">
+      		</md-input-container>
+      		<md-input-container>
+        		<label>Tahun Akhir</label>
+        		<input type="text" ng-model="tahun_ajaran.tahunAkhir">
+      		</md-input-container>
+      		<md-input-container>
+        		<label>Nama Sekolah</label>
+        		<md-select ng-model="tahun_ajaran.sekolah.id">
+          			<md-option ng-repeat="sek in sekolah" value="{{sek.id}}">
+            			{{sek.namaSekolah}}
+          		</md-option>
+        		</md-select>
+      		</md-input-container>
+      		<md-input-container>
+      			<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      		</md-input-container>	
+    	</form>
+    </div>
+</div>

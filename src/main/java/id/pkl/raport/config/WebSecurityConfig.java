@@ -9,9 +9,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
-@EnableWebMvcSecurity
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	DataSource dataSource;
@@ -34,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()
 				.defaultSuccessUrl("/")
 				.and()
-				.logout()
+				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/signin")
 			.and()
 			.csrf().disable();
 	}

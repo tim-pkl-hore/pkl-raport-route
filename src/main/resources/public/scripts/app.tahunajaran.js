@@ -49,6 +49,7 @@ angular.module('raportApp').controller('addTahunAjaranCtrl', function($scope, $h
 		};
 		var successHandler = function(response) {
 			$log.debug('Response data dari server : \n' + angular.toJson(response.data, true));
+			window.location = "/#/tahun-ajaran-list";
 		};
 		var errorHandler = function(errors) {
 			$log.error('Errors :\n' + angular.toJson(errors, true));

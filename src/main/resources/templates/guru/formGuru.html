@@ -1,0 +1,25 @@
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>Tambah Guru</span>
+  </div>
+</md-toolbar>
+
+
+<div ng-controller="addGuruCtrl">
+<div>
+	<div layout="row">
+		<form ng-submit="submit()">
+			<md-input-container>
+        		<label>Nama Guru</label>
+        		<input type="text" ng-model="guru.nama">
+     		</md-input-container>
+     		<md-input-container>
+        		<label>Email Guru</label>
+        		<input type="text" ng-model="guru.email">
+     		</md-input-container>
+     		<md-input-container>
+      			<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      		</md-input-container>	 
+		</form>
+	</div>
+</div>

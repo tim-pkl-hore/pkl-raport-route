@@ -1,9 +1,17 @@
+angular.module('raportApp').config(function($routeProvider){
+	$routeProvider.when('/signin', {
+		templateUrl : 'views/partials/signin.html',
+		controller : 'SignInCtrl'
+	})
+});
+
+
 angular.module('raportApp').controller(
 		'SignInCtrl',
 		function($scope, $http, $log) {
 			$scope.logout = function() {
 				var request = {
-					url : '/pengguna',
+					url : '/signin',
 					method : 'POST',
 				};
 				var successHandler = function(response) {

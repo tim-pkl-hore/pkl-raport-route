@@ -1,6 +1,13 @@
- <md-toolbar class="md-theme-indigo">
+<md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">List Provinsi</h1>
-      </md-toolbar>
+</md-toolbar>
+<div ng-controller="showAddFormCtrl" class="md-padding" ng-cloak>
+	<div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center">
+		<md-button class="md-primary md-raised" ng-click="showAddForm($event)">
+      		Tambah
+    	</md-button>
+    </div>
+
     <a href="/#/provinsi-form">
     	<md-button class="md-fab md-mini md-primary center" aria-label="Add">
           	<ng-md-icon icon="add" style="fill: #abcdef" size="23"></ng-md-icon>
@@ -23,9 +30,9 @@
 		 		<th md-cell>{{item.kodeProvinsi}}</th>
 		 		<th md-cell>{{item.namaProvinsi}}</th>
 		 		<th md-cell>
-		 			<a href="/#/provinsi-edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
-		 			<a href="/#/provinsi-detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
-		 			<a href="/#/provinsi-delete/{{item.id}}"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href="/#/provinsi-edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="23"></ng-md-icon></a>
+		 			<a href="/#/provinsi-detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="23"></ng-md-icon></a> 
+		 			<a href="/#/provinsi-delete/{{item.id}}"><ng-md-icon icon="delete" style="fill: #abcdef" size="23"></ng-md-icon></a>
 		 			</th>
 		 	</tr>
 		 </tbody>

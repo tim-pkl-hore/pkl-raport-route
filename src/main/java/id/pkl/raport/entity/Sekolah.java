@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -44,7 +45,11 @@ public class Sekolah {
 	@JoinColumn(name="kecamatan_id", referencedColumnName="id")
 	private Kecamatan kecamatan;
 	
-
+	@OneToOne
+	@JoinColumn(name="tingkat", referencedColumnName="id")
+	private Tingkatan tingkatan;
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -101,5 +106,18 @@ public class Sekolah {
 	public void setKodePos(String kodePos) {
 		this.kodePos = kodePos;
 	}
+
+	public Tingkatan getTingkatan() {
+		return tingkatan;
+	}
+
+	public void setTingkatan(Tingkatan tingkatan) {
+		this.tingkatan = tingkatan;
+	}
+
+	
+	
+
+	
 	
 }

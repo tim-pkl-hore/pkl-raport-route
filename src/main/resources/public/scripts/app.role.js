@@ -46,15 +46,15 @@ angular.module('raportApp').controller(
 angular.module('raportApp').controller(
 		'detailRoleCtrl',
 		function($scope, $http, $log, id) {
-			$scope.kabupaten = [];
+			$scope.user_role = [];
 			var request = {
-				url : '/kabupaten/' + id,
+				url : '/user-role/' + id,
 				method : 'GET'
 			};
 			var successHandler = function(response) {
 				$log.debug("Response data dari server : \n"
 						+ angular.toJson(response.data, true));
-				$scope.kabupaten = response.data;
+				$scope.user_role = response.data;
 			};
 			var errorHandler = function(errors) {
 				$log.error(angular.toJson(errors, true));
@@ -63,19 +63,19 @@ angular.module('raportApp').controller(
 		});
 
 angular.module('raportApp').controller(
-		'addKabupatenCtrl',
+		'addRoleCtrl',
 		function($scope, $http, $log) {
 			$scope.raport = {};
 
-			$scope.provinsi = [];
+			$scope.users = [];
 			var request = {
-				url : '/provinsi/all',
+				url : '/pengguna/all',
 				method : 'GET'
 			};
 			var successHandler = function(response) {
 				$log.debug("Response data dari server : \n"
 						+ angular.toJson(response.data, true));
-				$scope.provinsi = response.data;
+				$scope.users = response.data;
 			};
 			var errorHandler = function(errors) {
 				$log.error(angular.toJson(errors, true));
@@ -84,14 +84,14 @@ angular.module('raportApp').controller(
 
 			$scope.submit = function() {
 				var request = {
-					url : '/kabupaten',
+					url : '/user-role',
 					method : 'POST',
-					data : $scope.kabupaten
+					data : $scope.user_role
 				};
 				var successHandler = function(response) {
 					$log.debug('Response data dari server : \n'
 							+ angular.toJson(response.data, true));
-					window.location = "/#/kabupaten-list";
+					window.location = "/#/user-role-list";
 				};
 				var errorHandler = function(errors) {
 					$log.error('Errors :\n' + angular.toJson(errors, true));
@@ -100,18 +100,18 @@ angular.module('raportApp').controller(
 			};
 		});
 
-angular.module('raportApp').controller('updateKabupatenCtrl', function($scope, $http, $log) {
+angular.module('raportApp').controller('updateRoleCtrl', function($scope, $http, $log) {
 	$scope.raport = {};
 	
-	$scope.provinsi = [];
+	$scope.user_role = [];
 	var request = {
-		url : '/provinsi/all',
+		url : '/user-role/all',
 		method : 'GET'
 	};
 	var successHandler = function(response) {
 		$log.debug("Response data dari server : \n"
 				+ angular.toJson(response.data, true));
-		$scope.provinsi = response.data;
+		$scope.user_role = response.data;
 	};
 	var errorHandler = function(errors) {
 		$log.error(angular.toJson(errors, true));
@@ -120,9 +120,9 @@ angular.module('raportApp').controller('updateKabupatenCtrl', function($scope, $
 	
 	$scope.update = function(id) {
 		var request = {
-			url: '/kabupaten/' + id,
+			url: '/user-role/' + id,
 			method: 'PUT',
-			data: $scope.kabupaten
+			data: $scope.user_role
 		};
 		var successHandler = function(response) {
 			$log.debug('Response data dari server : \n' + angular.toJson(response.data, true));
@@ -136,19 +136,19 @@ angular.module('raportApp').controller('updateKabupatenCtrl', function($scope, $
 });
 
 angular.module('raportApp').controller(
-		'editKabupatenCtrl',
+		'editRoleCtrl',
 		function($scope, $http, $log, id) {
-			$scope.kabupaten = [];
+			$scope.user_role = [];
 			
 			var request = {
-				url : '/kabupaten/' + id,
+				url : '/user-role/' + id,
 				method : 'GET'
 			};
 			var successHandler = function(response) {
 				$log.debug("Response data dari server : \n"
 						+ angular.toJson(response.data, true));
 				console.dir(response.data);
-				$scope.kabupaten = response.data;
+				$scope.user_role = response.data;
 			};
 			var errorHandler = function(errors) {
 				$log.error(angular.toJson(errors, true));

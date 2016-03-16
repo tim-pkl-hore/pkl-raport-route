@@ -1,0 +1,32 @@
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>List Kompetensi Inti</span>
+    <a href="/#/kompetensi-inti-form"><md-button md-no-ink class="md-primary">Tambah</md-button></a>
+  </div>
+</md-toolbar>
+<md-table-container>
+	<table md-table md-row-select border="1">
+		 <thead md-head>
+		 	<tr md-row>
+		 		<th md-coloumn>ID Kompetensi Inti</th>
+		 		<th md-coloumn>Deskripsi</th>
+		 		<th md-coloumn>Tahun Ajaran</th>
+		 		<th md-coloumn>Mata Pelajaran</th>
+		 		<th md-coloumn>Aksi</th>
+		 	</tr>
+		 </thead>
+		 <tbody md-body>
+		 	<tr md-row ng-repeat="item in items">
+		 		<th md-cell>{{item.id}}</th>
+		 		<th md-cell>{{item.description}}</th>
+		 		<th md-cell>{{item.tahunAjaran.tahunAwal}}/{{item.tahunAjaran.tahunAkhir}}</th>
+		 		<th md-cell>{{item.mataPelajaran.namaMatpel}}</th>
+		 		<th md-cell>
+		 			<a href="/#/kompetensi-inti-edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href="/#/kompetensi-inti-detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
+		 			<a href="/#/kompetensi-inti-delete/{{item.id}}"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			</th>
+		 	</tr>
+		 </tbody>
+	</table>
+</md-table-container>

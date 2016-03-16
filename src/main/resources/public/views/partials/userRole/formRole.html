@@ -1,0 +1,31 @@
+<md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Tambah Role</h1>
+</md-toolbar>
+
+<div ng-controller="addRoleCtrl">
+<div>
+    <div layout="row">
+    <form ng-submit="submit()">
+      <md-input-container>
+      <md-input-container>
+        <label>Username</label>
+        <md-select ng-model="user_role.users.id">
+          <md-option ng-repeat="us in users" value="{{us.id}}">
+            {{us.username_id}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+      <md-input-container>
+        		<p>Role </p>
+        		<md-radio-group ng-model="user_role.role">
+        			<md-radio-button name="role" value="Admin" class="md-primary">Admin</md-radio-button>
+        			<md-radio-button name="role" value="WaliKelas" class="md-primary">Wali Kelas</md-radio-button>
+        		</md-radio-group>
+      		</md-input-container>
+      <md-input-container>
+      		<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      </md-input-container>	  
+      </form>
+    </div>
+  </div>
+	</div>

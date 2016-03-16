@@ -69,7 +69,7 @@ angular.module('raportApp').controller('listProvinsiCtrl', function($scope, $htt
 	
 });
 
-angular.module('raportApp').controller('detailProvinsiCtrl', function($scope, $http, $log, id) {
+angular.module('raportApp').controller('detailProvinsiCtrl', function($scope, $http, $log, $mdDialog, $mdMedia, id) {
 	$scope.provinsi = [];
 	var request = {
 		url : '/provinsi/' + id ,
@@ -83,6 +83,32 @@ angular.module('raportApp').controller('detailProvinsiCtrl', function($scope, $h
 		$log.error(angular.toJson(errors, true));
 	};
 	$http(request).then(successHandler, errorHandler);
+	
+	
+	$scope.status = '';
+	$scope.showDetail = function(ev){
+		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) &&  $scope.customFullscreen;
+		$mdDialog.show({
+			controller: DialogForm,
+			templateUrl: 'views/partials/provinsi/detailProvinsi.html',
+		      parent: angular.element(document.body),
+		      targetEvent: ev,
+		      clickOutsideToClose:true,
+		      fullscreen: useFullScreen
+		})
+		.then(function(answer){
+			$scope.status = 'You said the information was "' + answer + '".';
+		}, function(){
+			$scope.status = 'You cancelled the dialog.';
+		});
+		$scope.$watch(function(){
+			return $mdMedia('xs') || $mdMedia('sm');
+		}, function(wantsFullScreen){
+			$scope.customFullscreen = (wantsFullScreen === true);
+		});
+	};
+	
+	
 });
 
 angular.module('raportApp').controller('deleteProvinsiCtrl', function($scope, $http, $log, id) {
@@ -140,3 +166,30 @@ angular.module('raportApp').controller('editProvinsiCtrl', function($scope, $htt
 		$http(request).then(successHandler, errorHandler);
 	
 });
+
+angular.module('raportApp').controller('showAddFormCtrl', function($scope, $mdDialog, $mdMedia){
+	$scope.status = '';
+	$scope.showAddForm = function(ev){
+		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) &&  $scope.customFullscreen;
+		$mdDialog.show({
+			controller: DialogForm,
+			templateUrl: 'views/partials/provinsi/formProvinsi.html',
+		      parent: angular.element(document.body),
+		      targetEvent: ev,
+		      clickOutsideToClose:true,
+		      fullscreen: useFullScreen
+		});
+	};
+});
+
+function DialogForm($scope, $mdDialog) {
+	  $scope.hide = function() {
+	    $mdDialog.hide();
+	  };
+	  $scope.cancel = function() {
+	    $mdDialog.cancel();
+	  };
+	  $scope.answer = function(answer) {
+	    $mdDialog.hide(answer);
+	  };
+	}

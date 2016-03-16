@@ -2,6 +2,8 @@ package id.pkl.raport.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,12 +20,13 @@ public class UserRole {
 	@Column(name="id")
 	private Integer id;
 	
+	@Enumerated(EnumType.STRING)
 	@NotNull
 	@Column(name="role")
-	private String role;
+	private Role role;
 	
 	@ManyToOne
-	@JoinColumn(name="username_id", referencedColumnName="username")
+	@JoinColumn(name="username", referencedColumnName="username")
 	private Users users;
 
 	public Integer getId() {
@@ -34,11 +37,11 @@ public class UserRole {
 		this.id = id;
 	}
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 

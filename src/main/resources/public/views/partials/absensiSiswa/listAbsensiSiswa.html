@@ -1,9 +1,12 @@
-<md-toolbar class="md-table-toolbar md-default">
-  <div class="md-toolbar-tools">
-    <span>List Absensi Siswa</span>
-    <a href="/#/absensi-siswa-form"><md-button md-no-ink class="md-primary">Tambah</md-button></a>
-  </div>
+<md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">List Absensi Siswa</h1>
 </md-toolbar>
+	<a href="/#/absensi-siswa-form">
+    	<md-button class="md-fab md-mini md-primary center" aria-label="Add">
+          	<ng-md-icon icon="add" style="fill: #abcdef" size="23"></ng-md-icon>
+        </md-button>
+    </a>
+    
 <md-table-container>
 	<table md-table md-row-select border="1">
 		<thead md-head>
@@ -34,29 +37,3 @@
 		</tbody>
 	</table>
 </md-table-container>
-<div>
-		<h2>List Absensi Siswa</h2>
-		<a href="/#/absensi-siswa-form">Tambah</a>
-		<table border="1">
-			<thead>
-				<tr>
-					<th>ID Absensi Siswa</th>
-					<th>Tanggal</th>
-					<th>Jenis</th>
-					<th>Alasan</th>
-					<th>Tahun Ajaran</th>
-					<th>Nama Sekolah</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="item in items">
-					<td>{{item.id}}</td>
-					<td>{{item.tanggal}}</td>
-					<td>{{item.jenisAbsensi}}</td>
-					<td><a href="/#/absensi-siswa-detail/{{item.id}}">{{item.alasan}}</a></td>
-					<td>{{item.tahunAjaran.tahunAwal}}/{{item.tahunAjaran.tahunAkhir}}</td>
-					<td>{{item.sekolah.namaSekolah}}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>

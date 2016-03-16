@@ -1,0 +1,27 @@
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>Tambah Materi Pokok</span>
+  </div>
+</md-toolbar>
+<div ng-controller="addMateriPokokCtrl">
+<div>
+    <div layout="row">
+    	<form ng-submit="submit()">
+    		<md-input-container>
+       			<label>Deskripsi</label>
+       			<input type="text" ng-model="materi_pokok.indikator">
+      		</md-input-container>
+      		<md-input-container>
+        		<label>Kompetensi Dasar</label>
+        		<md-select ng-model="materi_pokok.kompetensiDasar.id">
+          			<md-option ng-repeat="dasar in kompetensi_dasar" value="{{dasar.id}}">
+            			{{dasar.description}}
+          			</md-option>
+        		</md-select>
+      		</md-input-container>
+      		<md-input-container>
+      			<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      		</md-input-container>
+    	</form>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Project Raport</title>	
+	
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
+    <link href="/bower_components/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/bower_components/angular-material-icons/angular-material-icons.css" rel="stylesheet" type="text/css"/>
+   
+</head>
+<body ng-app="raportApp">
+	<div ng-controller="raportApp" layout="column" style="height:100%;" ng-cloak>
+  <section layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Raport Project</h1>
+      </md-toolbar>
+      <md-content layout-padding ng-controller="LeftCtrl">
+        <md-button ng-click="close()" class="md-primary" hide-gt-md>
+          Close Sidenav Left
+        </md-button>
+        <p hide-md show-gt-md>
+          <a href="/provinsi-list" th:href="@{/provinsi-list}"><md-button md-no-ink class="md-primary">Provinsi</md-button></a><br />
+          <a href="/#/kabupaten-list"><md-button md-no-ink class="md-primary">Kabupaten</md-button></a><br />
+          <a href="/#/kecamatan-list"><md-button md-no-ink class="md-primary">Kecamatan</md-button></a><br />
+          <a href="/#/matapelajaran-list"><md-button md-no-ink class="md-primary">Mata Pelajaran</md-button></a><br />
+          <a href="/#/siswa-list"><md-button md-no-ink class="md-primary">Siswa</md-button></a><br />
+          <a href="/#/sekolah-list"><md-button md-no-ink class="md-primary">Sekolah</md-button></a><br />
+          <a href="/#/guru-list"><md-button md-no-ink class="md-primary">Guru</md-button></a><br />
+          <a href="/#/tahun-ajaran-list"><md-button md-no-ink class="md-primary">Tahun Ajaran</md-button></a><br />
+          <a href="/#/kompetensi-inti-list"><md-button md-no-ink class="md-primary">Kompetensi Inti</md-button></a><br />
+          <a href="/#/kompetensi-dasar-list"><md-button md-no-ink class="md-primary">Kompetensi Dasar</md-button></a><br />
+          <a href="/#/materi-pokok-list"><md-button md-no-ink class="md-primary">Materi Pokok</md-button></a><br />
+          <a href="/#/kelas-siswa-list"><md-button md-no-ink class="md-primary">Kelas Siswa</md-button></a><br />
+          <a href="/#/kelas-list"><md-button md-no-ink class="md-primary">Kelas</md-button></a><br />
+          <a href="/#/hari-libur-list"><md-button md-no-ink class="md-primary">Hari Libur</md-button></a><br />
+          <a href="/#/absensi-siswa-list"><md-button md-no-ink class="md-primary">Absensi Siswa</md-button><br />
+          <a href="/#/user-list"><md-button md-no-ink class="md-primary">Users</md-button></a>          
+        </p>
+      </md-content>
+    </md-sidenav>
+    <md-content flex layout-padding>
+      <div layout="column" layout-fill layout-align="top left">
+        	<div data-ng-view></div>
+        <div>
+        <md-button class="md-fab md-mini md-primary center" ng-click="toggleLeft()" aria-label="Add" hide-gt-md>
+          	<ng-md-icon icon="view_headline" style="fill: #abcdef" size="22"></ng-md-icon>
+        </md-button>
+        </div>
+        <div>
+          <md-button ng-click="toggleRight()"
+            ng-hide="isOpenRight()"
+            class="md-primary">
+            Toggle right
+          </md-button>
+        </div>
+      </div>
+      <div flex></div>
+    </md-content>
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+      <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Sidenav Right</h1>
+      </md-toolbar>
+      <md-content ng-controller="RightCtrl" layout-padding>
+        <form>
+          <md-input-container>
+            <label for="testInput">Test input</label>
+            <input type="text" id="testInput"
+                   ng-model="data" md-autofocus>
+          </md-input-container>
+        </form>
+        <md-button ng-click="close()" class="md-primary">
+          Close Sidenav Right
+        </md-button>
+      </md-content>
+    </md-sidenav>
+  </section>
+</div>	
+	<script type="text/javascript" src="/scripts/vendor/angular.min.js"></script>
+	<script type="text/javascript" src="/scripts/vendor/angular-route.min.js"></script>
+	<script type="text/javascript" src="/bower_components/angular-material/angular-material.js"></script>
+	<script src="/bower_components/angular/angular.js"></script> 
+	<script src="/bower_components/angular-aria/angular-aria.js"></script> 
+	<script src="/bower_components/angular-animate/angular-animate.js"></script> 
+	<script src="/bower_components/angular-material/angular-material.js"></script> 
+	<script type="text/javascript" src="/bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+	<script type="text/javascript" src="/bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+	
+	<script type="text/javascript" src="/scripts/app.js"></script>
+	<script type="text/javascript" src="/scripts/app.index.js"></script>
+	<script type="text/javascript" src="/scripts/app.provinsi.js"></script>
+	<script type="text/javascript" src="/scripts/app.kabupaten.js"></script>
+	<script type="text/javascript" src="/scripts/app.kecamatan.js"></script>
+	<script type="text/javascript" src="/scripts/app.matapelajaran.js"></script>
+	<script type="text/javascript" src="/scripts/app.siswa.js"></script>
+	<script type="text/javascript" src="/scripts/app.sekolah.js"></script>
+	<script type="text/javascript" src="/scripts/app.guru.js"></script>
+	<script type="text/javascript" src="/scripts/app.tahunajaran.js"></script>
+	<script type="text/javascript" src="/scripts/app.kompetensiinti.js"></script>
+	<script type="text/javascript" src="/scripts/app.kompetensidasar.js"></script>
+	<script type="text/javascript" src="/scripts/app.materipokok.js"></script>
+	<script type="text/javascript" src="/scripts/app.kelassiswa.js"></script>
+	<script type="text/javascript" src="/scripts/app.kelas.js"></script>
+	<script type="text/javascript" src="/scripts/app.harilibur.js"></script>
+	<script type="text/javascript" src="/scripts/app.absensisiswa.js"></script>
+	<script type="text/javascript" src="/scripts/app.users.js"></script>
+	<script type="text/javascript" src="/scripts/app.signout.js"></script>
+	<script type="text/javascript" src="/scripts/app.signin.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>List Kompetensi Dasar</span>
+    <a href="/#/kompetensi-dasar-form"><md-button md-no-ink class="md-primary">Tambah</md-button></a>
+  </div>
+</md-toolbar>
+<md-table-container>
+	<table md-table md-row-select border="1">
+		 <thead md-head>
+		 	<tr md-row>
+		 		<th md-coloumn>ID Kompetensi Dasar</th>
+		 		<th md-coloumn>Deskripsi</th>
+		 		<th md-coloumn>Order Index</th>
+		 		<th md-coloumn>Kompetensi Inti</th>
+		 		<th md-coloumn>Mata Pelajaran</th>
+		 		<th md-coloumn>Aksi</th>
+		 	</tr>
+		 </thead>
+		 <tbody md-body>
+		 	<tr md-row ng-repeat="item in items">
+		 		<th md-cell>{{item.id}}</th>
+		 		<th md-cell>{{item.description}}</th>
+		 		<th md-cell>{{item.orderIndex}}</th>
+		 		<th md-cell>{{item.kompetensiInti.description}}</th>
+		 		<th md-cell>{{item.mataPelajaran.namaMatpel}}</th>
+		 		<th md-cell>
+		 			<a href="/#/kompetensi-dasar-edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href="/#/kompetensi-dasar-detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
+		 			<a href="/#/kompetensi-dasar-delete/{{item.id}}"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 		</th>
+		 	</tr>
+		 </tbody>
+	</table>
+</md-table-container>

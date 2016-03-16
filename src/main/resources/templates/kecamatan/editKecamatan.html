@@ -1,0 +1,29 @@
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>Edit Kecamatan</span>
+  </div>
+
+<div ng-controller="updateKecamatanCtrl" layout="column" ng-cloak class="md-inline-form">
+	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+		<form ng-submit="update(kabupaten.id)">
+			<md-input-container>
+        		<label>Kode Kabupaten</label>
+        		<input type="text" ng-model="kabupaten.kodeKabupaten">
+       		 </md-input-container>
+       		 <md-input-container>
+        		<label>Nama Kabupaten</label>
+        		<input type="text" ng-model="kabupaten.namaKabupaten">
+       		 </md-input-container>
+     		<md-input-container>
+     			<label>Provinsi</label>
+        		<md-select ng-model="kabupaten.provinsi.id">
+         			 <md-option ng-repeat="prop in provinsi" value="{{prop.id}}">
+          				  {{prop.namaProvinsi}}
+          			</md-option>
+       			</md-select>
+   			</md-input-container>
+   			<md-input-container>
+				<md-button ng-click="update(kabupaten.id)" class="md-primary btn btn-primary">Edit</md-button>
+			</md-input-container>
+		</form>
+	</md-content>

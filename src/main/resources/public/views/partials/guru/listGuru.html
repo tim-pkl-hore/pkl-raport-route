@@ -1,6 +1,15 @@
 <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">List Guru</h1>
 </md-toolbar>
+
+<div ng-controller="showAddGuruCtrl" class="md-padding" ng-cloak>
+	<div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="end end">
+		<md-button class="md-fab md-primary md-raised center" ng-click="showAddForm($event)">
+      		<ng-md-icon icon="add" style="fill: #abcdef" size="25"></ng-md-icon>
+    	</md-button>
+    </div>
+</div>
+
 <a href="/#/guru-form">
     	<md-button class="md-fab md-mini md-primary center" aria-label="Add">
           	<ng-md-icon icon="add" style="fill: #abcdef" size="23"></ng-md-icon>
@@ -8,10 +17,9 @@
     </a>
     
 <md-table-container>
-	<table md-table md-row-select border="1">
-		<thead md-head>
+	<table md-table md-row-select border="1" ng-model="provinsi" md-progress="promise">
+		<thead md-head md-order="query.order" md-on-reorder="onReorder">
 			<tr md-row>
-				<th md-coloumn>ID Guru</th>
 				<th md-coloumn>Nama Guru</th>
 				<th md-coloumn>Email Guru</th>
 				<th md-coloumn>Aksi</th>
@@ -19,7 +27,6 @@
 		</thead>
 		<tbody md-body>
 			<tr md-row ng-repeat="item in items">
-				<th md-cell>{{item.id}}</th>
 				<th md-cell>{{item.nama}}</th>
 				<th md-cell>{{item.email}}</th>
 				<th md-cell>
@@ -31,3 +38,4 @@
 		</tbody>
 	</table>
 </md-table-container>
+<md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>

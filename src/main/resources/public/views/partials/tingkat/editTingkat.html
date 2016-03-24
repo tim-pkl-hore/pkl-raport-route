@@ -1,0 +1,18 @@
+<md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Edit Tingkat</h1>
+</md-toolbar>
+<div ng-controller="updateTingkatCtrl" layout="column" ng-cloak class="md-inline-form">
+	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+	<div>
+		<form ng-submit="update(tingkatan.id)">
+			<md-input-container>
+        		<label>Tingkat</label>
+       			<input type="text" ng-model="tingkatan.tingkat">
+      		</md-input-container>
+      		<md-input-container>
+				<md-button ng-click="update(tingkatan.id)" class="md-primary btn btn-primary">Edit</md-button>
+			</md-input-container>
+		</form>
+	</div>
+	</md-content>
+</div>

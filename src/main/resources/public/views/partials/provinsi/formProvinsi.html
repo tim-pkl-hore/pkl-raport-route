@@ -5,7 +5,7 @@
 <div ng-controller="addProvinsiCtrl" layout="column" ng-cloak class="md-inline-form">
   <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
     <div>
-   		<form ng-submit="submit()">
+   		<form name="submitForm" ng-submit="save()">
       	<md-input-container>
         <label>Kode Provinsi</label>
        	<input type="text" ng-model="provinsi.kodeProvinsi">
@@ -15,12 +15,12 @@
         <input type="text" ng-model="provinsi.namaProvinsi">
       </md-input-container>
       <md-input-container>
-      <md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      <md-button ng-click="submit()" class="md-primary btn md-theme-indigo">
+      		<ng-md-icon icon="send" style="fill: #abcdef" size="27">
+      </md-button>
       </md-input-container>
-      <!-- <md-button md-no-ink class="md-primary">
-      	<input type="submit" value="Tambah" />
-      </md-button>  -->
-      
+      	<input type="submit" class="md-button md-primary" value="Tambah" />
+      </form>
     </div>
     </md-content>
  

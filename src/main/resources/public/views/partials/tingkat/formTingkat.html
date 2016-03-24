@@ -6,14 +6,20 @@
   <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
     <div>
    		<form ng-submit="submit()">
-   			<md-select>
-   				<md-select-button label="Tingkat"></md-select-button>
-   				
-   			</md-select>
-      	</form>
-      <!-- <md-button md-no-ink class="md-primary">
-      	<input type="submit" value="Tambah" />
-      </md-button>  -->
+   		<select ng-model="tingkatan.tingkat">
+                <option value="SD">SD</option>
+                <option value="SMP">SMP</option>
+                <option value="SMA">SMA</option>
+                <option value="SMK">SMK</option>
+                <option value="MA">MA</option>
+                <option value="SSS">SSS</option>
+            </select>
+   		
+      	
+      	<md-input-container>
+      			<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      		</md-input-container>
+     
       
     </div>
     </md-content>

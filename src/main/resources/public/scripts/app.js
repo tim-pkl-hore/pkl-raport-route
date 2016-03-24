@@ -1,7 +1,28 @@
 'use strict';
 		
-		var app = angular.module('raportApp', ['ngRoute', 'ngMaterial', 'md.data.table', 'ngMdIcons'] )
-		.controller('raportApp', function($scope, $timeout, $mdSidenav, $log){
+		var app = angular.module('raportApp', ['ngRoute', 'ngMaterial', 'ui.router', 'md.data.table', 'ngMdIcons', 'ngMenuSidenav', 'ngResource'] )
+		.controller('raportApp', function($scope, $location, $timeout, $mdSidenav, $log){
+			$scope.provinsi = '/#/provinsi-list';
+			$scope.kabupaten = '/#/kabupaten-list';
+			$scope.kecamatan = '/#/kecamatan-list';
+			$scope.absensiSiswa = '/#/absensi-siswa-list';
+			$scope.guru = '/#/guru-list';
+			$scope.hariLibur = '/#/hari-libur-list';
+			$scope.kelas = '/#/kelas-list';
+			$scope.kelasSiswa = '/#/kelas-siswa-list';
+			$scope.kompetensiDasar = '/#/kompetensi-dasar-list';
+			$scope.kompetensiInti = '/#/kompetensi-inti-list';
+			$scope.mataPelajaran = '/#/matapelajaran-list';
+			$scope.materiPokok = '/#/materi-pokok-list';
+			$scope.sekolah = '/#/sekolah-list';
+			$scope.siswa = '/#/siswa-list';
+			$scope.tahunAjaran = '/#/tahun-ajaran-list';
+			$scope.tingkat = '/#/tingkat-list';
+			$scope.jurusan = '/#/jurusan-list';
+			$scope.user = '/#/user-list';
+			$scope.role = '/#/user-role-list';
+			$scope.logout = '/logout';
+			
 			$scope.toggleLeft = buildDelayedToggler('left');
 		    $scope.toggleRight = buildToggler('right');
 		    $scope.isOpenRight = function(){
@@ -61,6 +82,8 @@
 		          $log.debug("close RIGHT is done");
 		        });
 		    };
+		    
+		
 			
 		});
 		

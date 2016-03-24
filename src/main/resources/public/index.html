@@ -4,9 +4,14 @@
 	<meta charset="UTF-8">
 	<title>Project Raport</title>	
 	
+    
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
     <link href="/bower_components/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/bower_components/angular-material-sidenav-menu/material-menu-sidenav.css" rel="stylesheet" type="text/css"/>
     <link href="/bower_components/angular-material-icons/angular-material-icons.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/bower_components/angular-material-sidenav-menu/material-menu-sidenav.min.css">
+    
+   
    
 </head>
 <body ng-app="raportApp">
@@ -16,34 +21,39 @@
       <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">Raport Project</h1>
       </md-toolbar>
+      
       <md-content layout-padding ng-controller="LeftCtrl">
         <md-button ng-click="close()" class="md-primary" hide-gt-md>
           Close Sidenav Left
         </md-button>
-        <p hide-md show-gt-md>
-          <a href="/#/provinsi-list"><md-button md-no-ink class="md-primary">Provinsi</md-button></a><br />
-          <a href="/#/kabupaten-list"><md-button md-no-ink class="md-primary">Kabupaten</md-button></a><br />
-          <a href="/#/kecamatan-list"><md-button md-no-ink class="md-primary">Kecamatan</md-button></a><br />
-          <a href="/#/matapelajaran-list"><md-button md-no-ink class="md-primary">Mata Pelajaran</md-button></a><br />
-          <a href="/#/siswa-list"><md-button md-no-ink class="md-primary">Siswa</md-button></a><br />
-          <a href="/#/sekolah-list"><md-button md-no-ink class="md-primary">Sekolah</md-button></a><br />
-          <a href="/#/guru-list"><md-button md-no-ink class="md-primary">Guru</md-button></a><br />
-          <a href="/#/tahun-ajaran-list"><md-button md-no-ink class="md-primary">Tahun Ajaran</md-button></a><br />
-          <a href="/#/kompetensi-inti-list"><md-button md-no-ink class="md-primary">Kompetensi Inti</md-button></a><br />
-          <a href="/#/kompetensi-dasar-list"><md-button md-no-ink class="md-primary">Kompetensi Dasar</md-button></a><br />
-          <a href="/#/materi-pokok-list"><md-button md-no-ink class="md-primary">Materi Pokok</md-button></a><br />
-          <a href="/#/kelas-siswa-list"><md-button md-no-ink class="md-primary">Kelas Siswa</md-button></a><br />
-          <a href="/#/kelas-list"><md-button md-no-ink class="md-primary">Kelas</md-button></a><br />
-          <a href="/#/hari-libur-list"><md-button md-no-ink class="md-primary">Hari Libur</md-button></a><br />
-          <a href="/#/absensi-siswa-list"><md-button md-no-ink class="md-primary">Absensi Siswa</md-button></a><br />
-          <a href="/#/user-role-list"><md-button md-no-ink class="md-primary">User Role</md-button></a><br />         
-          <a href="/#/user-list"><md-button md-no-ink class="md-primary">Users</md-button></a>
-          <form name="f" action="/logout" method="post">
+      
+       <section layout="row" layout-sm="column" layout-align="start center" layout-wrap>
+       		<md-button class="md-primary md-hue-1" ng-href="{{provinsi}}" style="width:100%;">Provinsi</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{kabupaten}}" style="width:100%;">Kabupaten</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{kecamatan}}" style="width:100%;">Kecamatan</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{sekolah}}" style="width:100%;">Sekolah</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{guru}}" style="width:100%;">Guru</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{kelas}}" style="width:100%;">Kelas</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{kelasSiswa}}" style="width:100%;">Kelas Siswa</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{kompetensiDasar}}" style="width:100%;">Kompetensi Dasar</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{kompetensiInti}}" style="width:100%;">Kompetensi Inti</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{mataPelajaran}}" style="width:100%;">Mata Pelajaran</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{materiPokok}}" style="width:100%;">Materi Pokok</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{jurusan}}" style="width:100%;">Jurusan</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{siswa}}" style="width:100%;">Siswa</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{tahunAjaran}}" style="width:100%;">Tahun Ajaran</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{tingkat}}" style="width:100%;">Tingkat</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{hariLibur}}" style="width:100%;">Hari Libur</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{absensiSiswa}}" style="width:100%;">Absensi </md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{role}}" style="width:100%;">User Role</md-button><br />
+       		<md-button class="md-primary md-hue-1" ng-href="{{user}}" style="width:100%;">User</md-button><br />
+       		<form name="f" action="/logout" method="post">
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
-				<input type="submit" value="Logout">
+				<md-button ng-href="{{logout}}" ng-click="logout()" style="width:100%;" class="md-primary md-hue-1">Logout</md-button>
 			</form>
-        </p>
+       		
+       </section>
       </md-content>
     </md-sidenav>
     <md-content flex layout-padding>
@@ -92,8 +102,15 @@
 	<script src="/bower_components/angular-material/angular-material.js"></script> 
 	<script type="text/javascript" src="/bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
 	<script type="text/javascript" src="/bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+	<script type="text/javascript" src="/bower_components/angular-material-sidenav-menu/material-menu-sidenav.min.js"></script>
+	<script type="text/javascript" src="/bower_components/angular-resource/angular-resource.min.js"></script>
+	<script src="/bower_components/angular-material-sidenav-menu/material-menu-sidenav.min.js"></script>
+	<script type="text/javascript" src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+	
 	
 	<script type="text/javascript" src="/scripts/app.js"></script>
+	<script type="text/javascript" src="/scripts/api-raport.js"></script>
+	<script type="text/javascript" src="/scripts/kabupaten-controller.js"></script>
 	<script type="text/javascript" src="/scripts/app.index.js"></script>
 	<script type="text/javascript" src="/scripts/app.provinsi.js"></script>
 	<script type="text/javascript" src="/scripts/app.kabupaten.js"></script>
@@ -110,6 +127,7 @@
 	<script type="text/javascript" src="/scripts/app.kelas.js"></script>
 	<script type="text/javascript" src="/scripts/app.harilibur.js"></script>
 	<script type="text/javascript" src="/scripts/app.absensisiswa.js"></script>
+	<script type="text/javascript" src="/scripts/app.tingkat.js"></script>
 	<script type="text/javascript" src="/scripts/app.users.js"></script>
 	<script type="text/javascript" src="/scripts/app.role.js"></script>
 	<script type="text/javascript" src="/scripts/app.signout.js"></script>

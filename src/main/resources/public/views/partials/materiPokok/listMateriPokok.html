@@ -31,3 +31,11 @@
 		 </tbody>
 	</table>
 </md-table-container>
+<md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
+<div ng-controller="showAddMateriPokokCtrl" class="md-padding" ng-cloak>
+	<div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="end end">
+		<md-button class="md-fab md-primary md-raised center" ng-click="showAddForm($event)">
+      		<ng-md-icon icon="add" style="fill: #abcdef" size="25"></ng-md-icon>
+    	</md-button>
+    </div>
+</div>

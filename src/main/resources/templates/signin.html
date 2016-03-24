@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Login Page</title>
+	<title>Login Page</title>
+	<link rel="stylesheet" th:href="@{/bower_components/angular-material/angular-material.css}" />
+    <link th:href="@{/bower_components/angular-material-data-table/dist/md-data-table.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/bower_components/angular-material-icons/angular-material-icons.css}" rel="stylesheet" type="text/css"/>
+
 </head>
 <body>
-		<h1>Login Page</h1>
+	<md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Login Page</h1>
+	</md-toolbar><br />
+		<h1></h1>
 		<form name="f" th:action="@{/signin}" method="post">
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
 			<div th:if="${param.error}">Invalid username and password.</div>
 			<div th:if="${param.logout}">You have been logged out.</div>
@@ -31,5 +37,16 @@
 			</table>
 		</form>
 
+
+
+	<script type="text/javascript" th:src="@{/scripts/vendor/angular.min.js}"></script>
+	<script type="text/javascript" th:src="@{/scripts/vendor/angular-route.min.js}"></script>
+	<script type="text/javascript" th:src="@{/bower_components/angular-material/angular-material.js}"></script>
+	<script type="text/javascript" th:src="@{/bower_components/angular/angular.js}"></script> 
+	<script type="text/javascript" th:src="@{/bower_components/angular-aria/angular-aria.js}"></script> 
+	<script type="text/javascript" th:src="@{/bower_components/angular-animate/angular-animate.js}"></script> 
+	<script type="text/javascript" th:src="@{/bower_components/angular-material/angular-material.js}"></script> 
+	<script type="text/javascript" th:src="@{/bower_components/angular-material-data-table/dist/md-data-table.min.js}"></script>
+	<script type="text/javascript" th:src="@{/bower_components/angular-material-icons/angular-material-icons.min.js}"></script>
 </body>
 </html>

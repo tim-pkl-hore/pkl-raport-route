@@ -9,10 +9,9 @@
     
 
 <md-table-container>
-	<table md-table md-row-select border="1">
-		<thead md-head>
+	<table md-table md-row-select border="1" ng-model="siswa" md-progress="promise">
+		 <thead md-head md-order="query.order" md-on-reorder="onReorder">
 			<tr md-row>
-				<th md-coloumn>ID Siswa</th>
 				<th md-coloumn>Nama Siswa</th>
 				<th md-coloumn>Tanggal Lahir</th>
 				<th md-coloumn>Jenis Kelamin</th>
@@ -27,7 +26,6 @@
 		</thead>
 		<tbody md-body align="">
 			<tr md-row ng-repeat="item in items">
-				<th md-cell>{{item.id}}</th>
 				<th md-cell>{{item.namaSiswa}}</th>
 				<th md-cell>{{item.tanggalLahir}}</th>
 				<th md-cell>{{item.jenisKelamin}}</th>
@@ -46,3 +44,11 @@
 		</tbody>
 	</table>
 </md-table-container>
+<md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
+<div ng-controller="showAddSiswaCtrl" class="md-padding" ng-cloak>
+	<div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="end end">
+		<md-button class="md-fab md-primary md-raised center" ng-click="showAddForm($event)">
+      		<ng-md-icon icon="add" style="fill: #abcdef" size="25"></ng-md-icon>
+    	</md-button>
+    </div>
+</div>

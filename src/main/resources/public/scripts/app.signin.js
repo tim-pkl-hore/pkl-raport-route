@@ -9,7 +9,7 @@ angular.module('raportApp').config(function($routeProvider){
 angular.module('raportApp').controller(
 		'SignInCtrl',
 		function($scope, $http, $log) {
-			$scope.logout = function() {
+			$scope.signin = function() {
 				var request = {
 					url : '/signin',
 					method : 'POST',

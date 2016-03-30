@@ -1,0 +1,44 @@
+<md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Edit Absensi Siswa</h1>
+</md-toolbar>
+
+
+	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+		<form name="formSubmit" ng-submit="update()">
+			
+			<md-input-container>
+        		<label>Tanggal</label>
+        		<input type="text" ng-model="formData.tanggal">
+       		 </md-input-container>
+     		<md-input-container>
+        			<p>Jenis Absen: </p>
+        			<md-radio-group ng-model="formData.jenisAbsensi">
+	        			<md-radio-button name="jenisAbsensi" value="Sakit" class="md-primary">Sakit</md-radio-button>
+	        			<md-radio-button name="jenisAbsensi" value="Izin" class="md-primary">Izin</md-radio-button>
+	        			<md-radio-button name="jenisAbsensi" value="Alpha" class="md-primary">Alpha</md-radio-button>
+	        		</md-radio-group>
+      			</md-input-container><br />
+      		<md-input-container>
+        			<label>Alasan</label>
+        			<input type="text" ng-model="formData.alasan">
+     			</md-input-container><br />
+     		<md-input-container>
+			        <label>Tahun Ajaran</label>
+			        	<md-select ng-model="formData.tahunAjaran.id">
+			          		<md-option ng-repeat="ajaran in tahun_ajaran" value="{{ajaran.id}}">
+			            		{{ajaran.tahunAwal}}
+			          		</md-option>
+			        	</md-select>
+		      </md-input-container><br />
+		      <md-input-container>
+			        <label>Nama Sekolah</label>
+			        	<md-select ng-model="formData.sekolah.id">
+			          		<md-option ng-repeat="sek in sekolah" value="{{sek.id}}">
+			            		{{sek.namaSekolah}}
+			          		</md-option>
+			        	</md-select>
+		      </md-input-container><br />
+      			<input type="submit" class="md-button md-primary" value="Edit" />
+      		</md-input-container>	
+		</form>
+	</md-content>

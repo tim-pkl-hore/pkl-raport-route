@@ -10,51 +10,38 @@
     <link href="/bower_components/angular-material-sidenav-menu/material-menu-sidenav.css" rel="stylesheet" type="text/css"/>
     <link href="/bower_components/angular-material-icons/angular-material-icons.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="/bower_components/angular-material-sidenav-menu/material-menu-sidenav.min.css">
+    <link rel="stylesheet" href="/scripts/vendor/app.menu.css">
     
    
    
 </head>
 <body ng-app="raportApp">
-	<div ng-controller="raportApp" layout="column" style="height:100%;" ng-cloak>
+<div ng-controller="raportApp" layout="column" style="height:100%;" ng-cloak>
   <section layout="row" flex>
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="width: 250px;">
       <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">Raport Project</h1>
       </md-toolbar>
-      
-      <md-content layout-padding ng-controller="LeftCtrl">
+      <md-divider></md-divider>
+      <md-content ng-controller="LeftCtrl" class="">
         <md-button ng-click="close()" class="md-primary" hide-gt-md>
           Close Sidenav Left
         </md-button>
-      
-       <section layout="row" layout-sm="column" layout-align="start center" layout-wrap>
-       		<md-button class="md-primary md-hue-1" ng-href="{{provinsi}}" style="width:100%;">Provinsi</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{kabupaten}}" style="width:100%;">Kabupaten</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{kecamatan}}" style="width:100%;">Kecamatan</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{sekolah}}" style="width:100%;">Sekolah</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{guru}}" style="width:100%;">Guru</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{kelas}}" style="width:100%;">Kelas</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{kelasSiswa}}" style="width:100%;">Kelas Siswa</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{kompetensiDasar}}" style="width:100%;">Kompetensi Dasar</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{kompetensiInti}}" style="width:100%;">Kompetensi Inti</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{mataPelajaran}}" style="width:100%;">Mata Pelajaran</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{materiPokok}}" style="width:100%;">Materi Pokok</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{jurusan}}" style="width:100%;">Jurusan</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{siswa}}" style="width:100%;">Siswa</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{tahunAjaran}}" style="width:100%;">Tahun Ajaran</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{tingkat}}" style="width:100%;">Tingkat</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{hariLibur}}" style="width:100%;">Hari Libur</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{absensiSiswa}}" style="width:100%;">Absensi </md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{role}}" style="width:100%;">User Role</md-button><br />
-       		<md-button class="md-primary md-hue-1" ng-href="{{user}}" style="width:100%;">User</md-button><br />
-       		<form name="f" action="/logout" method="post">
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
-				<md-button ng-href="{{logout}}" ng-click="logout()" style="width:100%;" class="md-primary md-hue-1">Logout</md-button>
-			</form>
-       		
-       </section>
-      </md-content>
+        
+      <md-list style="background-color: rgb(63,81,181); color: rgba(255,255,255,0.87);">
+      	<md-item ng-repeat="item in menu">
+      	<a ng-href="{{item.link}}" style="text-decoration: none;">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+            </div>
+            <div class="inset">{{item.title}}
+            </div>
+          </md-item-content>
+          <md-divider></md-divider>
+        </a>
+      	</md-item>
+      </md-list>
     </md-sidenav>
     <md-content flex layout-padding>
       <div layout="column" layout-fill layout-align="top left">
@@ -63,13 +50,6 @@
         <md-button class="md-fab md-mini md-primary center" ng-click="toggleLeft()" aria-label="Add" hide-gt-md>
           	<ng-md-icon icon="view_headline" style="fill: #abcdef" size="22"></ng-md-icon>
         </md-button>
-        </div>
-        <div>
-          <md-button ng-click="toggleRight()"
-            ng-hide="isOpenRight()"
-            class="md-primary">
-            Toggle right
-          </md-button>
         </div>
       </div>
       <div flex></div>
@@ -99,6 +79,10 @@
 	<script src="/bower_components/angular/angular.js"></script> 
 	<script src="/bower_components/angular-aria/angular-aria.js"></script> 
 	<script src="/bower_components/angular-animate/angular-animate.js"></script> 
+	<script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+	 <script src="/bower_components/angular-messages/angular-messages.js"></script>
+	 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
 	<script src="/bower_components/angular-material/angular-material.js"></script> 
 	<script type="text/javascript" src="/bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
 	<script type="text/javascript" src="/bower_components/angular-material-icons/angular-material-icons.min.js"></script>
@@ -109,8 +93,9 @@
 	
 	
 	<script type="text/javascript" src="/scripts/app.js"></script>
+	<script type="text/javascript" src="/scripts/app.home.js"></script>
+	<script type="text/javascript" src="/scripts/app.menu.js"></script>
 	<script type="text/javascript" src="/scripts/api-raport.js"></script>
-	<script type="text/javascript" src="/scripts/kabupaten-controller.js"></script>
 	<script type="text/javascript" src="/scripts/app.index.js"></script>
 	<script type="text/javascript" src="/scripts/app.provinsi.js"></script>
 	<script type="text/javascript" src="/scripts/app.kabupaten.js"></script>

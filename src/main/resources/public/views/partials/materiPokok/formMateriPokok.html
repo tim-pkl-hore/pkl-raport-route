@@ -2,24 +2,24 @@
         <h1 class="md-toolbar-tools">Tambah Materi Pokok</h1>
 </md-toolbar>
 
-<div ng-controller="addMateriPokokCtrl">
+<div ng-controller="MateriPokokCtrl">
 <div>
     <div layout="row">
-    	<form ng-submit="submit()">
+    	<form name="formSubmit" ng-submit="save()">
     		<md-input-container>
        			<label>Deskripsi</label>
-       			<input type="text" ng-model="materi_pokok.indikator">
+       			<input type="text" ng-model="formData.indikator">
       		</md-input-container>
       		<md-input-container>
         		<label>Kompetensi Dasar</label>
-        		<md-select ng-model="materi_pokok.kompetensiDasar.id">
-          			<md-option ng-repeat="dasar in kompetensi_dasar" value="{{dasar.id}}">
+        		<md-select ng-model="formData.kompetensiDasar.id">
+          			<md-option ng-repeat="dasar in kompetensi_dasar track by $index" value="{{dasar.id}}">
             			{{dasar.description}}
           			</md-option>
         		</md-select>
       		</md-input-container>
       		<md-input-container>
-      			<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      			<input type="submit" class="md-button md-primary" value="Tambah" />
       		</md-input-container>
     	</form>
     </div>

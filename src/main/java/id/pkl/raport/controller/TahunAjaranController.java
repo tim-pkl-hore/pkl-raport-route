@@ -47,6 +47,35 @@ public class TahunAjaranController {
 		return new ResponseEntity<TahunAjaran>(tahunAjaran, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<TahunAjaran> updateTahunAjaran(@PathVariable Integer id, @RequestBody TahunAjaran tahunAjaran, BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return new ResponseEntity<TahunAjaran>(HttpStatus.BAD_REQUEST);
+		}
+		
+		TahunAjaran currentTahunAjaran = tahunAjarRepository.findOne(id);
+		if(currentTahunAjaran == null){
+			return new ResponseEntity<TahunAjaran>(HttpStatus.NOT_FOUND);
+		}
+		
+		currentTahunAjaran.setSekolah(tahunAjaran.getSekolah());
+		currentTahunAjaran.setTahunAwal(tahunAjaran.getTahunAwal());
+		currentTahunAjaran.setTahunAkhir(tahunAjaran.getTahunAkhir());
+		
+		tahunAjarRepository.save(currentTahunAjaran);
+		return new ResponseEntity<TahunAjaran>(currentTahunAjaran, HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<TahunAjaran> deleteTahunAjaran(@PathVariable Integer id){
+		if(!tahunAjarRepository.exists(id)){
+			return new ResponseEntity<TahunAjaran>(HttpStatus.NOT_FOUND);
+		}
+		tahunAjarRepository.delete(id);
+		return new ResponseEntity<TahunAjaran>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<TahunAjaran> listTahunAjaran(){
 		return tahunAjarRepository.findAll();

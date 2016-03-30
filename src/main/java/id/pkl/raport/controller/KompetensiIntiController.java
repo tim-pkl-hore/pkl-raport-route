@@ -52,6 +52,34 @@ public class KompetensiIntiController {
 		return new ResponseEntity<KompetensiInti>(kompetensiInti, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<KompetensiInti> updateKompetensiInti(@PathVariable Long id, @RequestBody KompetensiInti kompetensiInti, BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return new ResponseEntity<KompetensiInti>(HttpStatus.BAD_REQUEST);
+		}
+		
+		KompetensiInti currentKompetensiInti = kompetensiIntiRepository.findOne(id);
+		if (currentKompetensiInti == null) {
+			return new ResponseEntity<KompetensiInti>(HttpStatus.NOT_FOUND);
+		}
+		
+		currentKompetensiInti.setDescription(kompetensiInti.getDescription());
+		currentKompetensiInti.setMataPelajaran(kompetensiInti.getMataPelajaran());
+		currentKompetensiInti.setTahunAjaran(kompetensiInti.getTahunAjaran());
+		
+		kompetensiIntiRepository.save(currentKompetensiInti);
+		return new ResponseEntity<KompetensiInti>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<KompetensiInti> deleteKompetensiInti(@PathVariable Long id){
+		if(!kompetensiIntiRepository.exists(id)){
+			return new ResponseEntity<KompetensiInti>(HttpStatus.NOT_FOUND);
+		}
+		kompetensiIntiRepository.delete(id);
+		return new ResponseEntity<KompetensiInti>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<KompetensiInti> listKompetensiInti(){
 		return kompetensiIntiRepository.findAll();

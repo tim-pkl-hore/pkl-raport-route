@@ -2,10 +2,10 @@ angular.module('raportApp')
 			.config(function($routeProvider){
 				$routeProvider.when('/kompetensi-dasar-list',{
 					templateUrl: 'views/partials/kompetensiDasar/listKompetensiDasar.html',
-					controller: 'listKompetensiDasarCtrl'
+					controller: 'KompetensiDasarCtrl'
 				}).when('/kompetensi-dasar-detail/:id', {
 					templateUrl: 'views/partials/kompetensiDasar/detailKompetensiDasar.html',
-					controller: 'detailKompetensiDasarCtrl',
+					controller: 'KompetensiDasarCtrl',
 					resolve: {
 						'id': function($route){
 							return $route.current.params.id;
@@ -13,22 +13,33 @@ angular.module('raportApp')
 					}
 				}).when('/kompetensi-dasar-edit/:id', {
 					templateUrl: 'views/partials/kompetensiDasar/editKompetensiDasar.html',
-					controller: 'editKompetensiDasarCtrl',
-					resolve: {
-						'id': function($route){
-							return $route.current.params.id;
-						}
-					}
+					controller: 'KompetensiDasarCtrl'
 				}).when('/kompetensi-dasar-form', {
 					templateUrl: 'views/partials/kompetensiDasar/formKompetensiDasar.html',
-					controller: 'addKompetensiDasarCtrl'
+					controller: 'KompetensiDasarCtrl'
 				});
 			});
 
-angular.module('raportApp').controller('addKompetensiDasarCtrl', function($scope, $http, $log) {
-	$scope.raport = {};
+angular.module('raportApp').controller('KompetensiDasarCtrl', function($scope, $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, KompetensiDasarService){
+	$scope.formData = {};
 	
-	$scope.kompetensi_inti = [];
+	/*
+	 * Template toast
+	 */
+	
+	var mdToast = function(message){
+        $mdToast.show({
+            template: '<md-toast class="md-toast">' + message + '</md-toast>',
+            hideDelay: 7000,
+            position: 'top right'
+        });
+    };
+    
+    /*
+     * Get itarable
+     */
+    
+    $scope.kompetensi_inti = [];
 	var request = {
 		url : '/kompetensi-inti/all',
 		method : 'GET'
@@ -55,87 +66,129 @@ angular.module('raportApp').controller('addKompetensiDasarCtrl', function($scope
 		$log.error(angular.toJson(errors, true));
 	};
 	$http(request).then(successHandler, errorHandler);
+    
+	/*
+	 * List Data
+	 */
 	
-	$scope.submit = function() {
-		var request = {
-			url: '/kompetensi-dasar',
-			method: 'POST',
-			data: $scope.kompetensi_dasar
-		};
-		var successHandler = function(response) {
-			$log.debug('Response data dari server : \n' + angular.toJson(response.data, true));
-			window.location = "/#/kompetensi-dasar-list";
-		};
-		var errorHandler = function(errors) {
-			$log.error('Errors :\n' + angular.toJson(errors, true));
-		};
-		$http(request).then(successHandler, errorHandler);
+	$scope.items = [];
+
+	var url = '/kompetensi-dasar'
+
+	$scope.query = {
+		order : '',
+		limit : 5,
+		page : 1,
+		total : 0
 	};
-});
 
-angular.module('raportApp').controller(
-		'listKompetensiDasarCtrl',
-		function($scope, $http, $log, $resource) {
-			$scope.items = [];
-
-			var url = '/kompetensi-dasar'
-
-			$scope.query = {
-				order : '',
-				limit : 5,
-				page : 1,
-				total : 0
-			};
-
-			var getKompetensiDasar = function(page, limit) {
-				return $resource(url, {}, {
-					get : {
-						method : "GET",
-						params : {
-							page : page - 1,
-							size : limit
-						}
-					}
-				});
-			}
-
-			var getPage = function(page, limit) {
-				getKompetensiDasar(page, limit).get().$promise.then(
-						function(response) {
-							console.dir(response.content);
-							$scope.items = response.content;
-							$scope.query.limit = response.size;
-							$scope.query.total = response.totalElements;
-						}, function(errResponse) {
-							console.log(errResponse);
-							console.error('Error while fethcing data');
-						}
-
-				);
-
-			}
-
-			getPage($scope.query.page, $scope.query.limit);
-
-			$scope.onPaginate = function(page, limit) {
-				getPage(page, limit);
+	var getKompetensiDasar = function(page, limit) {
+		return $resource(url, {}, {
+			get : {
+				method : "GET",
+				params : {
+					page : page - 1,
+					size : limit
+				}
 			}
 		});
+	}
 
-angular.module('raportApp').controller('detailKompetensiDasarCtrl', function($scope, $http, $log, id) {
-	$scope.kompetensi_dasar = [];
-	var request = {
-		url : '/kompetensi-dasar/' + id ,
-		method : 'GET'
+	var getPage = function(page, limit) {
+		getKompetensiDasar(page, limit).get().$promise.then(
+				function(response) {
+					console.dir(response.content);
+					$scope.items = response.content;
+					$scope.query.limit = response.size;
+					$scope.query.total = response.totalElements;
+				}, function(errResponse) {
+					console.log(errResponse);
+					console.error('Error while fethcing data');
+				}
+
+		);
+
+	}
+
+	getPage($scope.query.page, $scope.query.limit);
+
+	$scope.onPaginate = function(page, limit) {
+		getPage(page, limit);
+	}
+	
+	/*
+	 * Create Data
+	 */
+	
+	$scope.save = function(){
+		KompetensiDasarService.create($scope.formData).$promise.then(
+			function(response){
+				mdToast('Data berhasil ditambah');
+				window.location = "/#/kompetensi-dasar-list";
+			},
+			function(errResponse){
+				$log.debug(errResponse);
+				$scope.objectError = errResponse.data.fieldErrors;
+				mdToast('Gagal menyimpan data, cek kembali input data');
+			}
+		);
 	};
-	var successHandler = function(response) {
-		$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
-		$scope.kompetensi_dasar = response.data;
+	
+	/*
+	 * Edit Data
+	 */
+	if($route.current.params.id){
+		KompetensiDasarService.get({id: $route.current.params.id}).$promise.then(
+			function(response){
+				$scope.formData = response;
+			},
+			function(errResponse){
+				$log.debug(errResponse);
+				mdToast('Data tidak ditemukan');
+				window.location = "/#/kompetensi-dasar-list";
+			}
+		);
 	};
-	var errorHandler = function(errors) {
-		$log.error(angular.toJson(errors, true));
+	
+	/*
+	 * Update Data
+	 */
+	
+	$scope.update = function(){		
+		KompetensiDasarService.update($scope.formData).$promise.then(
+			function(response){
+				mdToast('Data berhasil diubah');
+				window.location = "/#/kompetensi-dasar-list";
+			},
+			
+			function(errResponse){
+				$log.debug(errResponse);
+				$scope.objectError = errResponse.data.fieldErrors;
+				mdToast('Data gagal diubah, cek kembali data input')
+			}
+		);
 	};
-	$http(request).then(successHandler, errorHandler);
+	
+	
+	$scope.showConfirm = function(id){
+		var confirm = $mdDialog.confirm()
+			.title('Konfirmasi Hapus Data')
+			.textContent('Apakah anda yakin untuk menghapus data?')
+			.ok('Hapus')
+			.cancel('Batal');
+		$mdDialog.show(confirm).then(function(){
+			KompetensiDasarService.delete({id : id}).$promise.then(
+				function(response){
+					mdToast('Data berhasil dihapus');
+					getPage($scope.query.page, $scope.query.limit);
+				},
+				function(errResponse){
+					$log.debug(errResponse);
+					mdToast('Data gagal dihapus, silahkan mencoba lagi');
+				}
+			);
+		});
+	};
 });
 
 angular.module('raportApp').controller(

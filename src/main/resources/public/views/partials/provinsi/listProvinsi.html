@@ -16,9 +16,8 @@
 		 		<th md-cell>{{item.namaProvinsi}}</th>
 		 		<th md-cell>
 		 			<a href="/#/provinsi-edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="23"></ng-md-icon></a>
-		 			<a href="/#/provinsi-detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="23"></ng-md-icon></a> 
-		 			<md-button data-ng-click="delete(item.id)"><ng-md-icon icon="delete" style="fill: #abcdef" size="20">Delete</ng-md-icon></md-button>
-		 			<a href="/#/provinsi-delete/{{item.id}}"><ng-md-icon icon="delete" style="fill: #abcdef" size="23"></ng-md-icon></a>
+		 			<a ng-controller="showDetailProvinsiCtrl" href ng-click="showDetailProvinsi($event)"><ng-md-icon icon="info" style="fill: #abcdef" size="23"></ng-md-icon></a> 
+		 			<a href ng-click="showConfirm(item.id)"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
 		 			</th>
 		 	</tr>
 		 </tbody>

@@ -47,6 +47,34 @@ public class HariLiburController {
 		return new ResponseEntity<HariLibur>(hariLibur, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<HariLibur> updateHariLibur(@PathVariable Long id, @RequestBody HariLibur hariLibur, BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return new ResponseEntity<HariLibur>(HttpStatus.BAD_REQUEST);
+		}
+		
+		HariLibur currentHariLibur = hariLiburRepository.findOne(id);
+		if(currentHariLibur == null){
+			return new ResponseEntity<HariLibur>(HttpStatus.NOT_FOUND);
+		}
+		
+		currentHariLibur.setTanggal(hariLibur.getTanggal());
+		currentHariLibur.setDeskripsi(hariLibur.getDeskripsi());
+		currentHariLibur.setLiburNasional(hariLibur.getLiburNasional());
+		hariLiburRepository.save(currentHariLibur);
+		return new ResponseEntity<HariLibur>(currentHariLibur, HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<HariLibur> deleteHariLibur(@PathVariable Long id){
+		if(!hariLiburRepository.exists(id)){
+			return new ResponseEntity<HariLibur>(HttpStatus.NOT_FOUND);
+		}
+		hariLiburRepository.delete(id);
+		return new ResponseEntity<HariLibur>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<HariLibur> listHariLibur(){
 		return hariLiburRepository.findAll();

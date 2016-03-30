@@ -1,19 +1,7 @@
 <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">List Absensi Siswa</h1>
 </md-toolbar>
-<div ng-controller="showAddAbsensiCtrl" class="md-padding" ng-cloak>
-	<div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="end end">
-		<md-button class="md-fab md-primary md-raised center" ng-click="showAddForm($event)">
-      		<ng-md-icon icon="add" style="fill: #abcdef" size="25"></ng-md-icon>
-    	</md-button>
-    </div>
-</div>
-
-	<a href="/#/absensi-siswa-form">
-    	<md-button class="md-fab md-mini md-primary center" aria-label="Add">
-          	<ng-md-icon icon="add" style="fill: #abcdef" size="23"></ng-md-icon>
-        </md-button>
-    </a>
+<br />
     
 <md-table-container>
 	<table md-table md-row-select border="1" ng-model="absensi_siswa" md-progress="promise">
@@ -32,15 +20,20 @@
 				<th md-cell>{{item.tanggal}}</th>
 				<th md-cell>{{item.jenisAbsensi}}</th>
 				<th md-cell>{{item.alasan}}</th>
-				<th md-cell>{{item.tahunAjaran.tahunAkhir}}</th>
+				<th md-cell>{{item.tahunAjaran.tahunAwal}} / {{item.tahunAjaran.tahunAkhir}}</th>
 				<th md-cell>{{item.sekolah.namaSekolah}}</th>
 				<th md-cell>
 					<a href="/#/absensi-siswa-edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
 		 			<a href="/#/absensi-siswa-detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
-		 			<a href="/#/absensi-siswa-delete/{{item.id}}"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href ng-click="showConfirm(item.id)"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
 				</th>
 			</tr>
 		</tbody>
 	</table>
 </md-table-container>
 <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
+<div layout="row" layout-wrap layout-margin layout-align="end end">
+		<a href="/#/absensi-siswa-form" md-button class="md-fab md-primary md-raised center">
+      		<ng-md-icon icon="add" style="fill: #abcdef" size="25"></ng-md-icon>
+    	</a>
+    </div>

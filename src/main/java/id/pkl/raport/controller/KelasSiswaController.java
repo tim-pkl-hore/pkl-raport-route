@@ -48,6 +48,33 @@ public class KelasSiswaController {
 		return new ResponseEntity<KelasSiswa>(kelasSiswa, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<KelasSiswa> updateKelasSiswa(@PathVariable Long id, @RequestBody KelasSiswa kelasSiswa, BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return new ResponseEntity<KelasSiswa>(HttpStatus.BAD_REQUEST);
+		}
+		
+		KelasSiswa currentKelasSiswa = kelasSiswaRepository.findOne(id);
+		if (currentKelasSiswa == null) {
+			return new ResponseEntity<KelasSiswa>(HttpStatus.NOT_FOUND);
+		}
+		
+		currentKelasSiswa.setKelas(kelasSiswa.getKelas());
+		currentKelasSiswa.setSiswa(kelasSiswa.getSiswa());
+		
+		kelasSiswaRepository.save(currentKelasSiswa);
+		return new ResponseEntity<KelasSiswa>(currentKelasSiswa, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<KelasSiswa> deleteKelasSiswa(@PathVariable Long id){
+		if(!kelasSiswaRepository.exists(id)){
+			return new ResponseEntity<KelasSiswa>(HttpStatus.NOT_FOUND);
+		}
+		kelasSiswaRepository.delete(id);
+		return new ResponseEntity<KelasSiswa>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<KelasSiswa> listAllKelasSiswa()
 	{

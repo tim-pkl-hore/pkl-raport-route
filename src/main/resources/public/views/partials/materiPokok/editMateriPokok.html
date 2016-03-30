@@ -1,0 +1,26 @@
+<md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Edit Materi Pokok</h1>
+</md-toolbar>
+
+
+	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+		<form name="formSubmit" ng-submit="update()">
+			<md-input-container>
+       			<label>Deskripsi</label>
+       			<input type="text" ng-model="formData.indikator">
+      		</md-input-container>
+      		<md-input-container>
+        		<label>Kompetensi Dasar</label>
+        		<md-select ng-model="formData.kompetensiDasar.id">
+          			<md-option ng-repeat="dasar in kompetensi_dasar track by $index" value="{{dasar.id}}">
+            			{{dasar.description}}
+          			</md-option>
+        		</md-select>
+      		</md-input-container>
+      		<md-input-container>
+   			</md-input-container>
+   			<md-input-container>
+      			<input type="submit" class="md-button md-primary" value="Edit" />
+      		</md-input-container>	
+		</form>
+	</md-content>

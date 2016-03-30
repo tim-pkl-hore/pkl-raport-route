@@ -2,52 +2,59 @@
         <h1 class="md-toolbar-tools">Tambah Siswa</h1>
 </md-toolbar>
 
-<div ng-controller="addSiswaCtrl">
+<div ng-controller="SiswaCtrl">
 <div>
 	<div layout="row">
-		<form ng-submit="submit()">
+		<form ng-submit="save()">
 			<md-input-container>
         		<label>Nama Siswa</label>
-        		<input type="text" ng-model="siswa.namaSiswa">
+        		<input type="text" ng-model="formData.namaSiswa">
      		</md-input-container>
      		<md-content>
-        		 <md-datepicker ng-model="siswa.tanggalLahir" md-placeholder="Tanggal Lahir"></md-datepicker>
+        		 <md-datepicker ng-model="formData.tanggalLahir" md-placeholder="Tanggal Lahir"></md-datepicker>
      		</md-content>
      		<md-input-container>
-        		<md-select ng-model="siswa.jenisKelamin" placeholder="Jenis Kelamin">
+        		<p>Jenis Kelamin </p>
+        		<md-radio-group ng-model="formData.jenisKelamin">
+        			<md-radio-button name="jenisKelamin" ng-value="Laki_Laki">Laki-Laki</md-radio-button>
+        			<md-radio-button name="jenisKelamin" ng-value="Perempuan">Perempuan</md-radio-button>
+        		</md-radio-group>
+      		</md-input-container>
+     		<md-input-container>
+        		<md-select ng-model="formData.jenisKelamin" placeholder="Jenis Kelamin">
           			<md-option ng-value="Laki_Laki">Laki-Laki</option>
 					<md-option ng-value="Perempuan">Perempuan</option>
         		</md-select>
      		</md-input-container>
      		<md-input-container>
         		<label>Nama Bapak</label>
-        		<input type="text" ng-model="siswa.namaBapak">
+        		<input type="text" ng-model="formData.namaBapak">
      		</md-input-container>
      		<md-input-container>
         		<label>Email Bapak</label>
-        		<input type="text" ng-model="siswa.emailBapak">
+        		<input type="text" ng-model="formData.emailBapak">
      		</md-input-container>
      		<md-input-container>
         		<label>Nama Ibu</label>
-        		<input type="text" ng-model="siswa.namaIbu">
+        		<input type="text" ng-model="formData.namaIbu">
      		</md-input-container>
      		<md-input-container>
         		<label>Email Ibu</label>
-        		<input type="text" ng-model="siswa.emailIbu">
+        		<input type="text" ng-model="formData.emailIbu">
      		</md-input-container>
      		<md-content>
-        		 <md-datepicker ng-model="siswa.tanggalLahir" md-placeholder="Diterima Sejak"></md-datepicker>
+        		 <md-datepicker ng-model="formData.tanggalLahir" md-placeholder="Diterima Sejak"></md-datepicker>
      		</md-content>
      		<md-input-container>
         		<label>Nama Sekolah</label>
-        		<md-select ng-model="siswa.sekolah.id">
-          		<md-option ng-repeat="sek in sekolah" value="{{sek.id}}">
+        		<md-select ng-model="formData.sekolah.id">
+          		<md-option ng-repeat="sek in sekolah track by $index" value="{{sek.id}}">
             		{{sek.namaSekolah}}
           		</md-option>
         </md-select>
       </md-input-container>
      		<md-input-container>
-      			<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      			<input type="submit" class="md-button md-primary" value="Tambah" />
       		</md-input-container>
 		</form>
 	</div>

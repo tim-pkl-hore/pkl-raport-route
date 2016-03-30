@@ -2,28 +2,28 @@
         <h1 class="md-toolbar-tools">Tambah Role</h1>
 </md-toolbar>
 
-<div ng-controller="addRoleCtrl">
+<div ng-controller="RoleCtrl">
 <div>
     <div layout="row">
-    <form ng-submit="submit()">
+    <form ng-submit="save()">
       <md-input-container>
       <md-input-container>
         <label>Username</label>
-        <md-select ng-model="user_role.users.id">
-          <md-option ng-repeat="us in users" value="{{us.id}}">
-            {{us.username_id}}
+        <md-select ng-model="formData.users.id">
+          <md-option ng-repeat="us in users track by $index" value="{{us.id}}">
+            {{us.username}}
           </md-option>
         </md-select>
       </md-input-container>
       <md-input-container>
         		<p>Role </p>
-        		<md-radio-group ng-model="user_role.role">
-        			<md-radio-button name="role" value="Admin" class="md-primary">Admin</md-radio-button>
+        		<md-radio-group ng-model="formData.role">
+        			<md-radio-button name="role" value="Guru" class="md-primary">Guru</md-radio-button>
         			<md-radio-button name="role" value="WaliKelas" class="md-primary">Wali Kelas</md-radio-button>
         		</md-radio-group>
       		</md-input-container>
       <md-input-container>
-      		<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      		<input type="submit" class="md-button md-primary" value="Tambah" />
       </md-input-container>	  
       </form>
     </div>

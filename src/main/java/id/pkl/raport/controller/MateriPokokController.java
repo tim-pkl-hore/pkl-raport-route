@@ -47,6 +47,33 @@ public class MateriPokokController {
 		return new ResponseEntity<MateriPokok>(materiPokok, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<MateriPokok> updateMateriPokok(@PathVariable Integer id, @RequestBody MateriPokok materiPokok, BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return new ResponseEntity<MateriPokok>(HttpStatus.BAD_REQUEST);
+		}
+		
+		MateriPokok currentMateriPokok = materiPokokRepository.findOne(id);
+		if(currentMateriPokok == null){
+			return new ResponseEntity<MateriPokok>(HttpStatus.NOT_FOUND);
+		}
+		
+		currentMateriPokok.setIndikator(materiPokok.getIndikator());
+		currentMateriPokok.setKompetensiDasar(materiPokok.getKompetensiDasar());
+		
+		materiPokokRepository.save(currentMateriPokok);
+		return new ResponseEntity<MateriPokok>(currentMateriPokok, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<MateriPokok> deleteMateriPokok(@PathVariable Integer id){
+		if(!materiPokokRepository.exists(id)){
+			return new ResponseEntity<MateriPokok>(HttpStatus.NOT_FOUND);
+		}
+		materiPokokRepository.delete(id);
+		return new ResponseEntity<MateriPokok>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<MateriPokok> listMateriPokok(){
 		return materiPokokRepository.findAll();

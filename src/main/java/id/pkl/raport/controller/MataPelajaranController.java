@@ -66,6 +66,16 @@ public class MataPelajaranController {
 		return mataPelajaranRepository.findAll(pageable);
 	}
 	
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<MataPelajaran> deleteMataPelajaran(@PathVariable Long id){
+		if(!mataPelajaranRepository.exists(id)){
+			return new ResponseEntity<MataPelajaran>(HttpStatus.NOT_FOUND);
+		}
+		mataPelajaranRepository.delete(id);
+		return new ResponseEntity<MataPelajaran>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<MataPelajaran> listMatpel(){
 		return mataPelajaranRepository.findAll();

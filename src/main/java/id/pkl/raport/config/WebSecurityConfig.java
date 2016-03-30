@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.servlet.configuration.
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebMvcSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	DataSource dataSource;
@@ -28,6 +28,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception{
 		http
 			.authorizeRequests()
+				.antMatchers("/sekolah").hasRole("Admin")
+				.antMatchers("/siswa/*", "/sekolah/all").hasRole("WaliKelas")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
@@ -35,8 +37,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()
 				.defaultSuccessUrl("/")
 				.and()
-				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/signin")
-			.and()
-			.csrf().disable();
+				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/signin");
 	}
 }

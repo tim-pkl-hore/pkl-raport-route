@@ -1,9 +1,9 @@
 <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">List Kecamatan</h1>
 </md-toolbar>
-
+<br />
 <md-table-container>
-	<table md-table md-row-select border="1" ng-model="provinsi" md-progress="promise">
+	<table md-table md-row-select border="1" ng-model="kecamatan" md-progress="promise">
 		<thead md-head md-order="query.order" md-on-reorder="onReorder">
 			<tr md-row>
 				<th md-coloumn>Kode Kecamatan</th>
@@ -20,7 +20,7 @@
 				<th md-cell>
 		 			<a href="/#/kecamatan-edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
 		 			<a href="/#/kecamatan-detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
-		 			<a href="/#/kecamatan-delete/{{item.id}}"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href ng-click="showConfirm(item.id)"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
 		 		</th>
 			</tr>
 		</tbody>

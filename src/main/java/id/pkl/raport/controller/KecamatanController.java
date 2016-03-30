@@ -47,6 +47,36 @@ public class KecamatanController {
 		return new ResponseEntity<Kecamatan>(kecamatan, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Kecamatan> updateKecamatan(@PathVariable Integer id, @RequestBody Kecamatan kecamatan, BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return new ResponseEntity<Kecamatan>(HttpStatus.BAD_REQUEST);
+		}
+		
+		Kecamatan currentKecamatan = kecamatanRepository.findOne(id);
+		if(currentKecamatan == null){
+			return new ResponseEntity<Kecamatan>(HttpStatus.NOT_FOUND);
+		}
+		
+		currentKecamatan.setKodeKecamatan(kecamatan.getKodeKecamatan());
+		currentKecamatan.setNamaKecamatan(kecamatan.getNamaKecamatan());
+		currentKecamatan.setKabupaten(kecamatan.getKabupaten());
+		
+		kecamatanRepository.save(currentKecamatan);
+		return new ResponseEntity<Kecamatan>(currentKecamatan, HttpStatus.OK);
+		
+		
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Kecamatan> deleteKecamatan(@PathVariable Integer id){
+		if(!kecamatanRepository.exists(id)){
+			return new ResponseEntity<Kecamatan>(HttpStatus.NOT_FOUND);
+		}
+		kecamatanRepository.delete(id);
+		return new ResponseEntity<Kecamatan>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<Kecamatan> listKecamatan(){
 		return kecamatanRepository.findAll();

@@ -1,27 +1,105 @@
 'use strict';
 		
-		var app = angular.module('raportApp', ['ngRoute', 'ngMaterial', 'ui.router', 'md.data.table', 'ngMdIcons', 'ngMenuSidenav', 'ngResource'] )
+		var app = angular.module('raportApp', ['ngRoute', 'ngMaterial', 'ui.router', 'md.data.table', 'ngMdIcons', 'ngMenuSidenav', 'ngResource'])
 		.controller('raportApp', function($scope, $location, $timeout, $mdSidenav, $log){
-			$scope.provinsi = '/#/provinsi-list';
-			$scope.kabupaten = '/#/kabupaten-list';
-			$scope.kecamatan = '/#/kecamatan-list';
-			$scope.absensiSiswa = '/#/absensi-siswa-list';
-			$scope.guru = '/#/guru-list';
-			$scope.hariLibur = '/#/hari-libur-list';
-			$scope.kelas = '/#/kelas-list';
-			$scope.kelasSiswa = '/#/kelas-siswa-list';
-			$scope.kompetensiDasar = '/#/kompetensi-dasar-list';
-			$scope.kompetensiInti = '/#/kompetensi-inti-list';
-			$scope.mataPelajaran = '/#/matapelajaran-list';
-			$scope.materiPokok = '/#/materi-pokok-list';
-			$scope.sekolah = '/#/sekolah-list';
-			$scope.siswa = '/#/siswa-list';
-			$scope.tahunAjaran = '/#/tahun-ajaran-list';
-			$scope.tingkat = '/#/tingkat-list';
-			$scope.jurusan = '/#/jurusan-list';
-			$scope.user = '/#/user-list';
-			$scope.role = '/#/user-role-list';
-			$scope.logout = '/logout';
+			$scope.menu = [
+			               {
+			                 link : '/#/provinsi-list',
+			                 title: 'Provinsi',
+			                 icon: 'dashboard'
+			               },
+			               {
+			                 link : '/#/kabupaten-list',
+			                 title: 'Kabupaten',
+			                 icon: 'group'
+			               },
+			               {
+			                 link : '/#/kecamatan-list',
+			                 title: 'Kecamatan',
+			                 icon: 'message'
+			               },
+			               {
+				                 link : '/#/absensi-siswa-list',
+				                 title: 'Absensi Siswa',
+				                 icon: 'group'
+				           },
+				           {
+				                 link : '/#/guru-list',
+				                 title: 'Guru',
+				                 icon: 'group'
+				           },
+				           {
+				                 link : '/#/hari-libur-list',
+				                 title: 'Hari Libur',
+				                 icon: 'group'
+				           },
+				           {
+				                 link : '/#/kelas-list',
+				                 title: 'Kelas',
+				                 icon: 'group'
+				           },
+				           {
+				                 link : '/#/kelas-siswa-list',
+				                 title: 'Kelas Siswa',
+				                 icon: 'group'
+				           },
+				           {
+				                 link : '/#/kompetensi-dasar-list',
+				                 title: 'Kompetensi Dasar',
+				                 icon: 'group'
+				           },
+				           {
+				                 link : '/#/kompetensi-inti-list',
+				                 title: 'Kompetensi Inti',
+				                 icon: 'group'
+				           },
+				           {
+				                 link : '/#/matapelajaran-list',
+				                 title: 'Mata Pelajaran',
+				                 icon: 'group'
+				           },
+				           {
+				                 link : '/#/materi-pokok-list',
+				                 title: 'Materi Pokok',
+				                 icon: 'group'
+				           },
+				           {
+				                 link : '/#/sekolah-list',
+				                 title: 'Sekolah',
+				                 icon: 'group'
+				           },
+				           {
+				                 link : '/#/siswa-list',
+				                 title: 'Siswa',
+				                 icon: 'group'
+				           },
+				           {
+				                 link : '/#/tahun-ajaran-list',
+				                 title: 'Tahun Ajaran',
+				                 icon: 'group'
+				           },
+				           {
+				                 link : '/#/tingkat-list',
+				                 title: 'Tingkat',
+				                 icon: 'group'
+				           },
+				           {
+				                 link : '/#/user-list',
+				                 title: 'User',
+				                 icon: 'group'
+				           },
+				           {
+				                 link : '/#/user-role-list',
+				                 title: 'Role',
+				                 icon: 'group'
+				           },
+				           {
+				                 link : '/logout',
+				                 title: 'Logout',
+				                 icon: 'logout'
+				           },
+			             ];
+
 			
 			$scope.toggleLeft = buildDelayedToggler('left');
 		    $scope.toggleRight = buildToggler('right');

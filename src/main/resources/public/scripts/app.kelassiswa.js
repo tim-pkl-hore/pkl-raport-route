@@ -2,10 +2,10 @@ angular.module('raportApp')
 			.config(function($routeProvider){
 				$routeProvider.when('/kelas-siswa-list',{
 					templateUrl: 'views/partials/kelasSiswa/listKelasSiswa.html',
-					controller: 'listKelasSiswaCtrl'
+					controller: 'KelasSiswaCtrl'
 				}).when('/kelas-siswa-detail/:id', {
 					templateUrl: 'views/partials/kelasSiswa/detailKelasSiswa.html',
-					controller: 'detailKelasSiswaCtrl',
+					controller: 'KelasSiswaCtrl',
 					resolve: {
 						'id': function($route){
 							return $route.current.params.id;
@@ -13,7 +13,7 @@ angular.module('raportApp')
 					}
 				}).when('/kelas-siswa-edit/:id', {
 					templateUrl: 'views/partials/kelasSiswa/editKelasSiswa.html',
-					controller: 'editKelasSiswaCtrl',
+					controller: 'KelasSiswaCtrl',
 					resolve: {
 						'id': function($route){
 							return $route.current.params.id;
@@ -21,14 +21,29 @@ angular.module('raportApp')
 					}
 				}).when('/kelas-siswa-form', {
 					templateUrl: 'views/partials/kelasSiswa/formKelasSiswa.html',
-					controller: 'addKelasSiswaCtrl'
+					controller: 'KelasSiswaCtrl'
 				});
 			});
 
-angular.module('raportApp').controller('addKelasSiswaCtrl', function($scope, $http, $log) {
-	$scope.raport = {};
+angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, KelasSiswaService){
+	$scope.formData = {};
 	
-	$scope.kelas = [];
+	/*
+	 * Template toast
+	 */
+	
+	var mdToast = function(message){
+        $mdToast.show({
+            template: '<md-toast class="md-toast">' + message + '</md-toast>',
+            hideDelay: 7000,
+            position: 'top right'
+        });
+    };
+    
+    /*
+     * Get iterable
+     */
+    $scope.kelas = [];
 	var request = {
 		url : '/kelas/all',
 		method : 'GET'
@@ -55,87 +70,131 @@ angular.module('raportApp').controller('addKelasSiswaCtrl', function($scope, $ht
 		$log.error(angular.toJson(errors, true));
 	};
 	$http(request).then(successHandler, errorHandler);
-				
-	$scope.submit = function() {
-		var request = {
-			url: '/kelas-siswa',
-			method: 'POST',
-			data: $scope.kelas_siswa
-		};
-		var successHandler = function(response) {
-			$log.debug('Response data dari server : \n' + angular.toJson(response.data, true));
-			window.location = "/#/kelas-siswa-list";
-		};
-		var errorHandler = function(errors) {
-			$log.error('Errors :\n' + angular.toJson(errors, true));
-		};
-		$http(request).then(successHandler, errorHandler);
+	
+	/*
+	 * 
+	 */
+	
+	$scope.items = [];
+
+	var url = '/kelas-siswa'
+
+	$scope.query = {
+		order : '',
+		limit : 5,
+		page : 1,
+		total : 0
 	};
-});
 
-angular.module('raportApp').controller(
-		'listKelasSiswaCtrl',
-		function($scope, $http, $log, $resource) {
-			$scope.items = [];
-
-			var url = '/kelas-siswa'
-
-			$scope.query = {
-				order : '',
-				limit : 5,
-				page : 1,
-				total : 0
-			};
-
-			var getKelasSiswa = function(page, limit) {
-				return $resource(url, {}, {
-					get : {
-						method : "GET",
-						params : {
-							page : page - 1,
-							size : limit
-						}
-					}
-				});
-			}
-
-			var getPage = function(page, limit) {
-				getKelasSiswa(page, limit).get().$promise.then(
-						function(response) {
-							console.dir(response.content);
-							$scope.items = response.content;
-							$scope.query.limit = response.size;
-							$scope.query.total = response.totalElements;
-						}, function(errResponse) {
-							console.log(errResponse);
-							console.error('Error while fethcing data');
-						}
-
-				);
-
-			}
-
-			getPage($scope.query.page, $scope.query.limit);
-
-			$scope.onPaginate = function(page, limit) {
-				getPage(page, limit);
+	var getKelasSiswa = function(page, limit) {
+		return $resource(url, {}, {
+			get : {
+				method : "GET",
+				params : {
+					page : page - 1,
+					size : limit
+				}
 			}
 		});
+	}
 
-angular.module('raportApp').controller('detailKelasSiswaCtrl', function($scope, $http, $log, id) {
-	$scope.kelas_siswa = [];
-	var request = {
-		url : '/kelas-siswa/' + id ,
-		method : 'GET'
+	var getPage = function(page, limit) {
+		getKelasSiswa(page, limit).get().$promise.then(
+				function(response) {
+					console.dir(response.content);
+					$scope.items = response.content;
+					$scope.query.limit = response.size;
+					$scope.query.total = response.totalElements;
+				}, function(errResponse) {
+					console.log(errResponse);
+					console.error('Error while fethcing data');
+				}
+
+		);
+
+	}
+
+	getPage($scope.query.page, $scope.query.limit);
+
+	$scope.onPaginate = function(page, limit) {
+		getPage(page, limit);
+	}
+	
+	/*
+	 * Create Data
+	 */
+	
+	$scope.save = function(){
+		KelasSiswaService.create($scope.formData).$promise.then(
+			function(response){
+				mdToast('Data berhasil ditambah');
+				window.location = "/#/kelas-siswa-list";
+			},
+			function(errResponse){
+				$log.debug(errResponse);
+				$scope.objectError = errResponse.data.fieldErrors;
+				mdToast('Gagal menyimpan data, cek kembali input data');
+			}
+		);
 	};
-	var successHandler = function(response) {
-		$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
-		$scope.kelas_siswa = response.data;
+	
+	/*
+	 * Edit Data
+	 */
+	if($route.current.params.id){
+		KelasSiswaService.get({id: $route.current.params.id}).$promise.then(
+			function(response){
+				$scope.formData = response;
+			},
+			function(errResponse){
+				$log.debug(errResponse);
+				mdToast('Data tidak ditemukan');
+				window.location = "/#/kelas-siswa-list";
+			}
+		);
 	};
-	var errorHandler = function(errors) {
-		$log.error(angular.toJson(errors, true));
+	
+	/*
+	 * Update Data
+	 */
+	
+	$scope.update = function(){		
+		KelasSiswaService.update($scope.formData).$promise.then(
+			function(response){
+				mdToast('Data berhasil diubah');
+				window.location = "/#/kelas-siswa-list";
+			},
+			
+			function(errResponse){
+				$log.debug(errResponse);
+				$scope.objectError = errResponse.data.fieldErrors;
+				mdToast('Data gagal diubah, cek kembali data input')
+			}
+		);
 	};
-	$http(request).then(successHandler, errorHandler);
+	
+	
+	$scope.showConfirm = function(id){
+		var confirm = $mdDialog.confirm()
+			.title('Konfirmasi Hapus Data')
+			.textContent('Apakah anda yakin untuk menghapus data?')
+			.ok('Hapus')
+			.cancel('Batal');
+		$mdDialog.show(confirm).then(function(){
+			KelasSiswaService.delete({id : id}).$promise.then(
+				function(response){
+					mdToast('Data berhasil dihapus');
+					getPage($scope.query.page, $scope.query.limit);
+				},
+				function(errResponse){
+					$log.debug(errResponse);
+					mdToast('Data gagal dihapus, silahkan mencoba lagi');
+				}
+			);
+		});
+	};
+	
+    
 });
 
 angular.module('raportApp').controller(

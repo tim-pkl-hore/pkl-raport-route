@@ -65,6 +65,15 @@ public class UserRoleController {
 		return new ResponseEntity<UserRole>(userRole, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<UserRole> deleteRole(@PathVariable Integer id){
+		if(!userRoleRepository.exists(id)){
+			return new ResponseEntity<UserRole>(HttpStatus.NOT_FOUND);
+		}
+		userRoleRepository.delete(id);
+		return new ResponseEntity<UserRole>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<UserRole> listUserRole(){
 		return userRoleRepository.findAll();

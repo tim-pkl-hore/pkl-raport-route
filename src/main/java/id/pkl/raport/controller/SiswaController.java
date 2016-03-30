@@ -48,6 +48,40 @@ public class SiswaController {
 		return siswaRepository.findAll(pageable);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Siswa> updateSiswa(@PathVariable Long id, Siswa siswa, BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return new ResponseEntity<Siswa>(HttpStatus.BAD_REQUEST);
+		}
+		
+		Siswa currentSiswa = siswaRepository.findOne(id);
+		if(currentSiswa == null){
+			return new ResponseEntity<Siswa>(HttpStatus.NOT_FOUND);
+		}
+		
+		currentSiswa.setNamaSiswa(siswa.getNamaSiswa());
+		currentSiswa.setJenisKelamin(siswa.getJenisKelamin());
+		currentSiswa.setSekolah(siswa.getSekolah());
+		currentSiswa.setNamaIbu(siswa.getNamaIbu());
+		currentSiswa.setEmailIbu(siswa.getEmailBapak());
+		currentSiswa.setNamaBapak(siswa.getNamaBapak());
+		currentSiswa.setEmailBapak(siswa.getEmailBapak());
+		currentSiswa.setDiterimaSejak(siswa.getDiterimaSejak());
+		currentSiswa.setTanggalLahir(siswa.getTanggalLahir());
+		
+		siswaRepository.save(currentSiswa);
+		return new ResponseEntity<Siswa>(currentSiswa, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Siswa> deleteSiswa(@PathVariable Long id){
+		if(!siswaRepository.exists(id)){
+			return new ResponseEntity<Siswa>(HttpStatus.NOT_FOUND);
+		}
+		siswaRepository.delete(id);
+		return new ResponseEntity<Siswa>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<Siswa> listAllSiswa(){
 		return siswaRepository.findAll();

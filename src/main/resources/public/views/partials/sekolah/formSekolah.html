@@ -1,61 +1,56 @@
 <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">Tambah Sekolah</h1>
 </md-toolbar>
-<md-toolbar class="md-table-toolbar md-default">
-  <div class="md-toolbar-tools">
-    <span>Tambah Sekolah</span>
-  </div>
-</md-toolbar>
-
-<div ng-controller="addSekolahCtrl">
+<br />
+<div ng-controller="SekolahCtrl">
 <div>
 	<div layout="row">
 		<form name="formSubmit" ng-submit="save()">
 			<md-input-container>
         		<label>Kode Sekolah</label>
-        		<input type="text" ng-model="sekolah.kodeSekolah">
+        		<input type="text" ng-model="formData.kodeSekolah">
      		</md-input-container>
      		<md-input-container>
         		<label>Nama Sekolah</label>
-        		<input type="text" ng-model="sekolah.namaSekolah">
+        		<input type="text" ng-model="formData.namaSekolah">
      		</md-input-container>
      		<md-input-container>
         		<label>Tingkat</label>
-        		<md-select ng-model="sekolah.tingkatan.id">
-          			<md-option ng-repeat="ti in tingkatan" value="{{ti.id}}">{{ti.tingkat}}</md-option>
+        		<md-select ng-model="formData.tingkatan.id">
+          			<md-option ng-repeat="ti in tingkatan track by $index" value="{{ti.id}}">{{ti.tingkat}}</md-option>
        		 	</md-select>
       		</md-input-container>
      		
      		<md-input-container>
         		<label>Kode Pos</label>
-        		<input type="text" ng-model="sekolah.kodePos">
+        		<input type="number" ng-model="formData.kodePos" maxlength="5">
      		</md-input-container>
      		<md-input-container>
         		<label>Kecamatan</label>
-        		<md-select ng-model="sekolah.kecamatan.id">
-          			<md-option ng-repeat="kec in kecamatan" value="{{kec.id}}">
+        		<md-select ng-model="formData.kecamatan.id">
+          			<md-option ng-repeat="kec in kecamatan track by $index" value="{{kec.id}}">
            		 		{{kec.namaKecamatan}}
           			</md-option>
        		 	</md-select>
       		</md-input-container>
       		<md-input-container>
         		<label>Kabupaten</label>
-        		<md-select ng-model="sekolah.kabupaten.id">
-          			<md-option ng-repeat="kab in kabupaten" value="{{kab.id}}">
+        		<md-select ng-model="formData.kabupaten.id">
+          			<md-option ng-repeat="kab in kabupaten track by $index" value="{{kab.id}}">
            		 		{{kab.namaKabupaten}}
           			</md-option>
        		 	</md-select>
       		</md-input-container>
       		<md-input-container>
         		<label>Provinsi</label>
-        		<md-select ng-model="sekolah.provinsi.id">
-          			<md-option ng-repeat="prov in provinsi" value="{{prov.id}}">
+        		<md-select ng-model="formData.provinsi.id">
+          			<md-option ng-repeat="prov in provinsi track by $index" value="{{prov.id}}">
            		 		{{prov.namaProvinsi}}
           			</md-option>
        		 	</md-select>
       		</md-input-container>
       		<md-input-container>
-      			<md-button ng-click="save()" class="md-primary btn btn-primary">Tambah</md-button>
+      			<input type="submit" class="md-button md-primary" value="Tambah" />
       		</md-input-container>	 
 		</form>
 	</div>

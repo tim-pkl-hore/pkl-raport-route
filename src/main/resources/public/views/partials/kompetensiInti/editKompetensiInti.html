@@ -1,0 +1,31 @@
+<md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Edit Kompetensi Dasar</h1>
+</md-toolbar>
+
+	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+		<form name="formSubmit" ng-submit="update()">
+			<md-input-container>
+       			<label>Deskripsi</label>
+       			<input type="text" ng-model="formData.description">
+      		</md-input-container>
+      		<md-input-container>
+        		<label>Tahun Awal</label>
+        		<md-select ng-model="formData.tahunAjaran.id">
+          			<md-option ng-repeat="ajaran in tahun_ajaran" value="{{ajaran.id}}">
+            			{{ajaran.tahunAwal}}
+          			</md-option>
+        		</md-select>
+      		</md-input-container>
+      		<md-input-container>
+        		<label>Mata Pelajaran</label>
+        		<md-select ng-model="formData.mataPelajaran.id">
+          			<md-option ng-repeat="matpel in mata_pelajaran" value="{{matpel.id}}">
+            			{{matpel.namaMatpel}}
+          			</md-option>
+        		</md-select>
+      		</md-input-container>
+   			<md-input-container>
+      			<input type="submit" class="md-button md-primary" value="Edit" />
+      		</md-input-container>	
+		</form>
+	</md-content>

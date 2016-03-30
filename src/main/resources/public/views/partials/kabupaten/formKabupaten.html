@@ -9,15 +9,15 @@
     <form name="formSubmit" ng-submit="save()">
       <md-input-container>
         <label>Kode Kabupaten</label>
-        <input type="text" ng-model="kabupaten.kodeKabupaten">
+        <input type="text" ng-model="formData.kodeKabupaten">
       </md-input-container>
       <md-input-container>
         <label>Nama Kabupaten</label>
-        <input type="text" ng-model="kabupaten.namaKabupaten">
+        <input type="text" ng-model="formData.namaKabupaten">
       </md-input-container>
       <md-input-container>
         <label>Provinsi</label>
-        <md-select data-ng-model="kabupaten.provinsi.id">
+        <md-select data-ng-model="formData.provinsi.id">
           <md-option ng-repeat="prop in provinsi track by $index" value="{{prop.id}}">
             {{prop.namaProvinsi}}
           </md-option>

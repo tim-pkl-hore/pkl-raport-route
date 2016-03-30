@@ -2,26 +2,26 @@
         <h1 class="md-toolbar-tools">Tambah Hari Libur</h1>
 </md-toolbar>
 
-<div ng-controller="addHariLiburCtrl">
+<div ng-controller="HariLiburCtrl">
 	<div>
     	<div layout="row">
-    		<form ng-submit="submit()">
+    		<form ng-submit="save()">
     			<md-content>
-        		 <md-datepicker ng-model="hari_libur.tanggal" md-placeholder="Tanggal"></md-datepicker>
+        		 <md-datepicker ng-model="formData.tanggal" md-placeholder="Tanggal"></md-datepicker>
      		</md-content>
      		<md-input-container>
         		<label>Deskripsi</label>
-        		<input type="text" ng-model="hari_libur.deskripsi">
+        		<input type="text" ng-model="formData.deskripsi">
      		</md-input-container>
      		<md-input-container>
         		<p>Current: </p>
-        		<md-radio-group ng-model="hari_libur.liburNasional">
+        		<md-radio-group ng-model="formData.liburNasional">
         			<md-radio-button name="liburNasional" value="true" class="md-primary">True</md-radio-button>
         			<md-radio-button name="liburNasional" value="false" class="md-primary">False</md-radio-button>
         		</md-radio-group>
       		</md-input-container>
       		<md-input-container>
-      			<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      			<input type="submit" class="md-button md-primary" value="Tambah" />
       		</md-input-container>	
     		</form>
     	</div>

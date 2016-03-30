@@ -54,13 +54,14 @@ public class TingkatController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<Tingkatan> deleteProvinsi(@PathVariable Long id){
+	public ResponseEntity<Tingkatan> deleteKabupaten(@PathVariable Long id){
 		if(!tingkatRepository.exists(id)){
 			return new ResponseEntity<Tingkatan>(HttpStatus.NOT_FOUND);
 		}
 		tingkatRepository.delete(id);
 		return new ResponseEntity<Tingkatan>(HttpStatus.OK);
 	}
+	
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<Tingkatan> listTingkat() {

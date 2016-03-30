@@ -2,21 +2,23 @@
         <h1 class="md-toolbar-tools">Tambah Guru</h1>
 </md-toolbar>
 
-<div ng-controller="addGuruCtrl">
+
+<div ng-controller="GuruCtrl">
 <div>
-	<div layout="row">
-		<form ng-submit="submit()">
-			<md-input-container>
-        		<label>Nama Guru</label>
-        		<input type="text" ng-model="guru.nama">
-     		</md-input-container>
-     		<md-input-container>
-        		<label>Email Guru</label>
-        		<input type="text" ng-model="guru.email">
-     		</md-input-container>
-     		<md-input-container>
-      			<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
-      		</md-input-container>	 
-		</form>
+    <div layout="row">
+    <form name="formSubmit" ng-submit="save()">
+      <md-input-container>
+        <label>Nama Guru</label>
+        <input type="text" ng-model="formData.nama">
+      </md-input-container>
+      <md-input-container>
+        <label>Email Guru</label>
+        <input type="text" ng-model="formData.email">
+      </md-input-container>
+      <md-input-container>
+      		<input type="submit" class="md-button md-primary" value="Tambah" />
+      </md-input-container>	  
+      </form>
+    </div>
+  </div>
 	</div>
-</div>

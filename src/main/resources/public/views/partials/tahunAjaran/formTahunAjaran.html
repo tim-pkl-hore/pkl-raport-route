@@ -2,35 +2,35 @@
         <h1 class="md-toolbar-tools">Tambah Tahun Ajaran</h1>
 </md-toolbar>
 
-<div ng-controller="addTahunAjaranCtrl">
+<div ng-controller="TahunAjaranCtrl">
 <div>
     <div layout="row">
-    	<form ng-submit="submit()">
+    	<form ng-submit="save()">
     		<md-input-container>
         		<p>Current: </p>
-        		<md-radio-group ng-model="tahun_ajaran.current">
+        		<md-radio-group ng-model="formData.current">
         			<md-radio-button name="current" value="true" class="md-primary">True</md-radio-button>
         			<md-radio-button name="current" value="false" class="md-primary">False</md-radio-button>
         		</md-radio-group>
       		</md-input-container>
       		<md-input-container>
         		<label>Tahun Awal</label>
-        		<input type="text" ng-model="tahun_ajaran.tahunAwal">
+        		<input type="text" ng-model="formData.tahunAwal">
       		</md-input-container>
       		<md-input-container>
         		<label>Tahun Akhir</label>
-        		<input type="text" ng-model="tahun_ajaran.tahunAkhir">
+        		<input type="text" ng-model="formData.tahunAkhir">
       		</md-input-container>
       		<md-input-container>
         		<label>Nama Sekolah</label>
-        		<md-select ng-model="tahun_ajaran.sekolah.id">
-          			<md-option ng-repeat="sek in sekolah" value="{{sek.id}}">
+        		<md-select ng-model="formData.sekolah.id">
+          			<md-option ng-repeat="sek in sekolah track by $index" value="{{sek.id}}">
             			{{sek.namaSekolah}}
           		</md-option>
         		</md-select>
       		</md-input-container>
       		<md-input-container>
-      			<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      			<input type="submit" class="md-button md-primary" value="Tambah"/>
       		</md-input-container>	
     	</form>
     </div>

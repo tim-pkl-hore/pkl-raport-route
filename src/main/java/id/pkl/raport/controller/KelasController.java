@@ -47,6 +47,37 @@ public class KelasController {
 		return new ResponseEntity<Kelas>(kelas, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Kelas> updateKelas(@PathVariable Long id, @RequestBody Kelas kelas, BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return new ResponseEntity<Kelas>(HttpStatus.BAD_REQUEST);
+		}
+		
+		Kelas currentKelas = kelasRepository.findOne(id);
+		if(currentKelas == null){
+			return new ResponseEntity<Kelas>(HttpStatus.NOT_FOUND);
+		}
+		
+		currentKelas.setJurusan(kelas.getJurusan());
+		currentKelas.setGrupKelas(kelas.getGrupKelas());
+		currentKelas.setSekolah(kelas.getSekolah());
+		currentKelas.setTahunAjaran(kelas.getTahunAjaran());
+		currentKelas.setTingkat(kelas.getTingkat());
+		currentKelas.setWaliKelas(kelas.getWaliKelas());
+		
+		kelasRepository.save(currentKelas);
+		return new ResponseEntity<Kelas>(currentKelas, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Kelas> deleteKelas(@PathVariable Long id){
+		if(!kelasRepository.exists(id)){
+			return new ResponseEntity<Kelas>(HttpStatus.NOT_FOUND);
+		}
+		kelasRepository.delete(id);
+		return new ResponseEntity<Kelas>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<Kelas> listKelas(){
 		return kelasRepository.findAll();

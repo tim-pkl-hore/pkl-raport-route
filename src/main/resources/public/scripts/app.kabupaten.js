@@ -1,7 +1,7 @@
 angular.module('raportApp').config(function($routeProvider) {
 	$routeProvider.when('/kabupaten-list', {
 		templateUrl : 'views/partials/kabupaten/listKabupaten.html',
-		controller : 'listKabupatenCtrl'
+		controller : 'KabupatenCtrl'
 	}).when('/kabupaten-form', {
 		templateUrl : 'views/partials/kabupaten/formKabupaten.html',
 		controller : 'KabupatenCtrl'
@@ -15,17 +15,83 @@ angular.module('raportApp').config(function($routeProvider) {
 		}
 	}).when('/kabupaten-edit/:id', {
 		templateUrl : 'views/partials/kabupaten/editKabupaten.html',
-		controller : 'KabupatenCtrl',
-		resolve : {
-			'id' : function($route) {
-				return $route.current.params.id;
-			}
-		}
+		controller : 'KabupatenCtrl'
 	});
 });
 
-angular.module('raportApp').controller('KabupatenCtrl', function($scope, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, KabupatenService){
+angular.module('raportApp')
+.controller('KabupatenCtrl', function($scope, $http, $resource, $route, $stateParams, $mdDialog, $mdToast, $log, $state, $location, KabupatenService){
 	$scope.formData = {};
+	$scope.provinsi = [];
+	$scope.items = [];
+	
+	var mdToast = function(message){
+        $mdToast.show({
+            template: '<md-toast class="md-toast">' + message + '</md-toast>',
+            hideDelay: 7000,
+            position: 'top right'
+        });
+    };
+	var url = '/kabupaten'
+		
+    $scope.query = {
+			order : '',
+			limit : 5,
+			page : 1,
+			total : 0
+		};
+	
+	var getKabupaten = function(page, limit) {
+		return $resource(url, {}, {
+			get : {
+				method : "GET",
+				params : {
+					page : page - 1,
+					size : limit
+				}
+			}
+		});
+	}
+	
+	var getPage = function(page, limit) {
+		getKabupaten(page, limit).get().$promise.then(
+				function(response) {
+					console.dir(response.content);
+					$scope.items = response.content;
+					$scope.query.limit = response.size;
+					$scope.query.total = response.totalElements;
+				}, function(errResponse) {
+					console.log(errResponse);
+					console.error('Error while fethcing data');
+				}
+		);
+	}
+	
+	getPage($scope.query.page, $scope.query.limit);
+
+	$scope.onPaginate = function(page, limit) {
+		getPage(page, limit);
+	}
+	
+	/*
+	 * GET ITERABLE
+	 */
+	
+	var request = {
+		url : '/provinsi/all',
+		method : 'GET'
+	};
+	var successHandler = function(response) {
+		$log.debug("Response data dari server : \n"
+				+ angular.toJson(response.data, true));
+		$scope.provinsi = response.data;
+	};
+	var errorHandler = function(errors) {
+		$log.error(angular.toJson(errors, true));
+	};
+	$http(request).then(successHandler, errorHandler);
+
+	
 	/*
 	 * Create Data
 	 */
@@ -33,7 +99,7 @@ angular.module('raportApp').controller('KabupatenCtrl', function($scope, $resour
 	$scope.save = function(){
 		KabupatenService.create($scope.formData).$promise.then(
 			function(response){
-				mdToast('Data tersimpan.')
+				mdToast('Data berhasil ditambah');
 				window.location = "/#/kabupaten-list";
 			},
 			function(errResponse){
@@ -47,8 +113,8 @@ angular.module('raportApp').controller('KabupatenCtrl', function($scope, $resour
 	/*
 	 * Edit Data
 	 */
-	if($stateParams.id){
-		KabupatenService.get({id: $stateParams.id}).$promise.then(
+	if($route.current.params.id){
+		KabupatenService.get({id: $route.current.params.id}).$promise.then(
 			function(response){
 				$scope.formData = response;
 			},
@@ -64,16 +130,10 @@ angular.module('raportApp').controller('KabupatenCtrl', function($scope, $resour
 	 * Update Data
 	 */
 	
-	$scope.update = function(){
-		$scope.formData.isEnabled = true;
-		
+	$scope.update = function(){		
 		KabupatenService.update($scope.formData).$promise.then(
 			function(response){
-				$mdToast.show({
-					template: '<md-toast class="md-toast">Data berhasil diubah</md-toast>',
-					hideDelay: 6000,
-					position: 'buttom right'
-				});
+				mdToast('Data berhasil diubah');
 				window.location = "/#/kabupaten-list";
 			},
 			
@@ -93,17 +153,13 @@ angular.module('raportApp').controller('KabupatenCtrl', function($scope, $resour
 		var confirm = $mdDialog.confirm()
 			.title('Konfirmasi Hapus Data')
 			.textContent('Apakah anda yakin untuk menghapus data?')
-			.targetEvent(id)
-			.ok('Delete')
-			.cancel('Cancel');
+			.ok('Hapus')
+			.cancel('Batal');
 		$mdDialog.show(confirm).then(function(){
 			KabupatenService.delete({id : id}).$promise.then(
 				function(response){
 					mdToast('Data berhasil dihapus');
 					getPage($scope.query.page, $scope.query.limit);
-					$scope.onPaginate = function(page, limit) {
-						getPage(page, limit);
-					}
 				},
 				function(errResponse){
 					$log.debug(errResponse);
@@ -112,13 +168,20 @@ angular.module('raportApp').controller('KabupatenCtrl', function($scope, $resour
 			);
 		});
 	};
+	
 });
 
 angular.module('raportApp').controller(
 		'listKabupatenCtrl',
-		function($scope, $http, $log, $resource) {
+		function($scope, $http, $log, $resource, $mdDialog, $mdToast, KabupatenService) {
 			$scope.items = [];
-
+			var mdToast = function(message){
+		        $mdToast.show({
+		            template: '<md-toast class="md-toast">' + message + '</md-toast>',
+		            hideDelay: 7000,
+		            position: 'bottom right'
+		        });
+		    };
 			var url = '/kabupaten'
 
 			$scope.query = {
@@ -153,7 +216,6 @@ angular.module('raportApp').controller(
 						}
 
 				);
-
 			}
 
 			getPage($scope.query.page, $scope.query.limit);
@@ -161,29 +223,28 @@ angular.module('raportApp').controller(
 			$scope.onPaginate = function(page, limit) {
 				getPage(page, limit);
 			}
+			
+			$scope.showConfirm = function(id){
+				var confirm = $mdDialog.confirm()
+					.title('Konfirmasi Hapus Data')
+					.textContent('Apakah anda yakin untuk menghapus data?')
+					.ok('Hapus')
+					.cancel('Batal');
+				$mdDialog.show(confirm).then(function(){
+					KabupatenService.delete({id : id}).$promise.then(
+						function(response){
+							mdToast('Data berhasil dihapus');
+							getPage($scope.query.page, $scope.query.limit);
+						},
+						function(errResponse){
+							$log.debug(errResponse);
+							mdToast('Data gagal dihapus, silahkan mencoba lagi');
+						}
+					);
+				});
+			};
 
 		});
-
-angular.module('raportApp').controller(
-		'detailKabupatenCtrl',
-		function($scope, $http, $log, id) {
-			$scope.kabupaten = [];
-			var request = {
-				url : '/kabupaten/' + id,
-				method : 'GET'
-			};
-			var successHandler = function(response) {
-				$log.debug("Response data dari server : \n"
-						+ angular.toJson(response.data, true));
-				$scope.kabupaten = response.data;
-			};
-			var errorHandler = function(errors) {
-				$log.error(angular.toJson(errors, true));
-			};
-			$http(request).then(successHandler, errorHandler);
-		});
-
-
 
 angular.module('raportApp').controller(
 		'showAddKabupatenCtrl',

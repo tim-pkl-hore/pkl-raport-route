@@ -47,6 +47,37 @@ public class AbsensiSiswaController {
 		return new ResponseEntity<AbsensiSiswa>(absensiSiswa, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<AbsensiSiswa> updateAbsensi(@PathVariable Long id, @RequestBody AbsensiSiswa absensiSiswa, BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return new ResponseEntity<AbsensiSiswa>(HttpStatus.BAD_REQUEST);
+		}
+		
+		AbsensiSiswa currentAbsensiSiswa = absensiSiswaRepository.findOne(id);
+		if(currentAbsensiSiswa ==  null){
+			return new ResponseEntity<AbsensiSiswa>(HttpStatus.NOT_FOUND);
+		}
+		
+		currentAbsensiSiswa.setJenisAbsensi(absensiSiswa.getJenisAbsensi());
+		currentAbsensiSiswa.setAlasan(absensiSiswa.getAlasan());
+		currentAbsensiSiswa.setTanggal(absensiSiswa.getTanggal());
+		currentAbsensiSiswa.setTahunAjaran(absensiSiswa.getTahunAjaran());
+		currentAbsensiSiswa.setSekolah(absensiSiswa.getSekolah());
+		
+		absensiSiswaRepository.save(currentAbsensiSiswa);
+		return new ResponseEntity<AbsensiSiswa>(currentAbsensiSiswa, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<AbsensiSiswa> deleteAbsensiSiswa(@PathVariable Long id){
+		if(!absensiSiswaRepository.exists(id)){
+			return new ResponseEntity<AbsensiSiswa>(HttpStatus.NOT_FOUND);
+		}
+		absensiSiswaRepository.delete(id);
+		return new ResponseEntity<AbsensiSiswa>(HttpStatus.OK);
+	}
+	
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<AbsensiSiswa> listAbsensiSiswa(){
 		return absensiSiswaRepository.findAll();

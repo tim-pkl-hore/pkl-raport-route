@@ -22,6 +22,7 @@ public class KabupatenController {
 	@Autowired
 	private KabupatenRepository kabupatenRepository;
 	
+	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Kabupaten> addKabupaten(@Validated @RequestBody Kabupaten kabupaten, BindingResult bindingResult)
 	{
@@ -61,11 +62,20 @@ public class KabupatenController {
 		
 		currentKabupaten.setKodeKabupaten(kabupaten.getKodeKabupaten());
 		currentKabupaten.setNamaKabupaten(kabupaten.getNamaKabupaten());
+		currentKabupaten.setProvinsi(kabupaten.getProvinsi());
 		
 		kabupatenRepository.save(currentKabupaten);
 		return new ResponseEntity<Kabupaten>(currentKabupaten, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Kabupaten> deleteKabupaten(@PathVariable Integer id){
+		if(!kabupatenRepository.exists(id)){
+			return new ResponseEntity<Kabupaten>(HttpStatus.NOT_FOUND);
+		}
+		kabupatenRepository.delete(id);
+		return new ResponseEntity<Kabupaten>(HttpStatus.OK);
+	}
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<Kabupaten> listKabupaten() {

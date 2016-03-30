@@ -65,6 +65,15 @@ public class GuruController {
 		return new ResponseEntity<Guru>(guru, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Guru> deleteGuru(@PathVariable Long id){
+		if(!guruRepository.exists(id)){
+			return new ResponseEntity<Guru>(HttpStatus.NOT_FOUND);
+		}
+		guruRepository.delete(id);
+		return new ResponseEntity<Guru>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<Guru> listGuru()
 	{

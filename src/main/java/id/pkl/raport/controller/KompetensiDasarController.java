@@ -47,6 +47,35 @@ public class KompetensiDasarController {
 		return new ResponseEntity<KompetensiDasar>(kompetensiDasar, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<KompetensiDasar> updateKompetensiDasar(@PathVariable Long id, @RequestBody KompetensiDasar kompetensiDasar, BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return new ResponseEntity<KompetensiDasar>(HttpStatus.BAD_REQUEST);
+		}
+		
+		KompetensiDasar currentKompetensiDasar = kompetensiDasarRepository.findOne(id);
+		if(currentKompetensiDasar == null){
+			return new ResponseEntity<KompetensiDasar>(HttpStatus.NOT_FOUND);
+		}
+		
+		currentKompetensiDasar.setDescription(kompetensiDasar.getDescription());
+		currentKompetensiDasar.setOrderIndex(kompetensiDasar.getOrderIndex());
+		currentKompetensiDasar.setKompetensiInti(kompetensiDasar.getKompetensiInti());
+		currentKompetensiDasar.setMataPelajaran(kompetensiDasar.getMataPelajaran());
+		
+		kompetensiDasarRepository.save(currentKompetensiDasar);
+		return new ResponseEntity<KompetensiDasar>(currentKompetensiDasar, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<KompetensiDasar> deleteKompetensiDasar(@PathVariable Long id){
+		if(!kompetensiDasarRepository.exists(id)){
+			return new ResponseEntity<KompetensiDasar>(HttpStatus.NOT_FOUND);
+		}
+		kompetensiDasarRepository.delete(id);
+		return new ResponseEntity<KompetensiDasar>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<KompetensiDasar> listKompetensiDasar(){
 		return kompetensiDasarRepository.findAll();

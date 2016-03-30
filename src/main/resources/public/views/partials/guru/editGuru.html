@@ -2,21 +2,21 @@
         <h1 class="md-toolbar-tools">Edit Guru</h1>
 </md-toolbar>
 
-<div ng-controller="updateGuruCtrl" layout="column" ng-cloak class="md-inline-form">
+<div ng-controller="GuruCtrl" layout="column" ng-cloak class="md-inline-form">
 	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
 		<div>
-			<form ng-submit="update(guru.id)">
+			<form name="formSubmit" ng-submit="update()">
 				<md-input-container>
         			<label>Nama Guru</label>
-       				<input type="text" ng-model="guru.nama">
+       				<input type="text" ng-model="formData.nama">
       			</md-input-container>
       			<md-input-container>
         			<label>Email Guru</label>
-       				<input type="text" ng-model="guru.email">
+       				<input type="text" ng-model="formData.email">
       			</md-input-container>
       			<md-input-container>
-				<md-button ng-click="update(guru.id)" class="md-primary btn btn-primary">Edit</md-button>
-			</md-input-container>
+      				<input type="submit" class="md-button md-primary" value="Edit" />
+      			</md-input-container>
 			</form>
 		</div>
 	</md-content>

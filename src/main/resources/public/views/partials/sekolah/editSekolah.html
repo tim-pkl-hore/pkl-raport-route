@@ -1,0 +1,54 @@
+<md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Edit Sekolah</h1>
+</md-toolbar>
+
+	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+		<form name="formSubmit" ng-submit="update()">
+			<md-input-container>
+        		<label>Kode Sekolah</label>
+        		<input type="text" ng-model="formData.kodeSekolah">
+     		</md-input-container>
+     		<md-input-container>
+        		<label>Nama Sekolah</label>
+        		<input type="text" ng-model="formData.namaSekolah">
+     		</md-input-container>
+     		<md-input-container>
+        		<label>Tingkat</label>
+        		<md-select ng-model="formData.tingkatan.id">
+          			<md-option ng-repeat="ti in tingkatan track by $index" value="{{ti.id}}">{{ti.tingkat}}</md-option>
+       		 	</md-select>
+      		</md-input-container>
+     		
+     		<md-input-container>
+        		<label>Kode Pos</label>
+        		<input type="text" ng-model="formData.kodePos">
+     		</md-input-container>
+     		<md-input-container>
+        		<label>Kecamatan</label>
+        		<md-select ng-model="formData.kecamatan.id">
+          			<md-option ng-repeat="kec in kecamatan track by $index" value="{{kec.id}}">
+           		 		{{kec.namaKecamatan}}
+          			</md-option>
+       		 	</md-select>
+      		</md-input-container>
+      		<md-input-container>
+        		<label>Kabupaten</label>
+        		<md-select ng-model="formData.kabupaten.id">
+          			<md-option ng-repeat="kab in kabupaten track by $index" value="{{kab.id}}">
+           		 		{{kab.namaKabupaten}}
+          			</md-option>
+       		 	</md-select>
+      		</md-input-container>
+      		<md-input-container>
+        		<label>Provinsi</label>
+        		<md-select ng-model="formData.provinsi.id">
+          			<md-option ng-repeat="prov in provinsi track by $index" value="{{prov.id}}">
+           		 		{{prov.namaProvinsi}}
+          			</md-option>
+       		 	</md-select>
+      		</md-input-container>
+   			<md-input-container>
+      			<input type="submit" class="md-button md-primary" value="Edit" />
+      		</md-input-container>	
+		</form>
+	</md-content>

@@ -2,21 +2,21 @@
         <h1 class="md-toolbar-tools">Tambah Kompetensi Dasar</h1>
 </md-toolbar>
 
-<div ng-controller="addKompetensiDasarCtrl">
+<div ng-controller="KompetensiDasarCtrl">
 <div>
     <div layout="row">
-    	<form ng-submit="submit()">
+    	<form name="formSubmit" ng-submit="save()">
     		<md-input-container>
        			<label>Deskripsi</label>
-       			<input type="text" ng-model="kompetensi_dasar.description">
+       			<input type="text" ng-model="formData.description">
       		</md-input-container>
       		<md-input-container>
        			<label>Order Index</label>
-       			<input type="text" ng-model="kompetensi_dasar.orderIndex">
+       			<input type="text" ng-model="formData.orderIndex">
       		</md-input-container>
       		<md-input-container>
         		<label>Kompetensi Inti</label>
-        		<md-select ng-model="kompetensi_dasar.kompetensiInti.id">
+        		<md-select ng-model="formData.kompetensiInti.id">
           			<md-option ng-repeat="inti in kompetensi_inti" value="{{inti.id}}">
             			{{inti.description}}
           			</md-option>
@@ -24,14 +24,14 @@
       		</md-input-container>
       		<md-input-container>
         		<label>Mata Pelajaran</label>
-        		<md-select ng-model="kompetensi_dasar.mataPelajaran.id">
+        		<md-select ng-model="formData.mataPelajaran.id">
           			<md-option ng-repeat="matpel in mata_pelajaran" value="{{matpel.id}}">
             			{{matpel.namaMatpel}}
           			</md-option>
         		</md-select>
       		</md-input-container>
       		<md-input-container>
-      			<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
+      			<input type="submit" class="md-button md-primary" value="Tambah" />
       		</md-input-container>
     	</form>
     </div>

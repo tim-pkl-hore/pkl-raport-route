@@ -48,6 +48,38 @@ public class SekolahController {
 		return new ResponseEntity<Sekolah>(sekolah, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Sekolah> updateSekolah(@PathVariable Integer id, @RequestBody Sekolah sekolah, BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return new ResponseEntity<Sekolah>(HttpStatus.BAD_REQUEST);
+		}
+		
+		Sekolah currentSekolah = sekolahRepository.findOne(id);
+		if(currentSekolah == null){
+			return new ResponseEntity<Sekolah>(HttpStatus.NOT_FOUND);
+		}
+		
+		currentSekolah.setKodeSekolah(sekolah.getKodeSekolah());
+		currentSekolah.setNamaSekolah(sekolah.getNamaSekolah());
+		currentSekolah.setKodePos(sekolah.getKodePos());
+		currentSekolah.setProvinsi(sekolah.getProvinsi());
+		currentSekolah.setKabupaten(sekolah.getKabupaten());
+		currentSekolah.setKecamatan(sekolah.getKecamatan());
+		currentSekolah.setTingkatan(sekolah.getTingkatan());
+		
+		sekolahRepository.save(currentSekolah);
+		return new ResponseEntity<Sekolah>(currentSekolah, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Sekolah> deleteSekolah(@PathVariable Integer id){
+		if(!sekolahRepository.exists(id)){
+			return new ResponseEntity<Sekolah>(HttpStatus.NOT_FOUND);
+		}
+		sekolahRepository.delete(id);
+		return new ResponseEntity<Sekolah>(HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public Iterable<Sekolah> listSekolah(){
 		return sekolahRepository.findAll();

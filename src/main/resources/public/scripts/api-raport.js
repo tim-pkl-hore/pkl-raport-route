@@ -25,7 +25,7 @@ angular.module('raportApp')
 		})
 	})
 	.factory('AbsensiSiswaService', function($resource){
-		return $resource('/absensi-siswa/:id', {}, {
+		return $resource('/absensi/siswa/:id', {}, {
 			get: {method: 'GET'},
 			create: {method: 'POST'},
 			update: {method: 'PUT', params: {id: '@id'}},
@@ -57,7 +57,7 @@ angular.module('raportApp')
 		})
 	})
 	.factory('KelasSiswaService', function($resource){
-		return $resource('/kelasSiswa/:id', {}, {
+		return $resource('/kelas/siswa/:id', {}, {
 			get: {method: 'GET'},
 			create: {method: 'POST'},
 			update: {method: 'PUT', params: {id: '@id'}},
@@ -72,8 +72,15 @@ angular.module('raportApp')
 			delete: {method: 'DELETE', params: {id: '@id'}}
 		})
 	})
-	.factory('KompetensiIntiService', function($resource){
-		return $resource('/kompetensi-inti/:id', {}, {
+	.factory('MengajarService', function($resource){
+		return $resource('/guru/mengajar/:idGuru/:idMatpel', {}, {
+			get: {method: 'GET'},
+			create: {method: 'POST'},
+			delete: {method: 'DELETE', params: {idGuru: '@idGuru', idMatpel: '@idMatpel'}}
+		})
+	})
+	.factory('KriteriaService', function($resource){
+		return $resource('/kriteria/:id', {}, {
 			get: {method: 'GET'},
 			create: {method: 'POST'},
 			update: {method: 'PUT', params: {id: '@id'}},
@@ -81,7 +88,7 @@ angular.module('raportApp')
 		})
 	})
 	.factory('MataPelajaranService', function($resource){
-		return $resource('/matapelajaran/:id', {}, {
+		return $resource('/mata/pelajaran/:id', {}, {
 			get: {method: 'GET'},
 			create: {method: 'POST'},
 			update: {method: 'PUT', params: {id: '@id'}},
@@ -89,7 +96,7 @@ angular.module('raportApp')
 		})
 	})
 	.factory('MateriPokokService', function($resource){
-		return $resource('/materi-pokok/:id', {}, {
+		return $resource('/materi/pokok/:id', {}, {
 			get: {method: 'GET'},
 			create: {method: 'POST'},
 			update: {method: 'PUT', params: {id: '@id'}},
@@ -113,7 +120,15 @@ angular.module('raportApp')
 		})
 	})
 	.factory('TahunAjaranService', function($resource){
-		return $resource('/tahun-ajaran/:id', {}, {
+		return $resource('/tahun/ajaran/:id', {}, {
+			get: {method: 'GET'},
+			create: {method: 'POST'},
+			update: {method: 'PUT', params: {id: '@id'}},
+			delete: {method: 'DELETE', params: {id: '@id'}}
+		})
+	})
+	.factory('GrupKelasService', function($resource){
+		return $resource('/grup/kelas/:id', {}, {
 			get: {method: 'GET'},
 			create: {method: 'POST'},
 			update: {method: 'PUT', params: {id: '@id'}},
@@ -129,11 +144,26 @@ angular.module('raportApp')
 		})
 	})
 	.factory('RoleService', function($resource){
-		return $resource('/user-role/:id', {}, {
+		return $resource('/user/role/:id', {}, {
 			get: {method: 'GET'},
 			create: {method: 'POST'},
 			update: {method: 'PUT', params: {id: '@id'}},
 			delete: {method: 'DELETE', params: {id: '@id'}}
 		})
 	})
-	;
+	.factory('PenilaianService', function($resource){
+		return $resource('/penilaian/:id', {}, {
+			get: {method: 'GET'},
+			create: {method: 'POST'},
+			update: {method: 'PUT', params: {id: '@id'}},
+			delete: {method: 'DELETE', params: {id: '@id'}}
+		})
+	})
+	.factory('UserService', function($resource){
+		return $resource('/pengguna/:id', {}, {
+			get: {method: 'GET'},
+			create: {method: 'POST'},
+			update: {method: 'PUT', params: {id: '@id'}},
+			delete: {method: 'DELETE', params: {id: '@id'}}
+		})
+	});

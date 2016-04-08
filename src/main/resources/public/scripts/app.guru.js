@@ -1,8 +1,8 @@
 angular.module('raportApp').config(function($routeProvider) {
-	$routeProvider.when('/guru-list', {
+	$routeProvider.when('/guru/list', {
 		templateUrl : 'views/partials/guru/listGuru.html',
 		controller : 'GuruCtrl'
-	}).when('/guru-detail/:id', {
+	}).when('/guru/detail/:id', {
 		templateUrl : 'views/partials/guru/detailGuru.html',
 		controller : 'GuruCtrl',
 		resolve : {
@@ -10,10 +10,10 @@ angular.module('raportApp').config(function($routeProvider) {
 				return $route.current.params.id;
 			}
 		}
-	}).when('/guru-edit/:id', {
+	}).when('/guru/edit/:id', {
 		templateUrl : 'views/partials/guru/editGuru.html',
 		controller : 'GuruCtrl'
-	}).when('/guru-form', {
+	}).when('/guru/form', {
 		templateUrl : 'views/partials/guru/formGuru.html',
 		controller : 'GuruCtrl'
 	});
@@ -24,11 +24,11 @@ angular.module('raportApp')
 .controller('GuruCtrl', function($scope, $http, $resource, $route, $stateParams, $mdDialog, $mdToast, $log, $state, $location, GuruService){
 	$scope.formData = {};
 	$scope.items = [];
+	$scope.search = "";
 	
 	/*
 	 * Template toast
 	 */
-	
 	var mdToast = function(message){
         $mdToast.show({
             template: '<md-toast class="md-toast">' + message + '</md-toast>',
@@ -37,10 +37,9 @@ angular.module('raportApp')
         });
     };
     
-    /*
+	/*
      * List Data
      */
-    
 	var url = '/guru'
 		
     $scope.query = {
@@ -56,7 +55,8 @@ angular.module('raportApp')
 				method : "GET",
 				params : {
 					page : page - 1,
-					size : limit
+					size : limit, 
+					search : $scope.search
 				}
 			}
 		});
@@ -65,7 +65,6 @@ angular.module('raportApp')
 	var getPage = function(page, limit) {
 		getGuru(page, limit).get().$promise.then(
 				function(response) {
-					console.dir(response.content);
 					$scope.items = response.content;
 					$scope.query.limit = response.size;
 					$scope.query.total = response.totalElements;
@@ -82,6 +81,14 @@ angular.module('raportApp')
 		getPage(page, limit);
 	}
 	
+	/*
+	 * Search
+	 */
+	$scope.searchField = function(){
+		getPage(1, 5);
+	};
+	
+	
 	
 	/*
 	 * Create Data
@@ -91,7 +98,7 @@ angular.module('raportApp')
 		GuruService.create($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil ditambah');
-				window.location = "/#/guru-list";
+				window.location = "/#/guru/list";
 			},
 			function(errResponse){
 				$log.debug(errResponse);
@@ -113,7 +120,7 @@ angular.module('raportApp')
 			function(errResponse){
 				$log.debug(errResponse);
 				mdToast('Data tidak ditemukan');
-				window.location = "/#/guru-list";
+				window.location = "/#/guru/list";
 			}
 		);
 	};
@@ -126,7 +133,7 @@ angular.module('raportApp')
 		GuruService.update($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil diubah');
-				window.location = "/#/guru-list";
+				window.location = "/#/guru/list";
 			},
 			
 			function(errResponse){
@@ -136,7 +143,7 @@ angular.module('raportApp')
 			}
 		);
 	};
-	
+			
 	/*
 	 * Delete
 	 */
@@ -181,7 +188,7 @@ angular.module('raportApp')
 									fullscreen : useFullScreen
 								});
 						$scope.ClickMeToRedirect = function() {
-							var url = "/#/guru-list";
+							var url = "/#/guru/list";
 							$log.log(url);
 							$window.location.href = url;
 						}

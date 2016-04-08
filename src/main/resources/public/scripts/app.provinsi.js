@@ -55,6 +55,14 @@ angular.module('raportApp').controller('ProvinsiCtrl', function($scope, $http, $
 			page : 1,
 			total : 0
 		};
+    
+    function success(items){
+    	$scope.items = items;
+    };
+    
+    function getItems(items){
+    	$scope.promise = items.get($scope.query, success).$promise;
+    };
 
 		var getProvinsi = function(page, limit) {
 			return $resource(url, {}, {

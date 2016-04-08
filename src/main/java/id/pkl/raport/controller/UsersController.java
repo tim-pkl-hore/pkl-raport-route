@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.pkl.raport.entity.Users;
@@ -51,8 +52,11 @@ public class UsersController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public Page<Users> listUsers(Pageable pageable){
-		return usersRepository.findAll(pageable);
+	public Page<Users> listUsers(@RequestParam(name="search", required = false) String search, Pageable pageable){
+		if(search.equals("")){
+			return usersRepository.findAll(pageable);
+		}
+		return usersRepository.findBySearch(search, pageable);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)

@@ -1,9 +1,9 @@
 angular.module('raportApp')
 			.config(function($routeProvider){
-				$routeProvider.when('/kelas-list',{
+				$routeProvider.when('/kelas/list',{
 					templateUrl: 'views/partials/kelas/listKelas.html',
 					controller: 'KelasCtrl'
-				}).when('/kelas-detail/:id', {
+				}).when('/kelas/detail/:id', {
 					templateUrl: 'views/partials/kelas/detailKelas.html',
 					controller: 'KelasCtrl',
 					resolve: {
@@ -11,10 +11,10 @@ angular.module('raportApp')
 							return $route.current.params.id;
 						}
 					}
-				}).when('/kelas-edit/:id', {
+				}).when('/kelas/edit/:id', {
 					templateUrl: 'views/partials/kelas/editKelas.html',
 					controller: 'KelasCtrl'
-				}).when('/kelas-form', {
+				}).when('/kelas/form', {
 					templateUrl: 'views/partials/kelas/formKelas.html',
 					controller: 'KelasCtrl'
 				});
@@ -22,10 +22,13 @@ angular.module('raportApp')
 
 angular.module('raportApp').controller('KelasCtrl', function($scope, $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, KelasService){
 	$scope.formData = {};
+	$scope.search = "";
 	
 	/*
 	 * Template toast
 	 */
+	
+	
 	
 	var mdToast = function(message){
         $mdToast.show({
@@ -38,29 +41,29 @@ angular.module('raportApp').controller('KelasCtrl', function($scope, $http, $rou
     /*
      * Get iterable
      */
-    
-    $scope.tahun_ajaran = [];
+     
+    $scope.tingkat = [];
 	var request = {
-		url : '/tahun-ajaran/all',
+		url : '/tingkat/all',
 		method : 'GET'
 	};
 	var successHandler = function(response) {
 		$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
-		$scope.tahun_ajaran = response.data;
+		$scope.tingkat = response.data;
 	};
 	var errorHandler = function(errors) {
 		$log.error(angular.toJson(errors, true));
 	};
 	$http(request).then(successHandler, errorHandler);
-	
-	$scope.sekolah = [];
+    
+    $scope.tahun_ajaran = [];
 	var request = {
-		url : '/sekolah/all',
+		url : '/tahun/ajaran/all',
 		method : 'GET'
 	};
 	var successHandler = function(response) {
 		$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
-		$scope.sekolah = response.data;
+		$scope.tahun_ajaran = response.data;
 	};
 	var errorHandler = function(errors) {
 		$log.error(angular.toJson(errors, true));
@@ -81,6 +84,22 @@ angular.module('raportApp').controller('KelasCtrl', function($scope, $http, $rou
 	};
 	$http(request).then(successHandler, errorHandler);
 	
+	$scope.grup_kelas = [];
+	var request = {
+		url : '/grup/kelas/all',
+		method : 'GET'
+	};
+	var successHandler = function(response) {
+		$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+		$scope.grup_kelas = response.data;
+	};
+	var errorHandler = function(errors) {
+		$log.error(angular.toJson(errors, true));
+	};
+	$http(request).then(successHandler, errorHandler);
+    
+    /*
+   
 	/*
 	 * List data
 	 */
@@ -102,7 +121,8 @@ angular.module('raportApp').controller('KelasCtrl', function($scope, $http, $rou
 				method : "GET",
 				params : {
 					page : page - 1,
-					size : limit
+					size : limit,
+					search : $scope.search
 				}
 			}
 		});
@@ -131,14 +151,20 @@ angular.module('raportApp').controller('KelasCtrl', function($scope, $http, $rou
 	}
 	
 	/*
+	 * Search
+	 */
+	$scope.searchField = function(){
+		getPage(1, 5);
+	};
+	/*
 	 * Create Data
 	 */
 	
-	$scope.save = function(){
+	$scope.simpan = function(){
 		KelasService.create($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil ditambah');
-				window.location = "/#/kelas-list";
+				window.location = "/#/kelas/list";
 			},
 			function(errResponse){
 				$log.debug(errResponse);
@@ -159,7 +185,7 @@ angular.module('raportApp').controller('KelasCtrl', function($scope, $http, $rou
 			function(errResponse){
 				$log.debug(errResponse);
 				mdToast('Data tidak ditemukan');
-				window.location = "/#/kelas-list";
+				window.location = "/#/kelas/list";
 			}
 		);
 	};
@@ -172,7 +198,7 @@ angular.module('raportApp').controller('KelasCtrl', function($scope, $http, $rou
 		KelasService.update($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil diubah');
-				window.location = "/#/kelas-list";
+				window.location = "/#/kelas/list";
 			},
 			
 			function(errResponse){
@@ -244,7 +270,7 @@ angular.module('raportApp')
 									fullscreen : useFullScreen
 								});
 						$scope.ClickMeToRedirect = function() {
-							var url = "/#/kelas-list";
+							var url = "/#/kelas/list";
 							$log.log(url);
 							$window.location.href = url;
 						}

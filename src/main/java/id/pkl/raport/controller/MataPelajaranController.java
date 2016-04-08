@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.pkl.raport.entity.MataPelajaran;
 import id.pkl.raport.repository.MataPelajaranRepository;
 
 @RestController
-@RequestMapping(value="/matapelajaran")
+@RequestMapping(value="/mata/pelajaran")
 public class MataPelajaranController {
 	@Autowired
 	private MataPelajaranRepository mataPelajaranRepository;
@@ -61,9 +62,12 @@ public class MataPelajaranController {
 	
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public Page<MataPelajaran> listMatpel(Pageable pageable)
+	public Page<MataPelajaran> listMatpel(@RequestParam(name="search") String search, Pageable pageable)
 	{
-		return mataPelajaranRepository.findAll(pageable);
+		if(search.equals("")){
+			return mataPelajaranRepository.findAll(pageable);
+		}
+		return mataPelajaranRepository.findBySearch(search, pageable);
 	}
 	
 	

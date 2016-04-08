@@ -10,15 +10,7 @@
 	      			<label>Kelas</label>
 	        		<md-select ng-model="formData.kelas.id">
 	          			<md-option ng-repeat="kel in kelas" value="{{kel.id}}">
-	            			{{kel.kelas}}
-	         			</md-option>
-	        		</md-select>
-	      		</md-input-container>
-	      		<md-input-container>
-	      			<label>Grup</label>
-	        		<md-select ng-model="formData.kelas.id">
-	          			<md-option ng-repeat="kel in kelas" value="{{kel.id}}">
-	            			{{kel.grupKelas}}
+	            			{{kel.tingkat.tingkat}}{{kel.grupKelas.grupKelas}}
 	         			</md-option>
 	        		</md-select>
 	      		</md-input-container>

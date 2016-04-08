@@ -37,9 +37,6 @@ public class AbsensiSiswa {
 	@Column(name="jenis")
 	private JenisAbsensi jenisAbsensi;
 	
-	@ManyToOne
-	@JoinColumn(name="sekolah_id", referencedColumnName="id")
-	private Sekolah sekolah;
 	
 	@ManyToOne
 	@JoinColumn(name="tahun_ajaran_id", referencedColumnName="id")
@@ -75,14 +72,6 @@ public class AbsensiSiswa {
 
 	public void setJenisAbsensi(JenisAbsensi jenisAbsensi) {
 		this.jenisAbsensi = jenisAbsensi;
-	}
-
-	public Sekolah getSekolah() {
-		return sekolah;
-	}
-
-	public void setSekolah(Sekolah sekolah) {
-		this.sekolah = sekolah;
 	}
 
 	public TahunAjaran getTahunAjaran() {

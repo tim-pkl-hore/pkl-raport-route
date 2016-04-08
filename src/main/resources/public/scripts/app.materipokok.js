@@ -1,9 +1,9 @@
 angular.module('raportApp')
 			.config(function($routeProvider){
-				$routeProvider.when('/materi-pokok-list',{
+				$routeProvider.when('/materi/pokok/list',{
 					templateUrl: 'views/partials/materiPokok/listMateriPokok.html',
 					controller: 'MateriPokokCtrl'
-				}).when('/materi-pokok-detail/:id', {
+				}).when('/materi/pokok/detail/:id', {
 					templateUrl: 'views/partials/materiPokok/detailMateriPokok.html',
 					controller: 'MateriPokokCtrl',
 					resolve: {
@@ -11,10 +11,10 @@ angular.module('raportApp')
 							return $route.current.params.id;
 						}
 					}
-				}).when('/materi-pokok-form', {
+				}).when('/materi/pokok/form', {
 					templateUrl: 'views/partials/materiPokok/formMateriPokok.html',
 					controller: 'MateriPokokCtrl'
-				}).when('/materi-pokok-edit', {
+				}).when('/materi/pokok/edit', {
 					templateUrl: 'views/partials/materiPokok/editMateriPokok.html',
 					controller: 'MateriPokokCtrl'
 				});
@@ -110,7 +110,7 @@ angular.module('raportApp').controller('MateriPokokCtrl', function($scope, $http
 		MateriPokokService.create($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil ditambah');
-				window.location = "/#/materi-pokok-list";
+				window.location = "/#/materi/pokok/list";
 			},
 			function(errResponse){
 				$log.debug(errResponse);
@@ -131,7 +131,7 @@ angular.module('raportApp').controller('MateriPokokCtrl', function($scope, $http
 			function(errResponse){
 				$log.debug(errResponse);
 				mdToast('Data tidak ditemukan');
-				window.location = "/#/materi-pokok-list";
+				window.location = "/#/materi/pokok/list";
 			}
 		);
 	};
@@ -144,7 +144,7 @@ angular.module('raportApp').controller('MateriPokokCtrl', function($scope, $http
 		MateriPokokService.update($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil diubah');
-				window.location = "/#/materi-pokok-list";
+				window.location = "/#/materi/pokok/list";
 			},
 			
 			function(errResponse){
@@ -215,7 +215,7 @@ angular.module('raportApp')
 									fullscreen : useFullScreen
 								});
 						$scope.ClickMeToRedirect = function() {
-							var url = "/#/materi-pokok-list";
+							var url = "/#/materi/pokok/list";
 							$log.log(url);
 							$window.location.href = url;
 						}

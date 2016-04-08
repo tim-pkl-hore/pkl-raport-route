@@ -1,24 +1,37 @@
 <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Tambah Guru</h1>
+        <h1 class="md-toolbar-tools">Form Data Guru</h1>
 </md-toolbar>
 
-
 <div ng-controller="GuruCtrl">
-<div>
-    <div layout="row">
-    <form name="formSubmit" ng-submit="save()">
-      <md-input-container>
-        <label>Nama Guru</label>
-        <input type="text" ng-model="formData.nama">
-      </md-input-container>
-      <md-input-container>
-        <label>Email Guru</label>
-        <input type="text" ng-model="formData.email">
-      </md-input-container>
-      <md-input-container>
-      		<input type="submit" class="md-button md-primary" value="Tambah" />
+<md-content layout-padding class="md-no-momentum">
+	<form name="formSubmit" ng-submit="save()">
+	<div layout-gt-sm="row">
+		<md-input-container class="md-block" flex-gt-sm>
+            <label>NIP</label>
+            <input type="number"  ng-model="formData.nip">
+        </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nama Lengkap</label>
+            <input type="text" ng-model="formData.nama">
+          </md-input-container>
+        </div>
+   <div layout-gt-sm="row">
+   		<md-input-container class="md-block" flex-gt-sm>
+            <label>Email</label>
+            <input type="email" ng-model="formData.email" required="Email harus diisi" >
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>No. HP</label>
+            <input type="tel" ng-model="formData.telp"  maxlength="12">
+          </md-input-container>
+   </div>
+        <md-input-container class="md-block">
+          	<label>Alamat</label>
+          	<input ng-model="formData.alamat">
+        </md-input-container>
+        <md-input-container>
+      		<input type="submit" class="md-button md-raised md-primary" value="Tambah" />
       </md-input-container>	  
-      </form>
-    </div>
-  </div>
-	</div>
+       </form>
+</md-content>
+</div>

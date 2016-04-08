@@ -19,58 +19,40 @@
 <div ng-controller="raportApp" layout="column" style="height:100%;" ng-cloak>
   <section layout="row" flex>
     <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="width: 250px;">
-      <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Raport Project</h1>
-      </md-toolbar>
-      <md-divider></md-divider>
-      <md-content ng-controller="LeftCtrl" class="">
-        <md-button ng-click="close()" class="md-primary" hide-gt-md>
-          Close Sidenav Left
-        </md-button>
-        
-      <md-list style="background-color: rgb(63,81,181); color: rgba(255,255,255,0.87);">
-      	<md-item ng-repeat="item in menu">
-      	<a ng-href="{{item.link}}" style="text-decoration: none;">
-          <md-item-content md-ink-ripple layout="row" layout-align="start center">
-            <div class="inset">
-              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-            </div>
-            <div class="inset">{{item.title}}
-            </div>
-          </md-item-content>
-          <md-divider></md-divider>
-        </a>
-      	</md-item>
-      </md-list>
+     		<md-toolbar class="md-theme-indigo">
+        		<h1 class="md-toolbar-tools">Raport Project</h1>
+      		</md-toolbar>
+      	
+      	<md-divider></md-divider>
+      	<md-content>
+      	<md-list style="background-color: rgb(63,81,181); color: rgba(255,255,255,0.87);">
+      		<md-item ng-repeat="item in menu">
+      			<a ng-href="{{item.link}}" style="text-decoration: none;">
+          			<md-item-content md-ink-ripple layout="row" layout-align="start center">
+           				<div class="inset">
+              				<ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+            			</div>
+            			<div class="inset">{{item.title}}</div>
+          			</md-item-content>
+          				<md-divider></md-divider>
+        		</a>
+      		</md-item>
+     	</md-list>
+     	</md-content>
     </md-sidenav>
-    <md-content flex layout-padding>
-      <div layout="column" layout-fill layout-align="top left">
-        	<div data-ng-view></div>
-        <div>
-        <md-button class="md-fab md-mini md-primary center" ng-click="toggleLeft()" aria-label="Add" hide-gt-md>
-          	<ng-md-icon icon="view_headline" style="fill: #abcdef" size="22"></ng-md-icon>
-        </md-button>
+    <md-content flex>
+		<div layout="column" layout-fill layout-align="top left">
+        	<md-content>
+        		<div data-ng-view></div>
+        	</md-content>
+        	<div>
+        	<md-button class="md-fab md-mini md-primary center" ng-click="toggleLeft()" aria-label="Add" hide-gt-md>
+          		<ng-md-icon icon="view_headline" style="fill: #abcdef" size="22"></ng-md-icon>
+        	</md-button>
         </div>
       </div>
       <div flex></div>
     </md-content>
-    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
-      <md-toolbar class="md-theme-light">
-        <h1 class="md-toolbar-tools">Sidenav Right</h1>
-      </md-toolbar>
-      <md-content ng-controller="RightCtrl" layout-padding>
-        <form>
-          <md-input-container>
-            <label for="testInput">Test input</label>
-            <input type="text" id="testInput"
-                   ng-model="data" md-autofocus>
-          </md-input-container>
-        </form>
-        <md-button ng-click="close()" class="md-primary">
-          Close Sidenav Right
-        </md-button>
-      </md-content>
-    </md-sidenav>
   </section>
 </div>	
 	<script type="text/javascript" src="/scripts/vendor/angular.min.js"></script>
@@ -93,11 +75,15 @@
 	
 	
 	<script type="text/javascript" src="/scripts/app.js"></script>
-	<script type="text/javascript" src="/scripts/app.home.js"></script>
-	<script type="text/javascript" src="/scripts/app.menu.js"></script>
 	<script type="text/javascript" src="/scripts/api-raport.js"></script>
+	<script type="text/javascript" src="/scripts/app.grupkelas.js"></script>
+	<script type="text/javascript" src="/scripts/app.home.js"></script>
+	<script type="text/javascript" src="/scripts/app.mengajar.js"></script>
+	<script type="text/javascript" src="/scripts/app.kriteria.js"></script>
+	<script type="text/javascript" src="/scripts/app.menu.js"></script>
 	<script type="text/javascript" src="/scripts/app.index.js"></script>
 	<script type="text/javascript" src="/scripts/app.provinsi.js"></script>
+	<script type="text/javascript" src="/scripts/app.penilaian.js"></script>
 	<script type="text/javascript" src="/scripts/app.kabupaten.js"></script>
 	<script type="text/javascript" src="/scripts/app.kecamatan.js"></script>
 	<script type="text/javascript" src="/scripts/app.matapelajaran.js"></script>

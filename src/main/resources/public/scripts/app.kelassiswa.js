@@ -1,9 +1,9 @@
 angular.module('raportApp')
 			.config(function($routeProvider){
-				$routeProvider.when('/kelas-siswa-list',{
+				$routeProvider.when('/kelas/siswa/list',{
 					templateUrl: 'views/partials/kelasSiswa/listKelasSiswa.html',
 					controller: 'KelasSiswaCtrl'
-				}).when('/kelas-siswa-detail/:id', {
+				}).when('/kelas/siswa/detail/:id', {
 					templateUrl: 'views/partials/kelasSiswa/detailKelasSiswa.html',
 					controller: 'KelasSiswaCtrl',
 					resolve: {
@@ -11,7 +11,7 @@ angular.module('raportApp')
 							return $route.current.params.id;
 						}
 					}
-				}).when('/kelas-siswa-edit/:id', {
+				}).when('/kelas/siswa/edit/:id', {
 					templateUrl: 'views/partials/kelasSiswa/editKelasSiswa.html',
 					controller: 'KelasSiswaCtrl',
 					resolve: {
@@ -19,7 +19,7 @@ angular.module('raportApp')
 							return $route.current.params.id;
 						}
 					}
-				}).when('/kelas-siswa-form', {
+				}).when('/kelas/siswa/form', {
 					templateUrl: 'views/partials/kelasSiswa/formKelasSiswa.html',
 					controller: 'KelasSiswaCtrl'
 				});
@@ -27,6 +27,7 @@ angular.module('raportApp')
 
 angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, KelasSiswaService){
 	$scope.formData = {};
+	$scope.search = "";
 	
 	/*
 	 * Template toast
@@ -72,12 +73,12 @@ angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http,
 	$http(request).then(successHandler, errorHandler);
 	
 	/*
-	 * 
+	 * List
 	 */
 	
 	$scope.items = [];
 
-	var url = '/kelas-siswa'
+	var url = '/kelas/siswa'
 
 	$scope.query = {
 		order : '',
@@ -92,7 +93,8 @@ angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http,
 				method : "GET",
 				params : {
 					page : page - 1,
-					size : limit
+					size : limit,
+					search : $scope.search
 				}
 			}
 		});
@@ -121,6 +123,14 @@ angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http,
 	}
 	
 	/*
+	 * Search
+	 */
+	
+	$scope.searchField = function(){
+		getPage(1, 5);
+	};
+	
+	/*
 	 * Create Data
 	 */
 	
@@ -128,7 +138,7 @@ angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http,
 		KelasSiswaService.create($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil ditambah');
-				window.location = "/#/kelas-siswa-list";
+				window.location = "/#/kelas/siswa/list";
 			},
 			function(errResponse){
 				$log.debug(errResponse);
@@ -149,7 +159,7 @@ angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http,
 			function(errResponse){
 				$log.debug(errResponse);
 				mdToast('Data tidak ditemukan');
-				window.location = "/#/kelas-siswa-list";
+				window.location = "/#/kelas/siswa/list";
 			}
 		);
 	};
@@ -162,7 +172,7 @@ angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http,
 		KelasSiswaService.update($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil diubah');
-				window.location = "/#/kelas-siswa-list";
+				window.location = "/#/kelas/siswa/list";
 			},
 			
 			function(errResponse){
@@ -233,7 +243,7 @@ angular.module('raportApp')
 									fullscreen : useFullScreen
 								});
 						$scope.ClickMeToRedirect = function() {
-							var url = "/#/provinsi-list";
+							var url = "/#/kelas/siswa/list";
 							$log.log(url);
 							$window.location.href = url;
 						}

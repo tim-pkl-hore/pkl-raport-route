@@ -13,59 +13,73 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import id.pkl.raport.entity.Tingkatan;
+import id.pkl.raport.entity.Tingkat;
 import id.pkl.raport.repository.TingkatRepository;
 
 @RestController
 @RequestMapping(value="/tingkat")
 public class TingkatController {
 	@Autowired
-	private TingkatRepository tingkatRepository;
+	private TingkatRepository kelasRepository;
+	
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Tingkatan> addTingkat(@Validated @RequestBody Tingkatan tingkatan, BindingResult bindingResult){
-		if(bindingResult.hasErrors()){
-			return new ResponseEntity<Tingkatan>(HttpStatus.BAD_REQUEST);
+	public ResponseEntity<Tingkat> addTingkat(@Validated @RequestBody Tingkat kelas, BindingResult bindingResult){
+		if (bindingResult.hasErrors()) {
+			return new ResponseEntity<Tingkat>(HttpStatus.BAD_REQUEST);
 		}
 		
-		Tingkatan newTingkat = tingkatRepository.save(tingkatan);
-		return new ResponseEntity<Tingkatan>(newTingkat, HttpStatus.OK);
+		Tingkat newKelas = kelasRepository.save(kelas);
+		return new ResponseEntity<Tingkat>(newKelas, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public Page<Tingkatan> listTingkat(Pageable pageable){
-		return tingkatRepository.findAll(pageable);
+	public Page<Tingkat> listTingkat(Pageable pageable){
+	
+			return kelasRepository.findAll(pageable);
+		
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<Tingkat> detailTingkat(@PathVariable Long id){
+		if(!kelasRepository.exists(id)){
+			return new ResponseEntity<Tingkat>(HttpStatus.NOT_FOUND);
+		}
+		
+		Tingkat kelas = kelasRepository.findOne(id);
+		return new ResponseEntity<Tingkat>(kelas, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Tingkatan> updateProvinsi(@PathVariable Long id, @RequestBody Tingkatan tingkatan, BindingResult bindingResult){
-		if (bindingResult.hasErrors()) {
-			return new ResponseEntity<Tingkatan>(HttpStatus.BAD_REQUEST);
+	public ResponseEntity<Tingkat> updateTingkat(@PathVariable Long id, @RequestBody Tingkat tingkat, BindingResult bindingResult){
+		if(bindingResult.hasErrors()){
+			return new ResponseEntity<Tingkat>(HttpStatus.BAD_REQUEST);
 		}
 		
-		Tingkatan currentTingkat = tingkatRepository.findOne(id);
-		if(currentTingkat == null){
-			return new ResponseEntity<Tingkatan>(HttpStatus.NOT_FOUND);
+		Tingkat currentKelas = kelasRepository.findOne(id);
+		if(currentKelas == null){
+			return new ResponseEntity<Tingkat>(HttpStatus.NOT_FOUND);
 		}
 		
-		currentTingkat.setTingkat(tingkatan.getTingkat());		
-		tingkatRepository.save(currentTingkat);
-		return new ResponseEntity<Tingkatan>(currentTingkat, HttpStatus.OK);
+		currentKelas.setTingkat(tingkat.getTingkat());
+		
+		kelasRepository.save(currentKelas);
+		return new ResponseEntity<Tingkat>(currentKelas, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<Tingkatan> deleteKabupaten(@PathVariable Long id){
-		if(!tingkatRepository.exists(id)){
-			return new ResponseEntity<Tingkatan>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<Tingkat> deleteTingkat(@PathVariable Long id){
+		if(!kelasRepository.exists(id)){
+			return new ResponseEntity<Tingkat>(HttpStatus.NOT_FOUND);
 		}
-		tingkatRepository.delete(id);
-		return new ResponseEntity<Tingkatan>(HttpStatus.OK);
+		kelasRepository.delete(id);
+		return new ResponseEntity<Tingkat>(HttpStatus.OK);
 	}
-	
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
-	public Iterable<Tingkatan> listTingkat() {
-		return tingkatRepository.findAll();
+	public Iterable<Tingkat> listTingkat(){
+		return kelasRepository.findAll();
 	}
-
+	
+	
 }

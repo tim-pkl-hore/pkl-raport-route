@@ -5,43 +5,24 @@
 	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
 		<form name="formSubmit" ng-submit="update()">
 			<md-input-container>
-	        		<label>Tingkat Kelas</label>
-	        		<input type="text" ng-model="formData.tingkat">
-	     		</md-input-container>
-	     		<md-input-container>
-	        		<label>Grup Kelas</label>
-	        		<input type="text" ng-model="formData.grupKelas">
-	     		</md-input-container>
-	     		<md-input-container>
-	        		<label>Jurusan Kelas</label>
-	        		<input type="text" ng-model="formData.jurusan">
-	     		</md-input-container>
-	     		<md-input-container>
-	      			<label>Tahun Ajaran</label>
-	        		<md-select ng-model="formData.tahunAjaran.id">
-	          			<md-option ng-repeat="ajaran in tahun_ajaran track by $index" value="{{ajaran.id}}">
-	            			{{ajaran.tahunAwal}}
+	      			<label>Kelas</label>
+	        		<md-select ng-model="formData.kelas.id">
+	          			<md-option ng-repeat="kel in kelas" value="{{kel.id}}">
+	            			{{kel.tingkat.tingkat}}{{kel.grupKelas.grupKelas}}
 	         			</md-option>
 	        		</md-select>
 	      		</md-input-container>
 	      		<md-input-container>
-	      			<label>Nama Sekolah</label>
-	        		<md-select ng-model="formData.sekolah.id">
-	          			<md-option ng-repeat="sek in sekolah track by $index" value="{{sek.id}}">
-	            			{{sek.namaSekolah}}
+	      			<label>Siswa</label>
+	        		<md-select ng-model="formData.siswa.id">
+	          			<md-option ng-repeat="sis in siswa" value="{{sis.id}}">
+	            			{{sis.namaSiswa}}
 	         			</md-option>
 	        		</md-select>
 	      		</md-input-container>
 	      		<md-input-container>
-	      			<label>Wali Kelas</label>
-	        		<md-select ng-model="formData.waliKelas.id">
-	          			<md-option ng-repeat="wali in guru track by $index" value="{{wali.id}}">
-	            			{{wali.nama}}
-	         			</md-option>
-	        		</md-select>
-	      		</md-input-container>
-   			<md-input-container>
-      			<input type="submit" class="md-button md-primary" value="Edit" />
+   				<md-input-container>
+      			<input type="submit" class="md-button md-raised md-primary" value="Edit" />
       		</md-input-container>	
 		</form>
 	</md-content>

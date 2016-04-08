@@ -11,9 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import id.pkl.raport.entity.Guru;
+import id.pkl.raport.entity.GuruMengajarMataPelajaraId;
+import id.pkl.raport.entity.GuruMengajarMataPelajaran;
 import id.pkl.raport.entity.Kelas;
+import id.pkl.raport.entity.TahunAjaran;
 import id.pkl.raport.repository.KelasRepository;
 
 @RestController
@@ -22,8 +27,8 @@ public class KelasController {
 	@Autowired
 	private KelasRepository kelasRepository;
 	
-	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Kelas> addKelas(@Validated @RequestBody Kelas kelas, BindingResult bindingResult){
+	@RequestMapping(method=RequestMethod.POST)	
+	public ResponseEntity<Kelas> addTahunAjaran(@Validated @RequestBody Kelas kelas, BindingResult bindingResult){
 		if (bindingResult.hasErrors()) {
 			return new ResponseEntity<Kelas>(HttpStatus.BAD_REQUEST);
 		}
@@ -33,40 +38,39 @@ public class KelasController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public Page<Kelas> listKelas(Pageable pageable){
-		return kelasRepository.findAll(pageable);
-	}
-	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Kelas> detailKelas(@PathVariable Long id){
-		if(!kelasRepository.exists(id)){
-			return new ResponseEntity<Kelas>(HttpStatus.NOT_FOUND);
-		}
-		
-		Kelas kelas = kelasRepository.findOne(id);
-		return new ResponseEntity<Kelas>(kelas, HttpStatus.OK);
+	public Page<Kelas> listKelas(Pageable pageable)
+	{
+			return kelasRepository.findAll(pageable);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Kelas> updateKelas(@PathVariable Long id, @RequestBody Kelas kelas, BindingResult bindingResult){
-		if(bindingResult.hasErrors()){
+	public ResponseEntity<Kelas> updateKelas(@PathVariable Long id, @RequestBody Kelas kelas,
+			BindingResult bindingResult){
+		if (bindingResult.hasErrors()) {
 			return new ResponseEntity<Kelas>(HttpStatus.BAD_REQUEST);
 		}
 		
 		Kelas currentKelas = kelasRepository.findOne(id);
-		if(currentKelas == null){
+		if (currentKelas == null) {
 			return new ResponseEntity<Kelas>(HttpStatus.NOT_FOUND);
 		}
 		
-		currentKelas.setJurusan(kelas.getJurusan());
-		currentKelas.setGrupKelas(kelas.getGrupKelas());
-		currentKelas.setSekolah(kelas.getSekolah());
-		currentKelas.setTahunAjaran(kelas.getTahunAjaran());
 		currentKelas.setTingkat(kelas.getTingkat());
+		currentKelas.setGrupKelas(kelas.getGrupKelas());
+		currentKelas.setTahunAjaran(kelas.getTahunAjaran());
 		currentKelas.setWaliKelas(kelas.getWaliKelas());
 		
 		kelasRepository.save(currentKelas);
 		return new ResponseEntity<Kelas>(currentKelas, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<Kelas> detailKelas(@PathVariable Long id){
+		if (!kelasRepository.exists(id)) {
+			return new ResponseEntity<Kelas>(HttpStatus.NOT_FOUND);
+		}
+		Kelas kelas = kelasRepository.findOne(id);
+		return new ResponseEntity<Kelas>(kelas, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
@@ -79,7 +83,8 @@ public class KelasController {
 	}
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
-	public Iterable<Kelas> listKelas(){
+	public Iterable<Kelas> listKelas()
+	{
 		return kelasRepository.findAll();
 	}
 }

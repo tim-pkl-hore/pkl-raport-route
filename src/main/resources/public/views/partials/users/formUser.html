@@ -2,28 +2,28 @@
         <h1 class="md-toolbar-tools">Tambah User</h1>
 </md-toolbar>
 
-<div ng-controller="addUserCtrl">
+<div ng-controller="UserCtrl">
 	<div>
     	<div layout="row">
-    		<form ng-submit="submit()">
+    		<form name="formSubmit" ng-submit="save()">
     		<md-input-container>
         		<label>Username</label>
-        		<input type="text" ng-model="users.username">
+        		<input type="text" ng-model="formData.username">
      		</md-input-container>
      		<md-input-container>
         		<label>Password</label>
-        		<input type="password" ng-model="users.password">
+        		<input type="password" ng-model="formData.password">
      		</md-input-container>
     			<md-input-container>
         			<p>Enabled </p>
-        			<md-radio-group ng-model="users.enabled">
+        			<md-radio-group ng-model="formData.enabled">
         				<md-radio-button name="enabled" value="true" class="md-primary">True</md-radio-button>
         				<md-radio-button name="enabled" value="false" class="md-primary">False</md-radio-button>
         			</md-radio-group>
       			</md-input-container>
       			<md-input-container>
-      				<md-button ng-click="submit()" class="md-primary btn btn-primary">Tambah</md-button>
-      			</md-input-container>
+      				<input type="submit" class="md-button md-raised md-primary" value="Tambah" />
+      		</md-input-container>
       		</form>
       	</div>
      </div>

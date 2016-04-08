@@ -4,31 +4,47 @@
 <br />
 
 <br /> 
-<md-table-container>
-	<table md-table md-row-select border="1" ng-model="provinsi" md-progress="promise">
-		<thead md-head md-order="query.order" md-on-reorder="onReorder">
+<md-content layout-padding>
+<div ng-controller="GuruCtrl">
+	<md-content md-theme="docs-dark">
+		
+	<md-table-container>
+		<md-input-container class="md-block" md-no-float> 
+			<input type="search" ng-model="search" ng-change="searchField()" placeholder="Search" />
+		</md-input-container>
+	<table md-table md-row-select border="1" ng-model="guru" md-progress="promise">
+		<thead md-head md-order="query.order" md-on-reorder="onReorder">	
 			<tr md-row>
-				<th md-coloumn>Nama Guru</th>
-				<th md-coloumn>Email Guru</th>
+				<th md-coloumn>NIP</th>
+				<th md-coloumn>Nama</th>
+				<th md-coloumn>Email</th>
+				<th md-coloumn>No. HP</th>
+				<th md-coloumn>Alamat</th>
 				<th md-coloumn>Aksi</th>
 			</tr>
 		</thead>
 		<tbody md-body>
 			<tr md-row ng-repeat="item in items">
+				<th md-cell>{{item.nip}}</th>
 				<th md-cell>{{item.nama}}</th>
 				<th md-cell>{{item.email}}</th>
+				<th md-cell>{{item.telp}}</th>
+				<th md-cell>{{item.alamat}}</th>
 				<th md-cell>
-					<a href="/#/guru-edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
-		 			<a href="/#/guru-detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
+					<a href="/#/guru/edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href="/#/guru/detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
 		 			<a href ng-click="showConfirm(item.id)"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
 				</th>
 			</tr>
 		</tbody>
 	</table>
 </md-table-container>
+</md-content>
 <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
 <div layout="row" layout-wrap layout-margin layout-align="end end">
-		<a href="/#/guru-form" md-button class="md-fab md-primary md-raised center">
+		<a href="/#/guru/form" md-button class="md-fab md-primary md-raised center">
       		<ng-md-icon icon="add" style="fill: #abcdef" size="25"></ng-md-icon>
     	</a>
     </div>
+</div>
+</md-content>

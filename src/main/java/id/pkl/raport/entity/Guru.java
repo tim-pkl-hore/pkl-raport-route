@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -30,16 +31,22 @@ public class Guru {
 	@Column(name="nama")
 	private String nama;
 	
+	@NotNull
+	@Column(name="nip", unique = true)
+	private String nip;
+	
 	@NotBlank
 	@Email
-	@Column(name="email")
+	@Column(name="email", unique = true)
 	private String email;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL)
-	@JoinTable(name="guru_mengajar_matapelajaran",
-		joinColumns = @JoinColumn(name="guru_id", referencedColumnName="id", unique = true),
-		inverseJoinColumns = @JoinColumn(name="mata_pelajaran_id", referencedColumnName="id", unique = true))
-	private Set<MataPelajaran> mataPelajaran = new HashSet<>();
+	@NotNull
+	@Column(name="telp")
+	private String telp;
+	
+	@NotBlank
+	@Column(name="alamat")
+	private String alamat;
 	
 	
 	public Long getId() {
@@ -48,6 +55,16 @@ public class Guru {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	
+	
+	public String getNip() {
+		return nip;
+	}
+
+	public void setNip(String nip) {
+		this.nip = nip;
 	}
 
 	public String getNama() {
@@ -66,12 +83,20 @@ public class Guru {
 		this.email = email;
 	}
 
-	public Set<MataPelajaran> getMataPelajaran() {
-		return mataPelajaran;
+	public String getAlamat() {
+		return alamat;
 	}
 
-	public void setMataPelajaran(Set<MataPelajaran> mataPelajaran) {
-		this.mataPelajaran = mataPelajaran;
+	public void setAlamat(String alamat) {
+		this.alamat = alamat;
+	}
+
+	public String getTelp() {
+		return telp;
+	}
+
+	public void setTelp(String telp) {
+		this.telp = telp;
 	}
 	
 	

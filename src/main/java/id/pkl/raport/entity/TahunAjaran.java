@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -19,19 +17,17 @@ public class TahunAjaran {
 	private Integer id;
 	
 	@NotNull
-	@Column(name="tahun_awal")
+	@Column(name="tahun_awal", unique = true)
 	private Integer tahunAwal;
 	
 	@NotNull
-	@Column(name="tahun_akhir")
+	@Column(name="tahun_akhir", unique = true)
 	private Integer tahunAkhir;
 	
 	@Column(name="current")
 	private Boolean current;
 	
-	@ManyToOne
-	@JoinColumn(name="sekolah_id", referencedColumnName="id")
-	private Sekolah sekolah;
+	
 
 	public Integer getId() {
 		return id;
@@ -64,15 +60,4 @@ public class TahunAjaran {
 	public void setCurrent(Boolean current) {
 		this.current = current;
 	}
-
-	public Sekolah getSekolah() {
-		return sekolah;
-	}
-
-	public void setSekolah(Sekolah sekolah) {
-		this.sekolah = sekolah;
-	}
-	
-	
-	
 }

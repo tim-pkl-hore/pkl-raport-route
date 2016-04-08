@@ -1,14 +1,27 @@
 <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">Edit User</h1>
 </md-toolbar>
-<div ng-controller="updateUserCtrl">
+<div ng-controller="UserCtrl">
 		<h2>Edit User</h2>
-		<form ng-submit="update(users.id)">
-			<input type="text" ng-model="users.username" placeholder="Username"><br />
-			<input type="password" ng-model="users.password" placeholder="Password"><br />
-			<input type="radio" name="enabled" ng-model="users.enabled" value="true"/>True
-			<input type="radio" name="enabled" ng-model="users.enabled" value="false"/>False
-			<input type="submit" value="OK">
+		<form ng-submit="update()">
+			<md-input-container>
+        		<label>Username</label>
+        		<input type="text" ng-model="formData.username">
+     		</md-input-container>
+     		<md-input-container>
+        		<label>Password</label>
+        		<input type="password" ng-model="formData.password">
+     		</md-input-container>
+    			<md-input-container>
+        			<p>Enabled </p>
+        			<md-radio-group ng-model="formData.enabled">
+        				<md-radio-button name="enabled" value="true" class="md-primary">True</md-radio-button>
+        				<md-radio-button name="enabled" value="false" class="md-primary">False</md-radio-button>
+        			</md-radio-group>
+      			</md-input-container>
+      			<md-input-container>
+      				<input type="submit" class="md-button md-raised md-primary" value="Tambah" />
+      		</md-input-container>
 		</form>
 		
 		<h5>User</h5>

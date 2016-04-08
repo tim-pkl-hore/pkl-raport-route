@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.pkl.raport.entity.AbsensiSiswa;
 import id.pkl.raport.repository.AbsensiSiswaRepository;
 
 @RestController
-@RequestMapping(value="/absensi-siswa")
+@RequestMapping(value="/absensi/siswa")
 public class AbsensiSiswaController {
 	@Autowired
 	private AbsensiSiswaRepository absensiSiswaRepository;
@@ -33,8 +34,12 @@ public class AbsensiSiswaController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public Page<AbsensiSiswa> listAbsensiSiswa(Pageable pageable){
-		return absensiSiswaRepository.findAll(pageable);
+	public Page<AbsensiSiswa> listAbsensiSiswa(@RequestParam(name="search", required = false) String search, Pageable pageable){
+		if(search.equals("")){
+			return absensiSiswaRepository.findAll(pageable);
+		}
+		
+		return absensiSiswaRepository.findBySearch(search, pageable);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
@@ -62,7 +67,7 @@ public class AbsensiSiswaController {
 		currentAbsensiSiswa.setAlasan(absensiSiswa.getAlasan());
 		currentAbsensiSiswa.setTanggal(absensiSiswa.getTanggal());
 		currentAbsensiSiswa.setTahunAjaran(absensiSiswa.getTahunAjaran());
-		currentAbsensiSiswa.setSekolah(absensiSiswa.getSekolah());
+		
 		
 		absensiSiswaRepository.save(currentAbsensiSiswa);
 		return new ResponseEntity<AbsensiSiswa>(currentAbsensiSiswa, HttpStatus.OK);

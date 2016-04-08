@@ -1,22 +1,19 @@
 <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Form Tingkat</h1>
+        <h1 class="md-toolbar-tools">Tambah Kelas</h1>
 </md-toolbar>
 
-<div ng-controller="TingkatCtrl" layout="column" ng-cloak class="md-inline-form">
-  <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-    <div>
-   		<form name="formSubmit" ng-submit="save()">
-   		<select ng-model="formData.tingkat">
-                <option value="SD">SD</option>
-                <option value="SMP">SMP</option>
-                <option value="SMA">SMA</option>
-                <option value="SMK">SMK</option>
-                <option value="MA">MA</option>
-                <option value="SSS">SSS</option>
-            </select>
-      		<md-input-container>
-      			<input type="submit" class="md-button md-primary" value="Tambah"/>
-      		</md-input-container> 
-    </div>
-    </md-content>
+<div ng-controller="TingkatCtrl">
+	<div>
+		<div layout="row" align="center">
+			<form name="formSubmit" ng-submit="save()">
+				<md-input-container>
+	        		<label>Tingkat Kelas</label>
+	        		<input type="number" ng-model="formData.tingkat" maxlength="3">
+	     		</md-input-container>
+	      		<md-input-container>
+	      			<input type="submit" class="md-button md-primary" value="Tambah" />
+	      		</md-input-container>
+			</form>
+		</div>
+	</div>
 </div>

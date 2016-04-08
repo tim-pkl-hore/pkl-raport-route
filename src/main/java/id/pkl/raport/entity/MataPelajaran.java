@@ -18,8 +18,9 @@ public class MataPelajaran {
 	private Long id;
 	
 	@NotBlank
-	@Column(name="nama_matpel")
+	@Column(name="nama_matpel", unique = true)
 	private String namaMatpel;
+	
 
 	public Long getId() {
 		return id;

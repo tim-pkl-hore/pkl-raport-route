@@ -1,11 +1,11 @@
 angular.module('raportApp').config(function($routeProvider) {
-	$routeProvider.when('/user-role-list', {
+	$routeProvider.when('/user/role/list', {
 		templateUrl : 'views/partials/userRole/listRole.html',
 		controller : 'RoleCtrl'
-	}).when('/user-role-form', {
+	}).when('/user/role/form', {
 		templateUrl : 'views/partials/userRole/formRole.html',
 		controller : 'RoleCtrl'
-	}).when('/user-role-detail/:id', {
+	}).when('/user/role/detail/:id', {
 		templateUrl : 'views/partials/userRole/detailRole.html',
 		controller : 'RoleCtrl',
 		resolve : {
@@ -13,7 +13,7 @@ angular.module('raportApp').config(function($routeProvider) {
 				return $route.current.params.id;
 			}
 		}
-	}).when('/user-role-edit/:id', {
+	}).when('/user/role/edit/:id', {
 		templateUrl : 'views/partials/userRole/editRole.html',
 		controller : 'RoleCtrl'
 	});
@@ -59,7 +59,7 @@ angular.module('raportApp').controller('RoleCtrl', function($scope, $http, $reso
 	
 	$scope.items = [];
 
-	var url = '/user-role'
+	var url = '/user/role'
 
 	$scope.query = {
 		order : '',
@@ -107,7 +107,7 @@ angular.module('raportApp').controller('RoleCtrl', function($scope, $http, $reso
 		RoleService.create($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil ditambah');
-				window.location = "/#/user-role-list";
+				window.location = "/#/user/role/list";
 			},
 			function(errResponse){
 				$log.debug(errResponse);
@@ -128,7 +128,7 @@ angular.module('raportApp').controller('RoleCtrl', function($scope, $http, $reso
 			function(errResponse){
 				$log.debug(errResponse);
 				mdToast('Data tidak ditemukan');
-				window.location = "/#/user-role-list";
+				window.location = "/#/user/role/list";
 			}
 		);
 	};
@@ -141,7 +141,7 @@ angular.module('raportApp').controller('RoleCtrl', function($scope, $http, $reso
 		RoleService.update($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil diubah');
-				window.location = "/#/user-role-list";
+				window.location = "/#/user/role/list";
 			},
 			
 			function(errResponse){
@@ -242,7 +242,7 @@ angular.module('raportApp').controller(
 				var successHandler = function(response) {
 					$log.debug('Response data dari server : \n'
 							+ angular.toJson(response.data, true));
-					window.location = "/#/user-role-list";
+					window.location = "/#/user/role/list";
 				};
 				var errorHandler = function(errors) {
 					$log.error('Errors :\n' + angular.toJson(errors, true));

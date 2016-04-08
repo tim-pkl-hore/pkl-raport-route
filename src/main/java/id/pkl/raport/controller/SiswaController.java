@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.pkl.raport.entity.Siswa;
@@ -43,9 +44,13 @@ public class SiswaController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public Page<Siswa> listSiswa(Pageable pageable)
+	public Page<Siswa> listSiswa(@RequestParam(name="search") String search, Pageable pageable)
 	{
-		return siswaRepository.findAll(pageable);
+		if(search.equals("")){
+			return siswaRepository.findAll(pageable);
+		}
+		return siswaRepository.findBySearch(search, pageable);
+		
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
@@ -60,14 +65,24 @@ public class SiswaController {
 		}
 		
 		currentSiswa.setNamaSiswa(siswa.getNamaSiswa());
-		currentSiswa.setJenisKelamin(siswa.getJenisKelamin());
-		currentSiswa.setSekolah(siswa.getSekolah());
-		currentSiswa.setNamaIbu(siswa.getNamaIbu());
-		currentSiswa.setEmailIbu(siswa.getEmailBapak());
-		currentSiswa.setNamaBapak(siswa.getNamaBapak());
-		currentSiswa.setEmailBapak(siswa.getEmailBapak());
+		currentSiswa.setAlamatOrtu(siswa.getAlamatOrtu());
+		currentSiswa.setAlamatSiswa(siswa.getAlamatSiswa());
+		currentSiswa.setAlamatWali(siswa.getAlamatWali());
 		currentSiswa.setDiterimaSejak(siswa.getDiterimaSejak());
+		currentSiswa.setJenisKelamin(siswa.getJenisKelamin());
+		currentSiswa.setNamaAyah(siswa.getNamaAyah());
+		currentSiswa.setNamaIbu(siswa.getNamaIbu());
+		currentSiswa.setNamaWali(siswa.getNamaWali());
+		currentSiswa.setNisn(siswa.getNisn());
+		currentSiswa.setNoIjazah(siswa.getNoIjazah());
+		currentSiswa.setPekerjaanAyah(siswa.getPekerjaanAyah());
+		currentSiswa.setPekerjaanIbu(siswa.getPekerjaanIbu());
+		currentSiswa.setTahunSekolahAsal(siswa.getTahunSekolahAsal());
 		currentSiswa.setTanggalLahir(siswa.getTanggalLahir());
+		currentSiswa.setTelpOrtu(siswa.getTelpOrtu());
+		currentSiswa.setTelpSiswa(siswa.getTelpSiswa());
+		currentSiswa.setPekerjaanWali(siswa.getPekerjaanWali());
+		currentSiswa.setTempatLahir(siswa.getTempatLahir());
 		
 		siswaRepository.save(currentSiswa);
 		return new ResponseEntity<Siswa>(currentSiswa, HttpStatus.OK);

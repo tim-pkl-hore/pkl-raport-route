@@ -1,0 +1,32 @@
+<md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">List Guru Mengajar Mata Pelajaran</h1>
+</md-toolbar>
+<br />
+<md-table-container>
+	<table md-table md-row-select border="1" ng-model="guru_mengajar_mata_pelajaran" md-progress="promise">
+		<thead md-head md-order="query.order" md-on-reorder="onReorder">
+			<tr md-row>
+				<th md-coloumn>Nama Guru</th>
+				<th md-coloumn>Mata Pelajaran yang Diajar</th>
+				<th md-coloumn>Aksi</th>
+			</tr>
+		</thead>
+		<tbody md-body>
+			<tr md-row ng-repeat="item in items">
+				<th md-cell>{{item.guru.nama}}</th>
+				<th md-cell>{{item.mataPelajaran.namaMatpel}}</th>
+				<th md-cell>
+		 			<a href="/#/guru/mengajar/edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href="/#/guru/mengajar/detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
+		 			<a href ng-click="showConfirm(item.id.guruId, item.id.mataPelajaranId)"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 		</th>
+			</tr>
+		</tbody>
+	</table>
+</md-table-container>
+<md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
+	<div layout="row" layout-wrap layout-margin layout-align="end end">
+		<a href="/#/guru/mengajar/form" md-button class="md-fab md-primary md-raised center">
+      		<ng-md-icon icon="add" style="fill: #abcdef" size="25"></ng-md-icon>
+    	</a>
+    </div>

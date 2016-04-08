@@ -1,9 +1,9 @@
 angular.module('raportApp')
 			.config(function($routeProvider){
-				$routeProvider.when('/absensi-siswa-list',{
+				$routeProvider.when('/absensi/siswa/list',{
 					templateUrl: 'views/partials/absensiSiswa/listAbsensiSiswa.html',
 					controller: 'AbsensiSiswaCtrl'
-				}).when('/absensi-siswa-detail/:id', {
+				}).when('/absensi/siswa/detail/:id', {
 					templateUrl: 'views/partials/absensiSiswa/detailAbsensiSiswa.html',
 					controller: 'AbsensiSiswaCtrl',
 					resolve: {
@@ -11,10 +11,10 @@ angular.module('raportApp')
 							return $route.current.params.id;
 						}
 					}
-				}).when('/absensi-siswa-edit/:id', {
+				}).when('/absensi/siswa/edit/:id', {
 					templateUrl: 'views/partials/absensiSiswa/editAbsensiSiswa.html',
 					controller: 'AbsensiSiswaCtrl'
-				}).when('/absensi-siswa-form', {
+				}).when('/absensi/siswa/form', {
 					templateUrl: 'views/partials/absensiSiswa/formAbsensiSiswa.html',
 					controller: 'AbsensiSiswaCtrl'
 				});
@@ -23,12 +23,13 @@ angular.module('raportApp')
 angular.module('raportApp').controller('AbsensiSiswaCtrl', function($scope, $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, AbsensiSiswaService){
 	$scope.formData = {};
 	$scope.tahun_ajaran = [];
+	$scope.search = "";
 	
 	/*
 	 * GET ITERABLE
 	 */
 	var request = {
-		url : '/tahun-ajaran/all',
+		url : '/tahun/ajaran/all',
 		method : 'GET'
 	};
 	var successHandler = function(response) {
@@ -40,19 +41,6 @@ angular.module('raportApp').controller('AbsensiSiswaCtrl', function($scope, $htt
 	};
 	$http(request).then(successHandler, errorHandler);
 	
-	$scope.sekolah = [];
-	var request = {
-		url : '/sekolah/all',
-		method : 'GET'
-	};
-	var successHandler = function(response) {
-		$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
-		$scope.sekolah = response.data;
-	};
-	var errorHandler = function(errors) {
-		$log.error(angular.toJson(errors, true));
-	};
-	$http(request).then(successHandler, errorHandler);
 	
 	/*
 	 * Toast template
@@ -70,7 +58,7 @@ angular.module('raportApp').controller('AbsensiSiswaCtrl', function($scope, $htt
      * List Data
      */
     
-	var url = '/absensi-siswa'
+	var url = '/absensi/siswa'
 		
     $scope.query = {
 			order : '',
@@ -85,7 +73,8 @@ angular.module('raportApp').controller('AbsensiSiswaCtrl', function($scope, $htt
 				method : "GET",
 				params : {
 					page : page - 1,
-					size : limit
+					size : limit,
+					search : $scope.search
 				}
 			}
 		});
@@ -112,6 +101,14 @@ angular.module('raportApp').controller('AbsensiSiswaCtrl', function($scope, $htt
 	}
 	
 	/*
+	 * Search
+	 */
+	$scope.searchField = function(){
+		getPage(1, 5);
+	};
+	
+	
+	/*
 	 * Create Data
 	 */
 	
@@ -119,7 +116,7 @@ angular.module('raportApp').controller('AbsensiSiswaCtrl', function($scope, $htt
 		AbsensiSiswaService.create($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil ditambah');
-				window.location = "/#/absensi-siswa-list";
+				window.location = "/#/absensi/siswa/list";
 			},
 			function(errResponse){
 				$log.debug(errResponse);
@@ -140,7 +137,7 @@ angular.module('raportApp').controller('AbsensiSiswaCtrl', function($scope, $htt
 			function(errResponse){
 				$log.debug(errResponse);
 				mdToast('Data tidak ditemukan');
-				window.location = "/#/absensi-siswa-list";
+				window.location = "/#/absensi/siswa/list";
 			}
 		);
 	};
@@ -153,7 +150,7 @@ angular.module('raportApp').controller('AbsensiSiswaCtrl', function($scope, $htt
 		AbsensiSiswaService.update($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil diubah');
-				window.location = "/#/absensi-siswa-list";
+				window.location = "/#/absensi/siswa/list";
 			},
 			
 			function(errResponse){
@@ -183,136 +180,6 @@ angular.module('raportApp').controller('AbsensiSiswaCtrl', function($scope, $htt
 			);
 		});
 	};
-});
-
-
-
-angular.module('raportApp').controller('addAbsensiSiswaCtrl', function($scope, $http, $log) {
-	$scope.raport = {};
-				
-	$scope.tahun_ajaran = [];
-	var request = {
-		url : '/tahun-ajaran/all',
-		method : 'GET'
-	};
-	var successHandler = function(response) {
-		$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
-		$scope.tahun_ajaran = response.data;
-	};
-	var errorHandler = function(errors) {
-		$log.error(angular.toJson(errors, true));
-	};
-	$http(request).then(successHandler, errorHandler);
-	
-	$scope.sekolah = [];
-	var request = {
-		url : '/sekolah/all',
-		method : 'GET'
-	};
-	var successHandler = function(response) {
-		$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
-		$scope.sekolah = response.data;
-	};
-	var errorHandler = function(errors) {
-		$log.error(angular.toJson(errors, true));
-	};
-	$http(request).then(successHandler, errorHandler);
-	
-	$scope.kelas_siswa = [];
-	var request = {
-		url : '/kelas-siswa/all',
-		method : 'GET'
-	};
-	var successHandler = function(response) {
-		$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
-		$scope.kelas_siswa = response.data;
-	};
-	var errorHandler = function(errors) {
-		$log.error(angular.toJson(errors, true));
-	};
-	$http(request).then(successHandler, errorHandler);
-	
-	$scope.submit = function() {
-		var request = {
-			url: '/absensi-siswa',
-			method: 'POST',
-			data: $scope.absensi_siswa
-		};
-		var successHandler = function(response) {
-			$log.debug('Response data dari server : \n' + angular.toJson(response.data, true));
-			window.location = "/#/absensi-siswa-list";
-			
-		};
-		var errorHandler = function(errors) {
-			$log.error('Errors :\n' + angular.toJson(errors, true));
-		};
-		$http(request).then(successHandler, errorHandler);
-	};
-});
-
-angular.module('raportApp').controller('listAbsensiSiswaCtrl',
-		function($scope, $http, $log, $resource) {
-			$scope.items = [];
-
-			var url = '/absensi-siswa'
-
-			$scope.query = {
-				order : '',
-				limit : 5,
-				page : 1,
-				total : 0
-			};
-
-			var getAbsensiSiswa = function(page, limit) {
-				return $resource(url, {}, {
-					get : {
-						method : "GET",
-						params : {
-							page : page - 1,
-							size : limit
-						}
-					}
-				});
-			}
-
-			var getPage = function(page, limit) {
-				getAbsensiSiswa(page, limit).get().$promise.then(
-						function(response) {
-							console.dir(response.content);
-							$scope.items = response.content;
-							$scope.query.limit = response.size;
-							$scope.query.total = response.totalElements;
-						}, function(errResponse) {
-							console.log(errResponse);
-							console.error('Error while fethcing data');
-						}
-
-				);
-
-			}
-
-			getPage($scope.query.page, $scope.query.limit);
-
-			$scope.onPaginate = function(page, limit) {
-				getPage(page, limit);
-			}
-
-		});
-
-angular.module('raportApp').controller('detailAbsensiSiswaCtrl', function($scope, $http, $log, id) {
-	$scope.absensi_siswa = [];
-	var request = {
-		url : '/absensi-siswa/' + id ,
-		method : 'GET'
-	};
-	var successHandler = function(response) {
-		$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
-		$scope.absensi_siswa = response.data;
-	};
-	var errorHandler = function(errors) {
-		$log.error(angular.toJson(errors, true));
-	};
-	$http(request).then(successHandler, errorHandler);
 });
 
 angular.module('raportApp').controller(
@@ -351,7 +218,7 @@ angular.module('raportApp')
 									fullscreen : useFullScreen
 								});
 						$scope.ClickMeToRedirect = function() {
-							var url = "/#/absensi-siswa-list";
+							var url = "/#/absensi/siswa/list";
 							$log.log(url);
 							$window.location.href = url;
 						}

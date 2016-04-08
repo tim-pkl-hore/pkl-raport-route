@@ -17,7 +17,7 @@ import id.pkl.raport.entity.TahunAjaran;
 import id.pkl.raport.repository.TahunAjarRepository;
 
 @RestController
-@RequestMapping(value="/tahun-ajaran")
+@RequestMapping(value="/tahun/ajaran")
 public class TahunAjaranController {
 	@Autowired
 	private TahunAjarRepository tahunAjarRepository;
@@ -58,7 +58,7 @@ public class TahunAjaranController {
 			return new ResponseEntity<TahunAjaran>(HttpStatus.NOT_FOUND);
 		}
 		
-		currentTahunAjaran.setSekolah(tahunAjaran.getSekolah());
+		
 		currentTahunAjaran.setTahunAwal(tahunAjaran.getTahunAwal());
 		currentTahunAjaran.setTahunAkhir(tahunAjaran.getTahunAkhir());
 		

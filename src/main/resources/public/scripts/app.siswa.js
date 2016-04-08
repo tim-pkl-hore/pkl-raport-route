@@ -1,8 +1,8 @@
 angular.module('raportApp').config(function($routeProvider) {
-	$routeProvider.when('/siswa-list', {
+	$routeProvider.when('/siswa/list', {
 		templateUrl : 'views/partials/siswa/listSiswa.html',
 		controller : 'SiswaCtrl'
-	}).when('/siswa-detail/:id', {
+	}).when('/siswa/detail/:id', {
 		templateUrl : 'views/partials/siswa/detailSiswa.html',
 		controller : 'SiswaCtrl',
 		resolve : {
@@ -10,10 +10,10 @@ angular.module('raportApp').config(function($routeProvider) {
 				return $route.current.params.id;
 			}
 		}
-	}).when('/siswa-edit/:id', {
+	}).when('/siswa/edit/:id', {
 		templateUrl : 'views/partials/siswa/editSiswa.html',
 		controller : 'SiswaCtrl'
-	}).when('/siswa-form', {
+	}).when('/siswa/form', {
 		templateUrl : 'views/partials/siswa/formSiswa.html',
 		controller : 'SiswaCtrl'
 	});
@@ -22,6 +22,7 @@ angular.module('raportApp').config(function($routeProvider) {
 
 angular.module('raportApp').controller('SiswaCtrl', function($scope, $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, SiswaService){
 	$scope.formData = {};
+	$scope.search = "";
 	
 	/*
 	 * Template toast
@@ -39,21 +40,7 @@ angular.module('raportApp').controller('SiswaCtrl', function($scope, $http, $rou
      * get iterable
      */
     
-    $scope.sekolah = [];
-	var request = {
-		url : '/sekolah/all',
-		method : 'GET'
-	};
-	var successHandler = function(response) {
-		$log.debug("Response data dari server : \n"
-				+ angular.toJson(response.data, true));
-		$scope.sekolah = response.data;
-	};
-	var errorHandler = function(errors) {
-		$log.error(angular.toJson(errors, true));
-	};
-	$http(request).then(successHandler, errorHandler);
-	
+   
 	/*
 	 * list data
 	 */
@@ -75,7 +62,8 @@ angular.module('raportApp').controller('SiswaCtrl', function($scope, $http, $rou
 				method : "GET",
 				params : {
 					page : page - 1,
-					size : limit
+					size : limit,
+					search : $scope.search
 				}
 			}
 		});
@@ -104,6 +92,14 @@ angular.module('raportApp').controller('SiswaCtrl', function($scope, $http, $rou
 	}
 	
 	/*
+	 * search
+	 */
+	
+	$scope.searchField = function(){
+		getPage(1, 5);
+	};
+	
+	/*
 	 * Create Data
 	 */
 	
@@ -111,7 +107,7 @@ angular.module('raportApp').controller('SiswaCtrl', function($scope, $http, $rou
 		SiswaService.create($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil ditambah');
-				window.location = "/#/siswa-list";
+				window.location = "/#/siswa/list";
 			},
 			function(errResponse){
 				$log.debug(errResponse);
@@ -133,7 +129,7 @@ angular.module('raportApp').controller('SiswaCtrl', function($scope, $http, $rou
 			function(errResponse){
 				$log.debug(errResponse);
 				mdToast('Data tidak ditemukan');
-				window.location = "/#/siswa-list";
+				window.location = "/#/siswa/list";
 			}
 		);
 	};
@@ -146,7 +142,7 @@ angular.module('raportApp').controller('SiswaCtrl', function($scope, $http, $rou
 		SiswaService.update($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil diubah');
-				window.location = "/#/siswa-list";
+				window.location = "/#/siswa/list";
 			},
 			
 			function(errResponse){
@@ -215,7 +211,7 @@ angular.module('raportApp')
 									fullscreen : useFullScreen
 								});
 						$scope.ClickMeToRedirect = function() {
-							var url = "/#/siswa-list";
+							var url = "/#/siswa/list";
 							$log.log(url);
 							$window.location.href = url;
 						}

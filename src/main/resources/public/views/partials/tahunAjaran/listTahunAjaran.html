@@ -9,7 +9,6 @@
 		 		<th md-coloumn>Current</th>
 		 		<th md-coloumn>Tahun Awal</th>
 		 		<th md-coloumn>Tahun Akhir</th>
-		 		<th md-coloumn>Nama Sekolah</th>
 		 		<th md-coloumn>Aksi</th>
 		 	</tr>
 		 </thead>
@@ -18,10 +17,9 @@
 		 		<th md-cell>{{item.current}}</th>
 		 		<th md-cell>{{item.tahunAwal}}</th>
 		 		<th md-cell>{{item.tahunAkhir}}</th>
-		 		<th md-cell>{{item.sekolah.namaSekolah}}</th>
 		 		<th md-cell>
-		 			<a href="/#/tahun-ajaran-edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
-		 			<a href="/#/tahun-ajaran-detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
+		 			<a href="/#/tahun/ajaran/edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href="/#/tahun/ajaran/detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
 		 			<a href ng-click="showConfirm(item.id)"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
 		 		</th>
 		 	</tr>
@@ -30,7 +28,7 @@
 </md-table-container>
 <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
 <div layout="row" layout-wrap layout-margin layout-align="end end">
-		<a href="/#/tahun-ajaran-form" md-button class="md-fab md-primary md-raised center">
+		<a href="/#/tahun/ajaran/form" md-button class="md-fab md-primary md-raised center">
       		<ng-md-icon icon="add" style="fill: #abcdef" size="25"></ng-md-icon>
     	</a>
     </div>

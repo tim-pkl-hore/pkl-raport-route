@@ -6,28 +6,20 @@
 <div>
     <div layout="row">
     	<form ng-submit="save()">
-    		<md-input-container>
+      		<md-input-container>
+        		<label>Tahun Awal</label>
+        		<input type="number" ng-model="formData.tahunAwal" maxlength="4">
+      		</md-input-container><br />
+      		<md-input-container>
+        		<label>Tahun Akhir</label>
+        		<input type="number" ng-model="formData.tahunAkhir" maxlength="4">
+      		</md-input-container><br />
+      		<md-input-container>
         		<p>Current: </p>
         		<md-radio-group ng-model="formData.current">
         			<md-radio-button name="current" value="true" class="md-primary">True</md-radio-button>
         			<md-radio-button name="current" value="false" class="md-primary">False</md-radio-button>
         		</md-radio-group>
-      		</md-input-container>
-      		<md-input-container>
-        		<label>Tahun Awal</label>
-        		<input type="text" ng-model="formData.tahunAwal">
-      		</md-input-container>
-      		<md-input-container>
-        		<label>Tahun Akhir</label>
-        		<input type="text" ng-model="formData.tahunAkhir">
-      		</md-input-container>
-      		<md-input-container>
-        		<label>Nama Sekolah</label>
-        		<md-select ng-model="formData.sekolah.id">
-          			<md-option ng-repeat="sek in sekolah track by $index" value="{{sek.id}}">
-            			{{sek.namaSekolah}}
-          		</md-option>
-        		</md-select>
       		</md-input-container>
       		<md-input-container>
       			<input type="submit" class="md-button md-primary" value="Tambah"/>

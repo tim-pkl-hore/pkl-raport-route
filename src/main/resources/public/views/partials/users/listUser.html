@@ -1,9 +1,11 @@
 <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">List User</h1>
 </md-toolbar>
-    <a href="/#/user-form"><md-button md-no-ink class="md-primary">Tambah</md-button></a>
-</md-toolbar>
+    
 <md-table-container>
+	<md-input-container class="md-block" md-no-float> 
+			<input type="search" ng-model="search" ng-change="searchField()" placeholder="Search" />
+		</md-input-container>
 	<table md-table md-row-select border="1">
 		<thead md-head>
 			<tr md-row>
@@ -17,11 +19,16 @@
 				<th md-cell>{{item.username}}</th>
 				<th md-cell>{{item.password}}</th>
 				<th md-cell>
-					<a href="/#/user-edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
-		 			<a href="/#/user-detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
-		 			<a href="/#/user-delete/{{item.id}}"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
+					<a href="/#/user/edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href="/#/user/detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
+		 			<a href ng-click="showConfirm(item.id)"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
 				</th>
 			</tr>
 		</tbody>
 	</table>
 </md-table-container>
+<div layout="row" layout-wrap layout-margin layout-align="end end">
+		<a href="/#/user/form" md-button class="md-fab md-primary md-raised center">
+      		<ng-md-icon icon="add" style="fill: #abcdef" size="25"></ng-md-icon>
+    	</a>
+    </div>

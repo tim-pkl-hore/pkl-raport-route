@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.pkl.raport.entity.KelasSiswa;
 import id.pkl.raport.repository.KelasSiswaRepository;
 
 @RestController
-@RequestMapping(value="/kelas-siswa")
+@RequestMapping(value="/kelas/siswa")
 public class KelasSiswaController {
 	@Autowired
 	private KelasSiswaRepository kelasSiswaRepository;
@@ -33,9 +34,14 @@ public class KelasSiswaController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public Page<KelasSiswa> listKelasSiswa(Pageable pageable)
+	public Page<KelasSiswa> listKelasSiswa(@RequestParam(name="search", required=false) String search, Pageable pageable)
 	{
-		return kelasSiswaRepository.findAll(pageable);
+		if(search.equals("")){
+			return kelasSiswaRepository.findAll(pageable);
+		}
+		
+		return kelasSiswaRepository.findBySearch(search, pageable);
+		
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)

@@ -17,7 +17,7 @@ import id.pkl.raport.entity.UserRole;
 import id.pkl.raport.repository.UserRoleRepository;
 
 @RestController
-@RequestMapping(value="/user-role")
+@RequestMapping(value="/user/role")
 public class UserRoleController {
 	@Autowired
 	private UserRoleRepository userRoleRepository;

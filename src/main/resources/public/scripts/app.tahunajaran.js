@@ -1,8 +1,8 @@
 angular.module('raportApp').config(function($routeProvider) {
-	$routeProvider.when('/tahun-ajaran-list', {
+	$routeProvider.when('/tahun/ajaran/list', {
 		templateUrl : 'views/partials/tahunAjaran/listTahunAjaran.html',
 		controller : 'TahunAjaranCtrl'
-	}).when('/tahun-ajaran-detail/:id', {
+	}).when('/tahun/ajaran/detail/:id', {
 		templateUrl : 'views/partials/tahunAjaran/detailTahunAjaran.html',
 		controller : 'TahunAjaranCtrl',
 		resolve : {
@@ -10,10 +10,10 @@ angular.module('raportApp').config(function($routeProvider) {
 				return $route.current.params.id;
 			}
 		}
-	}).when('/tahun-ajaran-edit/:id', {
+	}).when('/tahun/ajaran/edit/:id', {
 		templateUrl : 'views/partials/tahunAjaran/editTahunAjaran.html',
 		controller : 'TahunAjaranCtrl'
-	}).when('/tahun-ajaran-form', {
+	}).when('/tahun/ajaran/form', {
 		templateUrl : 'views/partials/tahunAjaran/formTahunAjaran.html',
 		controller : 'TahunAjaranCtrl'
 	});
@@ -33,23 +33,6 @@ angular.module('raportApp').controller('TahunAjaranCtrl', function($scope, $http
             position: 'top right'
         });
     };
-	/*
-	 * Get iterable
-	 */
-	
-	$scope.sekolah = [];
-	var request = {
-		url : '/sekolah/all',
-		method : 'GET'
-	};
-	var successHandler = function(response) {
-		$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
-		$scope.sekolah = response.data;
-	};
-	var errorHandler = function(errors) {
-		$log.error(angular.toJson(errors, true));
-	};
-	$http(request).then(successHandler, errorHandler);
 	
 	/*
 	 * List Data
@@ -57,7 +40,7 @@ angular.module('raportApp').controller('TahunAjaranCtrl', function($scope, $http
 	
 	$scope.items = [];
 
-	var url = '/tahun-ajaran'
+	var url = '/tahun/ajaran'
 
 	$scope.query = {
 		order : '',
@@ -108,7 +91,7 @@ angular.module('raportApp').controller('TahunAjaranCtrl', function($scope, $http
 		TahunAjaranService.create($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil ditambah');
-				window.location = "/#/tahun-ajaran-list";
+				window.location = "/#/tahun/ajaran/list";
 			},
 			function(errResponse){
 				$log.debug(errResponse);
@@ -130,7 +113,7 @@ angular.module('raportApp').controller('TahunAjaranCtrl', function($scope, $http
 			function(errResponse){
 				$log.debug(errResponse);
 				mdToast('Data tidak ditemukan');
-				window.location = "/#/tahun-ajaran-list";
+				window.location = "/#/tahun/ajaran/list";
 			}
 		);
 	};
@@ -143,7 +126,7 @@ angular.module('raportApp').controller('TahunAjaranCtrl', function($scope, $http
 		TahunAjaranService.update($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil diubah');
-				window.location = "/#/tahun-ajaran-list";
+				window.location = "/#/tahun/ajaran/list";
 			},
 			
 			function(errResponse){
@@ -211,7 +194,7 @@ angular.module('raportApp')
 									fullscreen : useFullScreen
 								});
 						$scope.ClickMeToRedirect = function() {
-							var url = "/#/tahun-ajaran-list";
+							var url = "/#/tahun/ajaran/list";
 							$log.log(url);
 							$window.location.href = url;
 						}

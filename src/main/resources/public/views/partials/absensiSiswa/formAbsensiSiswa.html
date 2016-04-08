@@ -1,51 +1,37 @@
 <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">Tambah Absensi Siswa</h1>
 </md-toolbar>
-
-<md-toolbar class="md-table-toolbar md-default">
-  <div class="md-toolbar-tools">
-    <span>Tambah Absensi Siswa</span>
-  </div>
-</md-toolbar>
-
+<br />
 <div ng-controller="AbsensiSiswaCtrl">
-	<div>
-    	<div layout="row">
+	<md-content layout-padding>
     		<form name="formSubmit" ng-submit="save()">
-    			<md-content>
-        			<md-datepicker ng-model="formData.tanggal" md-placeholder="Tanggal"></md-datepicker>
-     			</md-content><br />
-     			<md-input-container>
-        			<p>Jenis Absen: </p>
+    			<div layout-gt-xs="row" class="box">
+    				<md-input-container class="md-block" flex-gt-xs>
+            			<label>Alasan</label>
+            			<input ng-model="formData.alasan">
+          			</md-input-container>
+    				<md-datepicker ng-model="formData.tanggal" md-placeholder="Tanggal">
+          			</md-datepicker>
+		       </div>
+   				<md-content style="width:400px">
+        			<p>Jenis Absensi: <span class="radioValue">{{ formData.jenisAbsensi }}</span> </p>
         			<md-radio-group ng-model="formData.jenisAbsensi">
 	        			<md-radio-button name="jenisAbsensi" value="Sakit" class="md-primary">Sakit</md-radio-button>
 	        			<md-radio-button name="jenisAbsensi" value="Izin" class="md-primary">Izin</md-radio-button>
 	        			<md-radio-button name="jenisAbsensi" value="Alpha" class="md-primary">Alpha</md-radio-button>
 	        		</md-radio-group>
-      			</md-input-container><br />
-      			<md-input-container>
-        			<label>Alasan</label>
-        			<input type="text" ng-model="formData.alasan">
-     			</md-input-container><br />
-     			<md-input-container>
+     			</md-content>
+     			<md-content>
 			        <label>Tahun Ajaran</label>
 			        	<md-select ng-model="formData.tahunAjaran.id">
 			          		<md-option ng-repeat="ajaran in tahun_ajaran" value="{{ajaran.id}}">
 			            		{{ajaran.tahunAwal}}
 			          		</md-option>
 			        	</md-select>
-		      </md-input-container><br />
+		      </md-content><br />
 		      <md-input-container>
-			        <label>Nama Sekolah</label>
-			        	<md-select ng-model="formData.sekolah.id">
-			          		<md-option ng-repeat="sek in sekolah" value="{{sek.id}}">
-			            		{{sek.namaSekolah}}
-			          		</md-option>
-			        	</md-select>
-		      </md-input-container><br />
-		      <md-input-container>
-      			<input type="submit" class="md-button md-primary" value="Tambah" />
-      			</md-input-container>	
+      			<input type="submit" class="md-button md-raised md-primary" value="Tambah" />
+      			</md-input-container>
     		</form>
-    	</div>
-    </div>
+    </md-content>
+    

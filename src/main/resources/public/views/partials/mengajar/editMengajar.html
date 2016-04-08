@@ -1,0 +1,28 @@
+<md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Edit Pengajar</h1>
+</md-toolbar>
+
+
+	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+		<form name="formSubmit" ng-submit="update()">
+     		<md-input-container>
+        <label>Guru</label>
+        <md-select data-ng-model="formData.id.guruId">
+          <md-option ng-repeat="guru in guru_mengajar_mata_pelajaran track by $index" value="{{guru.id}}">
+            {{guru.nama}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+      <md-input-container>
+        <label>Mata Pelajaran</label>
+        <md-select data-ng-model="formData.id.mataPelajaranId">
+          <md-option ng-repeat="matpel in guru_mengajar_mata_pelajaran track by $index" value="{{matpel.id}}">
+            {{matpel.namaMatpel}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+   			<md-input-container>
+      			<input type="submit" class="md-button md-primary" value="Edit" />
+      		</md-input-container>	
+		</form>
+	</md-content>

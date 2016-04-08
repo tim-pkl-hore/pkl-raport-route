@@ -4,92 +4,58 @@
 		.controller('raportApp', function($scope, $location, $timeout, $mdSidenav, $log){
 			$scope.menu = [
 			               {
-			                 link : '/#/provinsi-list',
-			                 title: 'Provinsi',
-			                 icon: 'dashboard'
-			               },
-			               {
-			                 link : '/#/kabupaten-list',
-			                 title: 'Kabupaten',
-			                 icon: 'group'
-			               },
-			               {
-			                 link : '/#/kecamatan-list',
-			                 title: 'Kecamatan',
-			                 icon: 'message'
-			               },
-			               {
-				                 link : '/#/absensi-siswa-list',
-				                 title: 'Absensi Siswa',
+				                 link : '/#/absensi/siswa/list',
+				                 title: 'Data Absensi Siswa',
+				                 icon: 'assignment_turned_in',
+				                 title2: 'List Absensi Siswa'
+				           },
+				           {
+				                 link : '/#/guru/list',
+				                 title: 'Data Guru',
+				                 icon: 'people'
+				           },
+				           
+				           {
+				                 link : '/#/kelas/list',
+				                 title: 'Data Kelas',
+				                 icon: 'people'
+				           },
+				           {
+				                 link : '/#/kelas/siswa/list',
+				                 title: 'Data Kelas Siswa',
 				                 icon: 'group'
 				           },
 				           {
-				                 link : '/#/guru-list',
-				                 title: 'Guru',
+				                 link : '/#/guru/mengajar/list',
+				                 title: 'Data Pengajar',
 				                 icon: 'group'
 				           },
+				           				          
 				           {
-				                 link : '/#/hari-libur-list',
-				                 title: 'Hari Libur',
+				                 link : '/#/mata/pelajaran/list',
+				                 title: 'Data Mata Pelajaran',
 				                 icon: 'group'
 				           },
+				          
 				           {
-				                 link : '/#/kelas-list',
-				                 title: 'Kelas',
-				                 icon: 'group'
+				                 link : '/#/siswa/list',
+				                 title: 'Data Siswa',
+				                 icon: 'person'
 				           },
+				           
 				           {
-				                 link : '/#/kelas-siswa-list',
-				                 title: 'Kelas Siswa',
-				                 icon: 'group'
+				                 link : '/#/penilaian/list',
+				                 title: 'Penilaian Siswa',
+				                 icon: 'spellcheck'
 				           },
+				           
 				           {
-				                 link : '/#/kompetensi-dasar-list',
-				                 title: 'Kompetensi Dasar',
-				                 icon: 'group'
-				           },
-				           {
-				                 link : '/#/kompetensi-inti-list',
-				                 title: 'Kompetensi Inti',
-				                 icon: 'group'
-				           },
-				           {
-				                 link : '/#/matapelajaran-list',
-				                 title: 'Mata Pelajaran',
-				                 icon: 'group'
-				           },
-				           {
-				                 link : '/#/materi-pokok-list',
-				                 title: 'Materi Pokok',
-				                 icon: 'group'
-				           },
-				           {
-				                 link : '/#/sekolah-list',
-				                 title: 'Sekolah',
-				                 icon: 'group'
-				           },
-				           {
-				                 link : '/#/siswa-list',
-				                 title: 'Siswa',
-				                 icon: 'group'
-				           },
-				           {
-				                 link : '/#/tahun-ajaran-list',
-				                 title: 'Tahun Ajaran',
-				                 icon: 'group'
-				           },
-				           {
-				                 link : '/#/tingkat-list',
-				                 title: 'Tingkat',
-				                 icon: 'group'
-				           },
-				           {
-				                 link : '/#/user-list',
+				                 link : '/#/user/list',
 				                 title: 'User',
 				                 icon: 'group'
 				           },
 				           {
-				                 link : '/#/user-role-list',
+				                 link : '/#/user/role/list',
 				                 title: 'Role',
 				                 icon: 'group'
 				           },

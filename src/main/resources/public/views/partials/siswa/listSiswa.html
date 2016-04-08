@@ -2,36 +2,29 @@
         <h1 class="md-toolbar-tools">List Siswa</h1>
 </md-toolbar>
 <br />
+<md-content layout-padding>
 <md-table-container>
+	<md-input-container class="md-block" md-no-float> 
+			<input type="search" ng-model="search" ng-change="searchField()" placeholder="Search" />
+		</md-input-container>
 	<table md-table md-row-select border="1" ng-model="siswa" md-progress="promise">
 		 <thead md-head md-order="query.order" md-on-reorder="onReorder">
 			<tr md-row>
 				<th md-coloumn>Nama Siswa</th>
 				<th md-coloumn>Tanggal Lahir</th>
-				<th md-coloumn>Jenis Kelamin</th>
-				<th md-coloumn>Nama Bapak</th>
-				<th md-coloumn>Email Bapak</th>
-				<th md-coloumn>Nama Ibu</th>
-				<th md-coloumn>Email Ibu</th>
 				<th md-coloumn>Diterima Sejak</th>
-				<th md-coloumn>Nama Sekolah</th>
 				<th md-coloumn>Aksi</th>
 			</tr>
 		</thead>
 		<tbody md-body align="">
 			<tr md-row ng-repeat="item in items">
-				<th md-cell>{{item.namaSiswa}}</th>
+				<th href="/#/siswa/detail/{{item.id}}" md-cell>{{item.namaSiswa}}</th>
 				<th md-cell>{{item.tanggalLahir}}</th>
-				<th md-cell>{{item.jenisKelamin}}</th>
-				<th md-cell>{{item.namaBapak}}</th>
-				<th md-cell>{{item.emailBapak}}</th>
-				<th md-cell>{{item.namaIbu}}</th>
-				<th md-cell>{{item.emailIbu}}</th>
 				<th md-cell>{{item.diterimaSejak}}</th>
-				<th md-cell>{{item.sekolah.namaSekolah}}</th>
+				
 				<th md-cell>
-					<a href="/#/siswa-edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
-		 			<a href="/#/siswa-detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
+					<a href="/#/siswa/edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href="/#/siswa/detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
 		 			<a href ng-click="showConfirm(item.id)"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
 				</th>
 			</tr>
@@ -39,8 +32,9 @@
 	</table>
 </md-table-container>
 <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
+</md-content>
 <div layout="row" layout-wrap layout-margin layout-align="end end">
-		<a href="/#/siswa-form" md-button class="md-fab md-primary md-raised center">
+		<a href="/#/siswa/form" md-button class="md-fab md-primary md-raised center">
       		<ng-md-icon icon="add" style="fill: #abcdef" size="25"></ng-md-icon>
     	</a>
     </div>

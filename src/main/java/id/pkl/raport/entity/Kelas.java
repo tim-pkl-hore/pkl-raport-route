@@ -11,39 +11,33 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 @Entity
 @Table(name="kelas")
-public class Kelas {
+public class Kelas{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	private Long id;
 	
 	@NotNull
-	@Column(name="tingkat")
-	private Integer tingkat;
-	
-	@NotBlank
-	@Column(name="grup_kelas")
-	private String grupKelas;
-	
-	@NotBlank
-	@Column(name="jurusan")
-	private String jurusan;
-	
 	@ManyToOne
-	@JoinColumn(name="sekolah_id", referencedColumnName="id")
-	private Sekolah sekolah;
+	@JoinColumn(name="tingkat", referencedColumnName="id")
+	private Tingkat tingkat;
 	
+	@NotNull
 	@ManyToOne
-	@JoinColumn(name="tahun_ajaran_id", referencedColumnName="id")
-	private TahunAjaran tahunAjaran;
+	@JoinColumn(name="grup", referencedColumnName="id")
+	private GrupKelas grupKelas;
 	
+	@NotNull
 	@OneToOne
-	@JoinColumn(name="wali_kelas_id", referencedColumnName="id")
+	@JoinColumn(name="wali_kelas", referencedColumnName="id")
 	private Guru waliKelas;
+	
+	@NotNull
+	@OneToOne
+	@JoinColumn(name="tahun_ajaran", referencedColumnName="id")
+	private TahunAjaran tahunAjaran;
 
 	public Long getId() {
 		return id;
@@ -53,44 +47,20 @@ public class Kelas {
 		this.id = id;
 	}
 
-	public Integer getTingkat() {
+	public Tingkat getTingkat() {
 		return tingkat;
 	}
 
-	public void setTingkat(Integer tingkat) {
+	public void setTingkat(Tingkat tingkat) {
 		this.tingkat = tingkat;
 	}
 
-	public String getGrupKelas() {
+	public GrupKelas getGrupKelas() {
 		return grupKelas;
 	}
 
-	public void setGrupKelas(String grupKelas) {
+	public void setGrupKelas(GrupKelas grupKelas) {
 		this.grupKelas = grupKelas;
-	}
-
-	public String getJurusan() {
-		return jurusan;
-	}
-
-	public void setJurusan(String jurusan) {
-		this.jurusan = jurusan;
-	}
-
-	public Sekolah getSekolah() {
-		return sekolah;
-	}
-
-	public void setSekolah(Sekolah sekolah) {
-		this.sekolah = sekolah;
-	}
-
-	public TahunAjaran getTahunAjaran() {
-		return tahunAjaran;
-	}
-
-	public void setTahunAjaran(TahunAjaran tahunAjaran) {
-		this.tahunAjaran = tahunAjaran;
 	}
 
 	public Guru getWaliKelas() {
@@ -100,5 +70,12 @@ public class Kelas {
 	public void setWaliKelas(Guru waliKelas) {
 		this.waliKelas = waliKelas;
 	}
-	
+
+	public TahunAjaran getTahunAjaran() {
+		return tahunAjaran;
+	}
+
+	public void setTahunAjaran(TahunAjaran tahunAjaran) {
+		this.tahunAjaran = tahunAjaran;
+	}
 }

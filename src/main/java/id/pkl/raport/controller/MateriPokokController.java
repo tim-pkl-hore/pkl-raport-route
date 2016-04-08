@@ -17,7 +17,7 @@ import id.pkl.raport.entity.MateriPokok;
 import id.pkl.raport.repository.MateriPokokRepository;
 
 @RestController
-@RequestMapping(value="/materi-pokok")
+@RequestMapping(value="/materi/pokok")
 public class MateriPokokController {
 	@Autowired
 	private MateriPokokRepository materiPokokRepository;
@@ -59,7 +59,6 @@ public class MateriPokokController {
 		}
 		
 		currentMateriPokok.setIndikator(materiPokok.getIndikator());
-		currentMateriPokok.setKompetensiDasar(materiPokok.getKompetensiDasar());
 		
 		materiPokokRepository.save(currentMateriPokok);
 		return new ResponseEntity<MateriPokok>(currentMateriPokok, HttpStatus.OK);

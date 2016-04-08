@@ -1,61 +1,93 @@
 <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">Tambah Siswa</h1>
 </md-toolbar>
-
+<md-content layout-padding>
 <div ng-controller="SiswaCtrl">
-<div>
-	<div layout="row">
+	<md-content layout-padding class="md-no-momentum">
 		<form ng-submit="save()">
-			<md-input-container>
-        		<label>Nama Siswa</label>
-        		<input type="text" ng-model="formData.namaSiswa">
+			<div layout-gt-sm="row">
+				<md-input-container>
+	        		<label>NISN</label>
+	        		<input type="number" ng-model="formData.nisn">
+	     		</md-input-container>
+				<md-input-container>
+	        		<label>Nama Siswa (Lengkap)</label>
+	        		<input type="text" ng-model="formData.namaSiswa">
+	     		</md-input-container>
+	     		<md-input-container>
+	        		<label>Tempat Lahir</label>
+	        		<input type="text" ng-model="formData.tempatLahir">
+	     		</md-input-container>
+	        		 <md-datepicker ng-model="formData.tanggalLahir" md-placeholder="Tanggal Lahir"></md-datepicker>
+		    </div>
+		    <md-content>
+	        	<p>Jenis Kelamin</p>
+	        		<md-radio-group ng-model="formData.jenisKelamin">
+		        		<md-radio-button name="jenisKelamin" value="Laki_laki" class="md-primary">Laki-Laki</md-radio-button>
+		        		<md-radio-button name="jenisKelamin" value="Perempuan" class="md-primary">Perempuan</md-radio-button>
+		        	</md-radio-group>
+		    </md-content>
+	        <md-input-container>
+        		<label>Alamat Siswa</label>
+        		<input type="text" ng-model="formData.alamatSiswa">
      		</md-input-container>
-     		<md-content>
-        		 <md-datepicker ng-model="formData.tanggalLahir" md-placeholder="Tanggal Lahir"></md-datepicker>
-     		</md-content>
      		<md-input-container>
-        		<p>Jenis Kelamin </p>
-        		<md-radio-group ng-model="formData.jenisKelamin">
-        			<md-radio-button name="jenisKelamin" ng-value="Laki_Laki">Laki-Laki</md-radio-button>
-        			<md-radio-button name="jenisKelamin" ng-value="Perempuan">Perempuan</md-radio-button>
-        		</md-radio-group>
+        		<label>No. HP Siswa</label>
+        		<input type="number" ng-model="formData.telpSiswa">
+     		</md-input-container>
+     		<md-input-container>
+        		<label>No. Ijazah</label>
+        		<input type="text" ng-model="formData.noIjazah">
+     		</md-input-container>
+     		<md-input-container>
+        		<label>Tahun</label>
+        		<input type="text" ng-model="formData.tahunSekolahAsal">
+     		</md-input-container>
       		</md-input-container>
      		<md-input-container>
-        		<md-select ng-model="formData.jenisKelamin" placeholder="Jenis Kelamin">
-          			<md-option ng-value="Laki_Laki">Laki-Laki</option>
-					<md-option ng-value="Perempuan">Perempuan</option>
-        		</md-select>
-     		</md-input-container>
-     		<md-input-container>
-        		<label>Nama Bapak</label>
-        		<input type="text" ng-model="formData.namaBapak">
-     		</md-input-container>
-     		<md-input-container>
-        		<label>Email Bapak</label>
-        		<input type="text" ng-model="formData.emailBapak">
+        		<label>Nama Ayah</label>
+        		<input type="text" ng-model="formData.namaAyah">
      		</md-input-container>
      		<md-input-container>
         		<label>Nama Ibu</label>
         		<input type="text" ng-model="formData.namaIbu">
      		</md-input-container>
      		<md-input-container>
-        		<label>Email Ibu</label>
-        		<input type="text" ng-model="formData.emailIbu">
+        		<label>Alamat Orang Tua</label>
+        		<input type="text" ng-model="formData.alamatOrtu">
      		</md-input-container>
+     		<md-input-container>
+        		<label>No. HP Orang Tua</label>
+        		<input type="text" ng-model="formData.telpOrtu">
+     		</md-input-container>
+     		<md-input-container>
+        		<label>Pekerjaan Ayah</label>
+        		<input type="text" ng-model="formData.pekerjaanAyah">
+     		</md-input-container>
+     		<md-input-container>
+        		<label>Pekerjaan Ibu</label>
+        		<input type="text" ng-model="formData.pekerjaanIbu">
+     		</md-input-container>
+     		<md-input-container>
+        		<label>Nama Wali</label>
+        		<input type="text" ng-model="formData.namaWali">
+     		</md-input-container>
+     		<md-input-container>
+        		<label>No. HP Wali</label>
+        		<input type="text" ng-model="formData.alamatWali">
+     		</md-input-container>
+     		<md-input-container>
+        		<label>Pekerjaan Wali</label>
+        		<input type="text" ng-model="formData.pekerjaanWali">
+     		</md-input-container>
+     		
      		<md-content>
-        		 <md-datepicker ng-model="formData.tanggalLahir" md-placeholder="Diterima Sejak"></md-datepicker>
+        		 <md-datepicker ng-model="formData.diterimaSejak" md-placeholder="Diterima Sejak"></md-datepicker>
      		</md-content>
      		<md-input-container>
-        		<label>Nama Sekolah</label>
-        		<md-select ng-model="formData.sekolah.id">
-          		<md-option ng-repeat="sek in sekolah track by $index" value="{{sek.id}}">
-            		{{sek.namaSekolah}}
-          		</md-option>
-        </md-select>
-      </md-input-container>
-     		<md-input-container>
-      			<input type="submit" class="md-button md-primary" value="Tambah" />
+      			<input type="submit" class="md-button md-raised md-primary" value="Tambah" />
       		</md-input-container>
 		</form>
-	</div>
+	</md-content>
 </div>
+</md-content>

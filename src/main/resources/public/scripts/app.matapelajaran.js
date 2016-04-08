@@ -1,11 +1,11 @@
 angular.module('raportApp').config(function($routeProvider) {
-	$routeProvider.when('/matapelajaran-list', {
+	$routeProvider.when('/mata/pelajaran/list', {
 		templateUrl : 'views/partials/mataPelajaran/listMataPelajaran.html',
 		controller : 'MataPelajaranCtrl'
-	}).when('/matapelajaran-form', {
+	}).when('/mata/pelajaran/form', {
 		templateUrl : 'views/partials/mataPelajaran/formMataPelajaran.html',
 		controller : 'MataPelajaranCtrl'
-	}).when('/matapelajaran-detail/:id', {
+	}).when('/mata/pelajaran/detail/:id', {
 		templateUrl : 'views/partials/mataPelajaran/detailMataPelajaran.html',
 		controller : 'MataPelajaranCtrl',
 		resolve : {
@@ -13,7 +13,7 @@ angular.module('raportApp').config(function($routeProvider) {
 				return $route.current.params.id;
 			}
 		}
-	}).when('/matapelajaran-edit/:id', {
+	}).when('/mata/pelajaran/edit/:id', {
 		templateUrl : 'views/partials/mataPelajaran/editMataPelajaran.html',
 		controller : 'MataPelajaranCtrl'
 	});
@@ -22,6 +22,7 @@ angular.module('raportApp').config(function($routeProvider) {
 
 angular.module('raportApp').controller('MataPelajaranCtrl', function($scope, $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, MataPelajaranService){
 	$scope.formData = {};
+	$scope.search = "";
 	
 	/*
 	 * Template toast
@@ -41,7 +42,7 @@ angular.module('raportApp').controller('MataPelajaranCtrl', function($scope, $ht
     
     $scope.items = [];
 
-	var url = '/matapelajaran'
+	var url = '/mata/pelajaran'
 
 	$scope.query = {
 		order : '',
@@ -56,7 +57,8 @@ angular.module('raportApp').controller('MataPelajaranCtrl', function($scope, $ht
 				method : "GET",
 				params : {
 					page : page - 1,
-					size : limit
+					size : limit,
+					search : $scope.search
 				}
 			}
 		});
@@ -85,6 +87,14 @@ angular.module('raportApp').controller('MataPelajaranCtrl', function($scope, $ht
 	}
 	
 	/*
+	 * Search
+	 */
+	
+	$scope.searchField = function(){
+		getPage(1, 5)
+	};
+	
+	/*
 	 * Create Data
 	 */
 	
@@ -92,7 +102,7 @@ angular.module('raportApp').controller('MataPelajaranCtrl', function($scope, $ht
 		MataPelajaranService.create($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil ditambah');
-				window.location = "/#/matapelajaran-list";
+				window.location = "/#/mata/pelajaran/list";
 			},
 			function(errResponse){
 				$log.debug(errResponse);
@@ -113,7 +123,7 @@ angular.module('raportApp').controller('MataPelajaranCtrl', function($scope, $ht
 			function(errResponse){
 				$log.debug(errResponse);
 				mdToast('Data tidak ditemukan');
-				window.location = "/#/matapelajaran-list";
+				window.location = "/#/mata/pelajaran/list";
 			}
 		);
 	};
@@ -126,7 +136,7 @@ angular.module('raportApp').controller('MataPelajaranCtrl', function($scope, $ht
 		MataPelajaranService.update($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil diubah');
-				window.location = "/#/matapelajaran-list";
+				window.location = "/#/mata/pelajaran/list";
 			},
 			
 			function(errResponse){
@@ -197,7 +207,7 @@ angular.module('raportApp')
 									fullscreen : useFullScreen
 								});
 						$scope.ClickMeToRedirect = function() {
-							var url = "/#/matapelajaran-list";
+							var url = "/#/mata/pelajaran/list";
 							$log.log(url);
 							$window.location.href = url;
 						}

@@ -39,6 +39,25 @@ angular.module('raportApp')
     };
     
     /*
+     * Get Iterable
+     */
+    $scope.guru_mengajar_mata_pelajaran = [];
+    var request = {
+    		url : '/guru/mengajar/all',
+    		method : 'GET'
+    	};
+    	var successHandler = function(response) {
+    		$log.debug("Response data dari server : \n"
+    				+ angular.toJson(response.data, true));
+    		$scope.guru_mengajar_mata_pelajaran = response.data;
+    	};
+    	var errorHandler = function(errors) {
+    		$log.error(angular.toJson(errors, true));
+    	};
+    	$http(request).then(successHandler, errorHandler);
+    
+    
+    /*
      * List Data
      */
     
@@ -57,7 +76,8 @@ angular.module('raportApp')
 				method : "GET",
 				params : {
 					page : page - 1,
-					size : limit
+					size : limit,
+					search : $scope.search
 				}
 			}
 		});

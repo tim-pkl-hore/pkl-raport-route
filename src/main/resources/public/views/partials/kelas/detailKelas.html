@@ -1,14 +1,35 @@
 <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">Detail Kelas</h1>
 </md-toolbar>
-<md-content>
-	<md-list>
-		<md-subheader class="md-no-sticky">Detail Kelas</md-subheader>
-		<md-list-item class="md-3-line">
-			 <div class="md-list-item-text" layout="column">
-			 	ID Kelas : {{formData.id}} <br />
-				Tingkat Kelas: {{formData.tingkat}} <br />
-			 </div>
-		</md-list-item>
-	</md-list>
-</md-content>
+
+<div ng-controller="KelasCtrl" layout="column" ng-cloak class="md-inline-form">
+	<div layout-align="center start" md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+      <md-content class="md-whiteframe-11dp" flex="90">
+        <div layout-margin>
+        	<md-table-container>
+				<table md-table md-row-select border="1">
+					<tbody md-body>
+						<tr md-row>
+							<th md-coloumn>Kelas</th>
+							<th md-coloumn>{{formData.tingkat.tingkat}}{{formData.grupKelas.grupKelas}}</td>
+						</tr>
+					</tbody>
+					<tbody md-body>
+						<tr md-row>
+							<th md-coloumn>Tahun Ajaran</th>
+							<th md-coloumn>{{formData.tahunAjaran.tahunAwal}} / {{formData.tahunAjaran.tahunAkhir}}</td>
+						</tr>
+					</tbody>
+					<tbody md-body>
+						<tr md-row>
+							<th md-coloumn>Wali Kelas</th>
+							<th md-coloumn>{{formData.waliKelas.nama}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+        </div>
+      </md-content>
+</div>
+
+	

@@ -103,10 +103,13 @@ public class GuruController {
 	}
 	
 	@RequestMapping(value="/mengajar", method=RequestMethod.GET)
-	public Page<GuruMengajarMataPelajaran> listGuruMengajar(Pageable pageable)
+	public Page<GuruMengajarMataPelajaran> listGuruMengajar(@RequestParam(name="search", required = false) String search, Pageable pageable)
 	{
-		return guruMengajarRepository.findAll(pageable);
-		//return guruMengajarRepository.findBySearch(search, pageable);
+		if(search.equals("")){
+			return guruMengajarRepository.findAll(pageable);
+		}
+		
+		return guruMengajarRepository.findBySearch(search, pageable);
 	}
 	
 	@RequestMapping(value="/mengajar/{id}", method=RequestMethod.PUT)

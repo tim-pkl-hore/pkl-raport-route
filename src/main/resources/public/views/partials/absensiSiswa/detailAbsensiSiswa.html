@@ -1,34 +1,41 @@
 <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Detail Absensi Siswa</h1>
+        <h1 class="md-toolbar-tools">Detail Absensi</h1>
 </md-toolbar>
-<br />
-<md-content layout-padding>
-	<md-table-container>
-		<table md-table md-row-select border="1">
-			<tbody md-body>
-				<tr md-row>
-					<th md-coloumn>Jenis Absensi</th>
-					<th md-coloumn>{{formData.id}}</td>
-				</tr>
-			</tbody>
-			<tbody md-body>
-				<tr md-row>
-					<th md-coloumn>Tanggal</th>
-					<th md-coloumn>{{formData.tanggal}}</td>
-				</tr>
-			</tbody>
-			<tbody md-body>
-				<tr md-row>
-					<th md-coloumn>Alasan</th>
-					<th md-coloumn>{{formData.alasan}}</td>
-				</tr>
-			</tbody>
-			<tbody md-body>
-				<tr md-row>
-					<th md-coloumn>Tahun Ajaran</th>
-					<th md-coloumn>{{formData.tahunAjaran.tahunAwal}}/{{formData.tahunAjaran.tahunAkhir}}</td>
-				</tr>
-			</tbody>
-		</table>
-	</md-table-container>
-</md-content>
+
+<div ng-controller="AbsensiSiswaCtrl" layout="column" ng-cloak class="md-inline-form">
+	<div layout-align="center start" md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+      <md-content class="md-whiteframe-11dp" flex="90">
+        <div layout-margin>
+        	<md-table-container>
+				<table md-table md-row-select border="1">
+					<tbody md-body>
+						<tr md-row>
+							<th md-coloumn>Alasan</th>
+							<th md-coloumn>{{formData.alasan}}</td>
+						</tr>
+					</tbody>
+					<tbody md-body>
+						<tr md-row>
+							<th md-coloumn>Tanggal</th>
+							<th md-coloumn>{{formData.tanggal}}</td>
+						</tr>
+					</tbody>
+					<tbody md-body>
+						<tr md-row>
+							<th md-coloumn>Jenis Absensi</th>
+							<th md-coloumn>{{formData.jenisAbsensi}}</td>
+						</tr>
+					</tbody>
+					<tbody md-body>
+						<tr md-row>
+							<th md-coloumn>Tahun Ajaran</th>
+							<th md-coloumn>{{formData.tahunAjaran.tahunAwal}}/{{formData.tahunAjaran.tahunAkhir}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+        </div>
+      </md-content>
+</div>
+
+	

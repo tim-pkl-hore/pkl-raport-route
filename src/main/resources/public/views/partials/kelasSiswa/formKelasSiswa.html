@@ -1,12 +1,13 @@
-<md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Tambah Kelas Siswa</h1>
-</md-toolbar>
-
 <div ng-controller="KelasSiswaCtrl">
-	<div>
-		<div layout="row">
-			<form name="formSubmit" ng-submit="save()">
-				<md-input-container>
+	<div layout-align="center start" md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+		<md-content class="md-whiteframe-11dp" flex="90">
+			<div layout-margin>
+			<md-toolbar class="md-theme-indigo">
+        		<h1 class="md-toolbar-tools">Tambah Kelas Siswa</h1>
+			</md-toolbar>	
+				<form name="formSubmit" ng-submit="save()">
+				<div layout-gt-sm="row">
+				<md-input-container class="md-block" flex-gt-sm>
 	      			<label>Kelas</label>
 	        		<md-select ng-model="formData.kelas.id">
 	          			<md-option ng-repeat="kel in kelas" value="{{kel.id}}">
@@ -14,7 +15,9 @@
 	         			</md-option>
 	        		</md-select>
 	      		</md-input-container>
-	      		<md-input-container>
+	      		</div>
+	      		<div layout-gt-sm="row">
+	      		<md-input-container class="md-block" flex-gt-sm>
 	      			<label>Siswa</label>
 	        		<md-select ng-model="formData.siswa.id">
 	          			<md-option ng-repeat="sis in siswa" value="{{sis.id}}">
@@ -22,10 +25,14 @@
 	         			</md-option>
 	        		</md-select>
 	      		</md-input-container>
-	      		<md-input-container>
-	      			<input type="submit" class="md-button md-primary" value="Tambah" />
-	      		</md-input-container>
+	      		</div>
+	      		<div layout="row" layout-wrap layout-margin layout-align="end end">
+        			<md-input-container>
+        				<input type="submit" class="md-button md-raised md-primary"  value="Tambah" />
+      				</md-input-container>
+      			</div>
 			</form>
-		</div>
+			</div>
+		</md-content>
 	</div>
 </div>

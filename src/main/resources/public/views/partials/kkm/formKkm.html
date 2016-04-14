@@ -1,0 +1,44 @@
+<div ng-controller="KkmCtrl">
+	<div layout-align="center start" md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+		<md-content class="md-whiteframe-11dp" flex="90">
+			<div layout-margin>
+			<md-toolbar class="md-theme-indigo">
+        		<h1 class="md-toolbar-tools">Tambah KKM</h1>
+			</md-toolbar>
+				<form name="formSubmit" ng-submit="save()">
+				<div layout-gt-sm="row">
+					<md-input-container class="md-block" flex-gt-sm>
+		      			<label>Tingkat</label>
+		        		<md-select ng-model="formData.tingkat.id">
+		          			<md-option ng-repeat="tingkat in tingkat track by $index" value="{{tingkat.id}}">
+		            			{{tingkat.tingkat}}
+		         			</md-option>
+		        		</md-select>
+	      			</md-input-container>
+				</div>
+				<div layout-gt-sm="row">
+	      		<md-input-container class="md-block" flex-gt-sm>
+	      			<label>Mata Pelajaran</label>
+	        		<md-select ng-model="formData.mataPelajaran.id">
+	          			<md-option ng-repeat="matpel in mata_pelajaran track by $index" value="{{matpel.id}}">
+	            			{{matpel.namaMatpel}}
+	         			</md-option>
+	        		</md-select>
+	      		</md-input-container>
+	      		</div>
+	      		<div layout-gt-sm="row">
+	      		<md-input-container class="md-block" flex-gt-sm>
+	      			<label>KKM (1-100)</label>
+	        		<input type="number" ng-model="formData.kkm" maxlength="2">
+	      		</md-input-container>
+	      		</div>
+					<div layout="row" layout-wrap layout-margin layout-align="end end">
+        				<md-input-container>
+        					<input type="submit" class="md-button md-raised md-primary"  value="Tambah" />
+      					</md-input-container>
+      				</div>
+				</form>
+			</div>
+		</md-content>
+	</div>
+</div>

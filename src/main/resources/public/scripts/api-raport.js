@@ -57,7 +57,16 @@ angular.module('raportApp')
 		})
 	})
 	.factory('KelasSiswaService', function($resource){
-		return $resource('/kelas/siswa/:id', {}, {
+		return $resource('/kelas/siswa/:id/:other', {}, {
+			get: {method: 'GET'},
+			getArray: {method: 'GET', isArray : true},
+			create: {method: 'POST'},
+			update: {method: 'PUT', params: {id: '@id'}},
+			delete: {method: 'DELETE', params: {id: '@id'}}
+		})
+	})
+	.factory('KkmService', function($resource){
+		return $resource('/kkm/:id', {}, {
 			get: {method: 'GET'},
 			create: {method: 'POST'},
 			update: {method: 'PUT', params: {id: '@id'}},

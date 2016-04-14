@@ -1,18 +1,22 @@
-<md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Edit Kelas</h1>
-</md-toolbar>
-
-	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-		<form name="formSubmit" ng-submit="update()">
-			</md-input-container>
-	      			<label>Tingkat</label>
-	        		<md-select ng-model="formData.tingkat.id">
-	          			<md-option ng-repeat="tingkat in tingkat track by $index" value="{{tingkat.id}}">
-	            			{{tingkat.tingkat}}
-	         			</md-option>
-	        		</md-select>
-	      		</md-input-container>
-	      		</md-input-container>
+<div layout-align="center start" md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+		<md-content class="md-whiteframe-11dp" flex="90">
+			<div layout-margin>
+			<md-toolbar class="md-theme-indigo">
+        		<h1 class="md-toolbar-tools">Edit Kelas</h1>
+			</md-toolbar>
+				<form name="formSubmit" ng-submit="simpan()">
+				<div layout-gt-sm="row">
+					<md-input-container class="md-block" flex-gt-sm>
+		      			<label>Tingkat</label>
+		        		<md-select ng-model="formData.tingkat.id">
+		          			<md-option ng-repeat="tingkat in tingkat track by $index" value="{{tingkat.id}}">
+		            			{{tingkat.tingkat}}
+		         			</md-option>
+		        		</md-select>
+	      			</md-input-container>
+				</div>
+				<div layout-gt-sm="row">
+	      		<md-input-container class="md-block" flex-gt-sm>
 	      			<label>Grup Kelas</label>
 	        		<md-select ng-model="formData.grupKelas.id">
 	          			<md-option ng-repeat="grup in grup_kelas track by $index" value="{{grup.id}}">
@@ -20,15 +24,19 @@
 	         			</md-option>
 	        		</md-select>
 	      		</md-input-container>
-	     		<md-input-container>
+	      		</div>
+	      		<div layout-gt-sm="row">
+	     		<md-input-container class="md-block" flex-gt-sm>
 	      			<label>Tahun Ajaran</label>
 	        		<md-select ng-model="formData.tahunAjaran.id">
 	          			<md-option ng-repeat="ajaran in tahun_ajaran track by $index" value="{{ajaran.id}}">
-	            			{{ajaran.tahunAwal}}
+	            			{{ajaran.tahunAwal}}/{{ajaran.tahunAkhir}}
 	         			</md-option>
 	        		</md-select>
 	      		</md-input-container>
-	      		<md-input-container>
+	      		</div>
+	      		<div layout-gt-sm="row">
+	      		<md-input-container class="md-block" flex-gt-sm>
 	      			<label>Wali Kelas</label>
 	        		<md-select ng-model="formData.waliKelas.id">
 	          			<md-option ng-repeat="wali in guru track by $index" value="{{wali.id}}">
@@ -36,8 +44,13 @@
 	         			</md-option>
 	        		</md-select>
 	      		</md-input-container>
-   			<md-input-container>
-      			<input type="submit" class="md-button md-primary" value="Edit" />
-      		</md-input-container>	
-		</form>
-	</md-content>
+	      		</div>
+					<div layout="row" layout-wrap layout-margin layout-align="end end">
+        				<md-input-container>
+        					<input type="submit" class="md-button md-raised md-primary"  value="Tambah" />
+      					</md-input-container>
+      				</div>
+				</form>
+			</div>
+		</md-content>
+	</div>

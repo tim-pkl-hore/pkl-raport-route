@@ -18,11 +18,11 @@ public class TahunAjaran {
 	
 	@NotNull
 	@Column(name="tahun_awal", unique = true)
-	private Integer tahunAwal;
+	private String tahunAwal;
 	
 	@NotNull
 	@Column(name="tahun_akhir", unique = true)
-	private Integer tahunAkhir;
+	private String tahunAkhir;
 	
 	@Column(name="current")
 	private Boolean current;
@@ -37,19 +37,19 @@ public class TahunAjaran {
 		this.id = id;
 	}
 
-	public Integer getTahunAwal() {
+	public String getTahunAwal() {
 		return tahunAwal;
 	}
 
-	public void setTahunAwal(Integer tahunAwal) {
+	public void setTahunAwal(String tahunAwal) {
 		this.tahunAwal = tahunAwal;
 	}
 
-	public Integer getTahunAkhir() {
+	public String getTahunAkhir() {
 		return tahunAkhir;
 	}
 
-	public void setTahunAkhir(Integer tahunAkhir) {
+	public void setTahunAkhir(String tahunAkhir) {
 		this.tahunAkhir = tahunAkhir;
 	}
 

@@ -1,0 +1,30 @@
+<div ng-controller="KkmCtrl">
+	<div layout-align="center start" md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+		<md-content class="md-whiteframe-11dp" flex="90">
+			<div layout-margin>
+			<md-toolbar class="md-theme-indigo">
+        		<h1 class="md-toolbar-tools">Edit KKM</h1>
+			</md-toolbar>
+				<form name="formSubmit" ng-submit="update()">
+				<div layout-gt-sm="row">
+					<h4>Tingkat : {{formData.tingkat.tingkat}}</h4>
+				</div>
+				<div layout-gt-sm="row">
+	      		<h4>Mata Pelajaran : {{formData.mataPelajaran.namaMatpel}}</h4>
+	      		</div>
+	      		<div layout-gt-sm="row">
+	      		<md-input-container class="md-block" flex-gt-sm>
+	      			<label>KKM (1-100)</label>
+	        		<input type="number" ng-model="formData.kkm" maxlength="2">
+	      		</md-input-container>
+	      		</div>
+					<div layout="row" layout-wrap layout-margin layout-align="end end">
+        				<md-input-container>
+        					<input type="submit" class="md-button md-raised md-primary"  value="Edit" />
+      					</md-input-container>
+      				</div>
+				</form>
+			</div>
+		</md-content>
+	</div>
+</div>

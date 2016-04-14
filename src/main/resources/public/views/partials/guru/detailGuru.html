@@ -1,12 +1,47 @@
 <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Detail Kelas</h1>
+        <h1 class="md-toolbar-tools">Detail Guru</h1>
 </md-toolbar>
-<md-content>
-	<md-list>
-		<md-list-item class="md-3-line">
-			 <div class="md-list-item-text" layout="column">
-			
-			 </div>
-		</md-list-item>
-	</md-list>
-</md-content>
+
+<div ng-controller="GuruCtrl" layout="column" ng-cloak class="md-inline-form">
+	<div layout-align="center start" md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+      <md-content class="md-whiteframe-11dp" flex="90">
+        <div layout-margin>
+        	<md-table-container>
+				<table md-table md-row-select border="1">
+					<tbody md-body>
+						<tr md-row>
+							<th md-coloumn>NIP</th>
+							<th md-coloumn>{{formData.nip}}</td>
+						</tr>
+					</tbody>
+					<tbody md-body>
+						<tr md-row>
+							<th md-coloumn>Nama</th>
+							<th md-coloumn>{{formData.nama}}</td>
+						</tr>
+					</tbody>
+					<tbody md-body>
+						<tr md-row>
+							<th md-coloumn>Email</th>
+							<th md-coloumn>{{formData.email}}</td>
+						</tr>
+					</tbody>
+					<tbody md-body>
+						<tr md-row>
+							<th md-coloumn>No. HP</th>
+							<th md-coloumn>{{formData.telp}}</td>
+						</tr>
+					</tbody>
+					<tbody md-body>
+						<tr md-row>
+							<th md-coloumn>Alamat</th>
+							<th md-coloumn>{{formData.alamat}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+        </div>
+      </md-content>
+</div>
+
+	

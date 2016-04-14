@@ -38,9 +38,12 @@ public class KelasController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public Page<Kelas> listKelas(Pageable pageable)
+	public Page<Kelas> listKelas(@RequestParam(name="search", required = false) String search, Pageable pageable)
 	{
+		if(search.equals("")){
 			return kelasRepository.findAll(pageable);
+		}
+		return kelasRepository.findBySearch(search, pageable);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)

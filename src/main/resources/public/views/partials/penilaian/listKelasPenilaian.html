@@ -16,14 +16,14 @@
 		</thead>
 		<tbody md-body>
 			<tr md-row ng-repeat="item in items">
-				<th md-cell>{{item.tingkat.tingkat}}{{item.grupKelas.grupKelas}}</th>
-				<th md-cell>{{item.tahunAjaran.tahunAwal}}/{{item.tahunAjaran.tahunAkhir}}</th>
-				<th md-cell>{{item.waliKelas.nama}}</th>
-				<th md-cell>
+				<td md-coloumn align="center">{{item.tingkat.tingkat}}{{item.grupKelas.grupKelas}}</td>
+				<td md-coloumn align="center">{{item.tahunAjaran.tahunAwal}}/{{item.tahunAjaran.tahunAkhir}}</td>
+				<td md-coloumn align="center">{{item.waliKelas.nama}}</td>
+				<td md-coloumn align="center">
 		 			
-		 			<a href="/#/penilaian/list/detail/{{item.id}}" class="md-button md-raised md-primary">Detail</a> 
+		 			<a href="/#/penilaian/list/kelas/{{item.id}}" class="md-button md-raised md-primary">Detail</a> 
 		 			
-		 		</th>
+		 		</td>
 				
 			</tr>
 		</tbody>

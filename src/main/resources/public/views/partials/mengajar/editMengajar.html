@@ -1,28 +1,40 @@
-<md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Edit Pengajar</h1>
-</md-toolbar>
-
-
-	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-		<form name="formSubmit" ng-submit="update()">
-     		<md-input-container>
-        <label>Guru</label>
-        <md-select data-ng-model="formData.id.guruId">
-          <md-option ng-repeat="guru in guru_mengajar_mata_pelajaran track by $index" value="{{guru.id}}">
-            {{guru.nama}}
-          </md-option>
-        </md-select>
-      </md-input-container>
-      <md-input-container>
-        <label>Mata Pelajaran</label>
-        <md-select data-ng-model="formData.id.mataPelajaranId">
-          <md-option ng-repeat="matpel in guru_mengajar_mata_pelajaran track by $index" value="{{matpel.id}}">
-            {{matpel.namaMatpel}}
-          </md-option>
-        </md-select>
-      </md-input-container>
-   			<md-input-container>
-      			<input type="submit" class="md-button md-primary" value="Edit" />
-      		</md-input-container>	
-		</form>
-	</md-content>
+<div ng-controller="MengajarCtrl">
+	<div layout-align="center start" md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+		<md-content class="md-whiteframe-11dp" flex="90">
+			<div layout-margin>
+				<md-toolbar class="md-theme-indigo">
+	       			<h1 class="md-toolbar-tools">Tambah Pengajar</h1>
+				</md-toolbar>
+				<form name="formSubmit" ng-submit="update()">
+				<div layout-gt-sm="row">
+				<md-input-container class="md-block" flex-gt-sm>
+	      			<label>Guru</label>
+	        		<md-select ng-model="formData.id.guruId">
+	          			<md-option ng-repeat="guru in guru track by $index" value="{{guru.id}}">
+	            			{{guru.nama}}
+	         			</md-option>
+	        		</md-select>
+	      		</md-input-container>
+	      		</div>
+	      		<div layout-gt-sm="row">
+	      		<md-input-container class="md-block" flex-gt-sm>
+	      			<label>Mata Pelajaran</label>
+	        		<md-select ng-model="formData.id.mataPelajaranId">
+	          			<md-option ng-repeat="matpel in mata_pelajaran track by $index" value="{{matpel.id}}">
+	            			{{matpel.namaMatpel}}
+	         			</md-option>
+	        		</md-select>
+	      		</md-input-container>
+	      		</div>
+	      		<div layout="row" layout-wrap layout-margin layout-align="end end">
+        			<md-input-container>
+        				<input type="submit" class="md-button md-raised md-primary"  value="Tambah" />
+      				</md-input-container>
+      			</div>
+				</form>
+				
+				
+			</div>
+		</md-content>
+	</div>
+</div>

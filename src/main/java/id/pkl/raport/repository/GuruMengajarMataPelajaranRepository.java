@@ -10,7 +10,8 @@ import id.pkl.raport.entity.GuruMengajarMataPelajaraId;
 import id.pkl.raport.entity.GuruMengajarMataPelajaran;
 
 public interface GuruMengajarMataPelajaranRepository extends JpaRepository<GuruMengajarMataPelajaran, GuruMengajarMataPelajaraId> {
-	@Query("SELECT guruMengajarMataPelajaran FROM GuruMengajarMataPelajaran guruMengajarMataPelajaran WHERE LOWER(id.guruId) LIKE LOWER(CONCAT('%', :search, '%'))")
+	@Query("SELECT guruMengajarMataPelajaran FROM GuruMengajarMataPelajaran guruMengajarMataPelajaran WHERE LOWER(guruMengajarMataPelajaran.guru.nama) LIKE LOWER(CONCAT('%', :search, '%'))"
+			+ "OR LOWER(guruMengajarMataPelajaran.mataPelajaran.namaMatpel) LIKE LOWER(CONCAT('%', :search, '%'))")
 	Page<GuruMengajarMataPelajaran> findBySearch(@Param("search") String searchField, Pageable pageable);
 
 	

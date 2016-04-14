@@ -21,7 +21,7 @@ angular.module('raportApp').config(function($routeProvider) {
 
 
 angular.module('raportApp')
-.controller('GuruCtrl', function($scope, $http, $resource, $route, $stateParams, $mdDialog, $mdToast, $log, $state, $location, GuruService){
+.controller('GuruCtrl',  function($scope, $http, $filter, $resource, $route, $stateParams, $mdDialog, $mdToast, $log, $state, $location, GuruService){
 	$scope.formData = {};
 	$scope.items = [];
 	$scope.search = "";
@@ -43,7 +43,7 @@ angular.module('raportApp')
 	var url = '/guru'
 		
     $scope.query = {
-			order : '',
+			order : $scope.items,
 			limit : 5,
 			page : 1,
 			total : 0
@@ -80,6 +80,22 @@ angular.module('raportApp')
 	$scope.onPaginate = function(page, limit) {
 		getPage(page, limit);
 	}
+	
+	 	$scope.sortType     = 'nama'; // set the default sort type
+	 	$scope.sortReverse  = false;  // set the default sort order
+	 	
+	  
+	  // create the list of sushi rolls 
+	 	$scope.items = [];
+	
+	/* 
+	 * var orderBy = $filter('orderBy');
+		$scope.order = function(predicate) {
+	    $scope.predicate = predicate;
+	    $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+	    $scope.items = orderBy($scope.items, predicate, $scope.reverse);
+	  };
+	*/
 	
 	/*
 	 * Search
@@ -167,6 +183,14 @@ angular.module('raportApp')
 			);
 		});
 	};
+	
+	/*
+	 * Detail List
+	 */
+	
+	$scope.detail = function (){
+		
+	}
 	
 });
 

@@ -5,30 +5,38 @@ angular.module('raportApp').config(function($routeProvider) {
 	}).when('/penilaian/form', {
 		templateUrl : 'views/partials/penilaian/formPenilaian.html',
 		controller : 'PenilaianCtrl'
-	}).when('/penilaian/detail/list/:id', {
+	}).when('/penilaian/list/kelas/:idkelas', {
 		templateUrl : 'views/partials/penilaian/listPenilaian.html',
 		controller : 'PenilaianCtrl',
-		resolve :{
-			'id' : function($route){
-				return $route.current.params.id;
+		resolve : {
+			'idkelas' : function($route){
+				return $route.current.params.idkelas;
 			}
 		}
-	}).when('/penilaian/detail/:id', {
-		templateUrl : 'views/partials/penilaian/detailPenilaian.html',
+	}).when('/penilaian/list/siswa/:idsiswa', {
+		templateUrl : 'views/partials/penilaian/listNilai.html',
 		controller : 'PenilaianCtrl',
 		resolve : {
-			'id' : function($route) {
-				return $route.current.params.id;
+			'idsiswa' : function($route){
+				return $route.current.params.idsiswa;
 			}
 		}
-	}).when('/penilaian/edit/:id', {
+	}).when('/penilaian/list/kelas/:idkelasinput/input-nilai', {
+		templateUrl : 'views/partials/penilaian/formPenilaian.html',
+		controller : 'PenilaianCtrl',
+		resolve : {
+			'idkelasinput' : function($route){
+				return $route.current.params.idkelasinput;
+			}
+		}
+	}).when('/penilaian/edit/:idkelas/:idpenilaian', {
 		templateUrl : 'views/partials/penilaian/editPenilaian.html',
 		controller : 'PenilaianCtrl'
 	});
 
 });
 
-angular.module('raportApp').controller('PenilaianCtrl', function($scope, $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, PenilaianService){
+angular.module('raportApp').controller('PenilaianCtrl', function($scope, $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, PenilaianService, KelasService, KelasSiswaService){
 	$scope.formData = {};
 	$scope.search = "";
 	
@@ -65,7 +73,7 @@ angular.module('raportApp').controller('PenilaianCtrl', function($scope, $http, 
     	
     $scope.kelas = [];
     var request = {
-        		url : '/kelas//all',
+        		url : '/kelas/all',
         		method : 'GET'
         	};
         	var successHandler = function(response) {
@@ -160,16 +168,23 @@ angular.module('raportApp').controller('PenilaianCtrl', function($scope, $http, 
 	$scope.onPaginate = function(page, limit) {
 		getPage(page, limit);
 	}
+
+	$scope.searchField = function(){
+		getPage(1, 5);
+	};
+	
 	
 	/*
 	 * Create Data
 	 */
 	
 	$scope.save = function(){
+	
 		PenilaianService.create($scope.formData).$promise.then(
 			function(response){
+				
 				mdToast('Data berhasil ditambah');
-				window.location = "/#/penilaian/list";
+				window.location = "/#/penilaian/list/detail/:idkelas";
 			},
 			function(errResponse){
 				$log.debug(errResponse);
@@ -179,11 +194,102 @@ angular.module('raportApp').controller('PenilaianCtrl', function($scope, $http, 
 		);
 	};
 	
+	
+	
+	/*
+	 * List penilaian by kelasId
+	 */
+	
+	if($route.current.params.idkelas){
+		$scope.itemsDetailPenilaian = [];
+		$scope.idKelas = $route.current.params.idkelas;
+
+		var url = '/penilaian/detail'
+
+		$scope.queryDetailPenilaian = {
+			order : '',
+			limit : 5,
+			page : 1,
+			total : 0
+		};
+
+		var getDetailPenilaian = function(page, limit) {
+			return $resource(url, {}, {
+				get : {
+					method : "GET",
+					params : {
+						page : page - 1,
+						size : limit,
+						kelasid : $route.current.params.idkelas,
+						search : $scope.search
+					}
+				}
+			});
+		}
+
+		var getPageDetailPenilaian = function(page, limit) {
+			getDetailPenilaian(page, limit).get().$promise.then(
+					function(response) {
+						console.dir(response.content);
+						$scope.itemsDetailPenilaian = response.content;
+						$scope.queryDetailPenilaian.limit = response.size;
+						$scope.queryDetailPenilaian.total = response.totalElements;
+					}, function(errResponse) {
+						console.log(errResponse);
+						console.error('Error while fethcing data');
+					}
+			);
+
+		}
+
+		getPageDetailPenilaian($scope.queryDetailPenilaian.page, $scope.queryDetailPenilaian.limit);
+
+		$scope.onPaginateDetailPenilaian = function(page, limit) {
+			getPageDetailPenilaian(page, limit);
+		}
+		
+		$scope.searchField = function(){
+			getPage(1, 5);
+		};
+	};
+	
+	
+	/*
+	 * Input penilaian by kelasId
+	 */
+	if($route.current.params.idkelasinput){
+		$scope.idKelas = $route.current.params.idkelasinput;
+		KelasService.get({id: $route.current.params.idkelasinput}).$promise.then(
+				function(response){
+					$scope.tingkat = response.tingkat.tingkat;
+					$scope.grupKelas = response.grupKelas.grupKelas;
+				},
+				function(errResponse){
+					$log.debug(errResponse);
+					mdToast('Data tidak ditemukan');
+					window.location = "/#/penilaian/list";
+				}
+			);
+		
+		KelasSiswaService.getArray({id: 'all', other: $scope.idKelas}).$promise.then(
+				function(response){
+					$log.debug(response);
+					$scope.kelasSiswa = response
+				},
+				function(errResponse){
+					$log.debug(errResponse);
+					mdToast('Data tidak ditemukan');
+					window.location = "/#/penilaian/list";
+				}
+			);
+	}
+	
 	/*
 	 * Edit Data
 	 */
-	if($route.current.params.id){
-		PenilaianService.get({id: $route.current.params.id}).$promise.then(
+	
+	if($route.current.params.idpenilaian){
+		KelasSiswaService.get({id: $route.current.params.idpenilaian}).$promise.then(
 			function(response){
 				$scope.formData = response;
 			},

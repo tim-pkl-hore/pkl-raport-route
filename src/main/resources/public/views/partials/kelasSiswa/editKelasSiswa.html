@@ -1,10 +1,12 @@
-<md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Edit Kelas Siswa</h1>
-</md-toolbar>
-
-	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-		<form name="formSubmit" ng-submit="update()">
-			<md-input-container>
+<div layout-align="center start" md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+		<md-content class="md-whiteframe-11dp" flex="90">
+			<div layout-margin>
+			<md-toolbar class="md-theme-indigo">
+        		<h1 class="md-toolbar-tools">Edit Kelas Siswa</h1>
+			</md-toolbar>	
+				<form name="formSubmit" ng-submit="update()">
+				<div layout-gt-sm="row">
+				<md-input-container class="md-block" flex-gt-sm>
 	      			<label>Kelas</label>
 	        		<md-select ng-model="formData.kelas.id">
 	          			<md-option ng-repeat="kel in kelas" value="{{kel.id}}">
@@ -12,7 +14,9 @@
 	         			</md-option>
 	        		</md-select>
 	      		</md-input-container>
-	      		<md-input-container>
+	      		</div>
+	      		<div layout-gt-sm="row">
+	      		<md-input-container class="md-block" flex-gt-sm>
 	      			<label>Siswa</label>
 	        		<md-select ng-model="formData.siswa.id">
 	          			<md-option ng-repeat="sis in siswa" value="{{sis.id}}">
@@ -20,9 +24,13 @@
 	         			</md-option>
 	        		</md-select>
 	      		</md-input-container>
-	      		<md-input-container>
-   				<md-input-container>
-      			<input type="submit" class="md-button md-raised md-primary" value="Edit" />
-      		</md-input-container>	
-		</form>
-	</md-content>
+	      		</div>
+	      		<div layout="row" layout-wrap layout-margin layout-align="end end">
+        			<md-input-container>
+        				<input type="submit" class="md-button md-raised md-primary"  value="Edit" />
+      				</md-input-container>
+      			</div>
+			</form>
+			</div>
+		</md-content>
+	</div>

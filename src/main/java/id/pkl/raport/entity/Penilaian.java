@@ -7,12 +7,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name="penilaian")
+@Table(name="penilaian", uniqueConstraints = @UniqueConstraint(columnNames={"kelas_siswa", "kriteria", "mata_pelajaran"}))
 public class Penilaian {
 	@Id
 	@GeneratedValue
@@ -35,12 +36,7 @@ public class Penilaian {
 	@Column(name="nilai")
 	private Integer nilai;
 	
-	@NotBlank
-	@Column(name="kkm")
-	private String kkm;
 	
-	
-	@NotBlank
 	@Column(name="keterangan")
 	private String keterangan;
 
@@ -92,16 +88,6 @@ public class Penilaian {
 
 	public void setNilai(Integer nilai) {
 		this.nilai = nilai;
-	}
-
-
-	public String getKkm() {
-		return kkm;
-	}
-
-
-	public void setKkm(String kkm) {
-		this.kkm = kkm;
 	}
 
 

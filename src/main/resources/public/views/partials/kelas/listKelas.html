@@ -5,6 +5,9 @@
 
 <md-content layout-padding class="md-no-momentum">
 <md-table-container>
+	<md-input-container class="md-block" md-no-float> 
+			<input type="search" ng-model="search" ng-change="searchField()" placeholder="Search" />
+		</md-input-container>
 	<table md-table md-row-select border="1" ng-model="kelas" md-progress="promise">
 		<thead md-head md-order="query.order" md-on-reorder="onReorder">
 			<tr md-row>
@@ -16,14 +19,14 @@
 		</thead>
 		<tbody md-body>
 			<tr md-row ng-repeat="item in items">
-				<th md-cell>{{item.tingkat.tingkat}}{{item.grupKelas.grupKelas}}</th>
-				<th md-cell>{{item.tahunAjaran.tahunAwal}}/{{item.tahunAjaran.tahunAkhir}}</th>
-				<th md-cell>{{item.waliKelas.nama}}</th>
-				<th md-cell>
+				<td md-coloumn align="center">{{item.tingkat.tingkat}}{{item.grupKelas.grupKelas}}</td>
+				<td md-coloumn align="center">{{item.tahunAjaran.tahunAwal}}/{{item.tahunAjaran.tahunAkhir}}</td>
+				<td md-coloumn align="center">{{item.waliKelas.nama}}</td>
+				<td md-coloumn align="center">
 		 			<a href="/#/kelas/edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
 		 			<a href="/#/kelas/detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
 		 			<a href ng-click="showConfirm(item.id)"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
-		 		</th>
+		 		</td>
 				
 			</tr>
 		</tbody>

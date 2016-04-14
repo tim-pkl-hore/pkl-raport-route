@@ -10,6 +10,9 @@ import id.pkl.raport.entity.GrupKelas;
 import id.pkl.raport.entity.KelasSiswa;
 
 public interface KelasSiswaRepository extends JpaRepository<KelasSiswa, Long>{
-	@Query("SELECT kelasSiswa FROM KelasSiswa kelasSiswa WHERE LOWER(kelasSiswa.siswa) LIKE LOWER(CONCAT('%', :search, '%'))")
+	@Query("SELECT kelasSiswa FROM KelasSiswa kelasSiswa WHERE LOWER(kelasSiswa.siswa.namaSiswa) LIKE LOWER(CONCAT('%', :search, '%'))")
 	Page<KelasSiswa> findBySearch(@Param("search") String searchField, Pageable pageable);
+	
+	@Query("SELECT kelasSiswa FROM KelasSiswa kelasSiswa WHERE kelasSiswa.kelas.id = :kelasId ")
+	Iterable<KelasSiswa> findByKelasId(@Param("kelasId") Long kelasId);
 }

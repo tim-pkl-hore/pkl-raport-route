@@ -18,15 +18,14 @@
 		</thead>
 		<tbody md-body align="">
 			<tr md-row ng-repeat="item in items">
-				<th href="/#/siswa/detail/{{item.id}}" md-cell>{{item.namaSiswa}}</th>
-				<th md-cell>{{item.tanggalLahir}}</th>
-				<th md-cell>{{item.diterimaSejak}}</th>
-				
-				<th md-cell>
+				<td md-coloumn align="center">{{item.namaSiswa}}</td>
+				<td md-coloumn align="center">{{item.tanggalLahir}}</td>
+				<td md-coloumn align="center">{{item.diterimaSejak}}</td>
+				<td md-coloumn align="center">
 					<a href="/#/siswa/edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
 		 			<a href="/#/siswa/detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
 		 			<a href ng-click="showConfirm(item.id)"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
-				</th>
+				</td>
 			</tr>
 		</tbody>
 	</table>

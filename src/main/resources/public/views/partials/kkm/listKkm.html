@@ -1,0 +1,41 @@
+<md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">List KKM</h1>
+</md-toolbar>
+<br />
+
+<md-content layout-padding class="md-no-momentum">
+<md-table-container>
+	<md-input-container class="md-block" md-no-float> 
+			<input type="search" ng-model="search" ng-change="searchField()" placeholder="Search" />
+		</md-input-container>
+	<table md-table md-row-select border="1" ng-model="kkm" md-progress="promise">
+		<thead md-head md-order="query.order" md-on-reorder="onReorder">
+			<tr md-row>
+				<th md-coloumn>Tingkat</th>
+				<th md-coloumn>Mata Pelajaran</th>
+				<th md-coloumn>KKM</th>
+				<th md-coloumn>Aksi</th>
+			</tr>
+		</thead>
+		<tbody md-body>
+			<tr md-row ng-repeat="item in items">
+				<td md-coloumn align="center">{{item.tingkat.tingkat}}</td>
+				<td md-coloumn align="center">{{item.mataPelajaran.namaMatpel}}</td>
+				<td md-coloumn align="center">{{item.kkm}}</td>
+				<td md-coloumn align="center">
+		 			<a href="/#/kkm/edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href="/#/kkm/detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
+		 			<a href ng-click="showConfirm(item.id)"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 		</td>
+				
+			</tr>
+		</tbody>
+	</table>
+</md-table-container>
+<md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
+<div layout="row" layout-wrap layout-margin layout-align="end end">
+		<a href="/#/kkm/form" md-button class="md-fab md-primary md-raised center">
+      		<ng-md-icon icon="add" style="fill: #abcdef" size="25"></ng-md-icon>
+    	</a>
+    </div>
+</md-content>

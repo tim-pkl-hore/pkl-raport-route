@@ -6,8 +6,7 @@
 			               {
 				                 link : '/#/absensi/siswa/list',
 				                 title: 'Data Absensi Siswa',
-				                 icon: 'assignment_turned_in',
-				                 title2: 'List Absensi Siswa'
+				                 icon: 'assignment_turned_in'
 				           },
 				           {
 				                 link : '/#/guru/list',
@@ -47,6 +46,16 @@
 				                 link : '/#/penilaian/list',
 				                 title: 'Penilaian Siswa',
 				                 icon: 'spellcheck'
+				           },
+				           {
+				                 link : '/#/rapor/list',
+				                 title: 'Rapor Siswa',
+				                 icon: 'my_library_books'
+				           },
+				           {
+				                 link : '/#/kkm/list',
+				                 title: 'KKM',
+				                 icon: 'format_list_numbered'
 				           },
 				           
 				           {

@@ -1,33 +1,42 @@
 <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">Edit Absensi Siswa</h1>
 </md-toolbar>
-	<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-		<form name="formSubmit" ng-submit="update()">
-			<md-input-container>
-        		<label>Tanggal</label>
-        		<input type="text" ng-model="formData.tanggal">
-       		 </md-input-container>
-     		<md-input-container>
-        			<p>Jenis Absen: </p>
-        			<md-radio-group ng-model="formData.jenisAbsensi">
-	        			<md-radio-button name="jenisAbsensi" value="Sakit" class="md-primary">Sakit</md-radio-button>
-	        			<md-radio-button name="jenisAbsensi" value="Izin" class="md-primary">Izin</md-radio-button>
-	        			<md-radio-button name="jenisAbsensi" value="Alpha" class="md-primary">Alpha</md-radio-button>
-	        		</md-radio-group>
-      			</md-input-container><br />
-      		<md-input-container>
-        			<label>Alasan</label>
-        			<input type="text" ng-model="formData.alasan">
-     			</md-input-container><br />
-     		<md-input-container>
-			        <label>Tahun Ajaran</label>
-			        	<md-select ng-model="formData.tahunAjaran.id">
-			          		<md-option ng-repeat="ajaran in tahun_ajaran" value="{{ajaran.id}}">
-			            		{{ajaran.tahunAwal}}
-			          		</md-option>
-			        	</md-select>
-		      </md-input-container><br />
-      			<input type="submit" class="md-button md-primary" value="Edit" />
-      		</md-input-container>	
-		</form>
-	</md-content>
+	<div layout-align="center start" md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+		<md-content class="md-whiteframe-11dp" flex="90">
+			<div layout-margin>
+        		<form name="formSubmit" ng-submit="update()">
+    				<div layout-gt-xs="row" class="box">
+    					<md-input-container class="md-block" flex-gt-xs>
+            				<label>Alasan</label>
+            				<input ng-model="formData.alasan">
+          				</md-input-container>
+    					<md-datepicker ng-model="formData.tanggal" md-placeholder="Tanggal"></md-datepicker>
+		       		</div>
+   					<md-content style="width:400px">
+        				<p>Jenis Absensi: <span class="radioValue">{{ formData.jenisAbsensi }}</span> </p>
+        				<md-radio-group ng-model="formData.jenisAbsensi">
+	        				<md-radio-button name="jenisAbsensi" value="Sakit" class="md-primary">Sakit</md-radio-button>
+	        				<md-radio-button name="jenisAbsensi" value="Izin" class="md-primary">Izin</md-radio-button>
+	        				<md-radio-button name="jenisAbsensi" value="Alpha" class="md-primary">Alpha</md-radio-button>
+	        			</md-radio-group>
+     				</md-content><br />
+     				<md-content>
+			        	<label>Tahun Ajaran</label>
+			        		<md-select ng-model="formData.tahunAjaran.id">
+			          			<md-option ng-repeat="ajaran in tahun_ajaran" value="{{ajaran.id}}">
+			            			{{ajaran.tahunAwal}}
+			          			</md-option>
+			        		</md-select>
+		      		</md-content><br />
+		      		<div layout="row" layout-wrap layout-margin layout-align="end end">
+        				<md-input-container>
+        					<input type="reset" class="md-button md-raised md-primary"  value="Reset" />
+      					</md-input-container>
+        				<md-input-container>
+        					<input type="submit" class="md-button md-raised md-primary"  value="Edit" />
+      					</md-input-container>
+      				</div>
+      			</form>
+        	</div>
+        </md-content>
+    </div>

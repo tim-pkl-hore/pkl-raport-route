@@ -49,6 +49,8 @@ public class Guru {
 	private String alamat;
 	
 	
+	
+
 	public Long getId() {
 		return id;
 	}

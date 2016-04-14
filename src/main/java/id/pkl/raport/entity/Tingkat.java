@@ -18,7 +18,7 @@ public class Tingkat {
 	
 	@NotNull
 	@Column(name="tingkat", unique = true)
-	private Integer tingkat;
+	private String tingkat;
 	
 	public Long getId() {
 		return id;
@@ -28,11 +28,11 @@ public class Tingkat {
 		this.id = id;
 	}
 
-	public Integer getTingkat() {
+	public String getTingkat() {
 		return tingkat;
 	}
 
-	public void setTingkat(Integer tingkat) {
+	public void setTingkat(String tingkat) {
 		this.tingkat = tingkat;
 	}	
 }

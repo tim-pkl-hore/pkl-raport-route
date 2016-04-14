@@ -86,4 +86,10 @@ public class KelasSiswaController {
 	{
 		return kelasSiswaRepository.findAll();
 	}
+	
+	@RequestMapping(value="/all/{idKelas}", method=RequestMethod.GET)
+	public Iterable<KelasSiswa> listAllSiswaByIdKelas(@PathVariable Long idKelas)
+	{
+		return kelasSiswaRepository.findByKelasId(idKelas);
+	}
 }

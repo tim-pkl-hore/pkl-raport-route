@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import id.pkl.raport.entity.Guru;
-import id.pkl.raport.entity.GuruMengajarMataPelajaraId;
-import id.pkl.raport.entity.GuruMengajarMataPelajaran;
 import id.pkl.raport.entity.Kelas;
-import id.pkl.raport.entity.TahunAjaran;
+import id.pkl.raport.entity.KelasSiswa;
 import id.pkl.raport.repository.KelasRepository;
 
 @RestController
@@ -90,4 +87,15 @@ public class KelasController {
 	{
 		return kelasRepository.findAll();
 	}
+	
+	@RequestMapping(value="/detail", method=RequestMethod.GET)
+	public Page<KelasSiswa> listKelasDetail(@RequestParam(name="search", required = false) String search,
+										@RequestParam(name="idkelas", required = false) Long kelasId,
+										Pageable pageable)
+	{
+		
+			return kelasRepository.findByKelasSiswaId(kelasId, pageable);
+		
+	}
+	
 }

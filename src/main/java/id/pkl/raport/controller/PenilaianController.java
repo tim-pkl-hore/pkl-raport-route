@@ -42,6 +42,7 @@ public class PenilaianController {
 		if(penilaian.getNilai() < kkm.getKkm()){
 			keterangan = "Belum Tercapai";
 		}
+	
 		
 		penilaian.setKeterangan(keterangan);
 		Penilaian newPenilaian = penilaianRepository.save(penilaian);

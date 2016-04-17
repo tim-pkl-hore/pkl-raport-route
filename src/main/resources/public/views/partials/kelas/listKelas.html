@@ -19,7 +19,7 @@
 		</thead>
 		<tbody md-body>
 			<tr md-row ng-repeat="item in items">
-				<td md-coloumn align="center">{{item.tingkat.tingkat}}{{item.grupKelas.grupKelas}}</td>
+				<td md-coloumn align="center"><a href="/#/kelas/detail/siswa/{{item.id}}" style="color: black;">{{item.tingkat.tingkat}}{{item.grupKelas.grupKelas}}</a></td>
 				<td md-coloumn align="center">{{item.tahunAjaran.tahunAwal}}/{{item.tahunAjaran.tahunAkhir}}</td>
 				<td md-coloumn align="center">{{item.waliKelas.nama}}</td>
 				<td md-coloumn align="center">

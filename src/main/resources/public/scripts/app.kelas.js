@@ -11,6 +11,14 @@ angular.module('raportApp')
 							return $route.current.params.id;
 						}
 					}
+				}).when('/kelas/detail/siswa/:idkelas', {
+					templateUrl: 'views/partials/kelas/listSiswa.html',
+					controller: 'KelasCtrl',
+					resolve: {
+						'idkelas': function($route){
+							return $route.current.params.idkelas;
+						}
+					}
 				}).when('/kelas/edit/:id', {
 					templateUrl: 'views/partials/kelas/editKelas.html',
 					controller: 'KelasCtrl'
@@ -50,6 +58,20 @@ angular.module('raportApp').controller('KelasCtrl', function($scope, $http, $rou
 	var successHandler = function(response) {
 		$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
 		$scope.tingkat = response.data;
+	};
+	var errorHandler = function(errors) {
+		$log.error(angular.toJson(errors, true));
+	};
+	$http(request).then(successHandler, errorHandler);
+	
+	$scope.siswa = [];
+	var request = {
+		url : '/siswa/all',
+		method : 'GET'
+	};
+	var successHandler = function(response) {
+		$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+		$scope.siswa = response.data;
 	};
 	var errorHandler = function(errors) {
 		$log.error(angular.toJson(errors, true));
@@ -98,7 +120,7 @@ angular.module('raportApp').controller('KelasCtrl', function($scope, $http, $rou
 	};
 	$http(request).then(successHandler, errorHandler);
     
-    /*
+
    
 	/*
 	 * List data
@@ -155,6 +177,63 @@ angular.module('raportApp').controller('KelasCtrl', function($scope, $http, $rou
 	 */
 	$scope.searchField = function(){
 		getPage(1, 5);
+	};
+	
+	/*
+	 *	List Siswa 
+	 */
+	
+	if($route.current.params.idkelas){
+		$scope.itemsDetailSiswa = [];
+		$scope.idKelas = $route.current.params.idkelas;
+
+		var url = '/kelas/detail'
+
+		$scope.queryDetailSiswa = {
+			order : '',
+			limit : 5,
+			page : 1,
+			total : 0
+		};
+
+		var getDetailSiswa = function(page, limit) {
+			return $resource(url, {}, {
+				get : {
+					method : "GET",
+					params : {
+						page : page - 1,
+						size : limit,
+						idkelas : $route.current.params.idkelas,
+						search : $scope.search
+					}
+				}
+			});
+		}
+
+		var getPageDetailSiswa = function(page, limit) {
+			getDetailSiswa(page, limit).get().$promise.then(
+					function(response) {
+						console.dir(response.content);
+						$scope.itemsDetailSiswa = response.content;
+						$scope.queryDetailSiswa.limit = response.size;
+						$scope.queryDetailSiswa.total = response.totalElements;
+					}, function(errResponse) {
+						console.log(errResponse);
+						console.error('Error while fethcing data');
+					}
+			);
+
+		}
+
+		getPageDetailSiswa($scope.queryDetailSiswa.page, $scope.queryDetailSiswa.limit);
+
+		$scope.onPaginateDetailSiswa = function(page, limit) {
+			getDetailSiswa(page, limit);
+		}
+		
+		$scope.searchField = function(){
+			getPage(1, 5);
+		};
 	};
 	/*
 	 * Create Data

@@ -29,6 +29,8 @@ angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http,
 	$scope.formData = {};
 	$scope.search = "";
 	
+	
+	
 	/*
 	 * Template toast
 	 */
@@ -204,8 +206,24 @@ angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http,
 		});
 	};
 	
+	$scope.selection=[];
+	 $scope.toggleSelection = function toggleSelection(items) {
+	     var idx = $scope.selection.indexOf(items);
+	 
+	     // is currently selected
+	     if (idx > -1) {
+	       $scope.selection.splice(idx, 1);
+	     }
+	 
+	     // is newly selected
+	     else {
+	       $scope.selection.push(items);
+	     }
+	   };
     
 });
+
+
 
 angular.module('raportApp').controller(
 		'showAddKelasSiswaCtrl',

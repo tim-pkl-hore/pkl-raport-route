@@ -47,10 +47,7 @@ public class Guru {
 	@NotBlank
 	@Column(name="alamat")
 	private String alamat;
-	
-	
-	
-
+	 
 	public Long getId() {
 		return id;
 	}

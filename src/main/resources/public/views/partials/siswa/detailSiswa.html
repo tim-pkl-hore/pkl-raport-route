@@ -1,122 +1,176 @@
 <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">Detail Siswa</h1>
 </md-toolbar>
+
 <div ng-controller="SiswaCtrl" layout="column" ng-cloak class="md-inline-form">
 	<div layout-align="center start" md-theme="docs-dark" layout-gt-sm="row" layout-padding>
       <md-content class="md-whiteframe-11dp" flex="90">
         <div layout-margin>
-        	<md-table-container>
-				<table md-table md-row-select border="1">
+        	<div>
+        		<h2 style="height: 6px; font-size: 18; text-align: center; text-transform: capitalize; height: 20px;">KETERANGAN TENTANG DIRI PESERTA DIDIK</h2>
+        	</div>
+        	<md-content layout-padding>
+        		<md-table-container>
+				<table md-table md-row-select>
+					<tbody md-body>
+							<tr md-row>
+								<th md-coloumn align="justify" width="250px;" height="11px;">Nama Siswa</th>
+								<th md-coloumn align="left" width="1px;">:</th>
+								<td md-coloumn align="justify">{{formData.namaSiswa}}</td>
+							</tr>
+					</tbody>
 					<tbody md-body>
 						<tr md-row>
-							<th md-coloumn align="center">NISN</th>
-							<td md-coloumn align="center">{{formData.nisn}}</td>
+							<th md-coloumn align="justify" width="250px;">NISN</th>
+							<th md-coloumn align="left" width="1px;">:</th>
+							<td md-coloumn align="justify">{{formData.nisn}}</td>
 						</tr>
 					</tbody>
 					<tbody md-body>
 						<tr md-row>
-							<th md-coloumn align="center">Nama Siswa</th>
-							<td md-coloumn align="center">{{formData.namaSiswa}}</td>
+							<th md-coloumn align="justify" width="250px;">Tempat, Tanggal Lahir</th>
+							<th md-coloumn align="left" width="1px;">:</th>
+							<td md-coloumn align="justify">{{formData.tempatLahir}}, {{formData.tanggalLahir}}</td>
 						</tr>
 					</tbody>
 					<tbody md-body>
 						<tr md-row>
-							<th md-coloumn align="center">Tempat, Tanggal Lahir</th>
-							<td md-coloumn align="center">{{formData.tempatLahir}}, {{formData.tanggalLahir}}</td>
+							<th md-coloumn align="justify" width="250px;">Jenis Kelamin</th>
+							<th md-coloumn align="left" width="1px;">:</th>
+							<td md-coloumn align="justify">{{formData.jenisKelamin}}</td>
 						</tr>
 					</tbody>
 					<tbody md-body>
 						<tr md-row>
-							<th md-coloumn align="center">Jenis Kelamin</th>
-							<td md-coloumn align="center">{{formData.jenisKelamin}}</td>
+							<th md-coloumn align="justify" width="250px;">Alamat Siswa</th>
+							<th md-coloumn align="left" width="1px;">:</th>
+							<td md-coloumn align="justify">{{formData.alamatSiswa}}</td>
 						</tr>
 					</tbody>
 					<tbody md-body>
 						<tr md-row>
-							<th md-coloumn align="center">Alamat Siswa</th>
-							<td md-coloumn align="center">{{formData.alamatSiswa}}</td>
+							<th md-coloumn align="justify" width="250px;">No. HP Siswa</th>
+							<th md-coloumn align="left" width="1px;">:</th>
+							<td md-coloumn align="justify">{{formData.telpSiswa}}</td>
 						</tr>
 					</tbody>
 					<tbody md-body>
 						<tr md-row>
-							<th md-coloumn align="center">No. HP Siswa</th>
-							<td md-coloumn align="center">{{formData.telpSiswa}}</td>
+							<th md-coloumn align="justify" width="250px;">Sekolah Asal</th>
 						</tr>
 					</tbody>
 					<tbody md-body>
 						<tr md-row>
-							<th md-coloumn align="center">No. Ijazah</th>
-							<td md-coloumn align="center">{{formData.noIjazah}}</td>
+							<th md-coloumn align="center" width="250px;">No. Ijazah</th>
+							<th md-coloumn align="left" width="1px;">:</th>
+							<td md-coloumn align="justify">{{formData.telpSiswa}}</td>
 						</tr>
 					</tbody>
 					<tbody md-body>
 						<tr md-row>
-							<th md-coloumn align="center">Tahun</th>
-							<td md-coloumn align="center">{{formData.tahunSekolahAsal}}</td>
+							<th md-coloumn align="center" width="250px;">Tahun</th>
+							<th md-coloumn align="left" width="1px;">:</th>
+							<td md-coloumn align="justify">{{formData.tahunSekolahAsal}}</td>
 						</tr>
 					</tbody>
 					<tbody md-body>
 						<tr md-row>
-							<th md-coloumn align="center">Nama Ayah</th>
-							<td md-coloumn align="center">{{formData.namaAyah}}</td>
+							<th md-coloumn align="justify" width="250px;">Diterima di Sekolah Ini</th>
 						</tr>
 					</tbody>
 					<tbody md-body>
 						<tr md-row>
-							<th md-coloumn align="center">Nama Ibu</th>
-							<td md-coloumn align="center">{{formData.namaIbu}}</td>
+							<th md-coloumn align="center" width="250px;">Tanggal</th>
+							<th md-coloumn align="left" width="1px;">:</th>
+							<td md-coloumn align="justify">{{formData.diterimaSejak}}</td>
 						</tr>
 					</tbody>
 					<tbody md-body>
 						<tr md-row>
-							<th md-coloumn align="center">Alamat Orang Tua</th>
-							<td md-coloumn align="center">{{formData.alamatOrtu}}</td>
+							<th md-coloumn align="justify" width="250px;">Nama Orang Tua</th>
 						</tr>
 					</tbody>
 					<tbody md-body>
 						<tr md-row>
-							<th md-coloumn align="center">Hp. HP Orang Tua</th>
-							<td md-coloumn align="center">{{formData.telpOrtu}}</td>
+							<th md-coloumn align="center" width="250px;">Nama Ayah</th>
+							<th md-coloumn align="left" width="1px;">:</th>
+							<td md-coloumn align="justify">{{formData.namaAyah}}</td>
 						</tr>
 					</tbody>
 					<tbody md-body>
 						<tr md-row>
-							<th md-coloumn align="center">Pekerjaan Ayah</th>
-							<td md-coloumn align="center">{{formData.pekerjaanAyah}}</td>
+							<th md-coloumn align="center" width="250px;">Nama Ibu</th>
+							<th md-coloumn align="left" width="1px;">:</th>
+							<td md-coloumn align="justify">{{formData.namaIbu}}</td>
+						</tr>
+					</tbody>
+						
+						<tbody md-body>
+							<tr md-row>
+								<th md-coloumn align="justify" width="250px;">Alamat Orang Tua</th>
+								<th md-coloumn align="left" width="1px;">:</th>
+								<td md-coloumn align="justify">{{formData.alamatOrtu}}</td>
+							</tr>
+						</tbody>
+						<tbody md-body>
+							<tr md-row>
+								<th md-coloumn align="center" width="250px;">No. HP Orang Tua</th>
+								<th md-coloumn align="left" width="1px;">:</th>
+								<td md-coloumn align="justify">{{formData.telpOrtu}}</td>
+							</tr>
+						</tbody>
+						<tbody md-body>
+							<tr md-row>
+								<th md-coloumn align="justify" width="250px;">Pekerjaan Orang Tua</th>
+							</tr>
+						</tbody>
+						<tbody md-body>
+							<tr md-row>
+								<th md-coloumn align="center" width="250px;">Pekerjaan Ayah</th>
+								<th md-coloumn align="left" width="1px;">:</th>
+								<td md-coloumn align="justify">{{formData.pekerjaanAyah}}</td>
+							</tr>
+						</tbody>
+						<tbody md-body>
+							<tr md-row>
+								<th md-coloumn align="center" width="250px;">Pekerjaan Ibu</th>
+								<th md-coloumn align="left" width="1px;">:</th>
+								<td md-coloumn align="justify">{{formData.pekerjaanIbu}}</td>
+							</tr>
+						</tbody>
+					<tbody md-body>
+						<tr md-row>
+							<th md-coloumn align="justify" width="250px;">Nama Wali</th>
+							<th md-coloumn align="left" width="1px;">:</th>
+							<td md-coloumn align="justify">{{formData.namaWali}}</td>
 						</tr>
 					</tbody>
 					<tbody md-body>
 						<tr md-row>
-							<th md-coloumn align="center">Pekerjaan Ibu</th>
-							<td md-coloumn align="center">{{formData.pekerjaanIbu}}</td>
+							<th md-coloumn align="justify" width="250px;">Alamat Wali</th>
+							<th md-coloumn align="left" width="1px;">:</th>
+							<td md-coloumn align="justify">{{formData.alamatWali}}</td>
 						</tr>
 					</tbody>
 					<tbody md-body>
 						<tr md-row>
-							<th md-coloumn align="center">Nama Wali</th>
-							<td md-coloumn align="center">{{formData.namaWali}}</td>
-						</tr>
-					</tbody>
-					<tbody md-body>
-						<tr md-row>
-							<th md-coloumn align="center">Alamat</th>
-							<td md-coloumn align="center">{{formData.alamatWali}}</td>
-						</tr>
-					</tbody>
-					<tbody md-body>
-						<tr md-row>
-							<th md-coloumn align="center">Pekerjaan Wali</th>
-							<td md-coloumn align="center">{{formData.pekerjaanWali}}</td>
-						</tr>
-					</tbody>
-					<tbody md-body>
-						<tr md-row>
-							<th md-coloumn align="center">Diterima di Sekolah</th>
-							<td md-coloumn align="center">{{formData.diterimaSejak}}</td>
+							<th md-coloumn align="justify" width="250px;">Pekerjaan Wali</th>
+							<th md-coloumn align="left" width="1px;">:</th>
+							<td md-coloumn align="justify">{{formData.pekerjaanWali}}</td>
 						</tr>
 					</tbody>
 				</table>
 			</md-table-container>
+			<br />
+			<br />
+			
+			
+			
+        	</md-content>
+        	
         </div>
+        
+				<div style="width: 3cm; height:4cm;border:1px solid #000; margin-top: 10px; margin-left: 100px "></div>
+		
       </md-content>
 </div>

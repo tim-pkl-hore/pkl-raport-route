@@ -1,6 +1,6 @@
 <md-toolbar class="md-theme-indigo">
-        			<h1 class="md-toolbar-tools">Kelas : {{tingkat}}{{grupKelas}} <br />
-        											Nama Siswa : {{namaSiswa}}</h1>
+        			<h1 class="md-toolbar-tools">Kelas : {{kelasSiswa.kelas.tingkat.tingkat}}{{kelasSiswa.kelas.grupKelas.grupKelas}} <br />
+        											Nama Siswa : {{kelasSiswa.siswa.namaSiswa}}</h1>
 </md-toolbar>
 <br />
 <md-content layout-padding class="md-no-momentum">
@@ -15,11 +15,12 @@
 				<th md-coloumn>Kriteria Nilai</th>
 				<th md-coloumn>Nilai</th>
 				<th md-coloumn>Keterangan</th>
+				<th md-coloumn>Detail</th>
 				
 			</tr>
 		</thead>
 		<tbody md-body>
-			<tr md-row ng-repeat="item in itemsDetailPenilaian">
+			<tr md-row ng-repeat="item in itemsDetailNilai">
 				<td md-coloumn align="center">{{item.mataPelajaran.namaMatpel}}</td>
 				<td md-coloumn align="center">{{item.kriteria.namaKriteria}}</td>
 				<td md-coloumn align="center">{{item.nilai}}</td>
@@ -34,8 +35,3 @@
 </md-table-container>
 
 <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
-<div layout="row" layout-wrap layout-margin layout-align="end end">
-		<a href="/#/penilaian/list/kelas/{{idKelas}}/input-nilai" md-button class="md-fab md-primary md-raised center">
-      		<ng-md-icon icon="add" style="fill: #abcdef" size="25"></ng-md-icon>
-    	</a>
-    </div>

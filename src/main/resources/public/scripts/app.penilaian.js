@@ -13,12 +13,13 @@ angular.module('raportApp').config(function($routeProvider) {
 				return $route.current.params.idkelas;
 			}
 		}
-	}).when('/penilaian/list/siswa/:idsiswa', {
+	}).when('/penilaian/list/kelas/:idkelas/:idsiswa', {
 		templateUrl : 'views/partials/penilaian/listNilai.html',
 		controller : 'PenilaianCtrl',
 		resolve : {
 			'idsiswa' : function($route){
 				return $route.current.params.idsiswa;
+			
 			}
 		}
 	}).when('/penilaian/list/kelas/:idkelasinput/input-nilai', {
@@ -116,10 +117,7 @@ angular.module('raportApp').controller('PenilaianCtrl', function($scope, $http, 
     	    	    		$log.error(angular.toJson(errors, true));
     	    	    	};
     	    	    	$http(request).then(successHandler, errorHandler);
-    	    	
-    
-    	    	    	
-   
+    	
     /*
      * List Data
      */
@@ -246,6 +244,63 @@ angular.module('raportApp').controller('PenilaianCtrl', function($scope, $http, 
 
 		$scope.onPaginateDetailPenilaian = function(page, limit) {
 			getPageDetailPenilaian(page, limit);
+		}
+		
+		$scope.searchField = function(){
+			getPage(1, 5);
+		};
+	};
+	
+	/*
+	 * List penilaian by siswaId
+	 */
+	
+	if($route.current.params.idsiswa){
+		$scope.itemsDetailNilai = [];
+		$scope.idSiswa = $route.current.params.idsiswa;
+
+		var url = '/penilaian/detail/siswa/'+$route.current.params.idsiswa;
+
+		$scope.queryDetailSiswa = {
+			order : '',
+			limit : 5,
+			page : 1,
+			total : 0
+		};
+
+		var getDetailSiswa = function(page, limit) {
+			return $resource(url, {}, {
+				get : {
+					method : "GET",
+					params : {
+						page : page - 1,
+						size : limit,
+						siswaid : $route.current.params.idsiswa,
+						search : $scope.search
+					}
+				}
+			});
+		}
+
+		var getPageDetailSiswa = function(page, limit) {
+			getDetailSiswa(page, limit).get().$promise.then(
+					function(response) {
+						console.dir(response.content);
+						$scope.itemsDetailNilai = response.content;
+						$scope.queryDetailSiswa.limit = response.size;
+						$scope.queryDetailSiswa.total = response.totalElements;
+					}, function(errResponse) {
+						console.log(errResponse);
+						console.error('Error while fethcing data');
+					}
+			);
+
+		}
+
+		getPageDetailSiswa($scope.queryDetailSiswa.page, $scope.queryDetailSiswa.limit);
+
+		$scope.onPaginateDetailSiswa = function(page, limit) {
+			getPageDetailSiswa(page, limit);
 		}
 		
 		$scope.searchField = function(){

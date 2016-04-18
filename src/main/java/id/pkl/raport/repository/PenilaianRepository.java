@@ -16,14 +16,16 @@ public interface PenilaianRepository extends JpaRepository<Penilaian, Long> {
 			+ "OR LOWER(penilaian.keterangan) LIKE LOWER(CONCAT('%', :search, '%'))")
 	Page<Penilaian> findBySearch(@Param("search") String searchField, Pageable pageable);
 	
-	@Query("SELECT penilaian FROM Penilaian penilaian JOIN penilaian.kelasSiswa kelasSiswa WHERE kelasSiswa.kelas.id = :kelasId")
-	Page<Penilaian> findByKelasId(@Param("kelasId") Long kelasId, Pageable pageable);
+	@Query("SELECT penilaian FROM Penilaian penilaian JOIN penilaian.kelasSiswa kelasSiswa WHERE kelasSiswa.kelas.id = :siswaId")
+	Page<Penilaian> findByKelasId(@Param("siswaId") Long kelasId, Pageable pageable);
 	
 	@Query("SELECT kelasSiswa FROM KelasSiswa kelasSiswa JOIN kelasSiswa.siswa siswa WHERE kelasSiswa.kelas.id = :kelasId")
 	Page<KelasSiswa> findByKelasSiswaId(@Param("kelasId") Long kelasId, Pageable pageable);
 	
-	@Query("SELECT penilaian FROM Penilaian penilaian JOIN penilaian.kelasSiswa kelasSiswa WHERE kelasSiswa.id = :kelasSiswaId")
-	Page<Penilaian> findBySiswaId(@Param("kelasSiswaId") Long kelasSiswaId, Pageable pageable);
+	@Query("SELECT penilaian FROM Penilaian penilaian JOIN penilaian.kelasSiswa.siswa siswa WHERE siswa.id = :siswaId")
+	Page<Penilaian> findBySiswaId(@Param("siswaId") Long siswaId, Pageable pageable);
+	
+	
 	
 	@Query("SELECT kkm FROM Kkm kkm WHERE mataPelajaran.id = :matpel and tingkat.id = :tingkat")
 	Kkm findByIdMatpelAndTingkat(@Param("matpel") Long matpel, @Param("tingkat") Long tingkat);

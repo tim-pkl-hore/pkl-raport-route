@@ -12,26 +12,15 @@
 			<tr md-row>
 				<th md-coloumn>Kelas</th>
 				<th md-coloumn>Nama Siswa</th>
-				<th md-coloumn>Mata Pelajaran</th>
-				<th md-coloumn>Nilai</th>
-				<th md-coloumn>Kriteria Nilai</th>
-				<th md-coloumn>Keterangan</th>
-				<th md-coloumn>Aksi</th>
+				
 			</tr>
 		</thead>
 		<tbody md-body>
 			<tr md-row ng-repeat="item in itemsDetailPenilaian">
-				<td md-coloumn align="center">{{item.kelasSiswa.kelas.tingkat.tingkat}}{{item.kelasSiswa.kelas.grupKelas.grupKelas}}</td>
-				<td md-coloumn align="center">{{item.kelasSiswa.siswa.namaSiswa}}</td>
-				<td md-coloumn align="center">{{item.mataPelajaran.namaMatpel}}</td>
-				<td md-coloumn align="center">{{item.nilai}}</td>
-				<td md-coloumn align="center">{{item.kriteria.namaKriteria}}</td>
-				<td md-coloumn align="center">{{item.keterangan}}</td>
-				<td md-coloumn align="center">
-		 			<a href="/#/penilaian/edit/{{idKelas}}/{{idPenilaian}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
-		 			<a href="/#/penilaian/detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
-		 			<a href ng-click="showConfirm(item.id)"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a>
-		 		</td>
+				<td md-coloumn align="center">{{item.kelas.tingkat.tingkat}}{{item.kelas.grupKelas.grupKelas}}</td>
+				<td md-coloumn align="center"><a href="/#/penilaian/list/kelas/{{idKelas}}/{{item.id}}" style="color: black;">{{item.siswa.namaSiswa}}</a></td>
+			</tr>
+		</tbody>
 	</table>
 </md-table-container>
 

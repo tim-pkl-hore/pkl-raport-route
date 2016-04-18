@@ -38,10 +38,14 @@ public class PenilaianController {
 		KelasSiswa kelasSiswa = kelasSiswaRepository.findOne(penilaian.getKelasSiswa().getId());
 		Kkm kkm = penilaianRepository.findByIdMatpelAndTingkat(penilaian.getMataPelajaran().getId(), kelasSiswa.getKelas().getTingkat().getId());
 		
-		String keterangan = "Tercapai";
+		String keterangan = "Terlampaui";
 		if(penilaian.getNilai() < kkm.getKkm()){
 			keterangan = "Belum Tercapai";
 		}
+		
+		if (penilaian.getNilai() > kkm.getKkm()) {
+			keterangan = "Terlampaui";
+		} 
 	
 		
 		penilaian.setKeterangan(keterangan);
@@ -77,16 +81,17 @@ public class PenilaianController {
 
 	
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
-	public Page<Penilaian> listPenilaianKelas(@RequestParam(name="search", required = false) String search,
-											@RequestParam(name="kelasid", required = true) Long kelasId,
+	public Page<KelasSiswa> listPenilaianKelas(@RequestParam(name="kelasid", required = true) Long kelasId,
 											Pageable pageable){
-		if (search.equals("")) {
-			return penilaianRepository.findByKelasId(kelasId, pageable);
-		}
-		else {
-			
-		}
-			return penilaianRepository.findBySearch(search, pageable);
+		
+			return penilaianRepository.findByKelasSiswaId(kelasId, pageable);
+		
+	}
+	
+	@RequestMapping(value="/detail/siswa/{siswaId}", method=RequestMethod.GET)
+	public Page<Penilaian> listPenilaianSiswa(@RequestParam(name="siswaid", required = true) Long siswaId,
+											Pageable pageable){
+		return penilaianRepository.findBySiswaId(siswaId, pageable);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)

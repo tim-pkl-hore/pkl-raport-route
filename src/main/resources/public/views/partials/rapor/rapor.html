@@ -17,76 +17,67 @@
         		<h4 style="height: 6px"><center>HASIL BELAJAR PESERTA DIDIK</center></h4>
         		<h4 style="height: 6px"><center>SEKOLAH MENENGAH PERTAMA (SMP)</center></h4>
         	</div>
-        		<md-table-container>
-					<table md-table md-row-select ng-model="penilaian" md-progress="promise">
-						<thead md-head md-order="query.order" md-on-reorder="onReorder">
+        	<div ng-repeat="item in itemsDetailRapor">
+        	
+        	
+        	<md-table-container>
+        		<table md-table md-row-select ng-model="penilaian" md-progress="promise">
+					<thead md-head md-order="query.order" md-on-reorder="onReorder">
 							<tr md-row style="height: 6px; width: auto;">
 								<th md-coloumn align="left">Nama Siswa</th>
 								<th md-coloumn align="left">:</th>
-								<td md-coloumn>dfsdf</th>
+								<td md-coloumn>{{item.siswa.namaSiswa}}</th>
 								<th md-coloumn align="left">Kelas</th>
 								<th md-coloumn align="left">:</th>
 								<td md-coloumn>kelas</th>
 							</tr>
-						</thead>
-						<thead md-head md-order="query.order" md-on-reorder="onReorder">
-							<tr md-row style="height: 6px; width: auto;">
-								<th md-coloumn align="left">NISN</th>
-								<th md-coloumn align="left">:</th>
-								<td md-coloumn>akdhfkasd</th>
-								<th md-coloumn align="left">Semester</th>
-								<th md-coloumn align="left">:</th>
-								<td md-coloumn align="left">Semester</th>
-							</tr>
-						</thead>
-						<thead md-head md-order="query.order" md-on-reorder="onReorder">
-							<tr md-row style="height: 6px; width: auto;">
-								<th md-coloumn align="left"></th>
-								<th md-coloumn align="left"></th>
-								<td md-coloumn></th>
-								<th md-coloumn align="left">Tahun Pelajaran</th>
-								<th md-coloumn align="left">:</th>
-								<td md-coloumn align="left">Tahun Pelajaran</th>
-							</tr>
-						</thead>
-					</table>
-				</md-table-container>
-        		
-        		<md-table-container>
-					<table md-table md-row-select border="1" ng-model="penilaian" md-progress="promise">
-						<thead md-head md-order="query.order" md-on-reorder="onReorder">
-							<tr md-row style="width: 5px; height: 20px">
-								<th md-coloumn style="width: 5px; height: 8px">No.</th>
-								<th md-coloumn>Mata Pelajaran</th>
-								<th md-coloumn>KKM</th>
-								<th md-coloumn>Nilai</th>
-								<th md-coloumn>Keterangan Kompetensi</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr md-row>
-								<th md-coloumn>1</th>
-								<th md-coloumn>Bahasa Indonesia</th>
-								<th md-coloumn>76</th>
-								<th md-coloumn>80</th>
-								<th md-coloumn>Terlampaui</th>
-							</tr>
-						</tbody>
-					</table>
-				</md-table-container>
-				
-				<md-table-container>
-					<table md-table md-row-select border="1" ng-model="penilaian" md-progress="promise">
-						<thead md-head md-order="query.order" md-on-reorder="onReorder">
-							<tr md-row>
-								<th md-coloumn>Akhlak dan Kepribadian *)</th>
-								<th md-coloumn>Ketidakhadiran</th>
-								
-							</tr>
-						</thead>
-					</table>
-				</md-table-container>
-        	</md-content>
+					</thead>
+					<thead md-head md-order="query.order" md-on-reorder="onReorder">
+						<tr md-row style="height: 6px; width: auto;">
+							<th md-coloumn align="left">NISN</th>
+							<th md-coloumn align="left">:</th>
+							<td md-coloumn>akdhfkasd</th>
+							<th md-coloumn align="left">Semester</th>
+							<th md-coloumn align="left">:</th>
+							<td md-coloumn align="left">Semester</th>
+						</tr>
+					</thead>
+					<thead md-head md-order="query.order" md-on-reorder="onReorder">
+						<tr md-row style="height: 6px; width: auto;">
+							<th md-coloumn align="left"></th>
+							<th md-coloumn align="left"></th>
+							<td md-coloumn></th>
+							<th md-coloumn align="left">Tahun Pelajaran</th>
+							<th md-coloumn align="left">:</th>
+							<td md-coloumn align="left">Tahun Pelajaran</th>
+						</tr>
+					</thead>
+				</table>
+			</md-table-container>
+        	<md-table-container>
+				<table md-table md-row-select border="1" ng-model="penilaian" md-progress="promise">
+					<thead md-head md-order="query.order" md-on-reorder="onReorder">
+						<tr md-row style="width: 5px; height: 20px">
+							<th md-coloumn style="width: 5px; height: 8px">No.</th>
+							<th md-coloumn>Mata Pelajaran</th>
+							<th md-coloumn>KKM</th>
+							<th md-coloumn>Nilai</th>
+							<th md-coloumn>Keterangan Kompetensi</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr md-row>
+							<th md-coloumn>1</th>
+							<th md-coloumn>Bahasa Indonesia</th>
+							<th md-coloumn>76</th>
+							<th md-coloumn>80</th>
+							<th md-coloumn>Terlampaui</th>
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+			</div>
+		</md-content>
         	
         </div>
 

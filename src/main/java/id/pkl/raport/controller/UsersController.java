@@ -34,7 +34,7 @@ public class UsersController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Users> updateUser(@PathVariable Integer id, @RequestBody Users users, BindingResult bindingResult){
+	public ResponseEntity<Users> updateUser(@PathVariable Long id, @RequestBody Users users, BindingResult bindingResult){
 		if(bindingResult.hasErrors()){
 			return new ResponseEntity<Users>(HttpStatus.BAD_REQUEST);
 		}
@@ -60,7 +60,7 @@ public class UsersController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Users> detailUsers(@PathVariable Integer id){
+	public ResponseEntity<Users> detailUsers(@PathVariable Long id){
 		if (!usersRepository.exists(id)) {
 			return new ResponseEntity<Users>(HttpStatus.NOT_FOUND);
 		}
@@ -75,15 +75,12 @@ public class UsersController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<Users> deleteUser(@PathVariable Integer id){
+	public ResponseEntity<Users> deleteUser(@PathVariable Long id){
 		if(!usersRepository.exists(id)){
 			return new ResponseEntity<Users>(HttpStatus.NOT_FOUND);
 		}
 		usersRepository.delete(id);
 		return new ResponseEntity<Users>(HttpStatus.OK);
 	}
-	
-	
-	
-	
+
 }

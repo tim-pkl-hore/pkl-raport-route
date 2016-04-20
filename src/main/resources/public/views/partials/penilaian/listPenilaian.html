@@ -18,7 +18,7 @@
 		<tbody md-body>
 			<tr md-row ng-repeat="item in itemsDetailPenilaian">
 				<td md-coloumn align="center">{{item.kelas.tingkat.tingkat}}{{item.kelas.grupKelas.grupKelas}}</td>
-				<td md-coloumn align="center"><a href="/#/penilaian/list/kelas/{{idKelas}}/{{item.id}}" style="color: black;">{{item.siswa.namaSiswa}}</a></td>
+				<td md-coloumn align="center"><a href="/#/penilaian/list/kelas/{{item.kelas.id}}/{{item.siswa.id}}" style="color: black;">{{item.siswa.namaSiswa}}</a></td>
 			</tr>
 		</tbody>
 	</table>
@@ -26,7 +26,7 @@
 
 <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
 <div layout="row" layout-wrap layout-margin layout-align="end end">
-		<a href="/#/penilaian/list/kelas/{{idKelas}}/input-nilai" md-button class="md-fab md-primary md-raised center">
+		<a href="/#/penilaian/{{idKelas}}/input-nilai" md-button class="md-fab md-primary md-raised center">
       		<ng-md-icon icon="add" style="fill: #abcdef" size="25"></ng-md-icon>
     	</a>
     </div>

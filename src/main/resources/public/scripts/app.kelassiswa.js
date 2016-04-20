@@ -74,6 +74,7 @@ angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http,
 	};
 	$http(request).then(successHandler, errorHandler);
 	
+	
 	/*
 	 * List
 	 */
@@ -135,6 +136,8 @@ angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http,
 	/*
 	 * Create Data
 	 */
+	
+	
 	
 	$scope.save = function(){
 		KelasSiswaService.create($scope.formData).$promise.then(

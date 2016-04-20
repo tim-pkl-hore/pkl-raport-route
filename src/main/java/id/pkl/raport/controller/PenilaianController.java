@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.pkl.raport.entity.KelasSiswa;
-import id.pkl.raport.entity.Kkm;
 import id.pkl.raport.entity.Penilaian;
 import id.pkl.raport.repository.KelasSiswaRepository;
 import id.pkl.raport.repository.PenilaianRepository;
@@ -35,15 +34,14 @@ public class PenilaianController {
 			return new ResponseEntity<Penilaian>(HttpStatus.BAD_REQUEST);
 		}
 		
-		KelasSiswa kelasSiswa = kelasSiswaRepository.findOne(penilaian.getKelasSiswa().getId());
-		Kkm kkm = penilaianRepository.findByIdMatpelAndTingkat(penilaian.getMataPelajaran().getId(), kelasSiswa.getKelas().getTingkat().getId());
+		Integer kkm = penilaian.getKkm();
 		
 		String keterangan = "Terlampaui";
-		if(penilaian.getNilai() < kkm.getKkm()){
+		if(penilaian.getNilai() < kkm){
 			keterangan = "Belum Tercapai";
 		}
 		
-		if (penilaian.getNilai() > kkm.getKkm()) {
+		if (penilaian.getNilai() > kkm) {
 			keterangan = "Terlampaui";
 		} 
 	
@@ -72,7 +70,6 @@ public class PenilaianController {
 			return new ResponseEntity<Penilaian>(HttpStatus.NOT_FOUND);
 		}
 		
-		
 		currentPenilaian.setNilai(penilaian.getNilai());
 		
 		penilaianRepository.save(currentPenilaian);
@@ -81,17 +78,17 @@ public class PenilaianController {
 
 	
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
-	public Page<KelasSiswa> listPenilaianKelas(@RequestParam(name="kelasid", required = true) Long kelasId,
+	public Page<KelasSiswa> listPenilaianKelas(@RequestParam(name="search", required = false) String search,
+												@RequestParam(name="kelasid", required = true) Long kelasId,
 											Pageable pageable){
-		
 			return penilaianRepository.findByKelasSiswaId(kelasId, pageable);
 		
 	}
 	
-	@RequestMapping(value="/detail/siswa/{siswaId}", method=RequestMethod.GET)
-	public Page<Penilaian> listPenilaianSiswa(@RequestParam(name="siswaid", required = true) Long siswaId,
+	@RequestMapping(value="/detail/siswa/{kelasSiswaId}", method=RequestMethod.GET)
+	public Page<Penilaian> listPenilaianSiswa(@RequestParam(name="kelassiswaid", required = true) Long kelasSiswaId,
 											Pageable pageable){
-		return penilaianRepository.findBySiswaId(siswaId, pageable);
+		return penilaianRepository.findBySiswaId(kelasSiswaId, pageable);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
@@ -109,12 +106,5 @@ public class PenilaianController {
 	{
 		return penilaianRepository.findAll();
 	}
-	
-	
-	
-
-	
-	
-	
 	
 }

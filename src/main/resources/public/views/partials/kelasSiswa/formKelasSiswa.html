@@ -16,7 +16,24 @@
 	        		</md-select>
 	      		</md-input-container>
 	      		</div>
-	      		
+	      		<md-input-container>
+	      			<label>Siswa</label>
+	      			<md-select ng-model="formData.siswa.id"
+                   			md-on-close="clearSearchTerm()"
+                   			data-md-container-class="selectdemoSelectHeader"
+                   			multiple>
+                   	<md-select-header class="demo-select-header">
+           				<input ng-model="searchTerm"
+                   			type="search"
+                   			placeholder="Search for a vegetable.."
+                   			class="demo-header-searchbox _md-text">
+          			</md-select-header>
+          			<md-optgroup label="siswa">
+            			<md-option ng-value="siswa" ng-repeat="sis in siswa |
+              				filter:searchTerm">{{sis.namaSiswa}}</md-option>
+          				</md-optgroup>
+        </md-select>
+	      		</md-input-container>
 	      		<div ng-repeat="sis in siswa">
   					<label for="{{sis.id}}"></label>
    					<input name="checkbox" id="{{sis.id}}" type="checkbox" value="{{sis.id}}" ng-checked="selection.indexOf(sis.namaSiswa) > -1" ng-click="toggleSelection(sis.namaSiswa)" />

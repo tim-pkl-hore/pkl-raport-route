@@ -1,4 +1,4 @@
-package id.pkl.raport.controller;
+/*package id.pkl.raport.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -86,3 +86,4 @@ public class KkmController {
 		return kkmRepository.findAll();
 	}
 }
+*/

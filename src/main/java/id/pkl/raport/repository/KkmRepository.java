@@ -1,4 +1,4 @@
-package id.pkl.raport.repository;
+/*package id.pkl.raport.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,3 +13,4 @@ public interface KkmRepository extends JpaRepository<Kkm, Long> {
 	Page<Kkm> findBySearch(@Param("search") String searchField, Pageable pageable);
 
 }
+*/

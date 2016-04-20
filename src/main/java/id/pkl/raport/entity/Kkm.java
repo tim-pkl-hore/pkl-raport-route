@@ -1,4 +1,4 @@
-package id.pkl.raport.entity;
+/*package id.pkl.raport.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -65,3 +65,4 @@ public class Kkm {
 	
 	
 }
+*/

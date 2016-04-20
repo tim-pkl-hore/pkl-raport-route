@@ -2,9 +2,6 @@ angular.module('raportApp').config(function($routeProvider) {
 	$routeProvider.when('/penilaian/list', {
 		templateUrl : 'views/partials/penilaian/listKelasPenilaian.html',
 		controller : 'PenilaianCtrl'
-	}).when('/penilaian/form', {
-		templateUrl : 'views/partials/penilaian/formPenilaian.html',
-		controller : 'PenilaianCtrl'
 	}).when('/penilaian/list/kelas/:idkelas', {
 		templateUrl : 'views/partials/penilaian/listPenilaian.html',
 		controller : 'PenilaianCtrl',
@@ -22,7 +19,7 @@ angular.module('raportApp').config(function($routeProvider) {
 			
 			}
 		}
-	}).when('/penilaian/list/kelas/:idkelasinput/input-nilai', {
+	}).when('/penilaian/:idkelasinput/input-nilai', {
 		templateUrl : 'views/partials/penilaian/formPenilaian.html',
 		controller : 'PenilaianCtrl',
 		resolve : {
@@ -37,7 +34,7 @@ angular.module('raportApp').config(function($routeProvider) {
 
 });
 
-angular.module('raportApp').controller('PenilaianCtrl', function($scope, $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, PenilaianService, KelasService, KelasSiswaService){
+angular.module('raportApp').controller('PenilaianCtrl', function($scope,	 $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, PenilaianService, KelasService, KelasSiswaService){
 	$scope.formData = {};
 	$scope.search = "";
 	
@@ -182,7 +179,7 @@ angular.module('raportApp').controller('PenilaianCtrl', function($scope, $http, 
 			function(response){
 				
 				mdToast('Data berhasil ditambah');
-				window.location = "/#/penilaian/list/detail/:idkelas";
+				window.location = "/#/penilaian/list/kelas/:idkelas/:idsiswa";
 			},
 			function(errResponse){
 				$log.debug(errResponse);
@@ -191,8 +188,6 @@ angular.module('raportApp').controller('PenilaianCtrl', function($scope, $http, 
 			}
 		);
 	};
-	
-	
 	
 	/*
 	 * List penilaian by kelasId
@@ -275,7 +270,7 @@ angular.module('raportApp').controller('PenilaianCtrl', function($scope, $http, 
 					params : {
 						page : page - 1,
 						size : limit,
-						siswaid : $route.current.params.idsiswa,
+						kelassiswaid : $route.current.params.idsiswa,
 						search : $scope.search
 					}
 				}

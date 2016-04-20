@@ -1,9 +1,11 @@
 <md-toolbar class="md-theme-indigo">
-        			<h1 class="md-toolbar-tools">Kelas : {{kelasSiswa.kelas.tingkat.tingkat}}{{kelasSiswa.kelas.grupKelas.grupKelas}} <br />
-        											Nama Siswa : {{kelasSiswa.siswa.namaSiswa}}</h1>
+        			<h1 class="md-toolbar-tools">Kelas : {{kelasSiswa.kelas.tingkat.tingkat}}{{kelas.grupKelas.grupKelas}} <br />
+        										Nama Siswa : {{kelasSiswa.siswa.namaSiswa}}</h1>
 </md-toolbar>
 <br />
 <md-content layout-padding class="md-no-momentum">
+Kelas : {{kelas.tingkat.tingkat}}{{kelas.grupKelas.grupKelas}} <br />
+        										Nama Siswa : {{siswa.namaSiswa}}
 <md-table-container>
 	<md-input-container class="md-block" md-no-float> 
 			<input type="search" ng-model="search" ng-change="searchField()" placeholder="Search" />
@@ -13,6 +15,7 @@
 			<tr md-row>
 				<th md-coloumn>Mata Pelajaran</th>
 				<th md-coloumn>Kriteria Nilai</th>
+				<th md-coloumn>KKM</th>
 				<th md-coloumn>Nilai</th>
 				<th md-coloumn>Keterangan</th>
 				<th md-coloumn>Detail</th>
@@ -23,6 +26,7 @@
 			<tr md-row ng-repeat="item in itemsDetailNilai">
 				<td md-coloumn align="center">{{item.mataPelajaran.namaMatpel}}</td>
 				<td md-coloumn align="center">{{item.kriteria.namaKriteria}}</td>
+				<td md-coloumn align="center">{{item.kkm}}</td>
 				<td md-coloumn align="center">{{item.nilai}}</td>
 				<td md-coloumn align="center">{{item.keterangan}}</td>
 				<td md-coloumn align="center">

@@ -10,29 +10,29 @@ angular.module('raportApp').config(function($routeProvider) {
 				return $route.current.params.id;
 			}
 		}
-	}).when('/rapor/list/siswa/:idkelas', {
+	}).when('/rapor/list/:kelasId/siswa', {
 		templateUrl : 'views/partials/rapor/listSiswa.html',
 		controller : 'RaporCtrl',
 		resolve : {
-			'idkelas' : function($route) {
-				return $route.current.params.idkelas;
+			'kelasId' : function($route) {
+				return $route.current.params.kelasId;
 			}
 		}
-	})
-	.when('/rapor/nilai', {
+	}).when('/rapor/list/:kelasId/siswa/:siswaId', {
 		templateUrl : 'views/partials/rapor/rapor.html',
 		controller : 'RaporCtrl',
 		resolve : {
-			'idkelas' : function($route) {
-				return $route.current.params.idkelas;
+			'kelasId' : function($route) {
+				return $route.current.params.kelasId;
+			},
+			'siswaId' : function($route) {
+				return $route.current.params.siswaId;
 			}
 		}
-	})
-	;
-
+	});
 });
 
-angular.module('raportApp').controller('RaporCtrl', function($scope, $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, PenilaianService){
+angular.module('raportApp').controller('RaporCtrl', function($scope, $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, PenilaianService, RaportService){
 	$scope.formData = {};
 	$scope.search = "";
 	
@@ -133,11 +133,14 @@ angular.module('raportApp').controller('RaporCtrl', function($scope, $http, $rou
 	}
 	
 	
-	if($route.current.params.idkelas){
+	if($route.current.params.kelasId){
 		$scope.itemsDetailSiswa = [];
-		$scope.idKelas = $route.current.params.idkelas;
+		$scope.kelasId = $route.current.params.kelasId;
 
-		var url = '/rapor/siswa'
+		/*
+		* URL siswa berdasarkan @idkelas
+		* */
+		var url = '/rapor/:kelasId/siswa';
 
 		$scope.queryDetailSiswa = {
 			order : '',
@@ -147,13 +150,13 @@ angular.module('raportApp').controller('RaporCtrl', function($scope, $http, $rou
 		};
 
 		var getDetailSiswa = function(page, limit) {
-			return $resource(url, {}, {
+			return $resource(url, {kelasId : $route.current.params.kelasId}, {
 				get : {
 					method : "GET",
 					params : {
 						page : page - 1,
 						size : limit,
-						kelasid : $route.current.params.idkelas,
+					
 						search : $scope.search
 					}
 				}
@@ -269,7 +272,42 @@ angular.module('raportApp').controller('RaporCtrl', function($scope, $http, $rou
 			);
 		});
 	};
-    
+
+	/*Hasil Akhir Raport
+    * Dengan KelasId dan SiswaId Sebagai parameternya
+    */
+	if($route.current.params.kelasId && $route.current.params.siswaId){
+		/*QUERY FOR GET SISWA BY ID*/
+		$scope.itemsDetailRapor = [];
+		
+		var request = {
+				url : '/rapor/:kelasId/siswa/:siswaId',
+				method : 'GET'
+			};
+			var successHandler = function(response) {
+				$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+				$scope.itemsDetailRapor = response.data.content;
+			};
+			var errorHandler = function(errors) {
+				$log.error(angular.toJson(errors, true));
+			};
+			$http(request).then(successHandler, errorHandler);
+	
+		/*END QUERY FOR GET SISWA BY ID*/
+
+		/*QUERY UNTUK NILAI MATPEL*/
+		RaportService.get({idkelas : $route.current.params.kelasId, id : $route.current.params.siswaId}).$promise.then(
+			function(response){
+				
+				
+				$log.debug(response);
+			},
+			function(errResponse){
+				$log.debug(errResponse);
+			}
+		);
+		/*END QUERY UNTUK NILAI MATPEL*/
+	}
 });
 
 

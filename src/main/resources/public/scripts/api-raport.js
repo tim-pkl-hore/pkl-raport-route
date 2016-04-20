@@ -175,4 +175,11 @@ angular.module('raportApp')
 			update: {method: 'PUT', params: {id: '@id'}},
 			delete: {method: 'DELETE', params: {id: '@id'}}
 		})
+	}).factory('RaportService', function($resource){
+		return $resource('rapor/:idkelas/siswa/:id', {}, {
+			get: {method: 'GET'},
+			create: {method: 'POST'},
+			update: {method: 'PUT', params: {id: '@id'}},
+			delete: {method: 'DELETE', params: {id: '@id'}}
+		})
 	});

@@ -23,12 +23,18 @@
           							</md-option>
         						</md-select>
       					</md-input-container>
+      					<md-input-container>
+	      					<label>KKM</label>
+        					<input type="number" id="kkm" ng-model="formData.kkm">
+          				</md-input-container>
     				</div>
+    				
     				<div layout-gt-sm="row">
+    				
 	      				<md-input-container>
 	        				<label>Siswa</label>
 	        					<md-select data-ng-model="formData.kelasSiswa.id">
-	          						<md-option ng-repeat="siswa in kelasSiswa track by $index" value="{{siswa.id}}">
+	          						<md-option id="siswa" ng-repeat="siswa in kelasSiswa track by $index" value="{{siswa.id}}">
 	            						{{siswa.siswa.namaSiswa}}
 	          						</md-option>
 	        					</md-select>
@@ -48,16 +54,4 @@
 			</div>
 		</md-content>
 	</div>
-	<script type="text/javascript">
-		function setKeterangan(){
-			var nilai = document.getElementById("nilai");
-			var keterangan = document.getElementById("keterangan"));
-			
-			if(nilai.value = 75){
-				keterangan.value = "Tercapai";
-			}
-			
-			
-			
-		}
-	</script>
+	

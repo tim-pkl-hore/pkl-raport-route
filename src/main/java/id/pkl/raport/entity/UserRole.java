@@ -18,7 +18,7 @@ public class UserRole {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
-	private Integer id;
+	private Long id;
 	
 	@Enumerated(EnumType.STRING)
 	@NotNull
@@ -29,11 +29,11 @@ public class UserRole {
 	@JoinColumn(name="username", referencedColumnName="username")
 	private Users users;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -52,6 +52,4 @@ public class UserRole {
 	public void setUsers(Users users) {
 		this.users = users;
 	}
-
-	
 }

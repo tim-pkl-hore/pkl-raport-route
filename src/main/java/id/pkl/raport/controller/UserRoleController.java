@@ -38,7 +38,7 @@ public class UserRoleController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<UserRole> updateRole(@PathVariable Integer id, @RequestBody UserRole userRole, BindingResult bindingResult){
+	public ResponseEntity<UserRole> updateRole(@PathVariable Long id, @RequestBody UserRole userRole, BindingResult bindingResult){
 		if (bindingResult.hasErrors()) {
 			return new ResponseEntity<UserRole>(HttpStatus.BAD_REQUEST);
 		}
@@ -56,7 +56,7 @@ public class UserRoleController {
 	}
 	
 	@RequestMapping(value="{/id}", method=RequestMethod.GET)
-	public ResponseEntity<UserRole> detailRole(@PathVariable Integer id){
+	public ResponseEntity<UserRole> detailRole(@PathVariable Long id){
 		if (!userRoleRepository.exists(id)) {
 			return new ResponseEntity<UserRole>(HttpStatus.NOT_FOUND);
 		}
@@ -66,7 +66,7 @@ public class UserRoleController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<UserRole> deleteRole(@PathVariable Integer id){
+	public ResponseEntity<UserRole> deleteRole(@PathVariable Long id){
 		if(!userRoleRepository.exists(id)){
 			return new ResponseEntity<UserRole>(HttpStatus.NOT_FOUND);
 		}

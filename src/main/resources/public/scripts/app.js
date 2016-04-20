@@ -74,7 +74,11 @@
 				                 icon: 'logout'
 				           },
 			             ];
+			$scope.index = 0;
 
+		    $scope.toggleSidenav = function (menuId) {
+		        $mdSidenav(menuId).toggle();
+		    };
 			
 			$scope.toggleLeft = buildDelayedToggler('left');
 		    $scope.toggleRight = buildToggler('right');

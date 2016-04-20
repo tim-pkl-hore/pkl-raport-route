@@ -10,8 +10,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 @Entity
 @Table(name="penilaian", uniqueConstraints = @UniqueConstraint(columnNames={"kelas_siswa", "kriteria", "mata_pelajaran"}))
 public class Penilaian {
@@ -36,10 +34,12 @@ public class Penilaian {
 	@Column(name="nilai")
 	private Integer nilai;
 	
+	@Column(name="kkm")
+	private Integer kkm;
+	
 	
 	@Column(name="keterangan")
 	private String keterangan;
-
 
 	public Long getId() {
 		return id;
@@ -88,6 +88,17 @@ public class Penilaian {
 
 	public void setNilai(Integer nilai) {
 		this.nilai = nilai;
+	}
+
+	
+
+	public Integer getKkm() {
+		return kkm;
+	}
+
+
+	public void setKkm(Integer kkm) {
+		this.kkm = kkm;
 	}
 
 

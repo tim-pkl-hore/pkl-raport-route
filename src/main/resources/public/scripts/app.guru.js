@@ -81,21 +81,12 @@ angular.module('raportApp')
 		getPage(page, limit);
 	}
 	
-	 	$scope.sortType     = 'nama'; // set the default sort type
-	 	$scope.sortReverse  = false;  // set the default sort order
-	 	
-	  
-	  // create the list of sushi rolls 
-	 	$scope.items = [];
-	
-	/* 
-	 * var orderBy = $filter('orderBy');
-		$scope.order = function(predicate) {
-	    $scope.predicate = predicate;
-	    $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
-	    $scope.items = orderBy($scope.items, predicate, $scope.reverse);
-	  };
-	*/
+		$scope.sortType     = $scope.items; // set the default sort type
+		$scope.sortReverse  = false;
+		
+		
+	 	 
+	 	  	
 	
 	/*
 	 * Search

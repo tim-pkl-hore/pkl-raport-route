@@ -279,7 +279,6 @@ angular.module('raportApp').controller('RaporCtrl', function($scope, $http, $rou
 	if($route.current.params.kelasId && $route.current.params.siswaId){
 		/*QUERY FOR GET SISWA BY ID*/
 		$scope.itemsDetailRapor = [];
-		
 		var request = {
 				url : '/rapor/:kelasId/siswa/:siswaId',
 				method : 'GET'

@@ -1,13 +1,8 @@
 'use strict';
 		
-		var app = angular.module('raportApp', ['ngRoute', 'ngMaterial', 'ui.router', 'md.data.table', 'ngMdIcons', 'ngMenuSidenav', 'ngResource'])
+		var app = angular.module('raportApp', ['ngRoute', 'ngMaterial', 'ui.router', 'md.data.table', 'ngMdIcons', 'ngMenuSidenav', 'ngResource', 'ngMessages', 'tableSort'])
 		.controller('raportApp', function($scope, $location, $timeout, $mdSidenav, $log){
 			$scope.menu = [
-			               {
-				                 link : '/#/absensi/siswa/list',
-				                 title: 'Data Absensi Siswa',
-				                 icon: 'assignment_turned_in'
-				           },
 				           {
 				                 link : '/#/guru/list',
 				                 title: 'Data Guru',
@@ -29,13 +24,7 @@
 				                 title: 'Data Pengajar',
 				                 icon: 'group'
 				           },
-				           				          
-				           {
-				                 link : '/#/mata/pelajaran/list',
-				                 title: 'Data Mata Pelajaran',
-				                 icon: 'group'
-				           },
-				          
+				         
 				           {
 				                 link : '/#/siswa/list',
 				                 title: 'Data Siswa',
@@ -51,11 +40,6 @@
 				                 link : '/#/rapor/list',
 				                 title: 'Rapor Siswa',
 				                 icon: 'my_library_books'
-				           },
-				           {
-				                 link : '/#/kkm/list',
-				                 title: 'KKM',
-				                 icon: 'format_list_numbered'
 				           },
 				           
 				           {

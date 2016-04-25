@@ -61,6 +61,7 @@ angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http,
 	$http(request).then(successHandler, errorHandler);
 	
 	$scope.siswa = [];
+	
 	var request = {
 		url : '/siswa/all',
 		method : 'GET'
@@ -74,7 +75,12 @@ angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http,
 	};
 	$http(request).then(successHandler, errorHandler);
 	
-	
+	$scope.select = function(select){
+		$scope.formData.push(select);
+		console.log("cek", formData);
+//		tamp.push(dif[select]);
+//		console.log("cek", tamp);
+	};	
 	/*
 	 * List
 	 */
@@ -137,7 +143,13 @@ angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http,
 	 * Create Data
 	 */
 	
+	var dif = [];
+	var tamp = [];
+
 	
+	$scope.ambil = function(){
+		$scope.items = tamp;
+	}
 	
 	$scope.save = function(){
 		KelasSiswaService.create($scope.formData).$promise.then(
@@ -209,7 +221,9 @@ angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http,
 		});
 	};
 	
-	$scope.selection=[];
+	
+	
+	/*$scope.selection=[];
 	 $scope.toggleSelection = function toggleSelection(items) {
 	     var idx = $scope.selection.indexOf(items);
 	 
@@ -223,7 +237,9 @@ angular.module('raportApp').controller('KelasSiswaCtrl', function($scope, $http,
 	       $scope.selection.push(items);
 	     }
 	   };
-    
+    */
+	
+	
 });
 
 

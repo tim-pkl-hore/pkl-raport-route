@@ -9,7 +9,12 @@
 				<div layout-gt-sm="row">
 					<md-input-container class="md-block" flex-gt-sm>
             			<label>NIP</label>
-            			<input type="number"  ng-model="formData.nip">
+            			<input type="number" name="nip" ng-model="formData.nip" ng-minlength="3" ng-maxlength="18" required />
+            			<div ng-messages="formSubmit.nip.$error" style="color:maroon" role="alert">
+					        <p ng-message="minlength">NIP terlau pendek.</p>
+					        <p ng-message="maxlength">NIP terlalu panjang.</p>
+					        <p ng-message="required">NIP harus diisi.</p>
+    					</div>
         			</md-input-container>
          		</div>
         		<div layout-gt-sm="row">

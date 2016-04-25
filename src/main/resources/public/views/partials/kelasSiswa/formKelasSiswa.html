@@ -16,29 +16,32 @@
 	        		</md-select>
 	      		</md-input-container>
 	      		</div>
-	      		<md-input-container>
-	      			<label>Siswa</label>
-	      			<md-select ng-model="formData.siswa.id"
-                   			md-on-close="clearSearchTerm()"
-                   			data-md-container-class="selectdemoSelectHeader"
-                   			multiple>
-                   	<md-select-header class="demo-select-header">
-           				<input ng-model="searchTerm"
-                   			type="search"
-                   			placeholder="Search for a vegetable.."
-                   			class="demo-header-searchbox _md-text">
-          			</md-select-header>
-          			<md-optgroup label="siswa">
-            			<md-option ng-value="siswa" ng-repeat="sis in siswa |
-              				filter:searchTerm">{{sis.namaSiswa}}</md-option>
-          				</md-optgroup>
-        </md-select>
-	      		</md-input-container>
-	      		<div ng-repeat="sis in siswa">
+	      		<md-table-container>
+	      			<table md-table md-row-select border="1" ng-model="kelas_siswa">
+	      				<thead md-head md-order="query.order" md-on-reorder="onReorder">
+							<tr md-row>
+								<th md-coloumn>Nomor</th>
+								<th>Checkbox</th>
+								<th md-coloumn>Nama Siswa</th>
+							</tr>
+						</thead>
+						<tbody md-head md-order="query.order" md-on-reorder="onReorder">
+							<tr md-row ng-repeat="sis in siswa">
+								<td md-coloumn>{{$index + 1}}</td>
+								<td>
+									<input name="checkbox" id="{{sis.id}}" type="checkbox" ng-click="select($index)" />
+								</td>
+								<td md-coloumn>{{sis.namaSiswa}}</td>
+							</tr>
+						</tbody>
+	      			</table>
+	      		</md-table-container>
+	      		<!-- <div ng-repeat="sis in siswa">
+	      		
   					<label for="{{sis.id}}"></label>
    					<input name="checkbox" id="{{sis.id}}" type="checkbox" value="{{sis.id}}" ng-checked="selection.indexOf(sis.namaSiswa) > -1" ng-click="toggleSelection(sis.namaSiswa)" />
    							{{sis.namaSiswa}}
-				</div>
+				</div>  -->
 	      		
 	      		<md-input-container class="md-block" flex-gt-sm>
 	      			<label>Siswa</label>
@@ -51,7 +54,7 @@
 	      		
 	      		<div layout="row" layout-wrap layout-margin layout-align="end end">
         			<md-input-container>
-        				<input type="submit" class="md-button md-raised md-primary"  value="Tambah" />
+        				<input type="submit" class="md-button md-raised md-primary" value="Tambah" />
       				</md-input-container>
       			</div>
 			</form>

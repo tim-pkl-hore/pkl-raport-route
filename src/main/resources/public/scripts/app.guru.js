@@ -21,7 +21,7 @@ angular.module('raportApp').config(function($routeProvider) {
 
 
 angular.module('raportApp')
-.controller('GuruCtrl',  function($scope, $http, $filter, $resource, $route, $stateParams, $mdDialog, $mdToast, $log, $state, $location, GuruService){
+.controller('GuruCtrl', ['$scope', '$http', '$filter', '$resource', '$route', '$stateParams', '$mdDialog', '$mdToast', '$log', '$state', '$location', 'GuruService', function($scope, $http, $filter, $resource, $route, $stateParams, $mdDialog, $mdToast, $log, $state, $location, GuruService){
 	$scope.formData = {};
 	$scope.items = [];
 	$scope.search = "";
@@ -81,14 +81,30 @@ angular.module('raportApp')
 		getPage(page, limit);
 	}
 	
-		$scope.sortType     = $scope.items; // set the default sort type
-		$scope.sortReverse  = false;
-		
-		
-	 	 
+	 $scope.sort = function(keyname){
+	        $scope.sortKey = keyname;   //set the sortKey to the param passed
+	        $scope.reverse = !$scope.reverse; //if true make it false and vice versa
+	    }
+	 /*var orderBy = $filter('orderBy');
+	  $scope.items = [];
+	  $scope.order = function(predicate) {
+	    $scope.predicate = predicate;
+	    $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+	    $scope.items = orderBy($scope.items, predicate, $scope.reverse);
+	  };
+	  $scope.order($scope.items, true);
+	*/
+	
+	/*$scope.items = [];
+	  $scope.predicate = '';
+	  $scope.reverse = true;
+	  $scope.order = function(predicate) {
+	    $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+	    $scope.predicate = predicate;
+	  };
 	 	  	
 	
-	/*
+	*
 	 * Search
 	 */
 	$scope.searchField = function(){
@@ -183,7 +199,7 @@ angular.module('raportApp')
 		
 	}
 	
-});
+}]);
 
 angular.module('raportApp')
 		.controller(

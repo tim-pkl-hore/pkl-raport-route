@@ -15,45 +15,31 @@
 	<table md-table md-row-select border="1" ng-model="guru" md-progress="promise">
 		<thead md-head md-order="filter" md-on-reorder="onReorder">	
 			<tr md-row>
-				<th md-coloumn>
-					<a href="" style="color: black;" sortType = 'formData.nip'">
-            			NIP
-            			<span ng-show="sortType == 'formData.nip'"></span>
-          			</a>
+				<th md-coloumn ng-click="sort('formData.nip')">
+					NIP
+					 <span class="glyphicon sort-icon" ng-show="sortKey=='formData.nip'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
 				</th>
-				<th md-coloumn>
-					<a href="" style="color: black; ng-click="sortType = 'formData.nama'; sortReverse = !sortReverse">
-            			Nama 
-            			<span ng-show="sortType == 'formData.nama' && !sortReverse" class="fa fa-caret-down"></span>
-            			<span ng-show="sortType == 'formData.nama' && sortReverse" class="fa fa-caret-up"></span>
-          			</a>
+				<th md-coloumn ng-click="sort('formData.nama')">
+					Nama
+					<span class="glyphicon sort-icon" ng-show="sortKey=='formData.nama'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
 				</th>
-				<th md-coloumn>
-					<a href="" style="color: black; ng-click="sortType = 'formData.email'; sortReverse = !sortReverse">
-            			Email 
-            			<span ng-show="sortType == 'formData.email' && !sortReverse" class="fa fa-caret-down"></span>
-            			<span ng-show="sortType == 'formData.email' && sortReverse" class="fa fa-caret-up"></span>
-          			</a>
+				<th md-coloumn ng-click="sort('formData.email')">
+					Email
+					<span class="glyphicon sort-icon" ng-show="sortKey=='formData.email'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
 				</th>
-				<th md-coloumn>
-					<a href="" style="color: black; ng-click="sortType = 'formData.telp'; sortReverse = !sortReverse">
-            			No. HP 
-            			<span ng-show="sortType == 'formData.telp' && !sortReverse" class="fa fa-caret-down"></span>
-            			<span ng-show="sortType == 'formData.telp' && sortReverse" class="fa fa-caret-up"></span>
-          			</a>
+				<th md-coloumn ng-click="sort('formData.telp')">
+					No. HP
+					<span class="glyphicon sort-icon" ng-show="sortKey=='formData.telp'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
 				</th>
-				<th md-coloumn>
-					<a href="" style="color: black; ng-click="sortType = 'formData.alamat'; sortReverse = !sortReverse">
-            			Alamat 
-            			<span ng-show="sortType == 'formData.alamat' && !sortReverse" class="fa fa-caret-down"></span>
-            			<span ng-show="sortType == 'formData.alamat' && sortReverse" class="fa fa-caret-up"></span>
-          			</a>
+				<th md-coloumn ng-click="sort('formData.alamat')">
+					Alamat
+					<span class="glyphicon sort-icon" ng-show="sortKey=='formData.alamat'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
 				</th>
 				<th md-coloumn><a href="" style="color: black;" ng-click="order('guru.nama')">Aksi</a></th>
 			</tr>
 		</thead>
 		<tbody md-body>
-			<tr md-row ng-repeat="item in items | orderBy:sortType:sortReverse">
+			<tr md-row ng-repeat="item in items |orderBy:sortKey:reverse">
 				<td md-coloumn align="center">{{item.nip}}</td>
 				<td md-coloumn align="center">{{item.nama}}</td>
 				<td md-coloumn align="center">{{item.email}}</td>

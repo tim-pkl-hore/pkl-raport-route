@@ -30,5 +30,5 @@ public interface PenilaianRepository extends JpaRepository<Penilaian, Long> {
 	@Query("SELECT penilaian FROM Penilaian penilaian JOIN penilaian.kelasSiswa kelasSiswa JOIN penilaian.kriteria kriteria " +
 			"JOIN penilaian.mataPelajaran mataPelajaran WHERE kelasSiswa.kelas.id = :kelasId AND kelasSiswa.siswa.id = :siswaId " +
 			"ORDER BY mataPelajaran.namaMatpel ASC")
-	Iterable<Penilaian> listNilaiSiswa(@Param("kelasId") Long kelasId,@Param("siswaId") Long siswaId);
+	Iterable<Penilaian> listNilaiSiswa(@Param("kelasId") Long kelasId, @Param("siswaId") Long siswaId);
 }

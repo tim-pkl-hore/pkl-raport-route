@@ -15,13 +15,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.pkl.raport.entity.KelasSiswa;
+import id.pkl.raport.repository.KelasRepository;
 import id.pkl.raport.repository.KelasSiswaRepository;
+import id.pkl.raport.repository.SiswaRepository;
 
 @RestController
 @RequestMapping(value="/kelas/siswa")
 public class KelasSiswaController {
 	@Autowired
 	private KelasSiswaRepository kelasSiswaRepository;
+	
+	@Autowired
+	private KelasRepository kelasRepository;
+	
+	@Autowired
+	private SiswaRepository siswaRepository;
+	
+	
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<KelasSiswa> addKelasSiswa(@Validated @RequestBody KelasSiswa kelasSiswa, BindingResult bindingResult){
@@ -91,5 +101,18 @@ public class KelasSiswaController {
 	public Iterable<KelasSiswa> listAllSiswaByIdKelas(@PathVariable Long idKelas)
 	{
 		return kelasSiswaRepository.findByKelasId(idKelas);
+	}
+	
+	@RequestMapping(value="/{id}/{siswaId}", method=RequestMethod.GET)
+	public ResponseEntity<KelasSiswa> detailSiswaByKelasIdSiswaId(@PathVariable Long id, @PathVariable Long siswaId){
+		if (!kelasRepository.exists(id)) {
+			return new ResponseEntity<KelasSiswa>(HttpStatus.NOT_FOUND);
+		}
+		if (!siswaRepository.exists(siswaId)) {
+			return new ResponseEntity<KelasSiswa>(HttpStatus.NOT_FOUND);
+		}
+
+		KelasSiswa kelasSiswa = kelasSiswaRepository.findByKelasIdSiswaId(id, siswaId);
+		return new ResponseEntity<KelasSiswa>(kelasSiswa, HttpStatus.OK);
 	}
 }

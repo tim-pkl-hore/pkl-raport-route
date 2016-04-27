@@ -31,7 +31,7 @@ public class RaporController {
 	}
 	
 	@RequestMapping(value = "/{siswaId}", method=RequestMethod.GET)
-	public Map<String, Double> listNilaiSiswa(@PathVariable("kelasId") Long kelasId, @PathVariable("siswaId") Long siswaId){
+	public Map<String, Double> listNilaiSiswa(@PathVariable Long kelasId, @PathVariable Long siswaId){
 		System.out.print("MASUK LIST NILAI");
 		
 		/*

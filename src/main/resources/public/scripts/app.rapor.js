@@ -67,16 +67,16 @@ angular.module('raportApp').controller('RaporCtrl', function($scope, $http, $rou
         	};
         	$http(request).then(successHandler, errorHandler);
         
-        $scope.kelas_siswa = [];
-        var request = {
-               		url : '/kelas/siswa/all',
-               		method : 'GET'
-               	};
-               	var successHandler = function(response) {
-               		$log.debug("Response data dari server : \n"
-               				+ angular.toJson(response.data, true));
-               		$scope.kelas_siswa = response.data;
-               	};
+     $scope.kelas_siswa = [];
+     var request = {
+            url : '/kelas/siswa/all',
+               	method : 'GET'
+            };
+            var successHandler = function(response) {
+               	$log.debug("Response data dari server : \n"
+               			+ angular.toJson(response.data, true));
+               	$scope.kelas_siswa = response.data;
+            };
                	var errorHandler = function(errors) {
                		$log.error(angular.toJson(errors, true));
                	};
@@ -241,7 +241,7 @@ angular.module('raportApp').controller('RaporCtrl', function($scope, $http, $rou
 		PenilaianService.update($scope.formData).$promise.then(
 			function(response){
 				mdToast('Data berhasil diubah');
-				window.location = "/#/mata/pelajaran/list";
+				window.location = "/#/rapor/list";
 			},
 			
 			function(errResponse){
@@ -274,38 +274,35 @@ angular.module('raportApp').controller('RaporCtrl', function($scope, $http, $rou
 	};
 
 	/*Hasil Akhir Raport
-    * Dengan KelasId dan SiswaId Sebagai parameternya
-    */
-	if($route.current.params.kelasId && $route.current.params.siswaId){
-		/*QUERY FOR GET SISWA BY ID*/
-		$scope.itemsDetailRapor = [];
-		var request = {
-				url : '/rapor/:kelasId/siswa/:siswaId',
-				method : 'GET'
-			};
-			var successHandler = function(response) {
-				$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
-				$scope.itemsDetailRapor = response.data.content;
-			};
-			var errorHandler = function(errors) {
-				$log.error(angular.toJson(errors, true));
-			};
-			$http(request).then(successHandler, errorHandler);
-	
-		/*END QUERY FOR GET SISWA BY ID*/
+	    * Dengan KelasId dan SiswaId Sebagai parameternya
+	    */
+		if($route.current.params.kelasId && $route.current.params.siswaId){
+			/*QUERY FOR GET SISWA BY ID*/
+			KelasSiswaService.get({id : $route.current.params.kelasId, other : $route.current.params.siswaId}).$promise.then(
+				function(response){
+					$log.debug("Response siswa : \n"
+						+ angular.toJson(response, true));
+					$scope.siswa = response;
+				},
+				function(errResponse){
+					$log.debug("Response error siswa : \n"
+						+ angular.toJson(errResponse, true));
+				}
+			);
+			/*END QUERY FOR GET SISWA BY ID*/
 
-		/*QUERY UNTUK NILAI MATPEL*/
-		RaportService.get({idkelas : $route.current.params.kelasId, id : $route.current.params.siswaId}).$promise.then(
-			function(response){
-				
-				
-				$log.debug(response);
-			},
-			function(errResponse){
-				$log.debug(errResponse);
-			}
-		);
-		/*END QUERY UNTUK NILAI MATPEL*/
+			/*QUERY UNTUK NILAI MATPEL*/
+			RaportService.get({idkelas : $route.current.params.kelasId, id : $route.current.params.siswaId}).$promise.then(
+				function(response){
+					$log.debug("Response nilai : \n"
+						+ angular.toJson(response, true));
+					$scope.nilai = response;
+				},
+				function(errResponse){
+					$log.debug(errResponse);
+				}
+			);
+			/*END QUERY UNTUK NILAI MATPEL*/
 	}
 });
 

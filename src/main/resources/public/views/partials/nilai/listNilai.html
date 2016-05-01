@@ -1,0 +1,39 @@
+<md-toolbar class="md-theme-indigo">
+        			<h1 class="md-toolbar-tools">Kelas : {{kelas.tingkat.tingkat}}{{kelas.grupKelas.grupKelas}} <br />
+        										Nama Siswa : {{kelasSiswa.siswa.namaSiswa}}</h1>
+</md-toolbar>
+<br />
+
+<md-table-container>
+	<md-input-container class="md-block" md-no-float> 
+			<input type="search" ng-model="search" ng-change="searchField()" placeholder="Search" />
+		</md-input-container>
+		<table md-table md-row-select border="1" ng-model="penilaian" md-progress="promise">
+		<thead md-head md-order="query.order" md-on-reorder="onReorder">
+			<tr md-row ng-repeat="item in itemsDetailNilai">
+				<th md-coloumn>Mata Pelajaran</th>
+				<th md-coloumn>KKM</th>
+				<th md-coloumn>{{item.kriteria.namaKriteria}}</th>
+				<th md-coloumn>Nilai</th>
+				<th md-coloumn>Keterangan</th>
+				<th md-coloumn>Detail</th>
+			</tr>
+		</thead>
+		<tbody md-body>
+			<tr md-row >
+				<td md-coloumn align="center">{{item.mataPelajaran.namaMatpel}}</td>
+				<td md-coloumn align="center">{{item.kkm}}</td>
+				<td md-coloumn align="center">{{item.kriteria.namaKriteria}}</td>
+				
+				<td md-coloumn align="center">{{item.nilai}}</td>
+				<td md-coloumn align="center">{{item.keterangan}}</td>
+				<td md-coloumn align="center">
+		 			<a href="/#/penilaian/list/siswa/{{item.id}}" class="md-button md-raised md-primary">Detail</a> 
+		 			<!-- <a href="/#/penilaian/edit/{{idKelas}}/{{idPenilaian}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
+		 			<a href="/#/penilaian/detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 
+		 			<a href ng-click="showConfirm(item.id)"><ng-md-icon icon="delete" style="fill: #abcdef" size="20"></ng-md-icon></a> -->
+		 		</td>
+	</table>
+</md-table-container>
+
+<md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>

@@ -1,13 +1,10 @@
-<div ng-controller="PenilaianCtrl">
-	<div layout-align="center start" md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-		<md-content class="md-whiteframe-11dp" flex="90">
-			<div layout-margin>
+<div ng-controller="PenilaianCtrl" layout-padding>
 				<md-toolbar class="md-theme-indigo">
         			<h1 class="md-toolbar-tools">Kelas : {{tingkat}}{{grupKelas}} </h1>
 				</md-toolbar>
 				<form name="formSubmit" ng-submit="save()">
-    				<div layout-gt-sm="row">
-    					<md-input-container class="md-block" flex-gt-sm>
+					<div layout-gt-sm="row">
+						<md-input-container class="md-block" flex-gt-sm>
         					<label>Mata Pelajaran</label>
         						<md-select data-ng-model="formData.mataPelajaran.id">
           							<md-option ng-repeat="matpel in mata_pelajaran track by $index" value="{{matpel.id}}">
@@ -15,6 +12,8 @@
           							</md-option>
         						</md-select>
       					</md-input-container>
+					</div>
+    				<div layout-gt-sm="row">
       					<md-input-container class="md-block" flex-gt-sm>
         					<label>Kriteria</label>
         						<md-select data-ng-model="formData.kriteria.id">
@@ -28,10 +27,19 @@
         					<input type="number" id="kkm" ng-model="formData.kkm">
           				</md-input-container>
     				</div>
-    				
     				<div layout-gt-sm="row">
+    					<md-list ng-cloak data-ng-model="formData.kelasSiswa.id">
+						 	<md-subheader class="md-no-sticky">Nama Siswa</md-subheader>
+						 		<md-list-item ng-repeat="siswa in kelasSiswa track by $index" value="{{siswa.id}}" style="height: 20px; width: 300px;">
+						    		{{siswa.siswa.namaSiswa}}
+						    		<md-input-container>
+	      								<label>Nilai</label>
+        									<input type="number" id="nilai" ng-model="formData.nilai">
+          							</md-input-container>
+						    	</md-list-item>
+						</md-list>
     				
-	      				<md-input-container>
+    					<md-input-container>
 	        				<label>Siswa</label>
 	        					<md-select data-ng-model="formData.kelasSiswa.id">
 	          						<md-option id="siswa" ng-repeat="siswa in kelasSiswa track by $index" value="{{siswa.id}}">
@@ -43,15 +51,12 @@
 	      					<label>Nilai</label>
         					<input type="number" id="nilai" ng-model="formData.nilai">
           				</md-input-container>
-          				
-      				</div>
+          			</div>
       				<div layout="row" layout-wrap layout-margin layout-align="end end">
         				<md-input-container>
         					<input type="submit" class="md-button md-raised md-primary"  value="Tambah" />
       					</md-input-container>
       				</div>  
-      </form>
-			</div>
-		</md-content>
-	</div>
+      			</form>
+</div>
 	

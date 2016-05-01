@@ -1,54 +1,51 @@
 <div ng-controller="GuruCtrl">
-	<div layout-align="center start" md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-      <md-content class="md-whiteframe-11dp" flex="90">
-        <div layout-margin>
-        <md-toolbar class="md-theme-indigo">
-        	<h1 class="md-toolbar-tools">Form Data Guru</h1>
-		</md-toolbar>
-        	<form name="formSubmit" ng-submit="save()">
-				<div layout-gt-sm="row">
-					<md-input-container class="md-block" flex-gt-sm>
-            			<label>NIP</label>
-            			<input type="number" name="nip" ng-model="formData.nip" ng-minlength="3" ng-maxlength="18" required />
+	<md-toolbar class="md-theme-indigo">
+       	<h1 class="md-toolbar-tools">Form Data Guru</h1>
+	</md-toolbar>
+       	<form name="formSubmit" ng-submit="save()">
+			<div layout-gt-sm="row">
+				<md-input-container class="md-block" flex-gt-sm>
+           			<label>NIP</label>
+           			<input type="number" name="nip" ng-model="formData.nip" ng-minlength="3" ng-maxlength="18" required />
             			<div ng-messages="formSubmit.nip.$error" style="color:maroon" role="alert">
 					        <p ng-message="minlength">NIP terlau pendek.</p>
 					        <p ng-message="maxlength">NIP terlalu panjang.</p>
 					        <p ng-message="required">NIP harus diisi.</p>
     					</div>
-        			</md-input-container>
-         		</div>
-        		<div layout-gt-sm="row">
-					<md-input-container class="md-block" flex-gt-sm>
-            			<label>Nama Lengkap</label>
-            			<input type="text" ng-model="formData.nama">
-          			</md-input-container>
-        		</div>
-   				<div layout-gt-sm="row">
-   					<md-input-container class="md-block" flex-gt-sm>
-            			<label>Email</label>
-            			<input type="email" ng-model="formData.email" required="Email harus diisi" >
-          			</md-input-container>
-          		</div>
-    			<div layout-gt-sm="row">
-		   			<md-input-container class="md-block" flex-gt-sm>
-            			<label>No. HP</label>
-            			<input type="tel" ng-model="formData.telp"  maxlength="12">
-          			</md-input-container>
-   				</div>
-        			<md-input-container class="md-block">
-          				<label>Alamat</label>
-          				<input ng-model="formData.alamat">
-        			</md-input-container>
-        <div layout="row" layout-wrap layout-margin layout-align="end end">
-        <md-input-container>
-        	<input type="reset" class="md-button md-raised md-primary"  value="Reset" />
-      </md-input-container>
-        <md-input-container>
-        	<input type="submit" class="md-button md-raised md-primary"  value="Tambah" />
-      </md-input-container>
-      </div>
-       </form>
-        </div>
-      </md-content>
-   	</div>
+       			</md-input-container>
+       		</div>
+       		<div layout-gt-sm="row">
+				<md-input-container class="md-block" flex-gt-sm>
+           			<label>Nama Lengkap</label>
+           			<input type="text" ng-model="formData.nama">
+       			</md-input-container>
+       		</div>
+   			<div layout-gt-sm="row">
+   				<md-input-container class="md-block" flex-gt-sm>
+           			<label>Email</label>
+           			<input type="email" ng-model="formData.email" required />
+           				<div ng-messages="formSubmit.email.$error" style="color:maroon" role="alert">
+					        <p ng-message="required">Email harus memakai karakter @.</p>
+    					</div>
+       			</md-input-container>
+       		</div>
+    		<div layout-gt-sm="row">
+	   			<md-input-container class="md-block" flex-gt-sm>
+           			<label>No. HP</label>
+           			<input type="tel" ng-model="formData.telp"  maxlength="12">
+       			</md-input-container>
+   			</div>
+       			<md-input-container class="md-block">
+          			<label>Alamat</label>
+          			<input ng-model="formData.alamat">
+        		</md-input-container>
+        	<div layout="row" layout-wrap layout-margin layout-align="end end">
+        		<md-input-container>
+        			<input type="reset" class="md-button md-raised md-primary"  value="Reset" />
+      			</md-input-container>
+        		<md-input-container>
+        			<input type="submit" class="md-button md-raised md-primary"  value="Tambah" />
+      			</md-input-container>
+      		</div>
+       </form> 
 </div>

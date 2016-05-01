@@ -1,4 +1,3 @@
-<md-content layout-padding>
 <div ng-controller="SiswaCtrl">
 	<div layout-align="center start" md-theme="docs-dark" layout-gt-sm="row" layout-padding>
 		<md-content class="md-whiteframe-11dp" flex="90">
@@ -10,7 +9,11 @@
 					<div layout-gt-sm="row">
 						<md-input-container class="md-block" flex-gt-sm>
 	        				<label>NISN</label>
-	        				<input type="number" ng-model="formData.nisn">
+	        				<input type="number" ng-model="formData.nisn" ng-maxlength="10" required>
+	        				<div ng-messages="formSubmit.nisn.$error" style="color:maroon" role="alert">
+					        	<p ng-message="maxlength">NISN terlalu panjang. Maks 10 karakter.</p>
+					        	<p ng-message="required">NISN harus diisi.</p>
+    						</div>
 	     				</md-input-container>
 	     			</div>
 	     			<div layout-gt-sm="row">

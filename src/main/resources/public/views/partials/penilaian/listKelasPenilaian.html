@@ -11,7 +11,7 @@
 				<th md-coloumn>Kelas</th>
 				<th md-coloumn>Tahun Ajaran</th>
 				<th md-coloumn>Wali Kelas</th>
-				<th md-coloumn>Penilaian</th>
+				<th md-coloumn>Isi Nilai</th>
 			</tr>
 		</thead>
 		<tbody md-body>
@@ -21,7 +21,9 @@
 				<td md-coloumn align="center">{{item.waliKelas.nama}}</td>
 				<td md-coloumn align="center">
 		 			
-		 			<a href="/#/penilaian/list/kelas/{{item.id}}" class="md-button md-raised md-primary">Detail</a> 
+		 			<a href="/#/penilaian/{{item.id}}/input-nilai" class="md-button md-fab md-mini md-primary">
+		 				<ng-md-icon icon="create"></ng-md-icon>
+		 			</a> 
 		 			
 		 		</td>
 				

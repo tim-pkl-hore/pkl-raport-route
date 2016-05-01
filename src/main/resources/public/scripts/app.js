@@ -67,6 +67,11 @@
 				        link: '/#/guru/list',
 				        icon: 'people'
 			      },{
+			    	  name: 'Data Nilai',
+				        link: '/#/nilai/list',
+				        icon: 'people'
+			      },
+			      {
 			    	  name: 'Penilaian',
 				        link: '/#/penilaian/list',
 				        icon: 'spellcheck'

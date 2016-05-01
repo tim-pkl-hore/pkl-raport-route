@@ -91,6 +91,11 @@ public class PenilaianController {
 		return penilaianRepository.findBySiswaId(kelasSiswaId, pageable);
 	}
 	
+	@RequestMapping(value="/detail/nilai/{matpel}", method=RequestMethod.GET)
+	Iterable<Penilaian> listNilai(@RequestParam(name="matpel", required = true) Long matpel){
+		return penilaianRepository.listNilaiByMatpel(matpel);
+	}
+	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Penilaian> deletePenilaian(@PathVariable Long id){
 		if(!penilaianRepository.exists(id)){

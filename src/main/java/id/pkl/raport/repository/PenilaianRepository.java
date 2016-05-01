@@ -24,8 +24,14 @@ public interface PenilaianRepository extends JpaRepository<Penilaian, Long> {
 	@Query("SELECT penilaian FROM Penilaian penilaian JOIN penilaian.kelasSiswa kelasSiswa WHERE kelasSiswa.siswa.id = :kelasSiswaId")
 	Page<Penilaian> findBySiswaId(@Param("kelasSiswaId") Long kelasSiswaId, Pageable pageable);
 	
+	@Query("SELECT penilaian FROM Penilaian penilaian JOIN penilaian.mataPelajaran mataPelajaran WHERE mataPelajaran.id = :matpel")
+	Iterable<Penilaian> listNilaiByMatpel(@Param("matpel") Long matpel);
+	
 	//@Query("SELECT kkm FROM Penilaian penilaian WHERE mataPelajaran.id = :matpel and tingkat.id = :tingkat")
 	//Kkm findByIdMatpelAndTingkat(@Param("matpel") Long matpel, @Param("tingkat") Long tingkat);
+	
+	//@Query("SELECT mataPelajaran FROM Penilaian penilaian WHERE mataPelajaran.id = :matpel and kelasSiswa.id = :kelasSiswa")
+	//findByIdMatpelAndKelasSiswa(@Param("matpel") Long matpel, @Param("kelasSiswa") Long kelasSiswa);
 	
 	@Query("SELECT penilaian FROM Penilaian penilaian JOIN penilaian.kelasSiswa kelasSiswa JOIN penilaian.kriteria kriteria " +
 			"JOIN penilaian.mataPelajaran mataPelajaran WHERE kelasSiswa.kelas.id = :kelasId AND kelasSiswa.siswa.id = :siswaId " +

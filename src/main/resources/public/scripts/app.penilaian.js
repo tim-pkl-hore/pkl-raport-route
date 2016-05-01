@@ -2,6 +2,9 @@ angular.module('raportApp').config(function($routeProvider) {
 	$routeProvider.when('/penilaian/list', {
 		templateUrl : 'views/partials/penilaian/listKelasPenilaian.html',
 		controller : 'PenilaianCtrl'
+	}).when('/penilaian/list/mata/pelajaran', {
+		templateUrl : 'views/partials/penilaian/listMataPelajaranDanKelas.html',
+		controller : 'PenilaianCtrl'
 	}).when('/penilaian/list/kelas/:idkelas', {
 		templateUrl : 'views/partials/penilaian/listPenilaian.html',
 		controller : 'PenilaianCtrl',
@@ -168,6 +171,75 @@ angular.module('raportApp').controller('PenilaianCtrl', function($scope,	 $http,
 		getPage(1, 5);
 	};
 	
+	/*
+	 * List Mata Pelajaran
+	 */
+	
+	$scope.itemsMataPelajaran = [];
+
+	var url = '/mata/pelajaran'
+
+	$scope.query = {
+		order : '',
+		limit : 15,
+		page : 1,
+		total : 0
+	};
+
+	var getMataPelajaran = function(page, limit) {
+		return $resource(url, {}, {
+			get : {
+				method : "GET",
+				params : {
+					page : page - 1,
+					size : limit,
+					search : $scope.search
+				}
+			}
+		});
+	}
+
+	var getPage = function(page, limit) {
+		getMataPelajaran(page, limit).get().$promise.then(
+				function(response) {
+					console.dir(response.content);
+					$scope.itemsMataPelajaran = response.content;
+					$scope.query.limit = response.size;
+					$scope.query.total = response.totalElements;
+				}, function(errResponse) {
+					console.log(errResponse);
+					console.error('Error while fethcing data');
+				}
+		);
+	}
+
+	getPage($scope.query.page, $scope.query.limit);
+
+	$scope.onPaginate = function(page, limit) {
+		getPage(page, limit);
+	}
+
+	$scope.searchField = function(){
+		getPage(1, 5);
+	};
+	
+	/*
+	 * List Kelas Siswa
+	 */
+	$scope.itemKelas = [];
+	var request = {
+		url : '/kelas/all',
+		method : 'GET'
+	};
+	var successHandler = function(response) {
+		$log.debug("Response data dari server : \n" + angular.toJson(response.data, true));
+		$scope.itemKelas = response.data.content;
+	};
+	var errorHandler = function(errors) {
+		$log.error(angular.toJson(errors, true));
+	};
+	$http(request).then(successHandler, errorHandler);
+	
 	
 	/*
 	 * Create Data
@@ -179,7 +251,7 @@ angular.module('raportApp').controller('PenilaianCtrl', function($scope,	 $http,
 			function(response){
 				
 				mdToast('Data berhasil ditambah');
-				window.location = "/#/penilaian/list/kelas/:idkelas/:idsiswa";
+				window.location = "/#/nilai/list";
 			},
 			function(errResponse){
 				$log.debug(errResponse);

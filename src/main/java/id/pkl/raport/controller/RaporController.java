@@ -73,7 +73,16 @@ public class RaporController {
 				 totalNilai += uts * penilaian.getNilai();
 			 }else if (penilaian.getKriteria().getNamaKriteria().equals("UAS")) {
 				totalNilai += uas * penilaian.getNilai();
-			}else {
+			}else if (penilaian.getKriteria().getNamaKriteria().equals("Ulangan Harian 1")) {
+				totalNilai += ulanganHarian * penilaian.getNilai();
+			}else if (penilaian.getKriteria().getNamaKriteria().equals("Ulangan Harian 2")) {
+				totalNilai += ulanganHarian * penilaian.getNilai();
+			}else if (penilaian.getKriteria().getNamaKriteria().equals("Tugas 1")) {
+				totalNilai += ulanganHarian * penilaian.getNilai();
+			}else if (penilaian.getKriteria().getNamaKriteria().equals("Tugas 2")) {
+				totalNilai += ulanganHarian * penilaian.getNilai();
+			} 
+			 else {
 				/*
 				 * bisa diganti (tambah/hapus) sesuai dengan kriteria yang ada di database
 				 */

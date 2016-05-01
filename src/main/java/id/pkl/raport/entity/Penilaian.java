@@ -80,7 +80,6 @@ public class Penilaian {
 		this.mataPelajaran = mataPelajaran;
 	}
 
-
 	public Integer getNilai() {
 		return nilai;
 	}

@@ -32,7 +32,7 @@ angular.module('raportApp').config(function($routeProvider) {
 	});
 });
 
-angular.module('raportApp').controller('RaporCtrl', function($scope, $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, PenilaianService, RaportService){
+angular.module('raportApp').controller('RaporCtrl', function($scope, $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, PenilaianService, RaportService, KelasSiswaService){
 	$scope.formData = {};
 	$scope.search = "";
 	
@@ -304,6 +304,8 @@ angular.module('raportApp').controller('RaporCtrl', function($scope, $http, $rou
 			);
 			/*END QUERY UNTUK NILAI MATPEL*/
 	}
+		
+	
 });
 
 

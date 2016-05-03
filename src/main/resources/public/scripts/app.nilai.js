@@ -1,10 +1,10 @@
 angular.module('raportApp').config(function($routeProvider) {
 	$routeProvider.when('/nilai/list', {
 		templateUrl : 'views/partials/nilai/listKelas.html',
-		controller : 'PenilaianCtrl'
+		controller : 'NilaiCtrl'
 	}).when('/nilai/list/:idkelas', {
 		templateUrl : 'views/partials/nilai/listSiswa.html',
-		controller : 'PenilaianCtrl',
+		controller : 'NilaiCtrl',
 		resolve : {
 			'idkelas' : function($route){
 				return $route.current.params.idkelas;
@@ -12,38 +12,18 @@ angular.module('raportApp').config(function($routeProvider) {
 		}
 	}).when('/nilai/list/mata/pelajaran/:idkelas/:idsiswa', {
 		templateUrl : 'views/partials/nilai/listMataPelajaran.html',
-		controller : 'PenilaianCtrl',
+		controller : 'NilaiCtrl',
 		resolve : {
 			'idsiswa' : function($route){
 				return $route.current.params.idsiswa;
 			
 			}
 		}
-	}).when('/nilai/list/mata/pelajaran/:idkelas/:idsiswa/:idmatpel', {
-		templateUrl : 'views/partials/nilai/listMataPelajaran.html',
-		controller : 'PenilaianCtrl',
-		resolve : {
-			'idmatpel' : function($route){
-				return $route.current.params.idmatpel;
-			
-			}
-		}
-	}).when('/penilaian/:idkelasinput/input-nilai', {
-		templateUrl : 'views/partials/penilaian/formPenilaian.html',
-		controller : 'PenilaianCtrl',
-		resolve : {
-			'idkelasinput' : function($route){
-				return $route.current.params.idkelasinput;
-			}
-		}
-	}).when('/penilaian/edit/:idkelas/:idpenilaian', {
-		templateUrl : 'views/partials/penilaian/editPenilaian.html',
-		controller : 'PenilaianCtrl'
 	});
 
 });
 
-angular.module('raportApp').controller('PenilaianCtrl', function($scope,	 $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, PenilaianService, KelasService, KelasSiswaService){
+angular.module('raportApp').controller('NilaiCtrl', function($scope,	 $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, PenilaianService, KelasService, KelasSiswaService){
 	$scope.formData = {};
 	$scope.search = "";
 	
@@ -172,7 +152,8 @@ angular.module('raportApp').controller('PenilaianCtrl', function($scope,	 $http,
 	$scope.onPaginate = function(page, limit) {
 		getPage(page, limit);
 	}
-
+	
+	
 	$scope.searchField = function(){
 		getPage(1, 5);
 	};
@@ -263,244 +244,6 @@ angular.module('raportApp').controller('PenilaianCtrl', function($scope,	 $http,
 				$log.debug(errResponse);
 				$scope.objectError = errResponse.data.fieldErrors;
 				mdToast('Gagal menyimpan data, cek kembali input data');
-			}
-		);
-	};
-	
-	/*
-	 * List penilaian by kelasId
-	 */
-	
-	if($route.current.params.idkelas){
-		$scope.itemsDetailPenilaian = [];
-		$scope.idKelas = $route.current.params.idkelas;
-
-		var url = '/penilaian/detail'
-
-		$scope.queryDetailPenilaian = {
-			order : '',
-			limit : 5,
-			page : 1,
-			total : 0
-		};
-
-		var getDetailPenilaian = function(page, limit) {
-			return $resource(url, {}, {
-				get : {
-					method : "GET",
-					params : {
-						page : page - 1,
-						size : limit,
-						kelasid : $route.current.params.idkelas,
-						search : $scope.search
-					}
-				}
-			});
-		}
-
-		var getPageDetailPenilaian = function(page, limit) {
-			getDetailPenilaian(page, limit).get().$promise.then(
-					function(response) {
-						console.dir(response.content);
-						$scope.itemsDetailPenilaian = response.content;
-						$scope.queryDetailPenilaian.limit = response.size;
-						$scope.queryDetailPenilaian.total = response.totalElements;
-					}, function(errResponse) {
-						console.log(errResponse);
-						console.error('Error while fethcing data');
-					}
-			);
-
-		}
-
-		getPageDetailPenilaian($scope.queryDetailPenilaian.page, $scope.queryDetailPenilaian.limit);
-
-		$scope.onPaginateDetailPenilaian = function(page, limit) {
-			getPageDetailPenilaian(page, limit);
-		}
-		
-		$scope.searchField = function(){
-			getPage(1, 5);
-		};
-	};
-	
-	/*
-	 * List penilaian by siswaId
-	 */
-	
-	if($route.current.params.idsiswa){
-		$scope.itemsDetailNilai = [];
-		$scope.idSiswa = $route.current.params.idsiswa;
-
-		var url = '/penilaian/detail/siswa/'+$route.current.params.idsiswa;
-
-		$scope.queryDetailSiswa = {
-			order : '',
-			limit : 5,
-			page : 1,
-			total : 0
-		};
-
-		var getDetailSiswa = function(page, limit) {
-			return $resource(url, {}, {
-				get : {
-					method : "GET",
-					params : {
-						page : page - 1,
-						size : limit,
-						kelassiswaid : $route.current.params.idsiswa,
-						search : $scope.search
-					}
-				}
-			});
-		}
-
-		var getPageDetailSiswa = function(page, limit) {
-			getDetailSiswa(page, limit).get().$promise.then(
-					function(response) {
-						console.dir(response.content);
-						$scope.itemsDetailNilai = response.content;
-						$scope.queryDetailSiswa.limit = response.size;
-						$scope.queryDetailSiswa.total = response.totalElements;
-					}, function(errResponse) {
-						console.log(errResponse);
-						console.error('Error while fethcing data');
-					}
-			);
-
-		}
-
-		getPageDetailSiswa($scope.queryDetailSiswa.page, $scope.queryDetailSiswa.limit);
-
-		$scope.onPaginateDetailSiswa = function(page, limit) {
-			getPageDetailSiswa(page, limit);
-		}
-		
-		$scope.searchField = function(){
-			getPage(1, 5);
-		};
-	};
-	
-	/*
-	 * List penilaian by matpelId
-	 */
-	
-	if($route.current.params.idmatpel){
-		$scope.itemsDetailNilai = [];
-		$scope.idMatpel = $route.current.params.idmatpel;
-
-		var url = '/penilaian/detail/nilai/'+$route.current.params.idmatpel;
-
-		$scope.queryDetailNilai = {
-			order : '',
-			limit : 5,
-			page : 1,
-			total : 0
-		};
-
-		var getDetailNilai = function(page, limit) {
-			return $resource(url, {}, {
-				get : {
-					method : "GET",
-					params : {
-						page : page - 1,
-						size : limit,
-						matpel : $route.current.params.idmatpel,
-						search : $scope.search
-					}
-				}
-			});
-		}
-
-		var getPageDetailNilai = function(page, limit) {
-			getDetailNilai(page, limit).get().$promise.then(
-					function(response) {
-						console.dir(response.content);
-						$scope.itemsDetailNilai = response.content;
-						$scope.queryDetailNilai.limit = response.size;
-						$scope.queryDetailNilai.total = response.totalElements;
-					}, function(errResponse) {
-						console.log(errResponse);
-						console.error('Error while fethcing data');
-					}
-			);
-
-		}
-
-		getPageDetailNilai($scope.queryDetailNilai.page, $scope.queryDetailNilai.limit);
-
-		$scope.onPaginateDetailNilai = function(page, limit) {
-			getPageDetailNilai(page, limit);
-		}
-		
-		$scope.searchField = function(){
-			getPage(1, 5);
-		};
-	};
-	
-	
-	/*
-	 * Input penilaian by kelasId
-	 */
-	if($route.current.params.idkelasinput){
-		$scope.idKelas = $route.current.params.idkelasinput;
-		KelasService.get({id: $route.current.params.idkelasinput}).$promise.then(
-				function(response){
-					$scope.tingkat = response.tingkat.tingkat;
-					$scope.grupKelas = response.grupKelas.grupKelas;
-				},
-				function(errResponse){
-					$log.debug(errResponse);
-					mdToast('Data tidak ditemukan');
-					window.location = "/#/penilaian/list";
-				}
-			);
-		
-		KelasSiswaService.getArray({id: 'all', other: $scope.idKelas}).$promise.then(
-				function(response){
-					$log.debug(response);
-					$scope.kelasSiswa = response
-				},
-				function(errResponse){
-					$log.debug(errResponse);
-					mdToast('Data tidak ditemukan');
-					window.location = "/#/penilaian/list";
-				}
-			);
-	}
-	
-	/*
-	 * Edit Data
-	 */
-	
-	if($route.current.params.idpenilaian){
-		KelasSiswaService.get({id: $route.current.params.idpenilaian}).$promise.then(
-			function(response){
-				$scope.formData = response;
-			},
-			function(errResponse){
-				$log.debug(errResponse);
-				mdToast('Data tidak ditemukan');
-				window.location = "/#/penilaian/list";
-			}
-		);
-	};
-	
-	/*
-	 * Update Data
-	 */
-	
-	$scope.update = function(){		
-		PenilaianService.update($scope.formData).$promise.then(
-			function(response){
-				mdToast('Data berhasil diubah');
-				window.location = "/#/penilaian/list";
-			},
-			
-			function(errResponse){
-				$log.debug(errResponse);
-				$scope.objectError = errResponse.data.fieldErrors;
-				mdToast('Data gagal diubah, cek kembali data input')
 			}
 		);
 	};

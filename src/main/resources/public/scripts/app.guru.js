@@ -80,6 +80,7 @@ angular.module('raportApp')
 	$scope.onPaginate = function(page, limit) {
 		getPage(page, limit);
 	}
+	alert("TES");
 	
 	 $scope.sort = function(keyname){
 	        $scope.sortKey = keyname;   //set the sortKey to the param passed

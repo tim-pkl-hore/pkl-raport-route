@@ -26,13 +26,6 @@ md-whiteframe {
   padding: 24px;
 }
 	</style>
-	<script src="/bower_components/jspdf/dist/jspdf.min.js"></script>
-	<script src="/bower_components/jspdf/examples/js/html2canvas.js"></script>
-	<script type="text/javascript">
-	function genPDF(){
-		
-		}
-	</script>
 	
 
 </head>
@@ -103,9 +96,6 @@ md-whiteframe {
   </section>
 </div>
 	
-	
-	
-	<script type="text/javascript" src="/bower_components/jspdf/dist/jspdf.min.js"></script>
 	<script type="text/javascript" src="/scripts/vendor/angular.min.js"></script>
 	<script type="text/javascript" src="/scripts/vendor/angular-route.min.js"></script>
 	<script type="text/javascript" src="/bower_components/angular-material/angular-material.js"></script>
@@ -124,49 +114,16 @@ md-whiteframe {
 	<script type="text/javascript" src="/bower_components/angular-resource/angular-resource.min.js"></script>
 	<script src="/bower_components/angular-material-sidenav-menu/material-menu-sidenav.min.js"></script>
 	<script src="/bower_components/angular-tablesort/js/angular-tablesort.js"></script>
-	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="/bower_components/jspdf/examples/js/jquery/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="/scripts/vendor/jsPDF/dist/jspdf.debug.js"></script>
-	<script type="text/javascript" src="/scripts/vendor/jsPDF/dist/jspdf.min.js"></script>
-	<script type="text/javascript" src="/scripts/vendor/jsPDF/plugins/standard_fonts_metrics.js"></script>
-	<script type="text/javascript" src="/scripts/vendor/jsPDF/plugins/split_text_to_size.js"></script>
-	<script type="text/javascript" src="/scripts/vendor/jsPDF/plugins/from_html.js"></script>
-	<script type="text/javascript" src="/scripts/vendor/jsPDF/examples/js/from-html.js"></script>
+	<script type="text/javascript" src="/bower_components/jspdf/dist/jspdf.min.js"></script>
+
+
 	<script type="text/javascript" src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-	<script type="text/javascript" src="/scripts/vendor/html2canvas.js"></script>
-	<script type="text/javascript" src="/scripts/vendor/jsPDF/plugins/canvas.js"></script>
-	<script type="text/javascript" src="/scripts/vendor/jsPDF/plugins/addhtml.js"></script>
-	<script type="text/javascript" src="/scripts/vendor/jsPDF/plugins/cell.js"></script>
-	<script type="text/javascript" src="/scripts/vendor/jsPDF/examples/js/html2canvas.js"></script>
-	<script type="text/javascript">
-	function demoFromHTML() {
-		function demoFromHTML() {
-			var doc = new jsPDF('p', 'cm', 'a4');
-			var source = $('#rapor').first();
-			var specialElementHandlers = {
-			'#bypassme': function(element, renderer) {
-			return true;
-			}
-			};
-			 
-			doc.fromHTML($('#rapor').get(0), 3, // x coord
-					3, // y coord
-			{
-			'width': auto, // max width of content on PDF
-			
-			'elementHandlers': specialElementHandlers
-			});
-			 
-			
-			doc.output('dataurl');
-			}
-	}
-</script>
+	
+	
 	
 	<script type="text/javascript" src="/scripts/app.js"></script>
 	<script type="text/javascript" src="/scripts/api-raport.js"></script>
 	<script type="text/javascript" src="/scripts/app.grupkelas.js"></script>
-	<script type="text/javascript" src="/scripts/exportPdf.js"></script>
 	<script type="text/javascript" src="/scripts/app.home.js"></script>
 	<script type="text/javascript" src="/scripts/app.rapor.js"></script>
 	<script type="text/javascript" src="/scripts/app.mengajar.js"></script>

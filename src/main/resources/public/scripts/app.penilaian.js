@@ -39,6 +39,10 @@ angular.module('raportApp').config(function($routeProvider) {
 
 angular.module('raportApp').controller('PenilaianCtrl', function($scope,	 $http, $route, $resource, $stateParams, $mdDialog, $mdToast, $log, $state, $location, PenilaianService, KelasService, KelasSiswaService){
 	$scope.formData = {};
+	$scope.arrayNilai = {
+		idSiswa : [],
+		nilaiSiswa : []
+	};
 	$scope.search = "";
 	
 	/*
@@ -171,6 +175,8 @@ angular.module('raportApp').controller('PenilaianCtrl', function($scope,	 $http,
 		getPage(1, 5);
 	};
 	
+	
+	
 	/*
 	 * List Mata Pelajaran
 	 */
@@ -244,22 +250,24 @@ angular.module('raportApp').controller('PenilaianCtrl', function($scope,	 $http,
 	/*
 	 * Create Data
 	 */
+//	
+	$scope.simpan = function(){
+		$log.debug($scope.arrayNilai);
+		
+//		PenilaianService.create($scope.formData).$promise.then(
+//			function(response){
+//				
+//				mdToast('Data berhasil ditambah');
+//				window.location = "/#/nilai/list";
+//			},
+//			function(errResponse){
+//				$log.debug(errResponse);
+//				$scope.objectError = errResponse.data.fieldErrors;
+//				mdToast('Gagal menyimpan data, cek kembali input data');
+//			}
+//		);
+	}
 	
-	$scope.save = function(){
-	
-		PenilaianService.create($scope.formData).$promise.then(
-			function(response){
-				
-				mdToast('Data berhasil ditambah');
-				window.location = "/#/nilai/list";
-			},
-			function(errResponse){
-				$log.debug(errResponse);
-				$scope.objectError = errResponse.data.fieldErrors;
-				mdToast('Gagal menyimpan data, cek kembali input data');
-			}
-		);
-	};
 	
 	/*
 	 * List penilaian by kelasId

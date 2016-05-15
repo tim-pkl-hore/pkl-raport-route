@@ -252,20 +252,19 @@ angular.module('raportApp').controller('PenilaianCtrl', function($scope,	 $http,
 	 */
 //	
 	$scope.simpan = function(){
-		$log.debug($scope.arrayNilai);
 		
-//		PenilaianService.create($scope.formData).$promise.then(
-//			function(response){
-//				
-//				mdToast('Data berhasil ditambah');
-//				window.location = "/#/nilai/list";
-//			},
-//			function(errResponse){
-//				$log.debug(errResponse);
-//				$scope.objectError = errResponse.data.fieldErrors;
-//				mdToast('Gagal menyimpan data, cek kembali input data');
-//			}
-//		);
+		PenilaianService.create($scope.formData).$promise.then(
+			function(response){
+				
+				mdToast('Data berhasil ditambah');
+				window.location = "/#/penilaian/list";
+			},
+			function(errResponse){
+				$log.debug(errResponse);
+				$scope.objectError = errResponse.data.fieldErrors;
+				mdToast('Gagal menyimpan data, cek kembali input data');
+			}
+		);
 	}
 	
 	

@@ -17,7 +17,7 @@
        		<div layout-gt-sm="row">
 				<md-input-container class="md-block" flex-gt-sm>
            			<label>Nama Lengkap</label>
-           			<input type="text" ng-model="formData.nama">
+           			<input type="text" ng-model="formData.nama" required>
        			</md-input-container>
        		</div>
    			<div layout-gt-sm="row">
@@ -32,12 +32,12 @@
     		<div layout-gt-sm="row">
 	   			<md-input-container class="md-block" flex-gt-sm>
            			<label>No. HP</label>
-           			<input type="tel" ng-model="formData.telp"  maxlength="12">
+           			<input type="tel" ng-model="formData.telp"  maxlength="12" required>
        			</md-input-container>
    			</div>
        			<md-input-container class="md-block">
           			<label>Alamat</label>
-          			<input ng-model="formData.alamat">
+          			<input ng-model="formData.alamat" required>
         		</md-input-container>
         	<div layout="row" layout-wrap layout-margin layout-align="end end">
         		<md-input-container>

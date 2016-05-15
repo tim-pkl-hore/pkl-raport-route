@@ -6,13 +6,15 @@
 <div>
 	<div layout="row">
 		<form ng-submit="save()">
-			<md-input-container>
-        		<label>Kriteria Nilai</label>
-        		<input type="text" ng-model="formData.namaKriteria">
-     		</md-input-container>
-     		<md-input-container>
-      			<input type="submit" class="md-button md-primary" value="Tambah" />
-      		</md-input-container>
+			<div layout-gt-sm="row">
+				<md-input-container class="md-block" flex-gt-sm>
+	        		<label>Kriteria Nilai</label>
+	        		<input type="text" ng-model="formData.namaKriteria">
+	     		</md-input-container>
+	     		<md-input-container>
+	      			<input type="submit" class="md-button md-raised md-primary" value="Tambah" />
+	      		</md-input-container>
+	      	</div>
 		</form>
 	</div>
 </div>

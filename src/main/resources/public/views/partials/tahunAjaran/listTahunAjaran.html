@@ -6,17 +6,17 @@
 	<table md-table md-row-select border="1" ng-model="tahun_ajaran" md-progress="promise">
 		 <thead md-head md-order="query.order" md-on-reorder="onReorder">
 		 	<tr md-row>
-		 		<th md-coloumn>Current</th>
 		 		<th md-coloumn>Tahun Awal</th>
 		 		<th md-coloumn>Tahun Akhir</th>
+		 		<th md-coloumn>Current</th>	
 		 		<th md-coloumn>Aksi</th>
 		 	</tr>
 		 </thead>
 		 <tbody md-body>
 		 	<tr md-row ng-repeat="item in items">
-		 		<th md-cell>{{item.current}}</th>
 		 		<th md-cell>{{item.tahunAwal}}</th>
 		 		<th md-cell>{{item.tahunAkhir}}</th>
+		 		<th md-cell>{{item.current}}</th>
 		 		<th md-cell>
 		 			<a href="/#/tahun/ajaran/edit/{{item.id}}"><ng-md-icon icon="mode_edit" style="fill: #abcdef" size="20"></ng-md-icon></a>
 		 			<a href="/#/tahun/ajaran/detail/{{item.id}}"><ng-md-icon icon="info" style="fill: #abcdef" size="20"></ng-md-icon></a> 

@@ -40,7 +40,7 @@ public class RaporController {
 		 */
 		
 		Double uts = 0.4, uas = 0.4, kuis = 0.1, ulanganHarian = 0.1;
-		Integer jumlahKuis = 5, jumlahUlangan = 5;
+		Integer jumlahKuis = 2, jumlahUlangan = 2;
 		
 		/*
 		 * Total nilai dari keseluruhan
